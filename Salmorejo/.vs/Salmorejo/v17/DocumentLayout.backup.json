@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\",
+  "WorkspaceRootPath": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\Salmorejo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|c:\\users\\blaze\\source\\repos\\salmorejo\\salmorejo\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\salmorejo\\salmorejo\\salmorejo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|solutionrelative:salmorejo\\salmorejo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\salmorejo\\salmorejo\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|solutionrelative:salmorejo\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -19,14 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\Salmorejo\\Form1.cs",
+              "Title": "Salmorejo",
+              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\Salmorejo\\Salmorejo\\Salmorejo.csproj",
+              "RelativeDocumentMoniker": "Salmorejo\\Salmorejo.csproj",
+              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\Salmorejo\\Salmorejo\\Salmorejo.csproj",
+              "RelativeToolTip": "Salmorejo\\Salmorejo.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-22T15:32:00.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\Salmorejo\\Salmorejo\\Form1.cs",
               "RelativeDocumentMoniker": "Salmorejo\\Form1.cs",
-              "ToolTip": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\Salmorejo\\Form1.cs [Design]",
-              "RelativeToolTip": "Salmorejo\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\Salmorejo\\Salmorejo\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Salmorejo\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-22T15:25:08.909Z",
-              "EditorCaption": " [Design]"
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }
