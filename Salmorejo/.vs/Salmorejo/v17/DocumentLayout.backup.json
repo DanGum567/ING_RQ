@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|c:\\users\\blaze\\source\\repos\\salmorejo\\salmorejo\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E3FEAD12-849C-47E8-8BCE-20FFA2D48390}|Salmorejo\\Salmorejo.csproj|solutionrelative:salmorejo\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\Salmorejo\\Form1.cs",
+              "RelativeDocumentMoniker": "Salmorejo\\Form1.cs",
+              "ToolTip": "C:\\Users\\Blaze\\source\\repos\\Salmorejo\\Salmorejo\\Form1.cs [Design]",
+              "RelativeToolTip": "Salmorejo\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T15:25:08.909Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

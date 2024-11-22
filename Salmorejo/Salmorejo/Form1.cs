@@ -1,4 +1,4 @@
-namespace ING_RQ_IT_1
+namespace Salmorejo
 {
     public partial class Form1 : Form
     {
