@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace ChillDeCojones
 {
-    public partial class Form1 : Form
+    public partial class Products : Form
     {
-        public Form1()
+        public Products()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void GetThumbnail(Producto producto)
+        {
+            int id = producto.ID;
+
         }
     }
 }

@@ -13,10 +13,10 @@ namespace ChillDeCojones
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MiniPIMBD : DbContext
+    public partial class grupo02DBEntities : DbContext
     {
-        public MiniPIMBD()
-            : base("name=MiniPIMBD")
+        public grupo02DBEntities()
+            : base("name=grupo02DBEntities")
         {
         }
     
@@ -25,5 +25,11 @@ namespace ChillDeCojones
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<AtributoSistema> AtributoSistema { get; set; }
+        public DbSet<AtributoUsuario> AtributoUsuario { get; set; }
+        public DbSet<CategoriaProducto> CategoriaProducto { get; set; }
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<ValorAtributoSistema> ValorAtributoSistema { get; set; }
+        public DbSet<ValorAtributoUsuario> ValorAtributoUsuario { get; set; }
     }
 }

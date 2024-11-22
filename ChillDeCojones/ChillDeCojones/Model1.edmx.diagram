@@ -4,7 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="16a16190c6e444fb977937cb142e29cc" Name="Diagram1" />
+      <Diagram DiagramId="c1a3de10fa334665ae6b7a1331688985" Name="Diagram1" ZoomLevel="103">
+        <EntityTypeShape EntityType="grupo02DBModel.AtributoSistema" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="grupo02DBModel.AtributoUsuario" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="grupo02DBModel.CategoriaProducto" Width="1.5" PointX="3" PointY="9.375" />
+        <EntityTypeShape EntityType="grupo02DBModel.Producto" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="grupo02DBModel.ValorAtributoSistema" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="grupo02DBModel.ValorAtributoUsuario" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_1" />
+        <AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_1" />
+        <AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_2" />
+        <AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_2" />
+        <AssociationConnector Association="grupo02DBModel.CategoriaProductoIntermedia" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -16,7 +16,8 @@ namespace ChillDeCojones
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Common commonForm = new Common();
+            Application.Run(commonForm);
         }
     }
 }
