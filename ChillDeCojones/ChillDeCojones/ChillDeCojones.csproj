@@ -65,6 +65,7 @@
     <Compile Include="CategoriaProducto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Convertidor.cs" />
     <Compile Include="Common.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +77,12 @@
     </Compile>
     <Compile Include="Attributes.Designer.cs">
       <DependentUpon>Attributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.Designer.cs">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="grupo02DBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Attributes.resx">
       <DependentUpon>Attributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDetails.resx">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products.resx">
       <DependentUpon>Products.cs</DependentUpon>

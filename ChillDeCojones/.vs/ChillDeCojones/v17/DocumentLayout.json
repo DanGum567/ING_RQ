@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\convertidor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\convertidor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|c:\\users\\blaze\\documents\\github\\ing_rq\\chilldecojones\\chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,50 +30,38 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Model1.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Model1.edmx",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Model1.edmx",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Model1.edmx [Diagram1]",
-              "RelativeToolTip": "ChillDeCojones\\Model1.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-11-22T18:54:51.379Z",
-              "EditorCaption": " [Diagram1]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Attributes.cs",
               "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Attributes.cs",
               "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs",
               "RelativeToolTip": "ChillDeCojones\\Attributes.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwB0AAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAjwGAAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T18:51:58.316Z",
+              "WhenOpened": "2024-11-23T00:16:52.129Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Attributes.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Attributes.cs",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ChillDeCojones\\Attributes.cs [Dise\u00F1o]",
+              "DocumentIndex": 0,
+              "Title": "Products.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
+              "RelativeDocumentMoniker": "ChillDeCojones\\Products.cs",
+              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ChillDeCojones\\Products.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T18:50:34.452Z",
+              "WhenOpened": "2024-11-22T23:11:57.144Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Products.cs",
               "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Products.cs",
               "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
               "RelativeToolTip": "ChillDeCojones\\Products.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAqwBYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-22T18:29:45.307Z",
               "EditorCaption": ""
@@ -97,52 +69,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Common.cs",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Common.cs",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Common.cs",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Common.cs",
-              "RelativeToolTip": "ChillDeCojones\\Common.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAcwCsAAAAJAAAAAAAAAA==",
+              "Title": "Convertidor.cs",
+              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Convertidor.cs",
+              "RelativeDocumentMoniker": "ChillDeCojones\\Convertidor.cs",
+              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Convertidor.cs",
+              "RelativeToolTip": "ChillDeCojones\\Convertidor.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T18:26:40.093Z",
+              "WhenOpened": "2024-11-22T23:50:56.53Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Products.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Products.cs",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ChillDeCojones\\Products.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T18:23:55.411Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Program.cs",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Program.cs",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Program.cs",
-              "RelativeToolTip": "ChillDeCojones\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T17:00:40.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Common.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Common.cs",
-              "RelativeDocumentMoniker": "ChillDeCojones\\Common.cs",
-              "ToolTip": "C:\\Users\\Blaze\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Common.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ChillDeCojones\\Common.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T17:01:11.146Z",
-              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

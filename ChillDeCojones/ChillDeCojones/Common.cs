@@ -12,6 +12,7 @@ namespace ChillDeCojones
 {
     public partial class Common : Form
     {
+        public static Common instance;
         public Common()
         {
             InitializeComponent();
@@ -22,19 +23,19 @@ namespace ChillDeCojones
             ShowSubForm(new Products());
         }
 
-        public void ClearSubForm()
+        public static void ClearSubForm()
         {
-            panel1.Controls.Clear();
+            instance.panel1.Controls.Clear();
         }
 
-        public void ShowSubForm(Form subForm)
+        public static void ShowSubForm(Form subForm)
         {
             ClearSubForm();
             subForm.TopLevel = false;
             subForm.AutoScroll = true;
             subForm.FormBorderStyle = FormBorderStyle.None; // Opcional, elimina bordes del formulario
             subForm.Dock = DockStyle.Fill;
-            panel1.Controls.Add(subForm);
+            instance.panel1.Controls.Add(subForm);
             subForm.Show();
         }
 
@@ -46,6 +47,11 @@ namespace ChillDeCojones
         private void toolStripAttributesButton_Click(object sender, EventArgs e)
         {
             ShowSubForm(new Attributes());
+        }
+
+        private void Common_Load(object sender, EventArgs e)
+        {
+            instance = this;
         }
     }
 }
