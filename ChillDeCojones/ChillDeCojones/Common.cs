@@ -36,6 +36,8 @@ namespace ChillDeCojones
             subForm.FormBorderStyle = FormBorderStyle.None; // Opcional, elimina bordes del formulario
             subForm.Dock = DockStyle.Fill;
             instance.panel1.Controls.Add(subForm);
+            string label = "Dashboard > "+subForm.GetType().Name;
+            instance.labelRuta.Text = label;
             subForm.Show();
         }
 
@@ -52,6 +54,16 @@ namespace ChillDeCojones
         private void Common_Load(object sender, EventArgs e)
         {
             instance = this;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripCategoriesButton_Click(object sender, EventArgs e)
+        {
+            ShowSubForm(new Categorias());
         }
     }
 }

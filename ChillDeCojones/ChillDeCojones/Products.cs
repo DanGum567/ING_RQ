@@ -21,13 +21,82 @@ namespace ChillDeCojones
         {
             //MostrarListaProductosV2Optimizada();
             MostrarListaProductos();
+            cargarAccion();
+        }
+
+        private bool ValidarGTIN(string GTIN)
+        {
+            // Validar que no sea nulo o vacío
+            if (string.IsNullOrEmpty(GTIN))
+            {
+                MessageBox.Show("El GTIN no puede estar vacío.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar que tenga exactamente 14 caracteres
+            if (GTIN.Length != 14)
+            {
+                MessageBox.Show("El GTIN debe tener exactamente 14 dígitos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar que todos los caracteres sean numéricos
+            if (!GTIN.All(char.IsDigit))
+            {
+                MessageBox.Show("El GTIN solo debe contener números.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Calcular el dígito de control (algoritmo módulo 10)
+            int suma = 0;
+            for (int i = 0; i < 13; i++) // Iterar sobre los primeros 13 dígitos
+            {
+                int digito = int.Parse(GTIN[i].ToString());
+                suma += (i % 2 == 0) ? digito * 3 : digito; // Alternar multiplicación por 3 y 1
+            }
+
+            int digitoControlCalculado = (10 - (suma % 10)) % 10; // Calcular el dígito de control
+            int digitoControlReal = int.Parse(GTIN[13].ToString()); // Último dígito del GTIN
+
+            // Verificar si el dígito de control coincide
+            if (digitoControlCalculado != digitoControlReal)
+            {
+                MessageBox.Show("El GTIN no es válido (dígito de control incorrecto).", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Si todo es válido
+            return true;
+        }
+
+
+        private void validarSKU(string SKU)
+        {
+
+        }
+        private void cargarAccion()
+        {
+            //Crear columna de eliminar
+            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            btnEliminar.HeaderText = "Eliminar";
+            btnEliminar.Name = "Eliminar";
+            btnEliminar.Text = "🗑";
+            btnEliminar.UseColumnTextForButtonValue = true;
+            listaProductosDataGridView.Columns.Add(btnEliminar);
+
+            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
+            btnEditar.HeaderText = "Editar";
+            btnEditar.Name = "Editar";
+            btnEditar.Text = "✏";
+            btnEditar.UseColumnTextForButtonValue = true;
+            listaProductosDataGridView.Columns.Add(btnEditar);
         }
 
         private void MostrarListaProductos()
         {
             listaProductosDataGridView.SuspendLayout();
-            using (grupo02DBEntities db = new grupo02DBEntities())
-            {
+            grupo02DBEntities db = new grupo02DBEntities();
+            
                 db.Configuration.LazyLoadingEnabled = false; // Desactiva Lazy Loading
                 List<Producto> productos = new List<Producto>();
                 productos = db.Producto.ToList();
@@ -64,10 +133,9 @@ namespace ChillDeCojones
                         producto.FECHACREACION
                     );
                 }
-            }
             listaProductosDataGridView.ResumeLayout();
         }
-
+        /*
         private void MostrarListaProductosV2Optimizada()
         {
             using (grupo02DBEntities db = new grupo02DBEntities())
@@ -117,11 +185,63 @@ namespace ChillDeCojones
                 listaProductosDataGridView.ResumeLayout();
             }
         }
-
+        */
 
         private void newProductButton_Click(object sender, EventArgs e)
         {
             Common.ShowSubForm(new ProductDetails());
+        }
+
+        private void EliminarProducto(int idProducto)
+        {
+            grupo02DBEntities db = new grupo02DBEntities();
+            // Busca el atributo en la base de datos
+            var producto = db.Producto.First(x => x.ID.Equals(idProducto));
+            if (producto != null)
+            {
+                // Se pregunta al usuario si está seguro de que quiere eliminar el atributo
+                DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
+                    db.Producto.Remove(producto);
+                    db.SaveChanges(); // Guarda los cambios en la base de datos
+                    MessageBox.Show("Atributo eliminado correctamente.", "Eliminación Exitosa");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontró el atributo.", "Error");
+            }
+
+
+            // Actualiza la tabla después de eliminar
+            MostrarListaProductos();
+        }
+
+        private void listaProductosDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica si la celda pertenece a la columna "Eliminar"
+            if (e.ColumnIndex == listaProductosDataGridView.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                // Obtén el ID del atributo desde la fila seleccionada
+                int idProducto = Convert.ToInt32(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Llama a un método para eliminar el atributo
+                EliminarProducto(idProducto);
+            }
+
+            // Modificar atributo
+            if (e.RowIndex >= 0) // Verifica que no sea el encabezado
+            {
+                // Si se hizo clic en el botón "Editar"
+                if (e.ColumnIndex == listaProductosDataGridView.Columns["Editar"].Index)
+                {
+                    
+                }
+                
+            }
         }
     }
 }
