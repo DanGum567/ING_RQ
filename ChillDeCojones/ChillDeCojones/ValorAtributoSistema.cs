@@ -11,39 +11,14 @@ namespace ChillDeCojones
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Concurrent;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Threading;
-    using System.Windows.Forms;
-
+    
     public partial class ValorAtributoSistema
     {
         public byte[] VALOR { get; set; }
         public int ID_ATRIBUTOSISTEMA { get; set; }
         public int ID_PRODUCTO { get; set; }
-
+    
         public virtual AtributoSistema AtributoSistema { get; set; }
         public virtual Producto Producto { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            // Verificar si el objeto es del tipo ValorAtributoSistema
-            if (obj == null || GetType() != obj.GetType())
-                return false;
-
-            // Convertir el objeto a ValorAtributoSistema
-            ValorAtributoSistema other = (ValorAtributoSistema)obj;
-
-            // Comparar los dos IDs (ID_ATRIBUTOSISTEMA e ID_PRODUCTO)
-            return ID_ATRIBUTOSISTEMA == other.ID_ATRIBUTOSISTEMA && ID_PRODUCTO == other.ID_PRODUCTO;
-        }
-
-        public override int GetHashCode()
-        {
-            // Combinar los dos IDs para generar el valor hash
-            return (ID_ATRIBUTOSISTEMA.GetHashCode() * 397) ^ ID_PRODUCTO.GetHashCode();
-        }
     }
 }

@@ -17,7 +17,7 @@ namespace ChillDeCojones
         public ProductDetails(int idProducto)
         {
             InitializeComponent();
-            this.idProducto = idProducto;   
+            this.idProducto = idProducto;
         }
 
         private void ProductDetails_Load(object sender, EventArgs e)
@@ -39,11 +39,14 @@ namespace ChillDeCojones
             grupo02DBEntities db = new grupo02DBEntities();
             var categorias = from producto in db.Producto select producto.CategoriaProducto;
 
+            dCategoria.DataSource = categorias;
 
-            /*ListViewItem[] items = categorias.Select(categoria => new ListViewItem(categoria.ToString())).ToArray();
-
-            // Agrega los ítems al ListView
-            listViewCategoria.Items.AddRange(items);*/
+            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            btnEliminar.HeaderText = "Eliminar";
+            btnEliminar.Name = "Eliminar";
+            btnEliminar.Text = "🗑";
+            btnEliminar.UseColumnTextForButtonValue = true;
+            dCategoria.Columns.Add(btnEliminar);
 
         }
 
@@ -141,6 +144,7 @@ namespace ChillDeCojones
         {
             try
             {
+
                 grupo02DBEntities db = new grupo02DBEntities();
                 var ListaProductoSeleccionado = from producto in db.Producto where producto.ID == idProducto select producto;
                 var productoSelecionado = ListaProductoSeleccionado.FirstOrDefault(); // Se coge el objeto producto de la query
@@ -166,6 +170,9 @@ namespace ChillDeCojones
                     {
                         thumbnailPictureBox.Image = Convertidor.BytesToImage(thumbnailBytes);
                     }
+
+                    cbCategoria.Visible = false;
+                    bCategoria.Visible = false;
 
                     // Cargar los atributos de usuario relacionados con este producto
                     cargarAtributosUsuario();
@@ -250,7 +257,30 @@ namespace ChillDeCojones
 
         private void dCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == dCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                grupo02DBEntities db = new grupo02DBEntities();
+                CategoriaProducto categoriaEliminar = (CategoriaProducto) dCategoria.Rows[e.RowIndex].Cells[0].Value;
+                var producto = db.Producto.Find(idProducto);
+                producto.CategoriaProducto.Remove(categoriaEliminar);
+                db.SaveChanges();
+            }
+        }
 
+        private void bCategoria_Click(object sender, EventArgs e)
+        {
+            cbCategoria.Visible = true;
+        }
+
+        private void cbCategoria_Click(object sender, EventArgs e)
+        {
+            grupo02DBEntities db = new grupo02DBEntities();
+            CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
+            var producto = db.Producto.Find(idProducto);
+            producto.CategoriaProducto.Add(categoria);
+            db.SaveChanges();
+            cbCategoria.Visible = false;
+            cargarCategorias();
         }
     }
 }

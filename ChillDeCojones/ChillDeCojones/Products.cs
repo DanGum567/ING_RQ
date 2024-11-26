@@ -58,6 +58,7 @@ namespace ChillDeCojones
                     string label;
                     DateTime fechaCreacion;
                     DateTime fechaModificacion;
+                    int ID;
 
                     //Comprobamos si ya se han cargado las variables de Producto anteriormente
                     Producto delQueCargarVariables;
@@ -75,6 +76,7 @@ namespace ChillDeCojones
                     label = delQueCargarVariables.LABEL;
                     fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
                     fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+                    ID = delQueCargarVariables.ID; 
 
                     //-------------------------------------------------------------------------------------------
 
@@ -122,22 +124,18 @@ namespace ChillDeCojones
                     {
                         gtin = Convertidor.BytesToString(gtinBytes);
                     }
-                    /*
-                    string atributo1 = db.AtributoUsuario.Count() > 0 ? db.AtributoUsuario..NAME : "(Sin Atributo 1)";
-                    string atributo2 = db.AtributoUsuario.Count() > 1 ? db.AtributoUsuario[1].NAME : "(Sin Atributo 2)";
-                    string atributo3 = db.AtributoUsuario.Count() > 2 ? atributosUsuario[2].NAME : "(Sin Atributo 3)";
-                    */
+
                     listaProductosDataGridView.Rows.Add(
                         thumbail,
                         sku,
                         gtin,
                         label,
-                        //atributo1, // Atributo 1 personalizado
-                        //atributo2, // Atributo 2 personalizado
-                        //atributo3, // Atributo 3 personalizado
                         fechaModificacion,
-                        fechaCreacion
+                        fechaCreacion,
+                        ID
                     );
+
+                    listaProductosDataGridView.Columns["ID"].Visible = false;
                 }
 
             }
@@ -217,7 +215,6 @@ namespace ChillDeCojones
         {
             try
             {
-
                 // Obtén el ID del atributo desde la fila seleccionada
                 int idProducto = Convert.ToInt32(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value);
                 // Verifica si la celda pertenece a la columna "Eliminar"
@@ -243,5 +240,9 @@ namespace ChillDeCojones
 
         }
 
+        private void listaProductosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -9,21 +9,25 @@ public static class Convertidor
 {
     public static byte[] ImageToBytes(Image image, System.Drawing.Imaging.ImageFormat format)
     {
-        Stopwatch stopwatch = Stopwatch.StartNew();  // Inicia el cronómetro
-
-        if (image == null)
-            throw new ArgumentNullException(nameof(image), "La imagen no puede ser nula.");
-
-        using (MemoryStream ms = new MemoryStream())
+        if(image != null)
         {
-            // Guarda la imagen en el MemoryStream en el formato especificado
-            image.Save(ms, format);
-            stopwatch.Stop();  // Detiene el cronómetro
+            Stopwatch stopwatch = Stopwatch.StartNew();  // Inicia el cronómetro
 
-            // Muestra el tiempo de ejecución
-            MessageBox.Show($"Tiempo de ejecución de ImageToBytes: {stopwatch.ElapsedMilliseconds} ms");
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Guarda la imagen en el MemoryStream en el formato especificado
+                image.Save(ms, format);
+                stopwatch.Stop();  // Detiene el cronómetro
 
-            return ms.ToArray();
+                // Muestra el tiempo de ejecución
+                //MessageBox.Show($"Tiempo de ejecución de ImageToBytes: {stopwatch.ElapsedMilliseconds} ms");
+
+                return ms.ToArray();
+            }
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -41,7 +45,7 @@ public static class Convertidor
             stopwatch.Stop();  // Detiene el cronómetro
 
             // Muestra el tiempo de ejecución
-            MessageBox.Show($"Tiempo de ejecución de BytesToImage: {stopwatch.ElapsedMilliseconds} ms");
+            //MessageBox.Show($"Tiempo de ejecución de BytesToImage: {stopwatch.ElapsedMilliseconds} ms");
 
             return image;
         }

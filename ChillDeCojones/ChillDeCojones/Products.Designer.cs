@@ -56,6 +56,7 @@
             this.CreationDate,
             this.ID});
             this.listaProductosDataGridView.Location = new System.Drawing.Point(70, 106);
+            this.listaProductosDataGridView.MultiSelect = false;
             this.listaProductosDataGridView.Name = "listaProductosDataGridView";
             this.listaProductosDataGridView.ReadOnly = true;
             this.listaProductosDataGridView.RowHeadersWidth = 51;
@@ -64,7 +65,7 @@
             this.listaProductosDataGridView.Size = new System.Drawing.Size(1741, 792);
             this.listaProductosDataGridView.TabIndex = 1;
             this.listaProductosDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellClick);
-           
+            this.listaProductosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellContentClick);
             // 
             // Thumbnail
             // 

@@ -43,6 +43,7 @@
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.bCategoria = new System.Windows.Forms.Button();
             this.dCategoria = new System.Windows.Forms.DataGridView();
+            this.cbCategoria = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             this.SuspendLayout();
@@ -179,12 +180,13 @@
             // 
             // bCategoria
             // 
-            this.bCategoria.Location = new System.Drawing.Point(1243, 100);
+            this.bCategoria.Location = new System.Drawing.Point(1159, 124);
             this.bCategoria.Name = "bCategoria";
             this.bCategoria.Size = new System.Drawing.Size(153, 32);
             this.bCategoria.TabIndex = 16;
             this.bCategoria.Text = "Add category";
             this.bCategoria.UseVisualStyleBackColor = true;
+            this.bCategoria.Click += new System.EventHandler(this.bCategoria_Click);
             // 
             // dCategoria
             // 
@@ -197,11 +199,21 @@
             this.dCategoria.TabIndex = 17;
             this.dCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dCategoria_CellClick);
             // 
+            // cbCategoria
+            // 
+            this.cbCategoria.FormattingEnabled = true;
+            this.cbCategoria.Location = new System.Drawing.Point(1331, 129);
+            this.cbCategoria.Name = "cbCategoria";
+            this.cbCategoria.Size = new System.Drawing.Size(170, 24);
+            this.cbCategoria.TabIndex = 18;
+            this.cbCategoria.Click += new System.EventHandler(this.cbCategoria_Click);
+            // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.dCategoria);
             this.Controls.Add(this.bCategoria);
             this.Controls.Add(this.labelUserAttributes);
@@ -244,5 +256,6 @@
         private System.Windows.Forms.Label labelUserAttributes;
         private System.Windows.Forms.Button bCategoria;
         private System.Windows.Forms.DataGridView dCategoria;
+        private System.Windows.Forms.ComboBox cbCategoria;
     }
 }

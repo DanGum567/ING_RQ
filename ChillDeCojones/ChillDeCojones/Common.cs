@@ -12,7 +12,19 @@ namespace ChillDeCojones
 {
     public partial class Common : Form
     {
-        public static Common instance;
+        // Usar una propiedad auto-implementada para garantizar un único punto de acceso
+        private static Common instance;
+        public static Common Instance
+        {
+            get
+            {
+                if (instance == null || instance.IsDisposed)
+                {
+                    instance = new Common();
+                }
+                return instance;
+            }
+        }
         public Common()
         {
             InitializeComponent();
@@ -25,20 +37,32 @@ namespace ChillDeCojones
 
         public static void ClearSubForm()
         {
-            instance.panel1.Controls.Clear();
+            if (instance != null)
+            {
+                instance.panel1.Controls.Clear();
+            }
         }
 
         public static void ShowSubForm(Form subForm)
         {
-            ClearSubForm();
-            subForm.TopLevel = false;
-            subForm.AutoScroll = true;
-            subForm.FormBorderStyle = FormBorderStyle.None; // Opcional, elimina bordes del formulario
-            subForm.Dock = DockStyle.Fill;
-            instance.panel1.Controls.Add(subForm);
-            string label = "Dashboard > "+subForm.GetType().Name;
-            instance.labelRuta.Text = label;
-            subForm.Show();
+
+            try
+            {
+                ClearSubForm();
+                subForm.TopLevel = false;
+                subForm.AutoScroll = true;
+                subForm.FormBorderStyle = FormBorderStyle.None; // Opcional, elimina bordes del formulario
+                subForm.Dock = DockStyle.Fill;
+                instance.panel1.Controls.Add(subForm);
+                string label = "Dashboard > " + subForm.GetType().Name;
+                instance.labelRuta.Text = label;
+                subForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al mostrar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void toolStripDashboardButton_Click(object sender, EventArgs e)

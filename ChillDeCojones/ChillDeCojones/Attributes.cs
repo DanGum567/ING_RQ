@@ -225,30 +225,34 @@ namespace ChillDeCojones
             // Verifica si el clic es en la columna "Editar"
             if (e.ColumnIndex == dataGridViewAtributos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
-                // Deshabilita la fila para que se pueda editar
+                // Habilita la fila para que se pueda editar
                 dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
 
                 // Muestra las columnas "Guardar" y "Descartar"
                 dataGridViewAtributos.Columns["Guardar"].Visible = true;
                 dataGridViewAtributos.Columns["Descartar"].Visible = true;
 
-                // Obtén las celdas "Name" y "Type" y conviértelas a TextBox para permitir la edición
-                TextBox nameTextBox = new TextBox();
-                TextBox typeTextBox = new TextBox();
-
-                // Asignar valores iniciales a los TextBox desde las celdas del DataGridView
-                nameTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                typeTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value.ToString();
-
-                // Añadir los TextBox a un diccionario para que puedas acceder a ellos más tarde
-                textBoxControls[e.RowIndex] = new TextBox[] { nameTextBox, typeTextBox };
-
-                // Agregar los TextBox a las celdas
-                dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox;
-                dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value = typeTextBox;
-
                 // Cambia el color de la fila para indicar que está en modo de edición
-                dataGridViewAtributos.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                dataGridViewAtributos.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
+
+                // Si los TextBox ya fueron creados en una edición anterior, no los recreamos
+                if (!textBoxControls.ContainsKey(e.RowIndex))
+                {
+                    // Crear y agregar los TextBox para "Name" y "Type"
+                    TextBox nameTextBox = new TextBox();
+                    TextBox typeTextBox = new TextBox();
+
+                    // Asignar valores iniciales a los TextBox desde las celdas del DataGridView
+                    nameTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                    typeTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value.ToString();
+
+                    // Añadir los TextBox a un diccionario para que puedas acceder a ellos más tarde
+                    textBoxControls[e.RowIndex] = new TextBox[] { nameTextBox, typeTextBox };
+
+                    // Agregar los TextBox a las celdas
+                    dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox.Text;
+                    dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value = typeTextBox.Text;
+                }
             }
 
             // Verifica si el clic es en la columna "Guardar"
@@ -266,7 +270,15 @@ namespace ChillDeCojones
             }
 
         }
-
+        private void dataGridViewAtributos_CurrentCellChanged(object sender, EventArgs e)
+        {
+            // Verificar si la fila actual es editable
+            if (dataGridViewAtributos.CurrentRow != null && !dataGridViewAtributos.CurrentRow.ReadOnly)
+            {
+                // Asegurarse de que la celda en la fila actual se pueda editar
+                dataGridViewAtributos.BeginEdit(true);
+            }
+        }
         private void EliminarAtributo(int idAtributo)
         {
             grupo02DBEntities db = new grupo02DBEntities();
@@ -297,7 +309,7 @@ namespace ChillDeCojones
 
         private void DescartarCambiosFila(int rowIndex)
         {
-            // Actualiza la tabla después de eliminar
+            // Vuelve a cargar los datos para descartar los cambios
             cargarAtributos();
 
             // Oculta las columnas de Guardar y Descartar
@@ -314,24 +326,23 @@ namespace ChillDeCojones
         private void GuardarCambiosFila(int rowIndex)
         {
             grupo02DBEntities db = new grupo02DBEntities();
+
             // Obtén el ID de la fila
             int idAtributo = Convert.ToInt32(dataGridViewAtributos.Rows[rowIndex].Cells["ID"].Value);
 
-                // Busca el atributo en la base de datos
-                var atributo = db.AtributoUsuario.First(y => y.ID.Equals(idAtributo));
-                if (atributo != null)
-                {
-                    // Actualiza los valores según las celdas
-                    //atributo.NAME = dataGridViewAtributos.Rows[rowIndex].Cells["Name"].Value.ToString();
-                    //atributo.TYPE = dataGridViewAtributos.Rows[rowIndex].Cells["Type"].Value.ToString();
-                    TextBox[] textBoxes = textBoxControls[rowIndex];
-                    atributo.NAME = textBoxes[0].Text;
-                    atributo.TYPE = textBoxes[1].Text;
+            // Busca el atributo en la base de datos
+            var atributo = db.AtributoUsuario.First(y => y.ID.Equals(idAtributo));
+            if (atributo != null)
+            {
+                // Actualiza los valores según las celdas
+                // Asignamos los valores de los TextBox a las propiedades del atributo
+                TextBox[] textBoxes = textBoxControls[rowIndex];
+                atributo.NAME = textBoxes[0].Text;
+                atributo.TYPE = textBoxes[1].Text;
 
-                    db.SaveChanges(); // Guarda los cambios
-                    MessageBox.Show("Cambios guardados correctamente.");
-                }
-            
+                db.SaveChanges(); // Guarda los cambios
+                MessageBox.Show("Cambios guardados correctamente.");
+            }
 
             // Oculta las columnas de Guardar y Descartar
             dataGridViewAtributos.Columns["Guardar"].Visible = false;
@@ -340,10 +351,10 @@ namespace ChillDeCojones
             // Establece la fila como solo lectura nuevamente
             dataGridViewAtributos.Rows[rowIndex].ReadOnly = true;
 
-            // Opcional: Cambia el color de la fila de nuevo a su estado original
+            // Cambia el color de la fila de nuevo a su estado original
             dataGridViewAtributos.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
 
-            // Actualiza la tabla después de eliminar
+            // Actualiza la tabla después de guardar
             cargarAtributos();
         }
 

@@ -156,6 +156,8 @@ namespace ChillDeCojones
                 }
             }
         }
+
+
         private void EliminarCategoria(int idCategoria)
         {
             grupo02DBEntities db = new grupo02DBEntities();
@@ -170,17 +172,27 @@ namespace ChillDeCojones
                         db.CategoriaProducto.Remove(categoria);
                         db.SaveChanges();
                         cargarCategorias();
-                        MessageBox.Show("Atributte succesfully deleted.", "Deletion succesful");
+                        MessageBox.Show("Category succesfully deleted.", "Deletion succesful");
                     }
-                
-                
             }
             else
             {
-                MessageBox.Show("Atributte was not found.", "Error");
+                MessageBox.Show("Category was not found.", "Error");
             }
 
         }
+
+        private void GuardarCambiosFila(int rowIndex)
+        {
+           
+
+        }
+
+        private void DescartarCambiosFila(int rowIndex)
+        {
+
+        }
+
 
     }
 }
