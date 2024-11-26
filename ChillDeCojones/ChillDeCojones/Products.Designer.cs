@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.listaProductosDataGridView = new System.Windows.Forms.DataGridView();
-            this.newProductButton = new System.Windows.Forms.Button();
             this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,6 +36,7 @@
             this.LastModification = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listaProductosDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,16 +64,7 @@
             this.listaProductosDataGridView.Size = new System.Drawing.Size(1741, 792);
             this.listaProductosDataGridView.TabIndex = 1;
             this.listaProductosDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellClick);
-            // 
-            // newProductButton
-            // 
-            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
-            this.newProductButton.Name = "newProductButton";
-            this.newProductButton.Size = new System.Drawing.Size(239, 23);
-            this.newProductButton.TabIndex = 2;
-            this.newProductButton.Text = "+ Add new product";
-            this.newProductButton.UseVisualStyleBackColor = true;
-            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
+           
             // 
             // Thumbnail
             // 
@@ -127,6 +118,16 @@
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            // 
+            // newProductButton
+            // 
+            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
+            this.newProductButton.Name = "newProductButton";
+            this.newProductButton.Size = new System.Drawing.Size(239, 23);
+            this.newProductButton.TabIndex = 2;
+            this.newProductButton.Text = "+ Add new product";
+            this.newProductButton.UseVisualStyleBackColor = true;
+            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
             // 
             // Products
             // 

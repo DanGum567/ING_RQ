@@ -87,7 +87,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        //private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewAtributos;
         private System.Windows.Forms.Button bInsertar;
         private System.Windows.Forms.Label LabelUserAttributes;

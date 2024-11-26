@@ -74,68 +74,75 @@ namespace ChillDeCojones
 
         private void bInsertarCategoria_Click(object sender, EventArgs e)
         {
-            InsertarCategoria InsertarCategoria = new InsertarCategoria();
-            InsertarCategoria.CategoriaInsertada += (s, args) =>
+            grupo02DBEntities db = new grupo02DBEntities();
+            if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).CategoriasProducto)
             {
-                cargarCategorias(); // Recargar atributos cuando se cierre InsertarAtributo
-                this.Enabled = true;
-            };
+                InsertarCategoria InsertarCategoria = new InsertarCategoria();
+                InsertarCategoria.CategoriaInsertada += (s, args) =>
+                {
+                    cargarCategorias(); 
+                };
 
-            InsertarCategoria.CerrarPopUp += (s, args) =>
+               
+                InsertarCategoria.ShowDialog();
+            }
+            else
             {
-                this.Enabled = true;
-            };
-            InsertarCategoria.ShowDialog();
-            this.Enabled = false;
+
+                MessageBox.Show("You have reached the maximum number of categories allowed");
+            }
+            
         }
 
         private void dataGridViewCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Verifica si la celda pertenece a la columna "Eliminar"
+
             if (e.ColumnIndex == dataGridViewCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
-                // Obtén el ID del atributo desde la fila seleccionada
-                int idAtributo = Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["ID"].Value);
+                int idCategoria = Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["ID"].Value);
+                if(Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["numProducts"].Value) > 0)
+                {
+                    EliminarCategoria(idCategoria);
 
-                // Llama a un método para eliminar el atributo
-                //EliminarCategoria(idCategoria);
+                }
+                else
+                {
+
+                    grupo02DBEntities db = new grupo02DBEntities();
+                    var categoria = db.CategoriaProducto.First(x => x.ID.Equals(idCategoria));
+                    db.CategoriaProducto.Remove(categoria);
+                    db.SaveChanges();
+                    cargarCategorias();
+                }
             }
 
             // Modificar atributo
-            if (e.RowIndex >= 0) // Verifica que no sea el encabezado
+            if (e.RowIndex >= 0) 
             {
-                // Si se hizo clic en el botón "Editar"
                 if (e.ColumnIndex == dataGridViewCategoria.Columns["Editar"].Index)
                 {
-                    // Muestra las columnas de Guardar y Descartar
                     dataGridViewCategoria.Columns["Guardar"].Visible = true;
                     dataGridViewCategoria.Columns["Descartar"].Visible = true;
 
-                    // Establece la fila en modo de edición
                     dataGridViewCategoria.Rows[e.RowIndex].ReadOnly = false;
 
                     // Cambia el color o diseño de la fila para indicar que está en edición (opcional)
-                    dataGridViewCategoria.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                    dataGridViewCategoria.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
 
                     // Crear los TextBox para las columnas "NAME" y "TYPE"
                     TextBox txtName = new TextBox();
-                    TextBox txtType = new TextBox();
 
                     // Coloca los TextBox en las celdas correspondientes
                     txtName.Text = dataGridViewCategoria.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                    txtType.Text = dataGridViewCategoria.Rows[e.RowIndex].Cells["Type"].Value.ToString();
 
                     // Establece el tamaño y la posición de los TextBox en las celdas
                     txtName.Size = new Size(dataGridViewCategoria.Columns["Name"].Width, dataGridViewCategoria.Rows[e.RowIndex].Height);
-                    txtType.Size = new Size(dataGridViewCategoria.Columns["Type"].Width, dataGridViewCategoria.Rows[e.RowIndex].Height);
 
                     // Añadir los TextBox al DataGridView
                     dataGridViewCategoria.Controls.Add(txtName);
-                    dataGridViewCategoria.Controls.Add(txtType);
 
                     // Establece la posición de los TextBox
                     txtName.Location = dataGridViewCategoria.GetCellDisplayRectangle(e.RowIndex, dataGridViewCategoria.Columns["Name"].Index, true).Location;
-                    txtType.Location = dataGridViewCategoria.GetCellDisplayRectangle(e.RowIndex, dataGridViewCategoria.Columns["Type"].Index, true).Location;
                 }
                 // Si se hizo clic en el botón "Guardar"
                 else if (e.ColumnIndex == dataGridViewCategoria.Columns["Guardar"].Index)
@@ -149,5 +156,31 @@ namespace ChillDeCojones
                 }
             }
         }
+        private void EliminarCategoria(int idCategoria)
+        {
+            grupo02DBEntities db = new grupo02DBEntities();
+            
+            var categoria = db.CategoriaProducto.First(x => x.ID.Equals(idCategoria));
+            if (categoria != null)
+            {
+                    DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        db.CategoriaProducto.Remove(categoria);
+                        db.SaveChanges();
+                        cargarCategorias();
+                        MessageBox.Show("Atributte succesfully deleted.", "Deletion succesful");
+                    }
+                
+                
+            }
+            else
+            {
+                MessageBox.Show("Atributte was not found.", "Error");
+            }
+
+        }
+
     }
 }

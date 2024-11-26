@@ -34,7 +34,20 @@ namespace ChillDeCojones
 
         }
 
-        private void LoadAtributosUsuario()
+        private void cargarCategorias()
+        {
+            grupo02DBEntities db = new grupo02DBEntities();
+            var categorias = from producto in db.Producto select producto.CategoriaProducto;
+
+
+            /*ListViewItem[] items = categorias.Select(categoria => new ListViewItem(categoria.ToString())).ToArray();
+
+            // Agrega los ítems al ListView
+            listViewCategoria.Items.AddRange(items);*/
+
+        }
+
+        private void cargarAtributosUsuario()
         {
             try
             {
@@ -155,7 +168,8 @@ namespace ChillDeCojones
                     }
 
                     // Cargar los atributos de usuario relacionados con este producto
-                    LoadAtributosUsuario();
+                    cargarAtributosUsuario();
+                    cargarCategorias();
                 }
                 else
                 {
@@ -232,6 +246,11 @@ namespace ChillDeCojones
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
             Common.ShowSubForm(new Products());
+        }
+
+        private void dCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -27,6 +27,8 @@ namespace ChillDeCojones
 
     public partial class Attributes : Form
     {
+
+        private Dictionary<int, TextBox[]> textBoxControls = new Dictionary<int, TextBox[]>();
         public Attributes()
         {
             InitializeComponent();
@@ -186,15 +188,24 @@ namespace ChillDeCojones
         private void bInsertar_Click(object sender, EventArgs e)
         {
 
-            InsertarAtributo InsertarAtributo = new InsertarAtributo();
-            InsertarAtributo.AtributoInsertado += (s, args) =>
+            grupo02DBEntities db = new grupo02DBEntities();
+            if (db.AtributoUsuario.Count()<db.PlanSuscripcion.FirstOrDefault(x=>x.id==1).Atributos)
             {
-                cargarAtributos(); // Recargar atributos cuando se cierre InsertarAtributo
-            };
+                InsertarAtributo InsertarAtributo = new InsertarAtributo();
+                InsertarAtributo.AtributoInsertado += (s, args) =>
+                {
+                    cargarAtributos(); // Recargar atributos cuando se cierre InsertarAtributo
+                };
 
 
-            // Mostrar el formulario como modal
-            InsertarAtributo.ShowDialog();
+                // Mostrar el formulario como modal
+                InsertarAtributo.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You have reached the maximum number of attributes allowed");
+            }
+            
 
         }
         
@@ -211,53 +222,48 @@ namespace ChillDeCojones
             }
 
             // Modificar atributo
-            if (e.RowIndex >= 0) // Verifica que no sea el encabezado
+            // Verifica si el clic es en la columna "Editar"
+            if (e.ColumnIndex == dataGridViewAtributos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
-                // Si se hizo clic en el botón "Editar"
-                if (e.ColumnIndex == dataGridViewAtributos.Columns["Editar"].Index)
-                {
-                    // Muestra las columnas de Guardar y Descartar
-                    dataGridViewAtributos.Columns["Guardar"].Visible = true;
-                    dataGridViewAtributos.Columns["Descartar"].Visible = true;
+                // Deshabilita la fila para que se pueda editar
+                dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
 
-                    // Establece la fila en modo de edición
-                    dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
+                // Muestra las columnas "Guardar" y "Descartar"
+                dataGridViewAtributos.Columns["Guardar"].Visible = true;
+                dataGridViewAtributos.Columns["Descartar"].Visible = true;
 
-                    // Cambia el color o diseño de la fila para indicar que está en edición (opcional)
-                    dataGridViewAtributos.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                // Obtén las celdas "Name" y "Type" y conviértelas a TextBox para permitir la edición
+                TextBox nameTextBox = new TextBox();
+                TextBox typeTextBox = new TextBox();
 
-                    // Crear los TextBox para las columnas "NAME" y "TYPE"
-                    TextBox txtName = new TextBox();
-                    TextBox txtType = new TextBox();
+                // Asignar valores iniciales a los TextBox desde las celdas del DataGridView
+                nameTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                typeTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value.ToString();
 
-                    // Coloca los TextBox en las celdas correspondientes
-                    txtName.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                    txtType.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value.ToString();
+                // Añadir los TextBox a un diccionario para que puedas acceder a ellos más tarde
+                textBoxControls[e.RowIndex] = new TextBox[] { nameTextBox, typeTextBox };
 
-                    // Establece el tamaño y la posición de los TextBox en las celdas
-                    txtName.Size = new Size(dataGridViewAtributos.Columns["Name"].Width, dataGridViewAtributos.Rows[e.RowIndex].Height);
-                    txtType.Size = new Size(dataGridViewAtributos.Columns["Type"].Width, dataGridViewAtributos.Rows[e.RowIndex].Height);
+                // Agregar los TextBox a las celdas
+                dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox;
+                dataGridViewAtributos.Rows[e.RowIndex].Cells["Type"].Value = typeTextBox;
 
-                    // Añadir los TextBox al DataGridView
-                    dataGridViewAtributos.Controls.Add(txtName);
-                    dataGridViewAtributos.Controls.Add(txtType);
-
-                    // Establece la posición de los TextBox
-                    txtName.Location = dataGridViewAtributos.GetCellDisplayRectangle(e.RowIndex, dataGridViewAtributos.Columns["Name"].Index, true).Location;
-                    txtType.Location = dataGridViewAtributos.GetCellDisplayRectangle(e.RowIndex, dataGridViewAtributos.Columns["Type"].Index, true).Location;
-                }
-                // Si se hizo clic en el botón "Guardar"
-                else if (e.ColumnIndex == dataGridViewAtributos.Columns["Guardar"].Index)
-                {
-                    GuardarCambiosFila(e.RowIndex); // Llama al método para guardar cambios
-                }
-                // Si se hizo clic en el botón "Descartar"
-                else if (e.ColumnIndex == dataGridViewAtributos.Columns["Descartar"].Index)
-                {
-                    DescartarCambiosFila(e.RowIndex); // Llama al método para descartar cambios
-                }
+                // Cambia el color de la fila para indicar que está en modo de edición
+                dataGridViewAtributos.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
             }
 
+            // Verifica si el clic es en la columna "Guardar"
+            if (e.ColumnIndex == dataGridViewAtributos.Columns["Guardar"].Index && e.RowIndex >= 0)
+            {
+                // Llamamos al método para guardar los cambios
+                GuardarCambiosFila(e.RowIndex);
+            }
+
+            // Verifica si el clic es en la columna "Descartar"
+            if (e.ColumnIndex == dataGridViewAtributos.Columns["Descartar"].Index && e.RowIndex >= 0)
+            {
+                // Llamamos al método para descartar los cambios
+                DescartarCambiosFila(e.RowIndex);
+            }
 
         }
 
@@ -318,9 +324,10 @@ namespace ChillDeCojones
                     // Actualiza los valores según las celdas
                     //atributo.NAME = dataGridViewAtributos.Rows[rowIndex].Cells["Name"].Value.ToString();
                     //atributo.TYPE = dataGridViewAtributos.Rows[rowIndex].Cells["Type"].Value.ToString();
-                    //atributo.NAME = txtName.Text;
-                    //atributo.TYPE = txtType.Text;
-       
+                    TextBox[] textBoxes = textBoxControls[rowIndex];
+                    atributo.NAME = textBoxes[0].Text;
+                    atributo.TYPE = textBoxes[1].Text;
+
                     db.SaveChanges(); // Guarda los cambios
                     MessageBox.Show("Cambios guardados correctamente.");
                 }

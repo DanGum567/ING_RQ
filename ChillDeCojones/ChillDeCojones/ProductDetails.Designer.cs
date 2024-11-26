@@ -41,28 +41,29 @@
             this.lAtributosUsuario = new System.Windows.Forms.ListView();
             this.labelUserAttributes = new System.Windows.Forms.Label();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.lCategorias = new System.Windows.Forms.ListView();
+            this.bCategoria = new System.Windows.Forms.Button();
+            this.dCategoria = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
             // 
-            this.saveChangesButton.Location = new System.Drawing.Point(1374, 157);
+            this.saveChangesButton.Location = new System.Drawing.Point(1566, 220);
             this.saveChangesButton.Name = "saveChangesButton";
             this.saveChangesButton.Size = new System.Drawing.Size(218, 23);
             this.saveChangesButton.TabIndex = 1;
-            this.saveChangesButton.Text = "Save Changes";
+            this.saveChangesButton.Text = "💾 Save Changes";
             this.saveChangesButton.UseVisualStyleBackColor = true;
             this.saveChangesButton.Click += new System.EventHandler(this.saveChangesButton_Click);
             // 
             // discardChangesButton
             // 
-            this.discardChangesButton.Location = new System.Drawing.Point(1374, 223);
+            this.discardChangesButton.Location = new System.Drawing.Point(1566, 267);
             this.discardChangesButton.Name = "discardChangesButton";
             this.discardChangesButton.Size = new System.Drawing.Size(218, 23);
             this.discardChangesButton.TabIndex = 2;
-            this.discardChangesButton.Text = "Discard Changes";
+            this.discardChangesButton.Text = "❌ Discard Changes";
             this.discardChangesButton.UseVisualStyleBackColor = true;
             this.discardChangesButton.Click += new System.EventHandler(this.discardChangesButton_Click);
             // 
@@ -167,6 +168,8 @@
             // 
             // thumbnailPictureBox
             // 
+            this.thumbnailPictureBox.BackgroundImage = global::ChillDeCojones.Properties.Resources.imagenPredeterminadaProducto;
+            this.thumbnailPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.thumbnailPictureBox.Location = new System.Drawing.Point(95, 83);
             this.thumbnailPictureBox.Name = "thumbnailPictureBox";
             this.thumbnailPictureBox.Size = new System.Drawing.Size(194, 200);
@@ -174,32 +177,33 @@
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
             // 
-            // listView1
+            // bCategoria
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(121, 97);
-            this.listView1.TabIndex = 13;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.bCategoria.Location = new System.Drawing.Point(1243, 100);
+            this.bCategoria.Name = "bCategoria";
+            this.bCategoria.Size = new System.Drawing.Size(153, 32);
+            this.bCategoria.TabIndex = 16;
+            this.bCategoria.Text = "Add category";
+            this.bCategoria.UseVisualStyleBackColor = true;
             // 
-            // lCategorias
+            // dCategoria
             // 
-            this.lCategorias.HideSelection = false;
-            this.lCategorias.Location = new System.Drawing.Point(1072, 157);
-            this.lCategorias.Name = "lCategorias";
-            this.lCategorias.Size = new System.Drawing.Size(250, 97);
-            this.lCategorias.TabIndex = 14;
-            this.lCategorias.UseCompatibleStateImageBehavior = false;
-
+            this.dCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dCategoria.Location = new System.Drawing.Point(1159, 180);
+            this.dCategoria.Name = "dCategoria";
+            this.dCategoria.RowHeadersWidth = 51;
+            this.dCategoria.RowTemplate.Height = 24;
+            this.dCategoria.Size = new System.Drawing.Size(342, 143);
+            this.dCategoria.TabIndex = 17;
+            this.dCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dCategoria_CellClick);
             // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
-            this.Controls.Add(this.lCategorias);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.dCategoria);
+            this.Controls.Add(this.bCategoria);
             this.Controls.Add(this.labelUserAttributes);
             this.Controls.Add(this.lAtributosUsuario);
             this.Controls.Add(this.labelModified);
@@ -217,6 +221,7 @@
             this.Text = "ProductDetails";
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,7 +242,7 @@
         private System.Windows.Forms.Label labelModified;
         private System.Windows.Forms.ListView lAtributosUsuario;
         private System.Windows.Forms.Label labelUserAttributes;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView lCategorias;
+        private System.Windows.Forms.Button bCategoria;
+        private System.Windows.Forms.DataGridView dCategoria;
     }
 }

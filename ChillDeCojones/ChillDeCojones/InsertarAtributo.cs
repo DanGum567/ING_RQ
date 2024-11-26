@@ -14,7 +14,6 @@ namespace ChillDeCojones
     {
         
         public event EventHandler AtributoInsertado;
-        public event EventHandler CerrarPopUp;
         public InsertarAtributo()
         {
             InitializeComponent();
@@ -65,11 +64,6 @@ namespace ChillDeCojones
         private void bCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void InsertarAtributo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            CerrarPopUp?.Invoke(this, EventArgs.Empty);
         }
     }
 }

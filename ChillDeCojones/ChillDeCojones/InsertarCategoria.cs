@@ -13,7 +13,6 @@ namespace ChillDeCojones
     public partial class InsertarCategoria : Form
     {
         public event EventHandler CategoriaInsertada;
-        public event EventHandler CerrarPopUp;
 
         public InsertarCategoria()
         {
@@ -50,13 +49,8 @@ namespace ChillDeCojones
 
         private void bCancelar_Click(object sender, EventArgs e)
         {
-            CerrarPopUp?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
 
-        private void InsertarCategoria_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            CerrarPopUp?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

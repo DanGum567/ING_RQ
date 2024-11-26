@@ -19,7 +19,6 @@ namespace ChillDeCojones
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //MostrarListaProductosV2Optimizada();
             MostrarListaProductos();
             cargarAccion();
         }
@@ -44,114 +43,125 @@ namespace ChillDeCojones
 
         private void MostrarListaProductos()
         {
+            listaProductosDataGridView.Rows.Clear();
+            listaProductosDataGridView.SuspendLayout();
+
             try
             {
-                listaProductosDataGridView.SuspendLayout();
-
                 grupo02DBEntities db = new grupo02DBEntities();
-                List<Producto> productos = new List<Producto>();
-                productos = db.Producto.ToList();
+                List<Producto> productos = db.Producto.ToList();
 
-                // Limpiar las filas antes de volver a llenarlas
-                listaProductosDataGridView.Rows.Clear();
-                foreach (Producto producto in productos)
+                foreach (Producto cargadoJustoAhora in productos)
                 {
-                    byte[] thumbailBytes = Attributes.ObtenerValorAtributoSistema(producto, TipoAtributoSistema.thumbnail, db);
+                    //Variables de Producto
+                    int idProducto = cargadoJustoAhora.ID;
+                    string label;
+                    DateTime fechaCreacion;
+                    DateTime fechaModificacion;
+
+                    //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                    Producto delQueCargarVariables;
+                    Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+                    if (precargadoEnMemoria != null)
+                    {
+                        delQueCargarVariables = precargadoEnMemoria;
+                    }
+                    else
+                    {
+                        delQueCargarVariables = cargadoJustoAhora;
+                    }
+
+                    //Cargamos variables del producto para mostrarlas
+                    label = delQueCargarVariables.LABEL;
+                    fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
+                    fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+
+                    //-------------------------------------------------------------------------------------------
+
+                    //Atributos del sistema
+                    string sku = "(Sin SKU)";
+                    string gtin = "(Sin GTIN)";
                     Image thumbail = null;
+
+                    byte[] skuBytes;
+                    byte[] gtinBytes;
+                    byte[] thumbailBytes;
+
+                    //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                    skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
+                    gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
+                    thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
+
+                    if (skuBytes == null)
+                    {
+                        skuBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.SKU, db);
+                    }
+                    if (gtinBytes == null)
+                    {
+                        gtinBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.GTIN, db);
+                    }
+                    if (thumbailBytes == null)
+                    {
+                        thumbailBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.thumbnail, db);
+                    }
+
+                    thumbailBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.thumbnail, db);
+                    skuBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.SKU, db);
+                    gtinBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.GTIN, db);
+
+
                     if (thumbailBytes != null)
                     {
                         thumbail = Convertidor.BytesToImage(thumbailBytes);
                     }
-
-                    byte[] skuBytes = Attributes.ObtenerValorAtributoSistema(producto, TipoAtributoSistema.SKU, db);
-                    string sku = "(Sin SKU)";
                     if (skuBytes != null)
                     {
                         sku = Convertidor.BytesToString(skuBytes);
                     }
-
-                    byte[] gtinBytes = Attributes.ObtenerValorAtributoSistema(producto, TipoAtributoSistema.GTIN, db);
-                    string gtin = "(Sin GTIN)";
                     if (gtinBytes != null)
                     {
                         gtin = Convertidor.BytesToString(gtinBytes);
                     }
-
+                    /*
+                    string atributo1 = db.AtributoUsuario.Count() > 0 ? db.AtributoUsuario..NAME : "(Sin Atributo 1)";
+                    string atributo2 = db.AtributoUsuario.Count() > 1 ? db.AtributoUsuario[1].NAME : "(Sin Atributo 2)";
+                    string atributo3 = db.AtributoUsuario.Count() > 2 ? atributosUsuario[2].NAME : "(Sin Atributo 3)";
+                    */
                     listaProductosDataGridView.Rows.Add(
                         thumbail,
                         sku,
                         gtin,
-                        producto.LABEL,
-                        producto.FECHAMODIFICACION,
-                        producto.FECHACREACION,
-                        producto.ID
+                        label,
+                        //atributo1, // Atributo 1 personalizado
+                        //atributo2, // Atributo 2 personalizado
+                        //atributo3, // Atributo 3 personalizado
+                        fechaModificacion,
+                        fechaCreacion
                     );
-
                 }
-                listaProductosDataGridView.Columns["ID"].Visible = false;
-                listaProductosDataGridView.ResumeLayout();
-                listaProductosDataGridView.ClearSelection();// Se deselecciona el primer elemento
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR AL CARGAR PRODUCTOS: " + ex.Message);
             }
+            listaProductosDataGridView.ResumeLayout();
+            listaProductosDataGridView.ClearSelection();// Se deselecciona el primer elemento
         }
-        /*
-        private void MostrarListaProductosV2Optimizada()
-        {
-            using (grupo02DBEntities db = new grupo02DBEntities())
-            {
-                db.Configuration.LazyLoadingEnabled = false;
-
-                // Optimización de la consulta
-                var productos = db.Producto
-                    .Select(p => new
-                    {
-                        Producto = p,
-                        Thumbnail = p.ValorAtributoSistema.FirstOrDefault(v => v.ID_ATRIBUTOSISTEMA == (int)TipoAtributoSistema.thumbnail),
-                        SKU = p.ValorAtributoSistema.FirstOrDefault(v => v.ID_ATRIBUTOSISTEMA == (int)TipoAtributoSistema.SKU),
-                        GTIN = p.ValorAtributoSistema.FirstOrDefault(v => v.ID_ATRIBUTOSISTEMA == (int)TipoAtributoSistema.GTIN)
-                    })
-                    .ToList();
-
-                // Suspender el renderizado para mejorar el rendimiento
-                listaProductosDataGridView.SuspendLayout();
-
-                foreach (var item in productos)
-                {
-                    Producto producto = item.Producto;
-
-                    // Convertir atributos con las optimizaciones necesarias
-                    byte[] thumbnailBytes = item.Thumbnail?.VALOR;
-                    Image thumbnail = thumbnailBytes != null ? Convertidor.BytesToImage(thumbnailBytes) : null;
-
-                    byte[] skuBytes = item.SKU?.VALOR;
-                    string sku = skuBytes != null ? Convertidor.BytesToString(skuBytes) : "(Sin SKU)";
-
-                    byte[] gtinBytes = item.GTIN?.VALOR;
-                    string gtin = gtinBytes != null ? Convertidor.BytesToString(gtinBytes) : "(Sin GTIN)";
-
-                    // Añadir fila a la vista
-                    listaProductosDataGridView.Rows.Add(
-                        thumbnail,
-                        sku,
-                        gtin,
-                        producto.LABEL,
-                        producto.FECHAMODIFICACION,
-                        producto.FECHACREACION
-                    );
-                }
-
-                // Reanudar el renderizado
-                listaProductosDataGridView.ResumeLayout();
-            }
-        }
-        */
-
+ 
         private void newProductButton_Click(object sender, EventArgs e)
         {
-            Common.ShowSubForm(new ProductDetails(-1));
+
+            grupo02DBEntities db = new grupo02DBEntities();
+            if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
+            {
+
+                Common.ShowSubForm(new ProductDetails(-1));
+            }
+            else
+            {
+                MessageBox.Show("You have reached the maximum number of attributes allowed");
+            }
         }
 
         private void EliminarProducto(int idProducto)
@@ -185,7 +195,7 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message);
+                MessageBox.Show("ERROR AL ELIMINAR PRODUCTO: " + ex.Message);
             }
         }
 
@@ -232,5 +242,6 @@ namespace ChillDeCojones
             }
 
         }
+
     }
 }

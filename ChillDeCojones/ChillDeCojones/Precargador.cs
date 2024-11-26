@@ -34,7 +34,7 @@ namespace ChillDeCojones
                     if (productoPrecargado != null)
                     {
                         productosEnMemoria.TryAdd(idProducto, productoPrecargado);
-                        MessageBox.Show("Se ha precargado correctamente el producto con ID " + idProducto);
+                        //MessageBox.Show("Se ha precargado correctamente el producto con ID " + idProducto);
                     }
                     contextoHilo.Dispose();
 
@@ -54,7 +54,7 @@ namespace ChillDeCojones
                     {
                         (int, int) tuplaClave = (idAtributoSistema, idProducto);
                         atributosEnMemoria.TryAdd(tuplaClave, atributoPrecargado);
-                        MessageBox.Show("Se ha precargado correctamente el valor de atributo con ID de atributo " + idAtributoSistema + " y ID de producto " + idProducto);
+                        //MessageBox.Show("Se ha precargado correctamente el valor de atributo con ID de atributo " + idAtributoSistema + " y ID de producto " + idProducto);
                     }
                     contextoHilo.Dispose();
 
@@ -68,11 +68,16 @@ namespace ChillDeCojones
             return producto;
         }
 
-        public static ValorAtributoSistema GetValorAtributoSistemaEnMemoria(TipoAtributoSistema tipoAtributo, int idProducto)
+        public static byte[] GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema tipoAtributo, int idProducto)
         {
+            byte[] bytes = null;
             (int, int) tuplaClave = (Attributes.ObtenerIdAtributoSistema(tipoAtributo), idProducto);
             instance.atributosEnMemoria.TryGetValue(tuplaClave, out ValorAtributoSistema atributo);
-            return atributo;
+            if (atributo != null)
+            {
+                bytes = atributo.VALOR;
+            }
+            return bytes;
         }
     }
 }

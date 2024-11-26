@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 public static class Convertidor
 {
     public static byte[] ImageToBytes(Image image, System.Drawing.Imaging.ImageFormat format)
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();  // Inicia el cronómetro
+
         if (image == null)
             throw new ArgumentNullException(nameof(image), "La imagen no puede ser nula.");
 
@@ -13,19 +18,32 @@ public static class Convertidor
         {
             // Guarda la imagen en el MemoryStream en el formato especificado
             image.Save(ms, format);
+            stopwatch.Stop();  // Detiene el cronómetro
+
+            // Muestra el tiempo de ejecución
+            MessageBox.Show($"Tiempo de ejecución de ImageToBytes: {stopwatch.ElapsedMilliseconds} ms");
+
             return ms.ToArray();
         }
     }
 
     public static Image BytesToImage(byte[] imageBytes)
     {
+        Stopwatch stopwatch = Stopwatch.StartNew();  // Inicia el cronómetro
+
         if (imageBytes == null || imageBytes.Length == 0)
             throw new ArgumentException("El array de bytes está vacío o es nulo.", nameof(imageBytes));
 
         using (MemoryStream ms = new MemoryStream(imageBytes))
         {
             // Crea un objeto Image desde el MemoryStream
-            return Image.FromStream(ms);
+            Image image = Image.FromStream(ms);
+            stopwatch.Stop();  // Detiene el cronómetro
+
+            // Muestra el tiempo de ejecución
+            MessageBox.Show($"Tiempo de ejecución de BytesToImage: {stopwatch.ElapsedMilliseconds} ms");
+
+            return image;
         }
     }
 

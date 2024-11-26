@@ -32,7 +32,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelRuta = new System.Windows.Forms.Label();
-            this.bCuenta = new System.Windows.Forms.Button();
             this.toolStripDashboardButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripProductsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripAssetsButton = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +39,9 @@
             this.toolStripAttributesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripRelationshipsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpButton = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -82,15 +83,6 @@
             this.labelRuta.Size = new System.Drawing.Size(105, 23);
             this.labelRuta.TabIndex = 2;
             this.labelRuta.Text = "Dashboard";
-            // 
-            // bCuenta
-            // 
-            this.bCuenta.Image = global::ChillDeCojones.Properties.Resources.iconoCuenta;
-            this.bCuenta.Location = new System.Drawing.Point(1837, 16);
-            this.bCuenta.Name = "bCuenta";
-            this.bCuenta.Size = new System.Drawing.Size(53, 32);
-            this.bCuenta.TabIndex = 3;
-            this.bCuenta.UseVisualStyleBackColor = true;
             // 
             // toolStripDashboardButton
             // 
@@ -174,13 +166,23 @@
             this.toolStripHelpButton.Size = new System.Drawing.Size(59, 29);
             this.toolStripHelpButton.Text = "Help";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::ChillDeCojones.Properties.Resources.iconoCuenta;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(1842, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 50);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // Common
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.bCuenta);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelRuta);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -192,6 +194,7 @@
             this.Load += new System.EventHandler(this.Common_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +212,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton toolStripCategoriesButton;
         private System.Windows.Forms.Label labelRuta;
-        private System.Windows.Forms.Button bCuenta;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
