@@ -149,6 +149,7 @@ namespace ChillDeCojones
                 }
                 listaProductosDataGridView.Columns["ID"].Visible = false;
                 listaProductosDataGridView.ResumeLayout();
+                listaProductosDataGridView.ClearSelection();// Se deselecciona el primer elemento
             }
             catch (Exception ex)
             {

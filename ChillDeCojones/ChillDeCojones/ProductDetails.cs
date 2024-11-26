@@ -129,16 +129,38 @@ namespace ChillDeCojones
             try
             {
                 grupo02DBEntities db = new grupo02DBEntities();
-                var productoSeleccionado = from producto in db.Producto where producto.ID == idProducto select producto;
-                skuTextBox.Text = 
-                gtinTextBox.Text = 
+                var ListaProductoSeleccionado = from producto in db.Producto where producto.ID == idProducto select producto;
+                var productoSelecionado = ListaProductoSeleccionado.FirstOrDefault(); // Se coge el objeto producto de la query
 
-                labelModified.Text += productoSeleccionado.FECHAMODIFICACION.FirstOrDefault().ToString();
-                labelCreated.Text += Created.FirstOrDefault().ToString();
+                if (productoSelecionado != null)
+                {
+                    // Obtener el valor del SKU y GTIN como byte[]
+                    byte[] skuBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.SKU, db);
+                    byte[] gtinBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.GTIN, db);
 
-                productLabelTextBox.Text = 
-                thumbnailPictureBox
-                LoadAtributosUsuario();
+                    // Convertir los valores de byte[] a string 
+                    skuTextBox.Text = Encoding.UTF8.GetString(skuBytes);
+                    gtinTextBox.Text = Encoding.UTF8.GetString(gtinBytes);
+
+                    productLabelTextBox.Text = productoSelecionado.LABEL;
+                    labelCreated.Text += "   " + productoSelecionado.FECHACREACION.ToString();
+                    labelModified.Text += " " + productoSelecionado.FECHAMODIFICACION.ToString();
+
+
+                    // Cargar la imagen del thumbnail
+                    byte[] thumbnailBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.thumbnail, db);
+                    if (thumbnailBytes != null)
+                    {
+                        thumbnailPictureBox.Image = Convertidor.BytesToImage(thumbnailBytes);
+                    }
+
+                    // Cargar los atributos de usuario relacionados con este producto
+                    LoadAtributosUsuario();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
             catch(Exception ex)

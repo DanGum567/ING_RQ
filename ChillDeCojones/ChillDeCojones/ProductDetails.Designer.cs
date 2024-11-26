@@ -130,6 +130,7 @@
             this.labelCreated.Size = new System.Drawing.Size(55, 16);
             this.labelCreated.TabIndex = 9;
             this.labelCreated.Text = "Created";
+
             // 
             // labelModified
             // 
