@@ -44,6 +44,7 @@ namespace ChillDeCojones
                                          Name = atributos.NAME
                                      };
                 dataGridViewAtributos.DataSource = listaAtributos.ToList();
+                dataGridViewAtributos.ClearSelection();
             }
             catch (Exception ex)
             {

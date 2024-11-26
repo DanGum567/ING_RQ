@@ -30,6 +30,7 @@
         {
             this.dataGridViewAtributos = new System.Windows.Forms.DataGridView();
             this.bInsertar = new System.Windows.Forms.Button();
+            this.LabelUserAttributes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAtributos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,19 +48,32 @@
             // 
             // bInsertar
             // 
-            this.bInsertar.Location = new System.Drawing.Point(1534, 86);
+            this.bInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bInsertar.Location = new System.Drawing.Point(1427, 86);
             this.bInsertar.Name = "bInsertar";
-            this.bInsertar.Size = new System.Drawing.Size(75, 23);
+            this.bInsertar.Size = new System.Drawing.Size(182, 37);
             this.bInsertar.TabIndex = 2;
-            this.bInsertar.Text = "+";
+            this.bInsertar.Text = "➕ New attribute";
             this.bInsertar.UseVisualStyleBackColor = true;
             this.bInsertar.Click += new System.EventHandler(this.bInsertar_Click);
+            // 
+            // LabelUserAttributes
+            // 
+            this.LabelUserAttributes.AutoSize = true;
+            this.LabelUserAttributes.Font = new System.Drawing.Font("Franklin Gothic Medium", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUserAttributes.ForeColor = System.Drawing.Color.DarkTurquoise;
+            this.LabelUserAttributes.Location = new System.Drawing.Point(400, 80);
+            this.LabelUserAttributes.Name = "LabelUserAttributes";
+            this.LabelUserAttributes.Size = new System.Drawing.Size(173, 29);
+            this.LabelUserAttributes.TabIndex = 8;
+            this.LabelUserAttributes.Text = "User Attributes";
             // 
             // Attributes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.LabelUserAttributes);
             this.Controls.Add(this.bInsertar);
             this.Controls.Add(this.dataGridViewAtributos);
             this.Name = "Attributes";
@@ -67,6 +81,7 @@
             this.Load += new System.EventHandler(this.Attributes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAtributos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -75,5 +90,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewAtributos;
         private System.Windows.Forms.Button bInsertar;
+        private System.Windows.Forms.Label LabelUserAttributes;
     }
 }

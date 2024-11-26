@@ -73,6 +73,16 @@ namespace ChillDeCojones.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconoCuenta {
+            get {
+                object obj = ResourceManager.GetObject("iconoCuenta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MINIONS_BOB_NENDOROID_1 {
             get {
                 object obj = ResourceManager.GetObject("MINIONS-BOB-NENDOROID-1", resourceCulture);

@@ -69,6 +69,7 @@ namespace ChillDeCojones
                                       numProducts = categorias.Producto.Count()
                                   };
             dataGridViewCategoria.DataSource = listaCategorias.ToList();
+            dataGridViewCategoria.ClearSelection();
         }
 
         private void bInsertarCategoria_Click(object sender, EventArgs e)
