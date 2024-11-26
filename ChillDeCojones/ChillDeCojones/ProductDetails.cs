@@ -24,7 +24,17 @@ namespace ChillDeCojones
         {
             try
             {
-                MostrarDetallesProducto();
+                if (idProducto > 0)
+                {
+
+                    MostrarDetallesProducto();
+                }
+                else
+                {
+                    bCategoria.Visible = true;
+                    cbCategoria.Visible = false;
+                    cargarCategorias();
+                }
             }
             catch (Exception ex)
             {
@@ -47,6 +57,8 @@ namespace ChillDeCojones
             btnEliminar.Text = "🗑";
             btnEliminar.UseColumnTextForButtonValue = true;
             dCategoria.Columns.Add(btnEliminar);
+
+            cbCategoria.DataSource = db.CategoriaProducto.ToList();
 
         }
 
@@ -172,7 +184,7 @@ namespace ChillDeCojones
                     }
 
                     cbCategoria.Visible = false;
-                    bCategoria.Visible = false;
+                    bCategoria.Visible = true;
 
                     // Cargar los atributos de usuario relacionados con este producto
                     cargarAtributosUsuario();
@@ -276,11 +288,15 @@ namespace ChillDeCojones
         {
             grupo02DBEntities db = new grupo02DBEntities();
             CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
-            var producto = db.Producto.Find(idProducto);
-            producto.CategoriaProducto.Add(categoria);
-            db.SaveChanges();
-            cbCategoria.Visible = false;
-            cargarCategorias();
+            if (categoria != null)
+            {
+
+                var producto = db.Producto.Find(idProducto);
+                producto.CategoriaProducto.Add(categoria);
+                db.SaveChanges();
+                cbCategoria.Visible = false;
+                cargarCategorias();
+            }
         }
     }
 }
