@@ -31,6 +31,22 @@
     <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
     <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="PlanSuscripcion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Productos" Type="int" Nullable="false" />
+    <Property Name="Assets" Type="int" Nullable="false" />
+    <Property Name="Almacenamiento" Type="int" Nullable="false" />
+    <Property Name="CategoriasProducto" Type="int" Nullable="false" />
+    <Property Name="CategoriasAsset" Type="int" Nullable="false" />
+    <Property Name="Relaciones" Type="int" Nullable="false" />
+    <Property Name="IntegracionAP" Type="sbyte" Nullable="false" />
+    <Property Name="Precio" Type="int" Nullable="false" />
+    <Property Name="Atributos" Type="int" />
+  </EntityType>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="ID" />
@@ -135,6 +151,7 @@
     <EntitySet Name="AtributoUsuario" EntityType="Self.AtributoUsuario" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="CategoriaProductoIntermedia" EntityType="Self.CategoriaProductoIntermedia" Schema="grupo02DB" store:Type="Tables" />
+    <EntitySet Name="PlanSuscripcion" EntityType="Self.PlanSuscripcion" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="Producto" EntityType="Self.Producto" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="ValorAtributoSistema" EntityType="Self.ValorAtributoSistema" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="ValorAtributoUsuario" EntityType="Self.ValorAtributoUsuario" Schema="grupo02DB" store:Type="Tables" />

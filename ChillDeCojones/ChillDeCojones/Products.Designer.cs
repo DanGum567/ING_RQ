@@ -32,8 +32,8 @@
             this.newProductButton = new System.Windows.Forms.Button();
             this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastModification = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,8 +50,8 @@
             this.listaProductosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Thumbnail,
             this.SKU,
-            this.GTIN,
             this.Label,
+            this.GTIN,
             this.LastModification,
             this.CreationDate,
             this.ID});
@@ -90,13 +90,6 @@
             this.SKU.Name = "SKU";
             this.SKU.ReadOnly = true;
             // 
-            // GTIN
-            // 
-            this.GTIN.HeaderText = "GTIN";
-            this.GTIN.MinimumWidth = 6;
-            this.GTIN.Name = "GTIN";
-            this.GTIN.ReadOnly = true;
-            // 
             // Label
             // 
             this.Label.HeaderText = "Label";
@@ -104,12 +97,21 @@
             this.Label.Name = "Label";
             this.Label.ReadOnly = true;
             // 
+            // GTIN
+            // 
+            this.GTIN.HeaderText = "GTIN";
+            this.GTIN.MinimumWidth = 6;
+            this.GTIN.Name = "GTIN";
+            this.GTIN.ReadOnly = true;
+            this.GTIN.Visible = false;
+            // 
             // LastModification
             // 
             this.LastModification.HeaderText = "Last Modification";
             this.LastModification.MinimumWidth = 6;
             this.LastModification.Name = "LastModification";
             this.LastModification.ReadOnly = true;
+            this.LastModification.Visible = false;
             // 
             // CreationDate
             // 
@@ -117,6 +119,7 @@
             this.CreationDate.MinimumWidth = 6;
             this.CreationDate.Name = "CreationDate";
             this.CreationDate.ReadOnly = true;
+            this.CreationDate.Visible = false;
             // 
             // ID
             // 
@@ -146,8 +149,8 @@
         private System.Windows.Forms.Button newProductButton;
         private System.Windows.Forms.DataGridViewImageColumn Thumbnail;
         private System.Windows.Forms.DataGridViewTextBoxColumn SKU;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GTIN;
         private System.Windows.Forms.DataGridViewTextBoxColumn Label;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GTIN;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastModification;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;

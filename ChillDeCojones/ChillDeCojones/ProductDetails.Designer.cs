@@ -41,6 +41,8 @@
             this.lAtributosUsuario = new System.Windows.Forms.ListView();
             this.labelUserAttributes = new System.Windows.Forms.Label();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.lCategorias = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,11 +174,32 @@
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
             // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(121, 97);
+            this.listView1.TabIndex = 13;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // lCategorias
+            // 
+            this.lCategorias.HideSelection = false;
+            this.lCategorias.Location = new System.Drawing.Point(1072, 157);
+            this.lCategorias.Name = "lCategorias";
+            this.lCategorias.Size = new System.Drawing.Size(250, 97);
+            this.lCategorias.TabIndex = 14;
+            this.lCategorias.UseCompatibleStateImageBehavior = false;
+
+            // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.lCategorias);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.labelUserAttributes);
             this.Controls.Add(this.lAtributosUsuario);
             this.Controls.Add(this.labelModified);
@@ -214,5 +237,7 @@
         private System.Windows.Forms.Label labelModified;
         private System.Windows.Forms.ListView lAtributosUsuario;
         private System.Windows.Forms.Label labelUserAttributes;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lCategorias;
     }
 }

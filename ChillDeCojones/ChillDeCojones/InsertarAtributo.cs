@@ -64,7 +64,6 @@ namespace ChillDeCojones
 
         private void bCancelar_Click(object sender, EventArgs e)
         {
-            CerrarPopUp?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
 

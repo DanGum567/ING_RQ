@@ -63,5 +63,22 @@
         <ScalarProperty Name="ID" ColumnName="ID_PRODUCTO" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="PlanSuscripcion">
+      <EntityTypeMapping TypeName="grupo02DBModel.PlanSuscripcion">
+        <MappingFragment StoreEntitySet="PlanSuscripcion">
+          <ScalarProperty Name="Atributos" ColumnName="Atributos" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="IntegracionAP" ColumnName="IntegracionAP" />
+          <ScalarProperty Name="Relaciones" ColumnName="Relaciones" />
+          <ScalarProperty Name="CategoriasAsset" ColumnName="CategoriasAsset" />
+          <ScalarProperty Name="CategoriasProducto" ColumnName="CategoriasProducto" />
+          <ScalarProperty Name="Almacenamiento" ColumnName="Almacenamiento" />
+          <ScalarProperty Name="Assets" ColumnName="Assets" />
+          <ScalarProperty Name="Productos" ColumnName="Productos" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

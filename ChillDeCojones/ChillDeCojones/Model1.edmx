@@ -36,6 +36,22 @@
           <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="PlanSuscripcion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Productos" Type="int" Nullable="false" />
+          <Property Name="Assets" Type="int" Nullable="false" />
+          <Property Name="Almacenamiento" Type="int" Nullable="false" />
+          <Property Name="CategoriasProducto" Type="int" Nullable="false" />
+          <Property Name="CategoriasAsset" Type="int" Nullable="false" />
+          <Property Name="Relaciones" Type="int" Nullable="false" />
+          <Property Name="IntegracionAP" Type="sbyte" Nullable="false" />
+          <Property Name="Precio" Type="int" Nullable="false" />
+          <Property Name="Atributos" Type="int" />
+        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="ID" />
@@ -140,6 +156,7 @@
           <EntitySet Name="AtributoUsuario" EntityType="Self.AtributoUsuario" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="CategoriaProductoIntermedia" EntityType="Self.CategoriaProductoIntermedia" Schema="grupo02DB" store:Type="Tables" />
+          <EntitySet Name="PlanSuscripcion" EntityType="Self.PlanSuscripcion" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="ValorAtributoSistema" EntityType="Self.ValorAtributoSistema" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="ValorAtributoUsuario" EntityType="Self.ValorAtributoUsuario" Schema="grupo02DB" store:Type="Tables" />
@@ -199,6 +216,7 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
           </AssociationSet>
+          <EntitySet Name="PlanSuscripcion" EntityType="grupo02DBModel.PlanSuscripcion" />
         </EntityContainer>
         <EntityType Name="AtributoSistema">
           <Key>
@@ -312,6 +330,22 @@
           <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="*" />
           <End Type="grupo02DBModel.CategoriaProducto" Role="CategoriaProducto" Multiplicity="*" />
         </Association>
+        <EntityType Name="PlanSuscripcion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Productos" Type="Int32" Nullable="false" />
+          <Property Name="Assets" Type="Int32" Nullable="false" />
+          <Property Name="Almacenamiento" Type="Int32" Nullable="false" />
+          <Property Name="CategoriasProducto" Type="Int32" Nullable="false" />
+          <Property Name="CategoriasAsset" Type="Int32" Nullable="false" />
+          <Property Name="Relaciones" Type="Int32" Nullable="false" />
+          <Property Name="IntegracionAP" Type="SByte" Nullable="false" />
+          <Property Name="Precio" Type="Int32" Nullable="false" />
+          <Property Name="Atributos" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -380,6 +414,23 @@
               <ScalarProperty Name="ID" ColumnName="ID_PRODUCTO" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="PlanSuscripcion">
+            <EntityTypeMapping TypeName="grupo02DBModel.PlanSuscripcion">
+              <MappingFragment StoreEntitySet="PlanSuscripcion">
+                <ScalarProperty Name="Atributos" ColumnName="Atributos" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IntegracionAP" ColumnName="IntegracionAP" />
+                <ScalarProperty Name="Relaciones" ColumnName="Relaciones" />
+                <ScalarProperty Name="CategoriasAsset" ColumnName="CategoriasAsset" />
+                <ScalarProperty Name="CategoriasProducto" ColumnName="CategoriasProducto" />
+                <ScalarProperty Name="Almacenamiento" ColumnName="Almacenamiento" />
+                <ScalarProperty Name="Assets" ColumnName="Assets" />
+                <ScalarProperty Name="Productos" ColumnName="Productos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

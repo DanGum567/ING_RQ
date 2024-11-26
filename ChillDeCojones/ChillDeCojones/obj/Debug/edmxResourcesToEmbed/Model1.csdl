@@ -27,6 +27,7 @@
       <End Role="Producto" EntitySet="Producto" />
       <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
     </AssociationSet>
+    <EntitySet Name="PlanSuscripcion" EntityType="grupo02DBModel.PlanSuscripcion" />
   </EntityContainer>
   <EntityType Name="AtributoSistema">
     <Key>
@@ -140,4 +141,20 @@
     <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="*" />
     <End Type="grupo02DBModel.CategoriaProducto" Role="CategoriaProducto" Multiplicity="*" />
   </Association>
+  <EntityType Name="PlanSuscripcion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Productos" Type="Int32" Nullable="false" />
+    <Property Name="Assets" Type="Int32" Nullable="false" />
+    <Property Name="Almacenamiento" Type="Int32" Nullable="false" />
+    <Property Name="CategoriasProducto" Type="Int32" Nullable="false" />
+    <Property Name="CategoriasAsset" Type="Int32" Nullable="false" />
+    <Property Name="Relaciones" Type="Int32" Nullable="false" />
+    <Property Name="IntegracionAP" Type="SByte" Nullable="false" />
+    <Property Name="Precio" Type="Int32" Nullable="false" />
+    <Property Name="Atributos" Type="Int32" />
+  </EntityType>
 </Schema>

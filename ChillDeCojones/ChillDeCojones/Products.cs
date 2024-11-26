@@ -24,64 +24,6 @@ namespace ChillDeCojones
             cargarAccion();
         }
 
-        private bool ValidarGTIN(string GTIN)
-        {
-            try
-            {
-                // Validar que no sea nulo o vacío
-                if (string.IsNullOrEmpty(GTIN))
-                {
-                    MessageBox.Show("El GTIN no puede estar vacío.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // Validar que tenga exactamente 14 caracteres
-                if (GTIN.Length != 14)
-                {
-                    MessageBox.Show("El GTIN debe tener exactamente 14 dígitos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // Validar que todos los caracteres sean numéricos
-                if (!GTIN.All(char.IsDigit))
-                {
-                    MessageBox.Show("El GTIN solo debe contener números.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // Calcular el dígito de control (algoritmo módulo 10)
-                int suma = 0;
-                for (int i = 0; i < 13; i++) // Iterar sobre los primeros 13 dígitos
-                {
-                    int digito = int.Parse(GTIN[i].ToString());
-                    suma += (i % 2 == 0) ? digito * 3 : digito; // Alternar multiplicación por 3 y 1
-                }
-
-                int digitoControlCalculado = (10 - (suma % 10)) % 10; // Calcular el dígito de control
-                int digitoControlReal = int.Parse(GTIN[13].ToString()); // Último dígito del GTIN
-
-                // Verificar si el dígito de control coincide
-                if (digitoControlCalculado != digitoControlReal)
-                {
-                    MessageBox.Show("El GTIN no es válido (dígito de control incorrecto).", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // Si todo es válido
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message);
-                return false;
-            }
-        }
-
-
-        private void validarSKU(string SKU)
-        {
-
-        }
         private void cargarAccion()
         {
             //Crear columna de eliminar
@@ -105,9 +47,8 @@ namespace ChillDeCojones
             try
             {
                 listaProductosDataGridView.SuspendLayout();
-                grupo02DBEntities db = new grupo02DBEntities();
 
-                db.Configuration.LazyLoadingEnabled = false; // Desactiva Lazy Loading
+                grupo02DBEntities db = new grupo02DBEntities();
                 List<Producto> productos = new List<Producto>();
                 productos = db.Producto.ToList();
 
@@ -153,7 +94,7 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message);
+                MessageBox.Show("ERROR AL CARGAR PRODUCTOS: " + ex.Message);
             }
         }
         /*
@@ -240,7 +181,7 @@ namespace ChillDeCojones
                     MessageBox.Show("No se encontró el atributo.", "Error");
                 }
 
-                
+
             }
             catch (Exception ex)
             {
@@ -281,14 +222,15 @@ namespace ChillDeCojones
                 }
                 else
                 {
-                    
+
                     Common.ShowSubForm(new ProductDetails(idProducto));
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
-            
+
         }
     }
 }

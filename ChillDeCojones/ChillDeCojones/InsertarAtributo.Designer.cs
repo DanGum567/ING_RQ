@@ -102,6 +102,7 @@
             this.Controls.Add(this.tName);
             this.Name = "InsertarAtributo";
             this.Text = "InsertarAtributo";
+            this.Load += new System.EventHandler(this.InsertarAtributo_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InsertarAtributo_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

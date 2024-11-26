@@ -16,6 +16,7 @@
         <AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_2" />
         <AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_2" />
         <AssociationConnector Association="grupo02DBModel.CategoriaProductoIntermedia" />
+        <EntityTypeShape EntityType="grupo02DBModel.PlanSuscripcion" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

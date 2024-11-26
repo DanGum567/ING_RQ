@@ -96,6 +96,10 @@
     <Compile Include="InsertarCategoria.Designer.cs">
       <DependentUpon>InsertarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlanSuscripcion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Precargador.cs" />
     <Compile Include="ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
