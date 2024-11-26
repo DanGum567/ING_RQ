@@ -56,14 +56,15 @@ namespace ChillDeCojones
             instance = this;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripCategoriesButton_Click(object sender, EventArgs e)
         {
             ShowSubForm(new Categorias());
+        }
+
+        private void toolStripRelationshipsButton_Click(object sender, EventArgs e)
+        {
+            //ShowSubForm(new Relaciones());
         }
     }
 }

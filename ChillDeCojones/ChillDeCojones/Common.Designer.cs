@@ -116,6 +116,7 @@
             this.toolStripRelationshipsButton.Name = "toolStripRelationshipsButton";
             this.toolStripRelationshipsButton.Size = new System.Drawing.Size(101, 24);
             this.toolStripRelationshipsButton.Text = "Relationships";
+            this.toolStripRelationshipsButton.Click += new System.EventHandler(this.toolStripRelationshipsButton_Click);
             // 
             // toolStripHelpButton
             // 
@@ -141,7 +142,6 @@
             this.labelRuta.Size = new System.Drawing.Size(75, 16);
             this.labelRuta.TabIndex = 2;
             this.labelRuta.Text = "Dashboard";
-            this.labelRuta.Click += new System.EventHandler(this.label1_Click);
             // 
             // Common
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,7 @@ namespace ChillDeCojones
         private void Categorias_Load(object sender, EventArgs e)
         {
             cargarCategorias();
-            dataGridViewCategoria.Columns["ID"].Visible = false; // Oculta la columna ID
-
-            //Crear columna para mostrar productos asociados
-            DataGridViewTextBoxColumn numProductos = new DataGridViewTextBoxColumn();
-            numProductos.HeaderText = "#Products";
-            numProductos.Name = "numProducts";
-            dataGridViewCategoria.Columns.Add(numProductos);
-            obtenerNumeroDeProductos(); //Carga el numero de productos para cada categoria
+            dataGridViewCategoria.Columns["ID"].Visible = false; // Oculta la columna
 
             //Crear columna de eliminar
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
@@ -64,22 +58,6 @@ namespace ChillDeCojones
             dataGridViewCategoria.Columns.Add(btnDescartar);
         }
 
-        private void obtenerNumeroDeProductos()
-        {
-            grupo02DBEntities db = new grupo02DBEntities();
-            var listaCategorias = from producto in db.Producto where producto.CategoriaProducto.Equals()
-                                  select producto.Count();
-                                  
-                             
-            foreach (DataGridViewRow row in dataGridViewCategoria.Rows)
-            {
-                if (row.IsNewRow) continue; // Evita filas vacias, no deberia ocurrir.
-                int categoriaId = (int)row.Cells["ID"].Value;
-                //Devuelve de la base de datos el num de Productos para esa categoria
-                row.Cells["numProducts"].Value = (db.Producto.Count(p => p.CategoriaProducto.ID == categoriaId);
-            }
-        }
-
         private void cargarCategorias()
         {
             grupo02DBEntities db = new grupo02DBEntities();
@@ -87,7 +65,8 @@ namespace ChillDeCojones
                                   select new
                                   {
                                       ID = categorias.ID,
-                                      Name = categorias.NAME
+                                      Name = categorias.NAME,
+                                      numProducts = categorias.Producto.Count()
                                   };
             dataGridViewCategoria.DataSource = listaCategorias.ToList();
         }

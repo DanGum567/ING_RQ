@@ -37,6 +37,9 @@
             this.skuLabel = new System.Windows.Forms.Label();
             this.gtinLabel = new System.Windows.Forms.Label();
             this.uploadThumbnailButton = new System.Windows.Forms.Button();
+            this.labelCreated = new System.Windows.Forms.Label();
+            this.labelModified = new System.Windows.Forms.Label();
+            this.lAtributosUsuario = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,7 +114,7 @@
             // 
             // uploadThumbnailButton
             // 
-            this.uploadThumbnailButton.Location = new System.Drawing.Point(95, 334);
+            this.uploadThumbnailButton.Location = new System.Drawing.Point(95, 299);
             this.uploadThumbnailButton.Name = "uploadThumbnailButton";
             this.uploadThumbnailButton.Size = new System.Drawing.Size(194, 23);
             this.uploadThumbnailButton.TabIndex = 8;
@@ -119,11 +122,41 @@
             this.uploadThumbnailButton.UseVisualStyleBackColor = true;
             this.uploadThumbnailButton.Click += new System.EventHandler(this.uploadThumbnailButton_Click);
             // 
+            // labelCreated
+            // 
+            this.labelCreated.AutoSize = true;
+            this.labelCreated.Location = new System.Drawing.Point(375, 267);
+            this.labelCreated.Name = "labelCreated";
+            this.labelCreated.Size = new System.Drawing.Size(55, 16);
+            this.labelCreated.TabIndex = 9;
+            this.labelCreated.Text = "Created";
+            // 
+            // labelModified
+            // 
+            this.labelModified.AutoSize = true;
+            this.labelModified.Location = new System.Drawing.Point(375, 299);
+            this.labelModified.Name = "labelModified";
+            this.labelModified.Size = new System.Drawing.Size(62, 16);
+            this.labelModified.TabIndex = 10;
+            this.labelModified.Text = "Modified ";
+            // 
+            // lAtributosUsuario
+            // 
+            this.lAtributosUsuario.HideSelection = false;
+            this.lAtributosUsuario.Location = new System.Drawing.Point(95, 345);
+            this.lAtributosUsuario.Name = "lAtributosUsuario";
+            this.lAtributosUsuario.Size = new System.Drawing.Size(194, 158);
+            this.lAtributosUsuario.TabIndex = 11;
+            this.lAtributosUsuario.UseCompatibleStateImageBehavior = false;
+            // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.lAtributosUsuario);
+            this.Controls.Add(this.labelModified);
+            this.Controls.Add(this.labelCreated);
             this.Controls.Add(this.uploadThumbnailButton);
             this.Controls.Add(this.gtinLabel);
             this.Controls.Add(this.skuLabel);
@@ -153,5 +186,8 @@
         private System.Windows.Forms.Label skuLabel;
         private System.Windows.Forms.Label gtinLabel;
         private System.Windows.Forms.Button uploadThumbnailButton;
+        private System.Windows.Forms.Label labelCreated;
+        private System.Windows.Forms.Label labelModified;
+        private System.Windows.Forms.ListView lAtributosUsuario;
     }
 }

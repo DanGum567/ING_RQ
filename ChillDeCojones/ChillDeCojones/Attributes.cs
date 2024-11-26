@@ -108,12 +108,8 @@ namespace ChillDeCojones
             return id;
         }
 
-        public static void AñadirValorAtributoDelSistemaAProducto(
-            TipoAtributoSistema atributoAAÑadir,
-            Producto producto,
-            object atributo,
-            grupo02DBEntities contexto)
-            {
+        public static void AñadirValorAtributoDelSistemaAProducto( TipoAtributoSistema atributoAAÑadir,Producto producto,object atributo,grupo02DBEntities contexto){
+
             if (producto == null || atributo == null)
             {
                 throw new ArgumentNullException("El producto o atributo no pueden ser nulos.");
