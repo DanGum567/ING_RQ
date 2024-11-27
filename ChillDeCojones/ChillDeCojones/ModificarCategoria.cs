@@ -29,17 +29,25 @@ namespace ChillDeCojones
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (!db.CategoriaProducto.Any(c => c.NAME.Equals(tName.Text)))
+            if (string.IsNullOrWhiteSpace(tName.Text))
             {
-                categoria.NAME = tName.Text;
-                db.SaveChanges();
-                CategoriaModificada?.Invoke(this, EventArgs.Empty);
-                this.Close();
+                MessageBox.Show("ERROR: name cannot be empty");
+
+            }
+            else if (db.CategoriaProducto.Any(c => c.NAME.Equals(tName.Text))
+                || Enum.IsDefined(typeof(TipoAtributoSistema), tName.Text))
+            {
+                MessageBox.Show("ERROR: The name is already in use");
+                tName.Text = "";
             }
             else
             {
+                categoria.NAME = tName.Text;
+                db.SaveChanges();
                 MessageBox.Show("ERROR: The name is already in use");
+                this.Close();              
             }
+            CategoriaModificada?.Invoke(this, EventArgs.Empty);
         }
 
         private void ButtonDiscard_Click(object sender, EventArgs e)

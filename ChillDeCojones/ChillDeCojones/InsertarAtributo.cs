@@ -37,25 +37,30 @@ namespace ChillDeCojones
         {
             try
             {
+                // Crear una nueva instancia de AtributoUsuario  
 
-                // Crear una nueva instancia de AtributoUsuario
-                AtributoUsuario nuevoAtributo = new AtributoUsuario();
-                nuevoAtributo.TYPE = cbType.SelectedItem.ToString();
-                nuevoAtributo.NAME = tName.Text;
-                bool atributoRepetido = db.AtributoUsuario.Any(a => a.NAME == nuevoAtributo.NAME);
 
-                if (atributoRepetido)
+                if (string.IsNullOrWhiteSpace(tName.Text))
                 {
-                    MessageBox.Show("ERROR: An attribute with that name already exists.");
-                    return; // No continuar con la inserción si el atributo está repetido
+                    MessageBox.Show("ERROR: The name cannot be empty.");
                 }
-                db.AtributoUsuario.Add(nuevoAtributo);
-                db.SaveChanges();
+                else if (db.AtributoUsuario.Any(a => a.NAME.Equals(tName.Text))) 
+                {
+                    MessageBox.Show("ERROR: The name is already in use");
+                    tName.Text = "";
+                }
+                else
+                {
+                    AtributoUsuario nuevoAtributo = new AtributoUsuario();
+                    nuevoAtributo.TYPE = cbType.SelectedItem.ToString();
+                    nuevoAtributo.NAME = tName.Text;
+                    db.AtributoUsuario.Add(nuevoAtributo);
+                    db.SaveChanges();
+                    MessageBox.Show("Added attribute succesfully");
 
-                MessageBox.Show("Added attribute succesfully");
-
-                // Cerrar el formulario después de agregar
-                this.Close();
+                    // Cerrar el formulario después de agregar
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -63,12 +68,20 @@ namespace ChillDeCojones
             }
 
             AtributoInsertado?.Invoke(this, EventArgs.Empty);
-            this.Close(); // El formulario se cierra despues de aceptar
+            
         }
 
         private void bCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Impide que el carácter se muestre en el TextBox
+            }
         }
     }
 }

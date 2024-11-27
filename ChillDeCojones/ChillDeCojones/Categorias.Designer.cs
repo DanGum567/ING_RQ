@@ -42,7 +42,6 @@
             this.dataGridViewCategoria.Name = "dataGridViewCategoria";
             this.dataGridViewCategoria.RowHeadersWidth = 51;
             this.dataGridViewCategoria.RowTemplate.Height = 24;
-            this.dataGridViewCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewCategoria.Size = new System.Drawing.Size(1216, 485);
             this.dataGridViewCategoria.TabIndex = 0;
             this.dataGridViewCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategoria_CellClick);

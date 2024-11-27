@@ -81,6 +81,7 @@
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.tName);
             this.Name = "ModificarAtributo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModificarAtributo";
             this.Load += new System.EventHandler(this.ModificarAtributo_Load);
             this.ResumeLayout(false);

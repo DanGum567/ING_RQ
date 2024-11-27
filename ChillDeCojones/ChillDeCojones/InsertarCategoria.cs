@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChillDeCojones
 {
@@ -28,15 +29,29 @@ namespace ChillDeCojones
                 grupo02DBEntities db = new grupo02DBEntities();
                 // Crear una nueva instancia de CateogiraProducto
                 CategoriaProducto nuevaCategoria = new CategoriaProducto();
-                nuevaCategoria.NAME = tName.Text;
+                if (string.IsNullOrWhiteSpace(tName.Text))
+                {
+                    MessageBox.Show("ERROR: name cannot be empty");
+                    
+                }
+                else if (db.CategoriaProducto.Any(x => x.NAME.Equals(tName.Text))
+                    || Enum.IsDefined(typeof(TipoAtributoSistema), tName.Text))
+                {
+                    MessageBox.Show("ERROR: The name is already in use");
+                    tName.Text = "";
+                   
+                }
+                else
+                {
+                    nuevaCategoria.NAME = tName.Text;
+                    db.CategoriaProducto.Add(nuevaCategoria);
+                    db.SaveChanges();
 
-                db.CategoriaProducto.Add(nuevaCategoria);
-                db.SaveChanges();
+                    MessageBox.Show("Category added correctly");
 
-                MessageBox.Show("Category added correctly");
-
-                // Cerrar el formulario después de agregar
-                this.Close();
+                    // Cerrar el formulario después de agregar
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -44,9 +59,8 @@ namespace ChillDeCojones
             }
 
             CategoriaInsertada?.Invoke(this, EventArgs.Empty);
-            this.Close(); // El formulario se cierra despues de aceptar
+           // El formulario se cierra despues de aceptar
         }
-
         private void bCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
