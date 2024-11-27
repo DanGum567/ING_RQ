@@ -44,15 +44,15 @@
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.discardThumbailButton = new System.Windows.Forms.Button();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.DeleteProductButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
             // 
-            this.saveChangesButton.Location = new System.Drawing.Point(1566, 220);
+            this.saveChangesButton.Location = new System.Drawing.Point(1590, 138);
             this.saveChangesButton.Name = "saveChangesButton";
             this.saveChangesButton.Size = new System.Drawing.Size(220, 30);
             this.saveChangesButton.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // discardChangesButton
             // 
-            this.discardChangesButton.Location = new System.Drawing.Point(1566, 293);
+            this.discardChangesButton.Location = new System.Drawing.Point(1590, 211);
             this.discardChangesButton.Name = "discardChangesButton";
             this.discardChangesButton.Size = new System.Drawing.Size(220, 30);
             this.discardChangesButton.TabIndex = 2;
@@ -212,16 +212,9 @@
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(95, 498);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(715, 489);
-            this.panel1.TabIndex = 20;
-            // 
             // DeleteProductButton
             // 
-            this.DeleteProductButton.Location = new System.Drawing.Point(1566, 368);
+            this.DeleteProductButton.Location = new System.Drawing.Point(1590, 286);
             this.DeleteProductButton.Name = "DeleteProductButton";
             this.DeleteProductButton.Size = new System.Drawing.Size(220, 30);
             this.DeleteProductButton.TabIndex = 21;
@@ -229,13 +222,20 @@
             this.DeleteProductButton.UseVisualStyleBackColor = true;
             this.DeleteProductButton.Click += new System.EventHandler(this.DeleteProductButton_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(95, 495);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(605, 428);
+            this.flowLayoutPanel1.TabIndex = 22;
+            // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.DeleteProductButton);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.discardThumbailButton);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.dCategoria);
@@ -283,7 +283,7 @@
         private System.Windows.Forms.ListView ListViewAtributosUsuario;
         private System.Windows.Forms.ColumnHeader Value;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button DeleteProductButton;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

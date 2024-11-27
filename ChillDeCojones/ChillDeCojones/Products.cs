@@ -12,10 +12,12 @@ namespace ChillDeCojones
 {
     public partial class Products : Form
     {
-
+        private grupo02DBEntities db = new grupo02DBEntities();
         public event EventHandler Modificar;
+        private static Products instance;
         public Products()
         {
+            instance = this;
             InitializeComponent();
         }
 
@@ -50,7 +52,6 @@ namespace ChillDeCojones
 
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
                 List<Producto> productos = db.Producto.ToList();
 
                 foreach (Producto cargadoJustoAhora in productos)
@@ -64,15 +65,10 @@ namespace ChillDeCojones
 
                     //Comprobamos si ya se han cargado las variables de Producto anteriormente
                     Producto delQueCargarVariables;
-                    Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
-                    if (precargadoEnMemoria != null)
-                    {
-                        delQueCargarVariables = precargadoEnMemoria;
-                    }
-                    else
-                    {
-                        delQueCargarVariables = cargadoJustoAhora;
-                    }
+                    //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+
+                    delQueCargarVariables = cargadoJustoAhora;
+
 
                     //Cargamos variables del producto para mostrarlas
                     label = delQueCargarVariables.LABEL;
@@ -106,7 +102,6 @@ namespace ChillDeCojones
                     }
                     if (thumbailBytes == null)
                     {
-                        MessageBox.Show("The thumbail of the product with id " + idProducto + " is not preloaded in memory");
                         thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
                     }
 
@@ -125,12 +120,9 @@ namespace ChillDeCojones
 
                     listaProductosDataGridView.Rows.Add(
                         thumbail,
+                        idProducto,
                         sku,
-                        gtin,
-                        label,
-                        fechaModificacion,
-                        fechaCreacion,
-                        ID //ESTO NO QUITARLO QUE SI NO SE ROMPE TODO
+                        label
                     );
 
                     listaProductosDataGridView.Columns["ID"].Visible = false;
@@ -148,11 +140,10 @@ namespace ChillDeCojones
         private void newProductButton_Click(object sender, EventArgs e)
         {
 
-            grupo02DBEntities db = new grupo02DBEntities();
             if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
             {
 
-                Common.ShowSubForm(new ProductDetails(-1, this));
+                Common.ShowSubForm(new ProductDetails(null, this, db));
             }
             else
             {
@@ -160,14 +151,12 @@ namespace ChillDeCojones
             }
         }
 
-        private void EliminarProducto(int idProducto)
+        public static void EliminarProducto(Producto productoAEliminar)
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
                 // Busca el atributo en la base de datos
-                var producto = db.Producto.First(x => x.ID.Equals(idProducto));
-                if (producto != null)
+                if (productoAEliminar != null)
                 {
                     // Se pregunta al usuario si está seguro de que quiere eliminar el atributo
                     DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -175,11 +164,11 @@ namespace ChillDeCojones
                     if (result == DialogResult.Yes)
                     {
                         // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
-                        db.Producto.Remove(producto);
-                        db.SaveChanges(); // Guarda los cambios en la base de datos
+                        instance.db.Producto.Remove(productoAEliminar);
+                        instance.db.SaveChanges(); // Guarda los cambios en la base de datos
                         MessageBox.Show("Product successfully deleted", "Successful Deletion");
 
-                        MostrarListaProductos(); // Se recarga la lista de productos
+                        instance.MostrarListaProductos(); // Se recarga la lista de productos
                     }
                 }
                 else
@@ -195,13 +184,13 @@ namespace ChillDeCojones
             }
         }
 
-        private void ModificarProducto(int idProducto)
+        private void ModificarProducto(Producto productoAModificar)
         {
             try
             {
 
                 Modificar?.Invoke(this, EventArgs.Empty);
-                Common.ShowSubForm(new ProductDetails(idProducto, this));
+                Common.ShowSubForm(new ProductDetails(productoAModificar, this, db));
 
 
             }
@@ -218,19 +207,21 @@ namespace ChillDeCojones
                 // Obtén el ID del atributo desde la fila seleccionada
                 int idProducto = Convert.ToInt32(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value);
                 // Verifica si la celda pertenece a la columna "Eliminar"
+                MessageBox.Show(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString());
+                Producto producto = db.Producto.Find(idProducto);
                 if (e.ColumnIndex == listaProductosDataGridView.Columns["Delete"].Index && e.RowIndex >= 0)
                 {
-                    EliminarProducto(idProducto);
+                    EliminarProducto(producto);
                 }
                 // Si se hizo clic en el botón "Editar"
                 else if (e.ColumnIndex == listaProductosDataGridView.Columns["Edit"].Index)
                 {
-                    ModificarProducto(idProducto);
+                    ModificarProducto(producto);
                 }
                 else
                 {
 
-                    Common.ShowSubForm(new ProductDetails(idProducto, this));
+                    Common.ShowSubForm(new ProductDetails(producto, this, db));
                 }
             }
             catch (Exception ex)
