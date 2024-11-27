@@ -49,7 +49,7 @@ namespace ChillDeCojones
             grupo02DBEntities db = new grupo02DBEntities();
             var categorias = from producto in db.Producto select producto.CategoriaProducto;
 
-            dCategoria.DataSource = categorias;
+            dCategoria.DataSource = categorias.ToList();
 
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
             btnEliminar.HeaderText = "Eliminar";
