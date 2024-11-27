@@ -35,7 +35,7 @@ namespace ChillDeCojones
                 MessageBox.Show("ERROR: The name cannot be empty.");
             }
             else if (db.AtributoUsuario.Any(a => a.NAME.Equals(tName.Text)) ||
-                 Enum.IsDefined(typeof(TipoAtributoSistema), tName.Text))
+                 Enum.GetNames(typeof(TipoAtributoSistema)).Any(nombre => nombre.Equals(tName.Text, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show("ERROR: The name is already in use");
                 tName.Text = "";

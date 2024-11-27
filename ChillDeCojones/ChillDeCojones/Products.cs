@@ -29,15 +29,15 @@ namespace ChillDeCojones
         {
             //Crear columna de eliminar
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-            btnEliminar.HeaderText = "Eliminar";
-            btnEliminar.Name = "Eliminar";
+            btnEliminar.HeaderText = "Delete";
+            btnEliminar.Name = "Delete";
             btnEliminar.Text = "🗑";
             btnEliminar.UseColumnTextForButtonValue = true;
             listaProductosDataGridView.Columns.Add(btnEliminar);
 
             DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-            btnEditar.HeaderText = "Editar";
-            btnEditar.Name = "Editar";
+            btnEditar.HeaderText = "Edit";
+            btnEditar.Name = "Edit";
             btnEditar.Text = "✏";
             btnEditar.UseColumnTextForButtonValue = true;
             listaProductosDataGridView.Columns.Add(btnEditar);
@@ -83,8 +83,8 @@ namespace ChillDeCojones
                     //-------------------------------------------------------------------------------------------
 
                     //Atributos del sistema
-                    string sku = "(Sin SKU)";
-                    string gtin = "(Sin GTIN)";
+                    string sku = "(Without SKU)";
+                    string gtin = "(Without GTIN)";
                     Image thumbail = null;
 
                     byte[] skuBytes;
@@ -106,7 +106,7 @@ namespace ChillDeCojones
                     }
                     if (thumbailBytes == null)
                     {
-                        MessageBox.Show("La thumbail del producto con id " + idProducto + " no estaba precargada en memoria");
+                        MessageBox.Show("The thumbail of the product with id " + idProducto + " is not preloaded in memory");
                         thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
                     }
 
@@ -139,7 +139,7 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR AL CARGAR PRODUCTOS: " + ex.Message);
+                MessageBox.Show("Error showing products: " + ex.Message);
             }
             listaProductosDataGridView.ResumeLayout();
             listaProductosDataGridView.ClearSelection();// Se deselecciona el primer elemento
@@ -177,21 +177,21 @@ namespace ChillDeCojones
                         // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
                         db.Producto.Remove(producto);
                         db.SaveChanges(); // Guarda los cambios en la base de datos
-                        MessageBox.Show("Producto eliminado correctamente.", "Eliminación Exitosa");
+                        MessageBox.Show("Product successfully deleted", "Successful Deletion");
 
                         MostrarListaProductos(); // Se recarga la lista de productos
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró el atributo.", "Error");
+                    MessageBox.Show("Attribute wasn't found", "Error");
                 }
 
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR AL ELIMINAR PRODUCTO: " + ex.Message);
+                MessageBox.Show("Error trying to delete the attribute: " + ex.Message);
             }
         }
 
@@ -218,12 +218,12 @@ namespace ChillDeCojones
                 // Obtén el ID del atributo desde la fila seleccionada
                 int idProducto = Convert.ToInt32(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value);
                 // Verifica si la celda pertenece a la columna "Eliminar"
-                if (e.ColumnIndex == listaProductosDataGridView.Columns["Eliminar"].Index && e.RowIndex >= 0)
+                if (e.ColumnIndex == listaProductosDataGridView.Columns["Delete"].Index && e.RowIndex >= 0)
                 {
                     EliminarProducto(idProducto);
                 }
                 // Si se hizo clic en el botón "Editar"
-                else if (e.ColumnIndex == listaProductosDataGridView.Columns["Editar"].Index)
+                else if (e.ColumnIndex == listaProductosDataGridView.Columns["Edit"].Index)
                 {
                     ModificarProducto(idProducto);
                 }
@@ -244,10 +244,5 @@ namespace ChillDeCojones
         {
 
         }
-
-
     }
-
-
-
 }

@@ -27,8 +27,9 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERRO: " + ex.Message);
+                MessageBox.Show("ERROR: " + ex.Message);
             }
+
 
 
         }
@@ -44,7 +45,8 @@ namespace ChillDeCojones
                 {
                     MessageBox.Show("ERROR: The name cannot be empty.");
                 }
-                else if (db.AtributoUsuario.Any(a => a.NAME.Equals(tName.Text))) 
+                else if (db.AtributoUsuario.Any(a => a.NAME.Equals(tName.Text, StringComparison.OrdinalIgnoreCase))
+                    || Enum.GetNames(typeof(TipoAtributoSistema)).Any(nombre => nombre.Equals(tName.Text, StringComparison.OrdinalIgnoreCase)))
                 {
                     MessageBox.Show("ERROR: The name is already in use");
                     tName.Text = "";
@@ -56,7 +58,7 @@ namespace ChillDeCojones
                     nuevoAtributo.NAME = tName.Text;
                     db.AtributoUsuario.Add(nuevoAtributo);
                     db.SaveChanges();
-                    MessageBox.Show("Added attribute succesfully");
+                    MessageBox.Show("Attribute added succesfully");
 
                     // Cerrar el formulario después de agregar
                     this.Close();
@@ -64,11 +66,11 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR adding this attribute: " + ex.Message);
+                MessageBox.Show("ERROR trying to add the attribute: " + ex.Message);
             }
 
             AtributoInsertado?.Invoke(this, EventArgs.Empty);
-            
+
         }
 
         private void bCancelar_Click(object sender, EventArgs e)

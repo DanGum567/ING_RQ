@@ -40,6 +40,7 @@ namespace ChillDeCojones
 
 
         }
+
         private void Attributes_Load(object sender, EventArgs e)
         {
             cargarAtributos();
@@ -47,24 +48,20 @@ namespace ChillDeCojones
 
             //Crear columna de eliminar
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-            btnEliminar.HeaderText = "Eliminar";
-            btnEliminar.Name = "Eliminar";
+            btnEliminar.HeaderText = "Delete";
+            btnEliminar.Name = "Delete";
             btnEliminar.Text = "🗑";
             btnEliminar.UseColumnTextForButtonValue = true;
             dataGridViewAtributos.Columns.Add(btnEliminar);
 
             DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-            btnEditar.HeaderText = "Editar";
-            btnEditar.Name = "Editar";
+            btnEditar.HeaderText = "Edit";
+            btnEditar.Name = "Edit";
             btnEditar.Text = "✏";
             btnEditar.UseColumnTextForButtonValue = true;
             dataGridViewAtributos.Columns.Add(btnEditar);
 
         }
-
-
-
-
 
         private void bInsertar_Click(object sender, EventArgs e)
         {
@@ -84,8 +81,6 @@ namespace ChillDeCojones
             {
                 MessageBox.Show("You have reached the maximum number of attributes allowed");
             }
-
-
         }
 
         private void dataGridViewAtributos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -123,8 +118,6 @@ namespace ChillDeCojones
                     dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox.Text;
                 }
             }
-
-
         }
         private void EliminarAtributo(int idAtributo)
         {
@@ -140,19 +133,14 @@ namespace ChillDeCojones
                     // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
                     db.AtributoUsuario.Remove(atributo);
                     db.SaveChanges(); // Guarda los cambios en la base de datos
-                    MessageBox.Show("Atributo eliminado correctamente.", "Eliminación Exitosa");
+                    MessageBox.Show("Attribute successfully deleted. ", "Deletion successful.");
                 }
             }
             else
             {
-                MessageBox.Show("No se encontró el atributo.", "Error");
+                MessageBox.Show("Attribute not found.", "Error");
             }
-
-
-            // Actualiza la tabla después de eliminar
-            cargarAtributos();
+            cargarAtributos(); // Actualiza la tabla después de eliminar
         }
-
-
     }
 }

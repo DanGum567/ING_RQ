@@ -39,23 +39,22 @@
             this.labelCreated = new System.Windows.Forms.Label();
             this.labelModified = new System.Windows.Forms.Label();
             this.labelUserAttributes = new System.Windows.Forms.Label();
-            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.bCategoria = new System.Windows.Forms.Button();
             this.dCategoria = new System.Windows.Forms.DataGridView();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.discardThumbailButton = new System.Windows.Forms.Button();
-            this.ListViewAtributosUsuario = new System.Windows.Forms.ListView();
-            this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
+            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.DeleteProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
             // 
             this.saveChangesButton.Location = new System.Drawing.Point(1566, 220);
             this.saveChangesButton.Name = "saveChangesButton";
-            this.saveChangesButton.Size = new System.Drawing.Size(218, 23);
+            this.saveChangesButton.Size = new System.Drawing.Size(220, 30);
             this.saveChangesButton.TabIndex = 1;
             this.saveChangesButton.Text = "💾 Save Changes";
             this.saveChangesButton.UseVisualStyleBackColor = true;
@@ -63,9 +62,9 @@
             // 
             // discardChangesButton
             // 
-            this.discardChangesButton.Location = new System.Drawing.Point(1566, 267);
+            this.discardChangesButton.Location = new System.Drawing.Point(1566, 293);
             this.discardChangesButton.Name = "discardChangesButton";
-            this.discardChangesButton.Size = new System.Drawing.Size(218, 23);
+            this.discardChangesButton.Size = new System.Drawing.Size(220, 30);
             this.discardChangesButton.TabIndex = 2;
             this.discardChangesButton.Text = "❌ Discard Changes";
             this.discardChangesButton.UseVisualStyleBackColor = true;
@@ -161,17 +160,6 @@
             this.labelUserAttributes.TabIndex = 12;
             this.labelUserAttributes.Text = "User Attributes";
             // 
-            // thumbnailPictureBox
-            // 
-            this.thumbnailPictureBox.BackgroundImage = global::ChillDeCojones.Properties.Resources.imagenPredeterminadaProducto;
-            this.thumbnailPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.thumbnailPictureBox.Location = new System.Drawing.Point(95, 83);
-            this.thumbnailPictureBox.Name = "thumbnailPictureBox";
-            this.thumbnailPictureBox.Size = new System.Drawing.Size(194, 200);
-            this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.thumbnailPictureBox.TabIndex = 0;
-            this.thumbnailPictureBox.TabStop = false;
-            // 
             // bCategoria
             // 
             this.bCategoria.Location = new System.Drawing.Point(1159, 124);
@@ -213,33 +201,41 @@
             this.discardThumbailButton.UseVisualStyleBackColor = true;
             this.discardThumbailButton.Click += new System.EventHandler(this.discardThumbailButton_Click);
             // 
-            // ListViewAtributosUsuario
+            // thumbnailPictureBox
             // 
-            this.ListViewAtributosUsuario.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Nombre,
-            this.Valor});
-            this.ListViewAtributosUsuario.HideSelection = false;
-            this.ListViewAtributosUsuario.Location = new System.Drawing.Point(95, 502);
-            this.ListViewAtributosUsuario.Name = "ListViewAtributosUsuario";
-            this.ListViewAtributosUsuario.Size = new System.Drawing.Size(466, 433);
-            this.ListViewAtributosUsuario.TabIndex = 20;
-            this.ListViewAtributosUsuario.UseCompatibleStateImageBehavior = false;
-            this.ListViewAtributosUsuario.View = System.Windows.Forms.View.Details;
+            this.thumbnailPictureBox.BackgroundImage = global::ChillDeCojones.Properties.Resources.imagenPredeterminadaProducto;
+            this.thumbnailPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.thumbnailPictureBox.Location = new System.Drawing.Point(95, 83);
+            this.thumbnailPictureBox.Name = "thumbnailPictureBox";
+            this.thumbnailPictureBox.Size = new System.Drawing.Size(194, 200);
+            this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.thumbnailPictureBox.TabIndex = 0;
+            this.thumbnailPictureBox.TabStop = false;
             // 
-            // Nombre
+            // panel1
             // 
-            this.Nombre.Text = "Nombre";
+            this.panel1.Location = new System.Drawing.Point(95, 498);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(715, 489);
+            this.panel1.TabIndex = 20;
             // 
-            // Valor
+            // DeleteProductButton
             // 
-            this.Valor.Text = "Valor";
+            this.DeleteProductButton.Location = new System.Drawing.Point(1566, 368);
+            this.DeleteProductButton.Name = "DeleteProductButton";
+            this.DeleteProductButton.Size = new System.Drawing.Size(220, 30);
+            this.DeleteProductButton.TabIndex = 21;
+            this.DeleteProductButton.Text = "🗑️ Delete product";
+            this.DeleteProductButton.UseVisualStyleBackColor = true;
+            this.DeleteProductButton.Click += new System.EventHandler(this.DeleteProductButton_Click);
             // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
-            this.Controls.Add(this.ListViewAtributosUsuario);
+            this.Controls.Add(this.DeleteProductButton);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.discardThumbailButton);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.dCategoria);
@@ -259,8 +255,8 @@
             this.Name = "ProductDetails";
             this.Text = "ProductDetails";
             this.Load += new System.EventHandler(this.ProductDetails_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,7 +281,9 @@
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button discardThumbailButton;
         private System.Windows.Forms.ListView ListViewAtributosUsuario;
-        private System.Windows.Forms.ColumnHeader Nombre;
-        private System.Windows.Forms.ColumnHeader Valor;
+        private System.Windows.Forms.ColumnHeader Value;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button DeleteProductButton;
     }
 }

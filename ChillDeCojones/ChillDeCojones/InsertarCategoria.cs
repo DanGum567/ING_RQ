@@ -35,7 +35,7 @@ namespace ChillDeCojones
                     
                 }
                 else if (db.CategoriaProducto.Any(x => x.NAME.Equals(tName.Text))
-                    || Enum.IsDefined(typeof(TipoAtributoSistema), tName.Text))
+                    || Enum.GetNames(typeof(TipoAtributoSistema)).Any(nombre => nombre.Equals(tName.Text, StringComparison.OrdinalIgnoreCase)))
                 {
                     MessageBox.Show("ERROR: The name is already in use");
                     tName.Text = "";

@@ -31,16 +31,16 @@ namespace ChillDeCojones
 
             //Crear columna de eliminar
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-            btnEliminar.HeaderText = "Eliminar";
-            btnEliminar.Name = "Eliminar";
+            btnEliminar.HeaderText = "Delete";
+            btnEliminar.Name = "Delete";
             btnEliminar.Text = "🗑";
             btnEliminar.UseColumnTextForButtonValue = true;
             dataGridViewCategoria.Columns.Add(btnEliminar);
 
             //Columna para editar categorias
             DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-            btnEditar.HeaderText = "Editar";
-            btnEditar.Name = "Editar";
+            btnEditar.HeaderText = "Edit";
+            btnEditar.Name = "Edit";
             btnEditar.Text = "✏";
             btnEditar.UseColumnTextForButtonValue = true;
             dataGridViewCategoria.Columns.Add(btnEditar);
@@ -88,7 +88,7 @@ namespace ChillDeCojones
         private void dataGridViewCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.ColumnIndex == dataGridViewCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dataGridViewCategoria.Columns["Delete"].Index && e.RowIndex >= 0)
             {
                 int idCategoria = Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["ID"].Value);
                 if (Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["numProducts"].Value) > 0)
@@ -107,7 +107,7 @@ namespace ChillDeCojones
 
             if (e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == dataGridViewCategoria.Columns["Editar"].Index)
+                if (e.ColumnIndex == dataGridViewCategoria.Columns["Edit"].Index)
                 {
 
                     //dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;

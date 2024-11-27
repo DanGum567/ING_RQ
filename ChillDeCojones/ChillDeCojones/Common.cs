@@ -60,7 +60,7 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al mostrar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error showing form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

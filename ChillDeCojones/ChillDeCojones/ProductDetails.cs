@@ -17,6 +17,7 @@ namespace ChillDeCojones
         int idProducto;
         bool modificar = false;
         Products generalProducts;
+        List<CategoriaProducto> cacheCategorias;
 
         public ProductDetails(int idProducto, Products general)
         {
@@ -42,12 +43,11 @@ namespace ChillDeCojones
                         cbCategoria.Visible = false;
                         cargarCategorias();
                         cargarEliminarCategorias();
-                        CargarListaAtributos(true);
                     }
                     else //solo cuando se va a ver
                     {
-                        CargarListaAtributos(false);
                     }
+
                 }
                 else //Cuando se inserta
                 {
@@ -55,8 +55,9 @@ namespace ChillDeCojones
                     cbCategoria.Visible = false;
                     cargarCategorias(); //<- esto da excepcion
                     cargarEliminarCategorias();
-                    CargarListaAtributos(true);
                 }
+                CargarListaAtributos(modificar);
+
             }
             catch (Exception ex)
             {
@@ -68,24 +69,59 @@ namespace ChillDeCojones
 
         private void CargarListaAtributos(bool modificar)
         {
-            List<ValorAtributoUsuario> valorAtributoUsuarios = db.ValorAtributoUsuario.Where(v => v.ID_PRODUCTO.Equals(idProducto)).ToList();
-            foreach (ValorAtributoUsuario val in valorAtributoUsuarios)
+            for (int i = 0; i < 5; i++)
             {
-                ListViewItem item = new ListViewItem();  // Primer valor (ID)
-                item.SubItems.Add(val.AtributoUsuario.NAME);            // Segundo valor (Nombre)
-                ListViewAtributosUsuario.Items.Add(item);
+                // Crear un Panel
+
+                Panel panel = new Panel();
+                panel.Size = new Size(400, 200);
+                panel.BorderStyle = BorderStyle.None;
+
+                Form formulario = new ImageAttributePanel();
+                formulario.TopLevel = false; // Necesario para incrustar el Form
+                formulario.Dock = DockStyle.Fill; // Ajustar al tamaño del Panel
+                formulario.FormBorderStyle = FormBorderStyle.None;
+
+                panel.Controls.Add(formulario);
+                groupBox1.Controls.Add(panel);
+
+                formulario.Show();
+                MessageBox.Show(panel.Parent.Name);
+                // Agregar el Panel al FlowLayoutPanel
+            }
+
+            List<AtributoUsuario> atributoUsuarios = db.AtributoUsuario.ToList();
+            // Limpia los elementos actuales del ListView para evitar duplicados
+            foreach (AtributoUsuario val in atributoUsuarios)
+            {
             }
         }
 
         private void cargarEliminarCategorias()
         {
+            //Si hay alguna categoria se crea, si no no se crea el boton
+            if (idProducto < 0)
+            {
+                return;
+            }
+            Producto p = db.Producto.Find(idProducto); //<- excepcion dice q esto es null. Nuh uh
+            var categorias = (from categoria in p.CategoriaProducto
+                              select new
+                              {
+                                  ID = categoria.ID,
+                                  Name = categoria.NAME
+                              }).ToList();
 
-            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-            btnEliminar.HeaderText = "Eliminar";
-            btnEliminar.Name = "Eliminar";
-            btnEliminar.Text = "🗑";
-            btnEliminar.UseColumnTextForButtonValue = true;
-            dCategoria.Columns.Add(btnEliminar);
+            if ((categorias.Count > 0))
+            {
+                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+                btnEliminar.HeaderText = "Delete";
+                btnEliminar.Name = "Delete";
+                btnEliminar.Text = "🗑";
+                btnEliminar.UseColumnTextForButtonValue = true;
+                dCategoria.Columns.Add(btnEliminar);
+                //dCategoria.Columns["Delete"].Visible = false;
+            }
 
         }
 
@@ -97,8 +133,8 @@ namespace ChillDeCojones
                 return;
             }
             cbCategoria.DataSource = db.CategoriaProducto.ToList();
-            Producto p = db.Producto.Find(idProducto); //<- excepcion dice q esto es null
-            MessageBox.Show(idProducto.ToString());
+            Producto p = db.Producto.Find(idProducto); //<- excepcion dice q esto es null. Nuh uh
+
             //Poner las que tiene ese producto en el dataGridView con un boton eliminar
             var categorias = from categoria in p.CategoriaProducto
                              select new
@@ -106,7 +142,7 @@ namespace ChillDeCojones
                                  ID = categoria.ID,
                                  Name = categoria.NAME
 
-                             }; // <- todo esto da errpr
+                             };
 
             dCategoria.DataSource = categorias.ToList();
         }
@@ -151,8 +187,8 @@ namespace ChillDeCojones
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-                openFileDialog.Title = "Selecciona una imagen";
+                openFileDialog.Filter = "Image file|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                openFileDialog.Title = "Select an image";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -238,7 +274,7 @@ namespace ChillDeCojones
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The product was not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -313,7 +349,7 @@ namespace ChillDeCojones
 
         private void dCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dCategoria.Columns["Delete"].Index && e.RowIndex >= 0)
             {
                 int idCategoria = (int)dCategoria.Rows[e.RowIndex].Cells["ID"].Value;
                 var producto = db.Producto.Find(idProducto);
@@ -343,10 +379,12 @@ namespace ChillDeCojones
 
         private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
-            CategoriaProducto categoria = (CategoriaProducto)cbCategoria.Items[cbCategoria.SelectedIndex];
-            if (categoria != null)
+            if (cbCategoria.SelectedItem != null)
             {
+                CategoriaProducto categoria = (CategoriaProducto)cbCategoria.Items[cbCategoria.SelectedIndex];
+
+                if (idProducto < -1{
+                }
                 var producto = db.Producto.Find(idProducto);
                 //ARREGLAR ESTO
                 producto.CategoriaProducto.Add(categoria);
@@ -354,23 +392,29 @@ namespace ChillDeCojones
                 db.SaveChanges();
                 cbCategoria.Visible = false;
                 cargarCategorias();
-            }
-            if (modificar)
-            {
-                /*MessageBox.Show("Modificar");
-                grupo02DBEntities db = new grupo02DBEntities();
-                CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
-                if (categoria != null)
+
+                if (modificar)
                 {
-                    var producto = db.Producto.Find(idProducto);
-                    //ARREGLAR ESTO
-                    producto.CategoriaProducto.Add(categoria);
-                    categoria.Producto.Add(producto);
-                    db.SaveChanges();
-                    cbCategoria.Visible = false;
-                    cargarCategorias();
-                }*/
+                    /*MessageBox.Show("Modify");
+                    grupo02DBEntities db = new grupo02DBEntities();
+                    categoria = (CategoriaProducto)cbCategoria.SelectedItem;
+                    if (categoria != null)
+                    {
+                        var producto = db.Producto.Find(idProducto);
+                        //ARREGLAR ESTO
+                        producto.CategoriaProducto.Add(categoria);
+                        categoria.Producto.Add(producto);
+                        db.SaveChanges();
+                        cbCategoria.Visible = false;
+                        cargarCategorias();
+                    }*/
+                }
             }
+        }
+
+        private void DeleteProductButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
