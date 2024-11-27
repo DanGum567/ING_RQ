@@ -143,7 +143,7 @@ namespace ChillDeCojones
             if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
             {
 
-                Common.ShowSubForm(new ProductDetails(null, this, db));
+                Common.ShowSubForm(new ProductDetails(null, false, db));
             }
             else
             {
@@ -184,21 +184,7 @@ namespace ChillDeCojones
             }
         }
 
-        private void ModificarProducto(Producto productoAModificar)
-        {
-            try
-            {
 
-                Modificar?.Invoke(this, EventArgs.Empty);
-                Common.ShowSubForm(new ProductDetails(productoAModificar, this, db));
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message);
-            }
-        }
 
         private void listaProductosDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -207,7 +193,6 @@ namespace ChillDeCojones
                 // Obtén el ID del atributo desde la fila seleccionada
                 int idProducto = Convert.ToInt32(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value);
                 // Verifica si la celda pertenece a la columna "Eliminar"
-                MessageBox.Show(listaProductosDataGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString());
                 Producto producto = db.Producto.Find(idProducto);
                 if (e.ColumnIndex == listaProductosDataGridView.Columns["Delete"].Index && e.RowIndex >= 0)
                 {
@@ -216,12 +201,11 @@ namespace ChillDeCojones
                 // Si se hizo clic en el botón "Editar"
                 else if (e.ColumnIndex == listaProductosDataGridView.Columns["Edit"].Index)
                 {
-                    ModificarProducto(producto);
+                    Common.ShowSubForm(new ProductDetails(producto, true, db));
                 }
-                else
+                else //MostrarDetallesProducto
                 {
-
-                    Common.ShowSubForm(new ProductDetails(producto, this, db));
+                    Common.ShowSubForm(new ProductDetails(producto, false, db));
                 }
             }
             catch (Exception ex)

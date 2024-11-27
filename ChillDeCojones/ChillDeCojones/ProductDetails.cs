@@ -17,14 +17,13 @@ namespace ChillDeCojones
         grupo02DBEntities db;
         Producto producto;
         bool creandoProducto = false;
-        //bool modificar = false;
-        Products generalProducts;
+        bool modificar = false;
 
-        public ProductDetails(Producto producto, Products formGeneral, grupo02DBEntities contexto)
+        public ProductDetails(Producto producto, bool modificarProducto, grupo02DBEntities contexto)
         {
             InitializeComponent();
-            generalProducts = formGeneral;
             this.db = contexto;
+            modificar = modificarProducto;
             if (producto == null)//Crear producto
             {
                 Producto productoNuevo = new Producto();
@@ -34,11 +33,10 @@ namespace ChillDeCojones
                 this.producto = db.Producto.Add(productoNuevo);
                 db.SaveChanges();
                 creandoProducto = true;
-                //db.SaveChanges();
             }
             else//Modificar o mostrar producto
             {
-                
+
                 this.producto = producto;
                 creandoProducto = false;
             }
@@ -51,21 +49,13 @@ namespace ChillDeCojones
             if (!creandoProducto)
             {
                 MostrarDetallesProducto();
-                
-                bCategoria.Visible = true;
-                cbCategoria.Visible = false;
-                cargarCategorias();
-                cargarEliminarCategorias();
-                
+            }
 
-            }
-            else //Cuando se inserta
-            {
-                bCategoria.Visible = true;
-                cbCategoria.Visible = false;
-                cargarCategorias();
-                cargarEliminarCategorias();
-            }
+            bCategoria.Visible = true;
+            cbCategoria.Visible = false;
+            cargarCategorias();
+            cargarEliminarCategorias();
+
             //siempre
             DeleteProductButton.Visible = !creandoProducto;
             CargarListaAtributos(false);
@@ -146,7 +136,6 @@ namespace ChillDeCojones
                              {
                                  ID = categoria.ID,
                                  Name = categoria.NAME
-
                              };
 
             dCategoria.DataSource = categorias.ToList();
@@ -264,12 +253,21 @@ namespace ChillDeCojones
 
         private void ModificarProducto()
         {
+
             producto.FECHAMODIFICACION = DateTime.Now;
             producto.LABEL = productLabelTextBox.Text;
 
-            AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.SKU, producto, db, skuTextBox.Text);
-            AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.GTIN, producto, db, gtinTextBox.Text);
-            AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.thumbnail, producto, db, thumbnailPictureBox.Image);
+            bool correcto = true;
+
+            correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.SKU, producto, db, skuTextBox.Text);
+            correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.GTIN, producto, db, gtinTextBox.Text);
+            correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.thumbnail, producto, db, thumbnailPictureBox.Image);
+
+            if (!correcto)
+            {
+                MessageBox.Show("Some values are incorrect, please check the values you have submitted");
+                return;
+            }
 
             try
             {
@@ -299,18 +297,23 @@ namespace ChillDeCojones
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
+            db.Producto.Remove(producto);
+            db.SaveChanges();
             Common.ShowSubForm(new Products());
         }
 
         private void dCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.ColumnIndex == dCategoria.Columns["Delete"].Index && e.RowIndex >= 0)
             {
                 int idCategoria = (int)dCategoria.Rows[e.RowIndex].Cells["ID"].Value;
                 var categoriaEliminar = db.CategoriaProducto.Find(idCategoria);
                 producto.CategoriaProducto.Remove(categoriaEliminar);
                 categoriaEliminar.Producto.Remove(producto);
-                db.SaveChanges();
+                dCategoria.DataSource = producto.CategoriaProducto.ToList();
+                //db.SaveChanges();
+                //cargarCategorias();
             }
         }
 
@@ -327,7 +330,7 @@ namespace ChillDeCojones
 
         private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cbCategoria.SelectedItem != null)
+            /*if (cbCategoria.SelectedItem != null)
             {
                 //string nombreCategoria = cbCategoria.Items[cbCategoria.SelectedIndex].ToString();
                 //CategoriaProducto categoria = db.CategoriaProducto.First(cat => cat.NAME.Equals(nombreCategoria));
@@ -343,25 +346,27 @@ namespace ChillDeCojones
                     dCategoria.DataSource = producto.CategoriaProducto.ToList();
 
                 }
+            }*/
 
+            if (cbCategoria.SelectedItem != null)
+            {
+                CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
 
-                //if (modificar)
-                //{
-                /*MessageBox.Show("Modify");
-                grupo02DBEntities db = new grupo02DBEntities();
-                categoria = (CategoriaProducto)cbCategoria.SelectedItem;
-                if (categoria != null)
+                if (!producto.CategoriaProducto.Contains(categoria))
                 {
-                    var producto = db.Producto.Find(idProducto);
-                    //ARREGLAR ESTO
                     producto.CategoriaProducto.Add(categoria);
-                    categoria.Producto.Add(producto);
-                    db.SaveChanges();
-                    cbCategoria.Visible = false;
-                    cargarCategorias();
-                }*/
-                //}
+                    categoria.Producto.Add(producto); // Asegurar bidireccionalidad
 
+                    try
+                    {
+                        db.SaveChanges(); // Guardar los cambios
+                        cargarCategorias(); // Refrescar las categorías
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al guardar cambios: " + ex.Message);
+                    }
+                }
             }
         }
 

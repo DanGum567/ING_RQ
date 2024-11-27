@@ -82,21 +82,17 @@ namespace ChillDeCojones
             ValorAtributoSistema valorAtributoSistema = contextoBaseDatos.ValorAtributoSistema.Find(atributoSistema.ID, dueñoAtributoSistema.ID);
 
 
-            if (valorAtributoSistema == null)
+            if (valorAtributoSistema != null)
             {
-                //Estamos insertando, el valor no existía antes
-                ValorAtributoSistema nuevo = new ValorAtributoSistema();
-                nuevo.AtributoSistema = atributoSistema;
-                nuevo.Producto = dueñoAtributoSistema;
-                nuevo.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
+                contextoBaseDatos.ValorAtributoSistema.Remove(valorAtributoSistema);
+                contextoBaseDatos.SaveChanges();
+            }
 
-                contextoBaseDatos.ValorAtributoSistema.Add(nuevo);
-            }
-            else
-            {
-                //Estamos actualizando, el valor si existía antes
-                valorAtributoSistema.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
-            }
+            ValorAtributoSistema nuevo = new ValorAtributoSistema();
+            nuevo.AtributoSistema = atributoSistema;
+            nuevo.Producto = dueñoAtributoSistema;
+            nuevo.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
+            contextoBaseDatos.ValorAtributoSistema.Add(nuevo);
 
             return true;
 
@@ -137,6 +133,7 @@ namespace ChillDeCojones
             {
                 //Estamos actualizando, el valor si existía antes
                 valorAtributoUsuario.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
+
             }
 
             // No llamamos SaveChanges aquí; lo dejamos al nivel superior.
