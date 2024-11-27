@@ -82,3 +82,5 @@ D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.pdb
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Categorias.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarAtributo.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarCategoria.resources
+C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarAtributo.resources
+C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarCategoria.resources

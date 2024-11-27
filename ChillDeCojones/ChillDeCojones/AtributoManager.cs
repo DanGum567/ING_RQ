@@ -32,27 +32,16 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static int ObtenerIdDeAtributoSistema(TipoAtributoSistema tipoAtributo)
+        public static AtributoSistema ObtenerAtributoSistema(TipoAtributoSistema tipoAtributo)
         {
-            int id;
-            grupo02DBEntities db = new grupo02DBEntities();
             string nombreTipoAtributo = Enum.GetName(tipoAtributo.GetType(), tipoAtributo);
-
-            IQueryable<int> comando = null;
-            comando = from atributo in db.AtributoSistema where atributo.NAME.Equals(nombreTipoAtributo) select atributo.ID;
-
-            if (comando.ToList().Count() > 0)
-            {
-                id = comando.First();
-            }
-            else
-            {
-                id = -1;
-            }
-            return id;
+            return new grupo02DBEntities().AtributoSistema.First(a => a.NAME == nombreTipoAtributo);
         }
 
-        public static int ObtenerIdDeAtributoUsuario(string nombreAtributo)
+        public static AtributoUsuario ObtenerIdDeAtributoUsuario(string nombreAtributo)
+        {
+            return new grupo02DBEntities().AtributoUsuario.First(a => a.NAME.Equals(nombreAtributo));
+        }
 
         /// <summary>
         /// Esta función no llama a SaveChanges, lo debe hacer el que llama a esta función
@@ -77,11 +66,10 @@ namespace ChillDeCojones
                 }
             }
 
-            int idAtributoAAñadir = ObtenerIdDeAtributoSistema(tipoAtributo);
-            var atributoSistema = contextoBaseDatos.AtributoSistema.Find(idAtributoAAñadir);
+            var atributoSistema = ObtenerAtributoSistema(tipoAtributo);
             if (atributoSistema == null)
             {
-                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {idAtributoAAñadir}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoSistema.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -113,35 +101,35 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static void AñadirOActualizarValorAtributoUsuario(string nombreAtributo, Producto dueñoAtributoSistema, grupo02DBEntities contextoBaseDatos, object valorAtributo)
+        public static void AñadirOActualizarValorAtributoUsuario(string nombreAtributo, Producto dueñoAtributoUsuario, grupo02DBEntities contextoBaseDatos, object valorAtributo)
         {
 
-            int idAtributoAAñadir = ObtenerIdDeAtributoSistema(tipoAtributo);
-            var atributoSistema = contextoBaseDatos.AtributoSistema.Find(idAtributoAAñadir);
-            if (atributoSistema == null)
+            var atributoUsuario = ObtenerIdDeAtributoUsuario(nombreAtributo);
+            if (atributoUsuario == null)
             {
-                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {idAtributoAAñadir}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoUsuario.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            ValorAtributoSistema valorAtributoSistema = contextoBaseDatos.ValorAtributoSistema.Find(atributoSistema.ID, dueñoAtributoSistema.ID);
+            ValorAtributoUsuario valorAtributoUsuario = contextoBaseDatos.ValorAtributoUsuario.Find(atributoUsuario.ID, dueñoAtributoUsuario.ID);
 
-            if (valorAtributoSistema == null)
+            TipoAtributoUsuario tipoAtributo = (TipoAtributoUsuario)Enum.Parse(typeof(TipoAtributoUsuario), atributoUsuario.TYPE);
+            if (valorAtributoUsuario == null)
             {
                 //Estamos insertando, el valor no existía antes
-                valorAtributoSistema = new ValorAtributoSistema
+                valorAtributoUsuario = new ValorAtributoUsuario
                 {
-                    AtributoSistema = atributoSistema,
-                    Producto = dueñoAtributoSistema,
+                    AtributoUsuario = atributoUsuario,
+                    Producto = dueñoAtributoUsuario,
                     VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo)
                 };
 
-                contextoBaseDatos.ValorAtributoSistema.Add(valorAtributoSistema);
+                contextoBaseDatos.ValorAtributoUsuario.Add(valorAtributoUsuario);
             }
             else
             {
                 //Estamos actualizando, el valor si existía antes
-                valorAtributoSistema.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
+                valorAtributoUsuario.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
             }
 
             // No llamamos SaveChanges aquí; lo dejamos al nivel superior.
@@ -149,6 +137,7 @@ namespace ChillDeCojones
 
         /// <summary>
         /// tipoAtributo debe ser <see cref="TipoAtributoSistema"/> o <see cref="TipoAtributoUsuario"/>
+        /// <para>Devuelve null si no se ha encontrado el atributo sistema en la base de datos (Por ejemplo, cuando un producto no tiene thumbail)</para>
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
@@ -158,19 +147,17 @@ namespace ChillDeCojones
             {
                 throw new ArgumentNullException("El producto no puede ser nulo.");
             }
-            int idAtributo = ObtenerIdDeAtributoSistema(tipoAtributo);
 
-            IQueryable<byte[]> comando = null;
-            comando = from valor in contextoBaseDatos.ValorAtributoSistema
-                      where valor.ID_ATRIBUTOSISTEMA == idAtributo && valor.ID_PRODUCTO == dueñoAtributoSistema.ID
-                      select valor.VALOR;
-
-
-            if (comando.Count() == 0)
+            int idAtributo = ObtenerAtributoSistema(tipoAtributo).ID;
+            ValorAtributoSistema comando = contextoBaseDatos.ValorAtributoSistema.Find(idAtributo, dueñoAtributoSistema.ID);
+            if (comando == null)
             {
                 return null;
             }
-            return comando.FirstOrDefault();
+            else
+            {
+                return comando.VALOR;
+            }
         }
 
         /// <summary>

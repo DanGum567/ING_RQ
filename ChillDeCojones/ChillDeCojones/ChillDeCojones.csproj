@@ -97,6 +97,18 @@
     <Compile Include="InsertarCategoria.Designer.cs">
       <DependentUpon>InsertarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModificarAtributo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarAtributo.Designer.cs">
+      <DependentUpon>ModificarAtributo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarCategoria.Designer.cs">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlanSuscripcion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -158,6 +170,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InsertarCategoria.resx">
       <DependentUpon>InsertarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarAtributo.resx">
+      <DependentUpon>ModificarAtributo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarCategoria.resx">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductDetails.resx">
       <DependentUpon>ProductDetails.cs</DependentUpon>

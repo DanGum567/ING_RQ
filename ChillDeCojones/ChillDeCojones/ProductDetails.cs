@@ -42,10 +42,11 @@ namespace ChillDeCojones
                         cbCategoria.Visible = false;
                         cargarCategorias();
                         cargarEliminarCategorias();
+                        CargarListaAtributos(true);
                     }
                     else //solo cuando se va a ver
                     {
-
+                        CargarListaAtributos(false);
                     }
                 }
                 else //Cuando se inserta
@@ -54,6 +55,7 @@ namespace ChillDeCojones
                     cbCategoria.Visible = false;
                     cargarCategorias(); //<- esto da excepcion
                     cargarEliminarCategorias();
+                    CargarListaAtributos(true);
                 }
             }
             catch (Exception ex)
@@ -62,6 +64,17 @@ namespace ChillDeCojones
             }
 
 
+        }
+
+        private void CargarListaAtributos(bool modificar)
+        {
+            List<ValorAtributoUsuario> valorAtributoUsuarios = db.ValorAtributoUsuario.Where(v => v.ID_PRODUCTO.Equals(idProducto)).ToList();
+            foreach (ValorAtributoUsuario val in valorAtributoUsuarios)
+            {
+                ListViewItem item = new ListViewItem();  // Primer valor (ID)
+                item.SubItems.Add(val.AtributoUsuario.NAME);            // Segundo valor (Nombre)
+                ListViewAtributosUsuario.Items.Add(item);
+            }
         }
 
         private void cargarEliminarCategorias()
@@ -330,7 +343,6 @@ namespace ChillDeCojones
 
         private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            MessageBox.Show("HAS PINCHADO el indice: " + cbCategoria.SelectedIndex);
 
             CategoriaProducto categoria = (CategoriaProducto)cbCategoria.Items[cbCategoria.SelectedIndex];
             if (categoria != null)

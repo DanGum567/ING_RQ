@@ -44,10 +44,11 @@
             this.dCategoria = new System.Windows.Forms.DataGridView();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.discardThumbailButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ListViewAtributosUsuario = new System.Windows.Forms.ListView();
+            this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
@@ -154,7 +155,7 @@
             // 
             this.labelUserAttributes.AutoSize = true;
             this.labelUserAttributes.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUserAttributes.Location = new System.Drawing.Point(92, 502);
+            this.labelUserAttributes.Location = new System.Drawing.Point(92, 449);
             this.labelUserAttributes.Name = "labelUserAttributes";
             this.labelUserAttributes.Size = new System.Drawing.Size(105, 17);
             this.labelUserAttributes.TabIndex = 12;
@@ -212,22 +213,33 @@
             this.discardThumbailButton.UseVisualStyleBackColor = true;
             this.discardThumbailButton.Click += new System.EventHandler(this.discardThumbailButton_Click);
             // 
-            // dataGridView1
+            // ListViewAtributosUsuario
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(95, 546);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(433, 341);
-            this.dataGridView1.TabIndex = 20;
+            this.ListViewAtributosUsuario.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Nombre,
+            this.Valor});
+            this.ListViewAtributosUsuario.HideSelection = false;
+            this.ListViewAtributosUsuario.Location = new System.Drawing.Point(95, 502);
+            this.ListViewAtributosUsuario.Name = "ListViewAtributosUsuario";
+            this.ListViewAtributosUsuario.Size = new System.Drawing.Size(466, 433);
+            this.ListViewAtributosUsuario.TabIndex = 20;
+            this.ListViewAtributosUsuario.UseCompatibleStateImageBehavior = false;
+            this.ListViewAtributosUsuario.View = System.Windows.Forms.View.Details;
+            // 
+            // Nombre
+            // 
+            this.Nombre.Text = "Nombre";
+            // 
+            // Valor
+            // 
+            this.Valor.Text = "Valor";
             // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ListViewAtributosUsuario);
             this.Controls.Add(this.discardThumbailButton);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.dCategoria);
@@ -249,7 +261,6 @@
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +284,8 @@
         private System.Windows.Forms.DataGridView dCategoria;
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button discardThumbailButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView ListViewAtributosUsuario;
+        private System.Windows.Forms.ColumnHeader Nombre;
+        private System.Windows.Forms.ColumnHeader Valor;
     }
 }

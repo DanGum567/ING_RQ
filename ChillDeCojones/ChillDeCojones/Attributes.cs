@@ -11,9 +11,6 @@ using System.Windows.Forms;
 namespace ChillDeCojones
 {
 
-
-
-
     public partial class Attributes : Form
     {
         grupo02DBEntities db = new grupo02DBEntities();
@@ -63,23 +60,6 @@ namespace ChillDeCojones
             btnEditar.UseColumnTextForButtonValue = true;
             dataGridViewAtributos.Columns.Add(btnEditar);
 
-            // Columna para Guardar cambios
-            DataGridViewButtonColumn btnGuardar = new DataGridViewButtonColumn();
-            btnGuardar.HeaderText = "Save changes";
-            btnGuardar.Name = "Guardar";
-            btnGuardar.Text = "💾";
-            btnGuardar.UseColumnTextForButtonValue = true;
-            btnGuardar.Visible = false; // Ocultamos inicialmente
-            dataGridViewAtributos.Columns.Add(btnGuardar);
-
-            // Columna para Descartar cambios
-            DataGridViewButtonColumn btnDescartar = new DataGridViewButtonColumn();
-            btnDescartar.HeaderText = "Discard changes";
-            btnDescartar.Name = "Descartar";
-            btnDescartar.Text = "❌";
-            btnDescartar.UseColumnTextForButtonValue = true;
-            btnDescartar.Visible = false; // Ocultamos inicialmente
-            dataGridViewAtributos.Columns.Add(btnDescartar);
         }
 
 
@@ -119,12 +99,18 @@ namespace ChillDeCojones
 
             if (e.ColumnIndex == dataGridViewAtributos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
-                dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
+                //dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
+                int idAtributo = Convert.ToInt32(dataGridViewAtributos.Rows[e.RowIndex].Cells["ID"].Value);
+                ModificarAtributo ModificarAtributo = new ModificarAtributo(idAtributo);
+                ModificarAtributo.AtributoModificado += (s, args) =>
+                {
+                    cargarAtributos(); // Recargar atributos cuando se cierre InsertarAtributo
+                };
 
-                dataGridViewAtributos.Columns["Guardar"].Visible = true;
-                dataGridViewAtributos.Columns["Descartar"].Visible = true;
 
-                dataGridViewAtributos.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
+                // Mostrar el formulario como modal
+                ModificarAtributo.ShowDialog();
+
 
                 if (!textBoxControls.ContainsKey(e.RowIndex))
                 {
@@ -137,25 +123,8 @@ namespace ChillDeCojones
                     dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox.Text;
                 }
             }
-            if (e.ColumnIndex == dataGridViewAtributos.Columns["Guardar"].Index && e.RowIndex >= 0)
-            {
-                GuardarCambiosFila(e.RowIndex);
-            }
 
-            if (e.ColumnIndex == dataGridViewAtributos.Columns["Descartar"].Index && e.RowIndex >= 0)
-            {
-                DescartarCambiosFila(e.RowIndex);
-            }
 
-        }
-        private void dataGridViewAtributos_CurrentCellChanged(object sender, EventArgs e)
-        {
-            // Verificar si la fila actual es editable
-            if (dataGridViewAtributos.CurrentRow != null && !dataGridViewAtributos.CurrentRow.ReadOnly)
-            {
-                // Asegurarse de que la celda en la fila actual se pueda editar
-                dataGridViewAtributos.BeginEdit(true);
-            }
         }
         private void EliminarAtributo(int idAtributo)
         {
@@ -183,59 +152,6 @@ namespace ChillDeCojones
             // Actualiza la tabla después de eliminar
             cargarAtributos();
         }
-
-        private void DescartarCambiosFila(int rowIndex)
-        {
-            // Vuelve a cargar los datos para descartar los cambios
-            cargarAtributos();
-
-            // Oculta las columnas de Guardar y Descartar
-            dataGridViewAtributos.Columns["Guardar"].Visible = false;
-            dataGridViewAtributos.Columns["Descartar"].Visible = false;
-
-            // Establece la fila como solo lectura nuevamente
-            dataGridViewAtributos.Rows[rowIndex].ReadOnly = true;
-
-            MessageBox.Show("Los cambios han sido descartados.");
-        }
-
-
-        private void GuardarCambiosFila(int rowIndex)
-        {
-            
-
-            // Obtén el ID de la fila
-            int idAtributo = Convert.ToInt32(dataGridViewAtributos.Rows[rowIndex].Cells["ID"].Value);
-
-            // Busca el atributo en la base de datos
-            var atributo = db.AtributoUsuario.First(y => y.ID.Equals(idAtributo));
-            if (atributo != null)
-            {
-                // Actualiza los valores según las celdas
-                // Asignamos los valores de los TextBox a las propiedades del atributo
-                TextBox[] textBoxes = textBoxControls[rowIndex];
-                atributo.NAME = textBoxes[0].Text;
-                atributo.TYPE = textBoxes[1].Text;
-
-                db.SaveChanges(); // Guarda los cambios
-                MessageBox.Show("Cambios guardados correctamente.");
-            }
-
-            // Oculta las columnas de Guardar y Descartar
-            dataGridViewAtributos.Columns["Guardar"].Visible = false;
-            dataGridViewAtributos.Columns["Descartar"].Visible = false;
-
-            // Establece la fila como solo lectura nuevamente
-            dataGridViewAtributos.Rows[rowIndex].ReadOnly = true;
-
-            // Cambia el color de la fila de nuevo a su estado original
-            dataGridViewAtributos.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
-
-            // Actualiza la tabla después de guardar
-            cargarAtributos();
-        }
-
-
 
 
     }
