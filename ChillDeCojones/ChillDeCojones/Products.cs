@@ -12,6 +12,8 @@ namespace ChillDeCojones
 {
     public partial class Products : Form
     {
+
+        public event EventHandler Modificar;
         public Products()
         {
             InitializeComponent();
@@ -76,7 +78,7 @@ namespace ChillDeCojones
                     label = delQueCargarVariables.LABEL;
                     fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
                     fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
-                    ID = delQueCargarVariables.ID; 
+                    ID = delQueCargarVariables.ID;
 
                     //-------------------------------------------------------------------------------------------
 
@@ -96,33 +98,29 @@ namespace ChillDeCojones
 
                     if (skuBytes == null)
                     {
-                        skuBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.SKU, db);
+                        skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
                     }
                     if (gtinBytes == null)
                     {
-                        gtinBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.GTIN, db);
+                        gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
                     }
                     if (thumbailBytes == null)
                     {
-                        thumbailBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.thumbnail, db);
+                        MessageBox.Show("La thumbail del producto con id " + idProducto + " no estaba precargada en memoria");
+                        thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
                     }
-
-                    thumbailBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.thumbnail, db);
-                    skuBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.SKU, db);
-                    gtinBytes = Attributes.ObtenerValorAtributoSistema(cargadoJustoAhora, TipoAtributoSistema.GTIN, db);
-
 
                     if (thumbailBytes != null)
                     {
-                        thumbail = Convertidor.BytesToImage(thumbailBytes);
+                        thumbail = Convertidor.BytesAImage(thumbailBytes);
                     }
                     if (skuBytes != null)
                     {
-                        sku = Convertidor.BytesToString(skuBytes);
+                        sku = Convertidor.BytesAString(skuBytes);
                     }
                     if (gtinBytes != null)
                     {
-                        gtin = Convertidor.BytesToString(gtinBytes);
+                        gtin = Convertidor.BytesAString(gtinBytes);
                     }
 
                     listaProductosDataGridView.Rows.Add(
@@ -132,7 +130,7 @@ namespace ChillDeCojones
                         label,
                         fechaModificacion,
                         fechaCreacion,
-                        ID
+                        ID //ESTO NO QUITARLO QUE SI NO SE ROMPE TODO
                     );
 
                     listaProductosDataGridView.Columns["ID"].Visible = false;
@@ -146,7 +144,7 @@ namespace ChillDeCojones
             listaProductosDataGridView.ResumeLayout();
             listaProductosDataGridView.ClearSelection();// Se deselecciona el primer elemento
         }
- 
+
         private void newProductButton_Click(object sender, EventArgs e)
         {
 
@@ -154,7 +152,7 @@ namespace ChillDeCojones
             if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
             {
 
-                Common.ShowSubForm(new ProductDetails(-1));
+                Common.ShowSubForm(new ProductDetails(-1, this));
             }
             else
             {
@@ -179,7 +177,7 @@ namespace ChillDeCojones
                         // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
                         db.Producto.Remove(producto);
                         db.SaveChanges(); // Guarda los cambios en la base de datos
-                        MessageBox.Show("Atributo eliminado correctamente.", "Eliminación Exitosa");
+                        MessageBox.Show("Producto eliminado correctamente.", "Eliminación Exitosa");
 
                         MostrarListaProductos(); // Se recarga la lista de productos
                     }
@@ -201,7 +199,9 @@ namespace ChillDeCojones
         {
             try
             {
-                Common.ShowSubForm(new ProductDetails(idProducto));
+
+                Modificar?.Invoke(this, EventArgs.Empty);
+                Common.ShowSubForm(new ProductDetails(idProducto, this));
 
 
             }
@@ -230,7 +230,7 @@ namespace ChillDeCojones
                 else
                 {
 
-                    Common.ShowSubForm(new ProductDetails(idProducto));
+                    Common.ShowSubForm(new ProductDetails(idProducto, this));
                 }
             }
             catch (Exception ex)
@@ -244,5 +244,10 @@ namespace ChillDeCojones
         {
 
         }
+
+
     }
+
+
+
 }

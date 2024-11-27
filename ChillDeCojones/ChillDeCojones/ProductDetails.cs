@@ -13,11 +13,16 @@ namespace ChillDeCojones
 {
     public partial class ProductDetails : Form
     {
+        grupo02DBEntities db = new grupo02DBEntities();
         int idProducto;
-        public ProductDetails(int idProducto)
+        bool modificar = false;
+        Products generalProducts;
+
+        public ProductDetails(int idProducto, Products general)
         {
             InitializeComponent();
             this.idProducto = idProducto;
+            generalProducts = general;
         }
 
         private void ProductDetails_Load(object sender, EventArgs e)
@@ -26,14 +31,29 @@ namespace ChillDeCojones
             {
                 if (idProducto > 0)
                 {
-
+                    generalProducts.Modificar += (s, args) =>
+                    {
+                        modificar = true;
+                    };
                     MostrarDetallesProducto();
+                    if (modificar) //cuando se va a modificar
+                    {
+                        bCategoria.Visible = true;
+                        cbCategoria.Visible = false;
+                        cargarCategorias();
+                        cargarEliminarCategorias();
+                    }
+                    else //solo cuando se va a ver
+                    {
+
+                    }
                 }
-                else
+                else //Cuando se inserta
                 {
                     bCategoria.Visible = true;
                     cbCategoria.Visible = false;
-                    cargarCategorias();
+                    cargarCategorias(); //<- esto da excepcion
+                    cargarEliminarCategorias();
                 }
             }
             catch (Exception ex)
@@ -44,12 +64,8 @@ namespace ChillDeCojones
 
         }
 
-        private void cargarCategorias()
+        private void cargarEliminarCategorias()
         {
-            grupo02DBEntities db = new grupo02DBEntities();
-            var categorias = from producto in db.Producto select producto.CategoriaProducto;
-
-            dCategoria.DataSource = categorias.ToList();
 
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
             btnEliminar.HeaderText = "Eliminar";
@@ -58,17 +74,36 @@ namespace ChillDeCojones
             btnEliminar.UseColumnTextForButtonValue = true;
             dCategoria.Columns.Add(btnEliminar);
 
-            cbCategoria.DataSource = db.CategoriaProducto.ToList();
+        }
 
+        private void cargarCategorias()
+        {
+            //Poner las categorias en el desplegable
+            if (idProducto < 0)
+            {
+                return;
+            }
+            cbCategoria.DataSource = db.CategoriaProducto.ToList();
+            Producto p = db.Producto.Find(idProducto); //<- excepcion dice q esto es null
+            MessageBox.Show(idProducto.ToString());
+            //Poner las que tiene ese producto en el dataGridView con un boton eliminar
+            var categorias = from categoria in p.CategoriaProducto
+                             select new
+                             {
+                                 ID = categoria.ID,
+                                 Name = categoria.NAME
+
+                             }; // <- todo esto da errpr
+
+            dCategoria.DataSource = categorias.ToList();
         }
 
         private void cargarAtributosUsuario()
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
                 // Limpiar el ListView antes de llenarlo
-                lAtributosUsuario.Items.Clear();
+                //lAtributosUsuario.Items.Clear();
 
                 // Consultar los AtributosUsuario relacionados con el producto actual
                 var atributosUsuario = from atributo in db.AtributoUsuario
@@ -80,14 +115,14 @@ namespace ChillDeCojones
                 {
                     ListViewItem item = new ListViewItem(atributo.NAME);
                     item.SubItems.Add(atributo.TYPE.ToString());
-                    lAtributosUsuario.Items.Add(item);
+                    //lAtributosUsuario.Items.Add(item);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
-          
+
         }
 
         private void uploadThumbnailButton_Click(object sender, EventArgs e)
@@ -156,16 +191,14 @@ namespace ChillDeCojones
         {
             try
             {
-
-                grupo02DBEntities db = new grupo02DBEntities();
                 var ListaProductoSeleccionado = from producto in db.Producto where producto.ID == idProducto select producto;
                 var productoSelecionado = ListaProductoSeleccionado.FirstOrDefault(); // Se coge el objeto producto de la query
 
                 if (productoSelecionado != null)
                 {
                     // Obtener el valor del SKU y GTIN como byte[]
-                    byte[] skuBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.SKU, db);
-                    byte[] gtinBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.GTIN, db);
+                    byte[] skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, productoSelecionado, db);
+                    byte[] gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, productoSelecionado, db);
 
                     // Convertir los valores de byte[] a string 
                     skuTextBox.Text = Encoding.UTF8.GetString(skuBytes);
@@ -177,10 +210,10 @@ namespace ChillDeCojones
 
 
                     // Cargar la imagen del thumbnail
-                    byte[] thumbnailBytes = Attributes.ObtenerValorAtributoSistema(productoSelecionado, TipoAtributoSistema.thumbnail, db);
+                    byte[] thumbnailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, productoSelecionado, db);
                     if (thumbnailBytes != null)
                     {
-                        thumbnailPictureBox.Image = Convertidor.BytesToImage(thumbnailBytes);
+                        thumbnailPictureBox.Image = Convertidor.BytesAImage(thumbnailBytes);
                     }
 
                     cbCategoria.Visible = false;
@@ -196,9 +229,9 @@ namespace ChillDeCojones
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message);    
+                MessageBox.Show("ERROR: " + ex.Message);
             }
         }
 
@@ -206,15 +239,14 @@ namespace ChillDeCojones
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
                 Producto nuevoProducto = new Producto();
                 nuevoProducto.FECHACREACION = DateTime.Now;
                 nuevoProducto.FECHAMODIFICACION = DateTime.Now;
                 nuevoProducto.LABEL = productLabelTextBox.Text;
 
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.SKU, nuevoProducto, skuTextBox.Text, db);
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.GTIN, nuevoProducto, gtinTextBox.Text, db);
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.thumbnail, nuevoProducto, thumbnailPictureBox.Image, db);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.SKU, nuevoProducto, db, skuTextBox.Text);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.GTIN, nuevoProducto, db, gtinTextBox.Text);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.thumbnail, nuevoProducto, db, thumbnailPictureBox.Image);
 
                 db.Producto.Add(nuevoProducto);
                 db.SaveChanges();
@@ -231,14 +263,13 @@ namespace ChillDeCojones
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
-                Producto productoModificado = db.Producto.FirstOrDefault(x=> x.ID==idProducto);
+                Producto productoModificado = db.Producto.Find(idProducto);
                 productoModificado.FECHAMODIFICACION = DateTime.Now;
                 productoModificado.LABEL = productLabelTextBox.Text;
 
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.SKU, productoModificado, skuTextBox.Text, db);
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.GTIN, productoModificado, gtinTextBox.Text, db);
-                Attributes.AñadirValorAtributoDelSistemaAProducto(TipoAtributoSistema.thumbnail, productoModificado, thumbnailPictureBox.Image, db);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.SKU, productoModificado, db, skuTextBox.Text);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.GTIN, productoModificado, db, gtinTextBox.Text);
+                AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.thumbnail, productoModificado, db, thumbnailPictureBox.Image);
                 db.SaveChanges();
 
                 Common.ShowSubForm(new Products());
@@ -251,7 +282,7 @@ namespace ChillDeCojones
 
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
-            if(idProducto == -1)
+            if (idProducto == -1)
             {
                 AñadirProducto();
             }
@@ -271,10 +302,11 @@ namespace ChillDeCojones
         {
             if (e.ColumnIndex == dCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
-                grupo02DBEntities db = new grupo02DBEntities();
-                CategoriaProducto categoriaEliminar = (CategoriaProducto) dCategoria.Rows[e.RowIndex].Cells[0].Value;
+                int idCategoria = (int)dCategoria.Rows[e.RowIndex].Cells["ID"].Value;
                 var producto = db.Producto.Find(idProducto);
+                var categoriaEliminar = db.CategoriaProducto.Find(idCategoria);
                 producto.CategoriaProducto.Remove(categoriaEliminar);
+                categoriaEliminar.Producto.Remove(producto);
                 db.SaveChanges();
             }
         }
@@ -284,18 +316,48 @@ namespace ChillDeCojones
             cbCategoria.Visible = true;
         }
 
-        private void cbCategoria_Click(object sender, EventArgs e)
+
+
+
+
+        private void discardThumbailButton_Click(object sender, EventArgs e)
         {
-            grupo02DBEntities db = new grupo02DBEntities();
-            CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
+            thumbnailPictureBox.Image = null;
+            ModificarProducto();
+        }
+
+
+
+        private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            MessageBox.Show("HAS PINCHADO el indice: " + cbCategoria.SelectedIndex);
+
+            CategoriaProducto categoria = (CategoriaProducto)cbCategoria.Items[cbCategoria.SelectedIndex];
             if (categoria != null)
             {
-
                 var producto = db.Producto.Find(idProducto);
+                //ARREGLAR ESTO
                 producto.CategoriaProducto.Add(categoria);
+                categoria.Producto.Add(producto);
                 db.SaveChanges();
                 cbCategoria.Visible = false;
                 cargarCategorias();
+            }
+            if (modificar)
+            {
+                /*MessageBox.Show("Modificar");
+                grupo02DBEntities db = new grupo02DBEntities();
+                CategoriaProducto categoria = (CategoriaProducto)cbCategoria.SelectedItem;
+                if (categoria != null)
+                {
+                    var producto = db.Producto.Find(idProducto);
+                    //ARREGLAR ESTO
+                    producto.CategoriaProducto.Add(categoria);
+                    categoria.Producto.Add(producto);
+                    db.SaveChanges();
+                    cbCategoria.Visible = false;
+                    cargarCategorias();
+                }*/
             }
         }
     }

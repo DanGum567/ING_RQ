@@ -59,6 +59,7 @@
     <Compile Include="AtributoSistema.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AtributoManager.cs" />
     <Compile Include="AtributoUsuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

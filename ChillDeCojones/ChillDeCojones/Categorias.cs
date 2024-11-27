@@ -13,6 +13,8 @@ namespace ChillDeCojones
 {
     public partial class Categorias : Form
     {
+        grupo02DBEntities db = new grupo02DBEntities();
+
         public Categorias()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace ChillDeCojones
 
         private void cargarCategorias()
         {
-            grupo02DBEntities db = new grupo02DBEntities();
+
             /*var listaCategorias = from categorias in db.CategoriaProducto
                                   select new
                                   {
@@ -102,16 +104,16 @@ namespace ChillDeCojones
 
         private void bInsertarCategoria_Click(object sender, EventArgs e)
         {
-            grupo02DBEntities db = new grupo02DBEntities();
+            
             if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).CategoriasProducto)
             {
                 InsertarCategoria InsertarCategoria = new InsertarCategoria();
                 InsertarCategoria.CategoriaInsertada += (s, args) =>
                 {
-                    cargarCategorias(); 
+                    cargarCategorias();
                 };
 
-               
+
                 InsertarCategoria.ShowDialog();
             }
             else
@@ -119,16 +121,16 @@ namespace ChillDeCojones
 
                 MessageBox.Show("You have reached the maximum number of categories allowed");
             }
-            
+
         }
 
         private void dataGridViewCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            grupo02DBEntities db = new grupo02DBEntities();
+
             if (e.ColumnIndex == dataGridViewCategoria.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
                 int idCategoria = Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["ID"].Value);
-                if(Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["numProducts"].Value) > 0)
+                if (Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["numProducts"].Value) > 0)
                 {
                     EliminarCategoria(idCategoria);
 
@@ -143,7 +145,7 @@ namespace ChillDeCojones
             }
 
             // Modificar atributo
-            if (e.RowIndex >= 0) 
+            if (e.RowIndex >= 0)
             {
                 if (e.ColumnIndex == dataGridViewCategoria.Columns["Editar"].Index)
                 {
@@ -173,20 +175,46 @@ namespace ChillDeCojones
                 // Si se hizo clic en el botón "Guardar"
                 else if (e.ColumnIndex == dataGridViewCategoria.Columns["Guardar"].Index)
                 {
-                    db.SaveChanges();
 
+                    // Obtener el valor de la celda que se está editando
+
+                    try
+                    {
+                        var categoriaName = dataGridViewCategoria.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Category name cannot be empty: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // No guardes cambios si el campo está vacío
+                    }
+
+                    db.SaveChanges();
 
                     dataGridViewCategoria.Columns["Guardar"].Visible = false;
                     dataGridViewCategoria.Columns["Descartar"].Visible = false;
                     //GuardarCambiosFila(e.RowIndex); // Llama al método para guardar cambios
+
+                    dataGridViewCategoria.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White; // Regresa a color normal
                 }
                 // Si se hizo clic en el botón "Descartar"
                 else if (e.ColumnIndex == dataGridViewCategoria.Columns["Descartar"].Index)
                 {
 
-                    dataGridViewCategoria.Columns["Guardar"].Visible = false;
-                    dataGridViewCategoria.Columns["Descartar"].Visible = false;
-                    //DescartarCambiosFila(e.RowIndex); // Llama al método para descartar cambios
+                    // Recargar los datos de la fila desde la base de datos
+                    int categoriaId = Convert.ToInt32(dataGridViewCategoria.Rows[e.RowIndex].Cells["ID"].Value);
+                    var categoria = db.CategoriaProducto.FirstOrDefault(c => c.ID == categoriaId);
+
+                    if (categoria != null)
+                    {
+                        // Restaurar el valor original del campo 'Name'
+                        dataGridViewCategoria.Rows[e.RowIndex].Cells["Name"].Value = categoria.NAME;
+
+                        // Ocultar las columnas de "Guardar" y "Descartar"
+                        dataGridViewCategoria.Columns["Guardar"].Visible = false;
+                        dataGridViewCategoria.Columns["Descartar"].Visible = false;
+
+                        dataGridViewCategoria.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White; // Regresa a color normal
+                    }
                 }
             }
         }
@@ -194,20 +222,20 @@ namespace ChillDeCojones
 
         private void EliminarCategoria(int idCategoria)
         {
-            grupo02DBEntities db = new grupo02DBEntities();
-            
+
+
             var categoria = db.CategoriaProducto.First(x => x.ID.Equals(idCategoria));
             if (categoria != null)
             {
-                    DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (result == DialogResult.Yes)
-                    {
-                        db.CategoriaProducto.Remove(categoria);
-                        db.SaveChanges();
-                        cargarCategorias();
-                        MessageBox.Show("Category succesfully deleted.", "Deletion succesful");
-                    }
+                if (result == DialogResult.Yes)
+                {
+                    db.CategoriaProducto.Remove(categoria);
+                    db.SaveChanges();
+                    cargarCategorias();
+                    MessageBox.Show("Category succesfully deleted.", "Deletion succesful");
+                }
             }
             else
             {
@@ -218,7 +246,7 @@ namespace ChillDeCojones
 
         private void GuardarCambiosFila(int rowIndex)
         {
-           
+
 
         }
 

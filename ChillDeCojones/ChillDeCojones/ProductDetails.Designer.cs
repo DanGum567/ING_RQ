@@ -38,14 +38,16 @@
             this.uploadThumbnailButton = new System.Windows.Forms.Button();
             this.labelCreated = new System.Windows.Forms.Label();
             this.labelModified = new System.Windows.Forms.Label();
-            this.lAtributosUsuario = new System.Windows.Forms.ListView();
             this.labelUserAttributes = new System.Windows.Forms.Label();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.bCategoria = new System.Windows.Forms.Button();
             this.dCategoria = new System.Windows.Forms.DataGridView();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
+            this.discardThumbailButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
@@ -148,20 +150,11 @@
             this.labelModified.TabIndex = 10;
             this.labelModified.Text = "Modified ";
             // 
-            // lAtributosUsuario
-            // 
-            this.lAtributosUsuario.HideSelection = false;
-            this.lAtributosUsuario.Location = new System.Drawing.Point(95, 385);
-            this.lAtributosUsuario.Name = "lAtributosUsuario";
-            this.lAtributosUsuario.Size = new System.Drawing.Size(339, 261);
-            this.lAtributosUsuario.TabIndex = 11;
-            this.lAtributosUsuario.UseCompatibleStateImageBehavior = false;
-            // 
             // labelUserAttributes
             // 
             this.labelUserAttributes.AutoSize = true;
             this.labelUserAttributes.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUserAttributes.Location = new System.Drawing.Point(137, 347);
+            this.labelUserAttributes.Location = new System.Drawing.Point(92, 502);
             this.labelUserAttributes.Name = "labelUserAttributes";
             this.labelUserAttributes.Size = new System.Drawing.Size(105, 17);
             this.labelUserAttributes.TabIndex = 12;
@@ -206,18 +199,40 @@
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(170, 24);
             this.cbCategoria.TabIndex = 18;
-            this.cbCategoria.Click += new System.EventHandler(this.cbCategoria_Click);
+            this.cbCategoria.SelectionChangeCommitted += new System.EventHandler(this.cbCategoria_SelectionChangeCommitted);
+            // 
+            // discardThumbailButton
+            // 
+            this.discardThumbailButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discardThumbailButton.Location = new System.Drawing.Point(95, 346);
+            this.discardThumbailButton.Name = "discardThumbailButton";
+            this.discardThumbailButton.Size = new System.Drawing.Size(194, 31);
+            this.discardThumbailButton.TabIndex = 19;
+            this.discardThumbailButton.Text = "Discard thumbnail";
+            this.discardThumbailButton.UseVisualStyleBackColor = true;
+            this.discardThumbailButton.Click += new System.EventHandler(this.discardThumbailButton_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(95, 546);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(433, 341);
+            this.dataGridView1.TabIndex = 20;
             // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.discardThumbailButton);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.dCategoria);
             this.Controls.Add(this.bCategoria);
             this.Controls.Add(this.labelUserAttributes);
-            this.Controls.Add(this.lAtributosUsuario);
             this.Controls.Add(this.labelModified);
             this.Controls.Add(this.labelCreated);
             this.Controls.Add(this.uploadThumbnailButton);
@@ -234,6 +249,7 @@
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,10 +268,11 @@
         private System.Windows.Forms.Button uploadThumbnailButton;
         private System.Windows.Forms.Label labelCreated;
         private System.Windows.Forms.Label labelModified;
-        private System.Windows.Forms.ListView lAtributosUsuario;
         private System.Windows.Forms.Label labelUserAttributes;
         private System.Windows.Forms.Button bCategoria;
         private System.Windows.Forms.DataGridView dCategoria;
         private System.Windows.Forms.ComboBox cbCategoria;
+        private System.Windows.Forms.Button discardThumbailButton;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

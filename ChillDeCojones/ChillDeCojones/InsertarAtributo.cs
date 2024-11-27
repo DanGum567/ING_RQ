@@ -12,7 +12,7 @@ namespace ChillDeCojones
 {
     public partial class InsertarAtributo : Form
     {
-        
+        grupo02DBEntities db = new grupo02DBEntities();
         public event EventHandler AtributoInsertado;
         public InsertarAtributo()
         {
@@ -23,12 +23,11 @@ namespace ChillDeCojones
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
-                cbType.DataSource = Enum.GetValues(typeof(TipoAtributo)); // Se crea el desplegable del Type de atributo
+                cbType.DataSource = Enum.GetValues(typeof(TipoAtributoUsuario)); // Se crea el desplegable del Type de atributo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("ERRO: " + ex.Message);
             }
 
 
@@ -38,23 +37,29 @@ namespace ChillDeCojones
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
+
                 // Crear una nueva instancia de AtributoUsuario
                 AtributoUsuario nuevoAtributo = new AtributoUsuario();
                 nuevoAtributo.TYPE = cbType.SelectedItem.ToString();
                 nuevoAtributo.NAME = tName.Text;
+                bool atributoRepetido = db.AtributoUsuario.Any(a => a.NAME == nuevoAtributo.NAME);
 
+                if (atributoRepetido)
+                {
+                    MessageBox.Show("ERROR: An attribute with that name already exists.");
+                    return; // No continuar con la inserción si el atributo está repetido
+                }
                 db.AtributoUsuario.Add(nuevoAtributo);
                 db.SaveChanges();
 
-                MessageBox.Show("Atributo agregado correctamente.");
+                MessageBox.Show("Added attribute succesfully");
 
                 // Cerrar el formulario después de agregar
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar el atributo: " + ex.Message);
+                MessageBox.Show("ERROR adding this attribute: " + ex.Message);
             }
 
             AtributoInsertado?.Invoke(this, EventArgs.Empty);

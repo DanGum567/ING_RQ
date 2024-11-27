@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace ChillDeCojones
 {
@@ -14,13 +15,13 @@ namespace ChillDeCojones
         private static Precargador instance;
         private ConcurrentDictionary<int, Producto> productosEnMemoria;
         ///(int,int) => (id_atributo, id_producto)
-        private ConcurrentDictionary<(int, int), ValorAtributoSistema> atributosEnMemoria;
+        private ConcurrentDictionary<(int, int), byte[]> atributosEnMemoria;
 
         public Precargador()
         {
             instance = this;
             productosEnMemoria = new ConcurrentDictionary<int, Producto>();
-            atributosEnMemoria = new ConcurrentDictionary<(int, int), ValorAtributoSistema>();
+            atributosEnMemoria = new ConcurrentDictionary<(int, int), byte[]>();
 
             var contextoTemporal = new grupo02DBEntities();
             foreach (Producto producto in contextoTemporal.Producto.ToList())
@@ -53,7 +54,7 @@ namespace ChillDeCojones
                     if (atributoPrecargado != null)
                     {
                         (int, int) tuplaClave = (idAtributoSistema, idProducto);
-                        atributosEnMemoria.TryAdd(tuplaClave, atributoPrecargado);
+                        atributosEnMemoria.TryAdd(tuplaClave, atributoPrecargado.VALOR);
                         //MessageBox.Show("Se ha precargado correctamente el valor de atributo con ID de atributo " + idAtributoSistema + " y ID de producto " + idProducto);
                     }
                     contextoHilo.Dispose();
@@ -70,14 +71,9 @@ namespace ChillDeCojones
 
         public static byte[] GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema tipoAtributo, int idProducto)
         {
-            byte[] bytes = null;
-            (int, int) tuplaClave = (Attributes.ObtenerIdAtributoSistema(tipoAtributo), idProducto);
-            instance.atributosEnMemoria.TryGetValue(tuplaClave, out ValorAtributoSistema atributo);
-            if (atributo != null)
-            {
-                bytes = atributo.VALOR;
-            }
-            return bytes;
+            (int, int) tuplaClave = (AtributoManager.ObtenerIdDeAtributoSistema(tipoAtributo), idProducto);
+            instance.atributosEnMemoria.TryGetValue(tuplaClave, out byte[] bytesAtributo);
+            return bytesAtributo;
         }
     }
 }

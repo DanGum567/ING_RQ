@@ -68,6 +68,8 @@ namespace ChillDeCojones
         private void toolStripDashboardButton_Click(object sender, EventArgs e)
         {
             ClearSubForm();
+            string label = "Dashboard";
+            instance.labelRuta.Text = label;
         }
 
         private void toolStripAttributesButton_Click(object sender, EventArgs e)
