@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             this.listaProductosDataGridView = new System.Windows.Forms.DataGridView();
+            this.newProductButton = new System.Windows.Forms.Button();
             this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastModification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.newProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listaProductosDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,12 +47,10 @@
             this.listaProductosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaProductosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Thumbnail,
+            this.ID,
             this.SKU,
             this.Label,
-            this.GTIN,
-            this.LastModification,
-            this.CreationDate,
-            this.ID});
+            this.GTIN});
             this.listaProductosDataGridView.Location = new System.Drawing.Point(70, 106);
             this.listaProductosDataGridView.MultiSelect = false;
             this.listaProductosDataGridView.Name = "listaProductosDataGridView";
@@ -67,6 +63,16 @@
             this.listaProductosDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellClick);
             this.listaProductosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellContentClick);
             // 
+            // newProductButton
+            // 
+            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
+            this.newProductButton.Name = "newProductButton";
+            this.newProductButton.Size = new System.Drawing.Size(239, 23);
+            this.newProductButton.TabIndex = 2;
+            this.newProductButton.Text = "+ Add new product";
+            this.newProductButton.UseVisualStyleBackColor = true;
+            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
+            // 
             // Thumbnail
             // 
             this.Thumbnail.HeaderText = "Thumbnail";
@@ -74,6 +80,13 @@
             this.Thumbnail.MinimumWidth = 6;
             this.Thumbnail.Name = "Thumbnail";
             this.Thumbnail.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
             // SKU
             // 
@@ -97,39 +110,6 @@
             this.GTIN.ReadOnly = true;
             this.GTIN.Visible = false;
             // 
-            // LastModification
-            // 
-            this.LastModification.HeaderText = "Last Modification";
-            this.LastModification.MinimumWidth = 6;
-            this.LastModification.Name = "LastModification";
-            this.LastModification.ReadOnly = true;
-            this.LastModification.Visible = false;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.HeaderText = "Creation Date";
-            this.CreationDate.MinimumWidth = 6;
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
-            this.CreationDate.Visible = false;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // newProductButton
-            // 
-            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
-            this.newProductButton.Name = "newProductButton";
-            this.newProductButton.Size = new System.Drawing.Size(239, 23);
-            this.newProductButton.TabIndex = 2;
-            this.newProductButton.Text = "+ Add new product";
-            this.newProductButton.UseVisualStyleBackColor = true;
-            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
-            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -150,11 +130,9 @@
         private System.Windows.Forms.DataGridView listaProductosDataGridView;
         private System.Windows.Forms.Button newProductButton;
         private System.Windows.Forms.DataGridViewImageColumn Thumbnail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SKU;
         private System.Windows.Forms.DataGridViewTextBoxColumn Label;
         private System.Windows.Forms.DataGridViewTextBoxColumn GTIN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastModification;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }

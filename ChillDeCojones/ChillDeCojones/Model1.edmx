@@ -66,7 +66,7 @@
             <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
             <PropertyRef Name="ID_PRODUCTO" />
           </Key>
-          <Property Name="VALOR" Type="mediumblob" Nullable="false" />
+          <Property Name="VALOR" Type="mediumblob" />
           <Property Name="ID_ATRIBUTOSISTEMA" Type="int" Nullable="false" />
           <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
         </EntityType>

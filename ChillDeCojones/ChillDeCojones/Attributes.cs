@@ -85,14 +85,14 @@ namespace ChillDeCojones
 
         private void dataGridViewAtributos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridViewAtributos.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dataGridViewAtributos.Columns["Delete"].Index && e.RowIndex >= 0)
             {
                 int idAtributo = Convert.ToInt32(dataGridViewAtributos.Rows[e.RowIndex].Cells["ID"].Value);
 
                 EliminarAtributo(idAtributo);
             }
 
-            if (e.ColumnIndex == dataGridViewAtributos.Columns["Editar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dataGridViewAtributos.Columns["Edit"].Index && e.RowIndex >= 0)
             {
                 //dataGridViewAtributos.Rows[e.RowIndex].ReadOnly = false;
                 int idAtributo = Convert.ToInt32(dataGridViewAtributos.Rows[e.RowIndex].Cells["ID"].Value);
@@ -113,7 +113,7 @@ namespace ChillDeCojones
 
                     nameTextBox.Text = dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value.ToString();
 
-                    textBoxControls[e.RowIndex] = new TextBox[] { nameTextBox};
+                    textBoxControls[e.RowIndex] = new TextBox[] { nameTextBox };
 
                     dataGridViewAtributos.Rows[e.RowIndex].Cells["Name"].Value = nameTextBox.Text;
                 }

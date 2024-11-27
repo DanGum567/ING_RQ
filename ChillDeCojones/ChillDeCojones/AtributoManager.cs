@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChillDeCojones.Properties;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -32,15 +33,15 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static AtributoSistema ObtenerAtributoSistema(TipoAtributoSistema tipoAtributo)
+        public static AtributoSistema ObtenerAtributoSistema(TipoAtributoSistema tipoAtributo, grupo02DBEntities contexto)
         {
             string nombreTipoAtributo = Enum.GetName(tipoAtributo.GetType(), tipoAtributo);
-            return new grupo02DBEntities().AtributoSistema.First(a => a.NAME == nombreTipoAtributo);
+            return contexto.AtributoSistema.First(a => a.NAME == nombreTipoAtributo);
         }
 
-        public static AtributoUsuario ObtenerIdDeAtributoUsuario(string nombreAtributo)
+        public static AtributoUsuario ObtenerIdDeAtributoUsuario(string nombreAtributo, grupo02DBEntities contexto)
         {
-            return new grupo02DBEntities().AtributoUsuario.First(a => a.NAME.Equals(nombreAtributo));
+            return contexto.AtributoUsuario.First(a => a.NAME.Equals(nombreAtributo));
         }
 
         /// <summary>
@@ -48,13 +49,13 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static void AñadirOActualizarValorAtributoSistema(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities contextoBaseDatos, object valorAtributo)
+        public static bool AñadirOActualizarValorAtributoSistema(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities contextoBaseDatos, object valorAtributo)
         {
 
             if (!(tipoAtributo == TipoAtributoSistema.thumbnail) && (dueñoAtributoSistema == null || valorAtributo == null))
             {
                 MessageBox.Show("El producto o atributo no pueden ser nulos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
 
 
@@ -62,36 +63,42 @@ namespace ChillDeCojones
             {
                 if (ValidarGTIN(valorAtributo.ToString()) == false)
                 {
-                    return;
+                    return false;
                 }
             }
 
-            var atributoSistema = ObtenerAtributoSistema(tipoAtributo);
+            if (tipoAtributo == TipoAtributoSistema.thumbnail && valorAtributo == null)
+            {
+                valorAtributo = Resources.imagenPredeterminadaProducto;
+            }
+
+            var atributoSistema = ObtenerAtributoSistema(tipoAtributo, contextoBaseDatos);
             if (atributoSistema == null)
             {
                 MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoSistema.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
 
             ValorAtributoSistema valorAtributoSistema = contextoBaseDatos.ValorAtributoSistema.Find(atributoSistema.ID, dueñoAtributoSistema.ID);
 
+
             if (valorAtributoSistema == null)
             {
                 //Estamos insertando, el valor no existía antes
-                valorAtributoSistema = new ValorAtributoSistema
-                {
-                    AtributoSistema = atributoSistema,
-                    Producto = dueñoAtributoSistema,
-                    VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo)
-                };
+                ValorAtributoSistema nuevo = new ValorAtributoSistema();
+                nuevo.AtributoSistema = atributoSistema;
+                nuevo.Producto = dueñoAtributoSistema;
+                nuevo.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
 
-                contextoBaseDatos.ValorAtributoSistema.Add(valorAtributoSistema);
+                contextoBaseDatos.ValorAtributoSistema.Add(nuevo);
             }
             else
             {
                 //Estamos actualizando, el valor si existía antes
                 valorAtributoSistema.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
             }
+
+            return true;
 
             // No llamamos SaveChanges aquí; lo dejamos al nivel superior.
         }
@@ -104,7 +111,7 @@ namespace ChillDeCojones
         public static void AñadirOActualizarValorAtributoUsuario(string nombreAtributo, Producto dueñoAtributoUsuario, grupo02DBEntities contextoBaseDatos, object valorAtributo)
         {
 
-            var atributoUsuario = ObtenerIdDeAtributoUsuario(nombreAtributo);
+            var atributoUsuario = ObtenerIdDeAtributoUsuario(nombreAtributo, contextoBaseDatos);
             if (atributoUsuario == null)
             {
                 MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoUsuario.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -148,7 +155,7 @@ namespace ChillDeCojones
                 throw new ArgumentNullException("El producto no puede ser nulo.");
             }
 
-            int idAtributo = ObtenerAtributoSistema(tipoAtributo).ID;
+            int idAtributo = ObtenerAtributoSistema(tipoAtributo, contextoBaseDatos).ID;
             ValorAtributoSistema comando = contextoBaseDatos.ValorAtributoSistema.Find(idAtributo, dueñoAtributoSistema.ID);
             if (comando == null)
             {

@@ -71,7 +71,7 @@ namespace ChillDeCojones
 
         public static byte[] GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema tipoAtributo, int idProducto)
         {
-            (int, int) tuplaClave = (AtributoManager.ObtenerAtributoSistema(tipoAtributo).ID, idProducto);
+            (int, int) tuplaClave = (AtributoManager.ObtenerAtributoSistema(tipoAtributo, new grupo02DBEntities()).ID, idProducto);
             instance.atributosEnMemoria.TryGetValue(tuplaClave, out byte[] bytesAtributo);
             return bytesAtributo;
         }
