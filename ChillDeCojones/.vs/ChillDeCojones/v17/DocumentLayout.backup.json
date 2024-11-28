@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\productdetails.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\productdetails.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\productdetails.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\productdetails.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\help.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\help.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\help.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\help.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\categorias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\categorias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|d:\\git\\ing_rq\\ing_rq\\chilldecojones\\chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\categorias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\categorias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\attributes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|solutionrelative:chilldecojones\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}|ChillDeCojones\\ChillDeCojones.csproj|D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\chilldecojones\\modificarvaloratributousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -74,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -83,19 +95,57 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Help.cs",
+              "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Help.cs",
+              "RelativeDocumentMoniker": "ChillDeCojones\\Help.cs",
+              "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Help.cs",
+              "RelativeToolTip": "ChillDeCojones\\Help.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAewB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:29:00.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Help.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Help.cs",
+              "RelativeDocumentMoniker": "ChillDeCojones\\Help.cs",
+              "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Help.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ChillDeCojones\\Help.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:28:57.405Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModificarCategoria.cs",
+              "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarCategoria.cs",
+              "RelativeDocumentMoniker": "ChillDeCojones\\ModificarCategoria.cs",
+              "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarCategoria.cs",
+              "RelativeToolTip": "ChillDeCojones\\ModificarCategoria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:21:38.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ProductDetails.Designer.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ProductDetails.Designer.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\ProductDetails.Designer.cs",
               "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ProductDetails.Designer.cs",
               "RelativeToolTip": "ChillDeCojones\\ProductDetails.Designer.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAtwB8AAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAD8BAAAAAAAAAAAnwEYBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-28T08:00:12.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Categorias.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Categorias.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Categorias.cs",
@@ -103,21 +153,24 @@
               "RelativeToolTip": "ChillDeCojones\\Categorias.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAkwGYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T02:46:44.159Z"
+              "WhenOpened": "2024-11-28T02:46:44.159Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Categorias.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Categorias.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Categorias.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Categorias.cs [Dise\u00F1o]",
+              "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Categorias.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ChillDeCojones\\Categorias.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T02:46:34.542Z"
+              "WhenOpened": "2024-11-28T02:46:34.542Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Attributes.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Attributes.cs",
@@ -129,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Attributes.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Attributes.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Attributes.cs",
@@ -139,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "ModificarValorAtributoUsuario.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarValorAtributoUsuario.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\ModificarValorAtributoUsuario.cs",
@@ -149,17 +202,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "ModificarCategoria.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarCategoria.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\ModificarCategoria.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarCategoria.cs [Dise\u00F1o]",
+              "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarCategoria.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ChillDeCojones\\ModificarCategoria.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T02:44:12.459Z"
+              "WhenOpened": "2024-11-28T02:44:12.459Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "ModificarAtributo.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ModificarAtributo.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\ModificarAtributo.cs",
@@ -169,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "InsertarCategoria.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\InsertarCategoria.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\InsertarCategoria.cs",
@@ -179,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "InsertarAtributo.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\InsertarAtributo.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\InsertarAtributo.cs",
@@ -189,7 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Common.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Common.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Common.cs",
@@ -199,13 +254,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "ProductDetails.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ProductDetails.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\ProductDetails.cs",
               "ToolTip": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\ProductDetails.cs",
               "RelativeToolTip": "ChillDeCojones\\ProductDetails.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAIAwwEMAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAIAwwEUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-28T02:19:34.746Z",
               "EditorCaption": ""
@@ -224,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "AtributoManager.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\AtributoManager.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\AtributoManager.cs",
@@ -236,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Products.cs",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Products.cs",
@@ -248,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Products.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\GIT\\ING_RQ\\ING_RQ\\ChillDeCojones\\ChillDeCojones\\Products.cs",
               "RelativeDocumentMoniker": "ChillDeCojones\\Products.cs",

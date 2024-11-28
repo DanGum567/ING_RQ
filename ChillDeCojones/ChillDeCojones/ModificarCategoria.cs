@@ -43,8 +43,8 @@ namespace ChillDeCojones
             else
             {
                 categoria.NAME = tName.Text;
-                db.SaveChanges();
-                MessageBox.Show("ERROR: The name is already in use");
+                MessageBox.Show("Category was modified successfully");
+                db.SaveChanges();                
                 this.Close();
             }
             CategoriaModificada?.Invoke(this, EventArgs.Empty);

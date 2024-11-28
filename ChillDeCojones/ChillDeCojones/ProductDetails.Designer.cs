@@ -46,11 +46,11 @@
             this.DeleteProductButton = new System.Windows.Forms.Button();
             this.EditProductButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Image1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -260,6 +260,17 @@
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // thumbnailPictureBox
+            // 
+            this.thumbnailPictureBox.BackgroundImage = global::ChillDeCojones.Properties.Resources.imagenPredeterminadaProducto;
+            this.thumbnailPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.thumbnailPictureBox.Location = new System.Drawing.Point(95, 83);
+            this.thumbnailPictureBox.Name = "thumbnailPictureBox";
+            this.thumbnailPictureBox.Size = new System.Drawing.Size(230, 241);
+            this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.thumbnailPictureBox.TabIndex = 0;
+            this.thumbnailPictureBox.TabStop = false;
+            // 
             // ID
             // 
             this.ID.HeaderText = "ID";
@@ -284,20 +295,10 @@
             // Image1
             // 
             this.Image1.HeaderText = "Image";
+            this.Image1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Image1.MinimumWidth = 6;
             this.Image1.Name = "Image1";
             this.Image1.ReadOnly = true;
-            // 
-            // thumbnailPictureBox
-            // 
-            this.thumbnailPictureBox.BackgroundImage = global::ChillDeCojones.Properties.Resources.imagenPredeterminadaProducto;
-            this.thumbnailPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.thumbnailPictureBox.Location = new System.Drawing.Point(95, 83);
-            this.thumbnailPictureBox.Name = "thumbnailPictureBox";
-            this.thumbnailPictureBox.Size = new System.Drawing.Size(230, 241);
-            this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.thumbnailPictureBox.TabIndex = 0;
-            this.thumbnailPictureBox.TabStop = false;
             // 
             // ProductDetailsForm
             // 
