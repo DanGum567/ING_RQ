@@ -31,7 +31,6 @@
             this.ImagePictureBox = new System.Windows.Forms.PictureBox();
             this.UploadImageLabel = new System.Windows.Forms.Button();
             this.DiscardImageButton = new System.Windows.Forms.Button();
-            this.AttributeNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +47,7 @@
             // 
             // UploadImageLabel
             // 
-            this.UploadImageLabel.Location = new System.Drawing.Point(181, 57);
+            this.UploadImageLabel.Location = new System.Drawing.Point(181, 39);
             this.UploadImageLabel.Name = "UploadImageLabel";
             this.UploadImageLabel.Size = new System.Drawing.Size(178, 33);
             this.UploadImageLabel.TabIndex = 1;
@@ -64,21 +63,11 @@
             this.DiscardImageButton.Text = "Discard image";
             this.DiscardImageButton.UseVisualStyleBackColor = true;
             // 
-            // AttributeNameLabel
-            // 
-            this.AttributeNameLabel.Location = new System.Drawing.Point(178, 31);
-            this.AttributeNameLabel.Name = "AttributeNameLabel";
-            this.AttributeNameLabel.Size = new System.Drawing.Size(181, 23);
-            this.AttributeNameLabel.TabIndex = 3;
-            this.AttributeNameLabel.Text = "AttributeNameLabel";
-            this.AttributeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // ImageAttributePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 153);
-            this.Controls.Add(this.AttributeNameLabel);
             this.Controls.Add(this.DiscardImageButton);
             this.Controls.Add(this.UploadImageLabel);
             this.Controls.Add(this.ImagePictureBox);
@@ -94,6 +83,5 @@
         private System.Windows.Forms.PictureBox ImagePictureBox;
         private System.Windows.Forms.Button UploadImageLabel;
         private System.Windows.Forms.Button DiscardImageButton;
-        private System.Windows.Forms.Label AttributeNameLabel;
     }
 }

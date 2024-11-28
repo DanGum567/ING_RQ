@@ -17,13 +17,13 @@ namespace ChillDeCojones
         grupo02DBEntities db;
         Producto producto;
         bool creandoProducto = false;
-        bool modificar = false;
+        bool modificandoProducto = false;
 
         public ProductDetails(Producto producto, bool modificarProducto, grupo02DBEntities contexto)
         {
             InitializeComponent();
             this.db = contexto;
-            modificar = modificarProducto;
+            modificandoProducto = modificarProducto;
             if (producto == null)//Crear producto
             {
                 Producto productoNuevo = new Producto();
@@ -44,62 +44,89 @@ namespace ChillDeCojones
 
         private void ProductDetails_Load(object sender, EventArgs e)
         {
-            //try
-            //{
             if (!creandoProducto)
             {
                 MostrarDetallesProducto();
             }
 
-            bCategoria.Visible = true;
-            cbCategoria.Visible = false;
-            cargarCategorias();
-            cargarEliminarCategorias();
+            bCategoria.Visible = modificandoProducto;
+            skuTextBox.Enabled = modificandoProducto;
+            gtinTextBox.Enabled = modificandoProducto;
+            productLabelTextBox.Enabled = modificandoProducto;
 
-            //siempre
+            uploadThumbnailButton.Visible = modificandoProducto;
+            discardThumbailButton.Visible = modificandoProducto;
+            saveChangesButton.Visible = modificandoProducto;
+            discardChangesButton.Visible = modificandoProducto;
+
             DeleteProductButton.Visible = !creandoProducto;
+            EditProductButton.Visible = !modificandoProducto;
+
+            cbCategoria.Visible = false;
+
+            CargarCategorias();
+
+            if (modificandoProducto)
+            {
+                CargarBotonDeEliminarCategorias();
+            }
+
+
             CargarListaAtributos(false);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("ERROR CARGANDO PRODUCTOS: " + ex.Message);
-            //}
-
-
         }
 
         private void CargarListaAtributos(bool modificar)
         {
-            for (int i = 0; i < 5; i++)
+            dataGridView1.Columns.Add("Nombre", "Name");
+            dataGridView1.Columns.Add("Value", "ValorCustom");
+
+
+            foreach (AtributoUsuario atributoUsuario in db.AtributoUsuario.ToList())
             {
-                // Crear un Panel
+                var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID); //tiene valor ya?
 
-                flowLayoutPanel1.FlowDirection = FlowDirection.TopDown; // Vertical
-                flowLayoutPanel1.WrapContents = false;                 // Evita que se reorganicen horizontalmente
-                flowLayoutPanel1.AutoScroll = true;                    // Permite desplazamiento
+                //dataGridView1.Rows.Add(atributoUsuario.NAME);
+                if (valor != null)
+                {
+                    string tipo = atributoUsuario.TYPE;
+                    TipoAtributoUsuario tipoValor = (TipoAtributoUsuario)Enum.Parse(typeof(TipoAtributoUsuario), tipo);
+                    object valorConvertido = AtributoManager.ConvertirBytesAAtributo(tipoValor, valor.VALOR);
 
-                Form formulario = new ImageAttributePanel();
-                formulario.TopLevel = false; // Necesario para incrustar el Form
-                formulario.Dock = DockStyle.Fill; // Ajustar al tamaño del Panel
-                formulario.FormBorderStyle = FormBorderStyle.None;
+                    object valorColumna = null;
+                    switch (tipoValor)
+                    {
+                        case TipoAtributoUsuario.Text:
+                            valorColumna = (string)valorConvertido;
+                            break;
+                        case TipoAtributoUsuario.Number:
+                            valorColumna = ((float)valorConvertido).ToString();
+                            break;
+                        case TipoAtributoUsuario.Date:
+                            valorColumna = ((DateTime)valorConvertido).ToShortDateString();
+                            break;
+                        case TipoAtributoUsuario.Image:
+                            valorColumna = (Image)valorConvertido;
+                            break;
+                    }
 
-                //panel.Controls.Add(formulario);
-                //panel1.Controls.Add(panel);
+                    DataGridViewImageTextCell celdaNueva = new DataGridViewImageTextCell(valorColumna);
 
-                formulario.Show();
-                //MessageBox.Show(panel.Parent.Name);
-                // Agregar el Panel al FlowLayoutPanel
-            }
+                    dataGridView1.Rows.Add(atributoUsuario.NAME, celdaNueva);
 
-            List<AtributoUsuario> atributoUsuarios = db.AtributoUsuario.ToList();
-            // Limpia los elementos actuales del ListView para evitar duplicados
-            foreach (AtributoUsuario val in atributoUsuarios)
-            {
+
+                }
+                else
+                {
+                    dataGridView1.Rows.Add(atributoUsuario.NAME, "(No attribute)");
+
+                }
+
+
+
             }
         }
 
-        private void cargarEliminarCategorias()
+        private void CargarBotonDeEliminarCategorias()
         {
             //Si hay alguna categoria se crea, si no no se crea el boton
 
@@ -123,7 +150,7 @@ namespace ChillDeCojones
 
         }
 
-        private void cargarCategorias()
+        private void CargarCategorias()
         {
 
             //Poner las categorias en el desplegable
@@ -139,8 +166,8 @@ namespace ChillDeCojones
                              };
 
             dCategoria.DataSource = categorias.ToList();
-
-
+            dCategoria.Columns["ID"].Visible = false;
+            dCategoria.ClearSelection();
         }
 
 
@@ -237,7 +264,7 @@ namespace ChillDeCojones
                     bCategoria.Visible = true;
 
                     // Cargar los atributos de usuario relacionados con este producto
-                    cargarCategorias();
+                    CargarCategorias();
                 }
                 else
                 {
@@ -265,7 +292,7 @@ namespace ChillDeCojones
 
             if (!correcto)
             {
-                MessageBox.Show("Some values are incorrect, please check the values you have submitted");
+                //MessageBox.Show("Some values were incorrect, please check the values you have submitted", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -291,14 +318,15 @@ namespace ChillDeCojones
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
             ModificarProducto();
-
-
         }
 
         private void discardChangesButton_Click(object sender, EventArgs e)
         {
-            db.Producto.Remove(producto);
-            db.SaveChanges();
+            if (creandoProducto)
+            {
+                db.Producto.Remove(producto);
+                db.SaveChanges();
+            }
             Common.ShowSubForm(new Products());
         }
 
@@ -360,7 +388,7 @@ namespace ChillDeCojones
                     try
                     {
                         db.SaveChanges(); // Guardar los cambios
-                        cargarCategorias(); // Refrescar las categorías
+                        CargarCategorias(); // Refrescar las categorías
                     }
                     catch (Exception ex)
                     {
@@ -375,6 +403,11 @@ namespace ChillDeCojones
         {
             Products.EliminarProducto(producto);
             Common.ShowSubForm(new Products());
+        }
+
+        private void EditProductButton_Click(object sender, EventArgs e)
+        {
+            Common.ShowSubForm(new ProductDetails(producto, true, db));
         }
     }
 }

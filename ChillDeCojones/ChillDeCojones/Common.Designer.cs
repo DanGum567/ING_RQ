@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Common));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelRuta = new System.Windows.Forms.Label();
             this.toolStripDashboardButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripProductsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripAssetsButton = new System.Windows.Forms.ToolStripButton();
@@ -39,6 +37,8 @@
             this.toolStripAttributesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripRelationshipsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpButton = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelRuta = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -66,23 +66,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(748, 32);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(0, 54);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1902, 979);
-            this.panel1.TabIndex = 1;
-            // 
-            // labelRuta
-            // 
-            this.labelRuta.AutoSize = true;
-            this.labelRuta.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRuta.Location = new System.Drawing.Point(28, 31);
-            this.labelRuta.Name = "labelRuta";
-            this.labelRuta.Size = new System.Drawing.Size(105, 23);
-            this.labelRuta.TabIndex = 2;
-            this.labelRuta.Text = "Dashboard";
             // 
             // toolStripDashboardButton
             // 
@@ -165,6 +148,24 @@
             this.toolStripHelpButton.Name = "toolStripHelpButton";
             this.toolStripHelpButton.Size = new System.Drawing.Size(59, 29);
             this.toolStripHelpButton.Text = "Help";
+            this.toolStripHelpButton.Click += new System.EventHandler(this.toolStripHelpButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 54);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1902, 979);
+            this.panel1.TabIndex = 1;
+            // 
+            // labelRuta
+            // 
+            this.labelRuta.AutoSize = true;
+            this.labelRuta.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRuta.Location = new System.Drawing.Point(28, 31);
+            this.labelRuta.Name = "labelRuta";
+            this.labelRuta.Size = new System.Drawing.Size(105, 23);
+            this.labelRuta.TabIndex = 2;
+            this.labelRuta.Text = "Dashboard";
             // 
             // pictureBox1
             // 

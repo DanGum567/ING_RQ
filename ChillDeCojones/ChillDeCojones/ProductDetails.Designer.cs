@@ -45,9 +45,11 @@
             this.discardThumbailButton = new System.Windows.Forms.Button();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.DeleteProductButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.EditProductButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
@@ -172,9 +174,12 @@
             // 
             // dCategoria
             // 
+            this.dCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dCategoria.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dCategoria.Location = new System.Drawing.Point(1159, 180);
             this.dCategoria.Name = "dCategoria";
+            this.dCategoria.RowHeadersVisible = false;
             this.dCategoria.RowHeadersWidth = 51;
             this.dCategoria.RowTemplate.Height = 24;
             this.dCategoria.Size = new System.Drawing.Size(342, 143);
@@ -222,19 +227,39 @@
             this.DeleteProductButton.UseVisualStyleBackColor = true;
             this.DeleteProductButton.Click += new System.EventHandler(this.DeleteProductButton_Click);
             // 
-            // flowLayoutPanel1
+            // EditProductButton
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(95, 495);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(605, 428);
-            this.flowLayoutPanel1.TabIndex = 22;
+            this.EditProductButton.Location = new System.Drawing.Point(1590, 211);
+            this.EditProductButton.Name = "EditProductButton";
+            this.EditProductButton.Size = new System.Drawing.Size(220, 30);
+            this.EditProductButton.TabIndex = 23;
+            this.EditProductButton.Text = "✏️ Edit product";
+            this.EditProductButton.UseVisualStyleBackColor = true;
+            this.EditProductButton.Click += new System.EventHandler(this.EditProductButton_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(95, 485);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(605, 371);
+            this.dataGridView1.TabIndex = 24;
             // 
             // ProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.EditProductButton);
             this.Controls.Add(this.DeleteProductButton);
             this.Controls.Add(this.discardThumbailButton);
             this.Controls.Add(this.cbCategoria);
@@ -257,6 +282,7 @@
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +310,7 @@
         private System.Windows.Forms.ColumnHeader Value;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
         private System.Windows.Forms.Button DeleteProductButton;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button EditProductButton;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

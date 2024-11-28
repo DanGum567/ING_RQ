@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.listaProductosDataGridView = new System.Windows.Forms.DataGridView();
-            this.newProductButton = new System.Windows.Forms.Button();
             this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.listaProductosDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             this.listaProductosDataGridView.AllowUserToAddRows = false;
             this.listaProductosDataGridView.AllowUserToDeleteRows = false;
             this.listaProductosDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.listaProductosDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.listaProductosDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listaProductosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaProductosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Thumbnail,
@@ -55,23 +55,14 @@
             this.listaProductosDataGridView.MultiSelect = false;
             this.listaProductosDataGridView.Name = "listaProductosDataGridView";
             this.listaProductosDataGridView.ReadOnly = true;
+            this.listaProductosDataGridView.RowHeadersVisible = false;
             this.listaProductosDataGridView.RowHeadersWidth = 51;
-            this.listaProductosDataGridView.RowTemplate.Height = 24;
+            this.listaProductosDataGridView.RowTemplate.Height = 100;
             this.listaProductosDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaProductosDataGridView.Size = new System.Drawing.Size(1741, 792);
             this.listaProductosDataGridView.TabIndex = 1;
             this.listaProductosDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellClick);
             this.listaProductosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProductosDataGridView_CellContentClick);
-            // 
-            // newProductButton
-            // 
-            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
-            this.newProductButton.Name = "newProductButton";
-            this.newProductButton.Size = new System.Drawing.Size(239, 23);
-            this.newProductButton.TabIndex = 2;
-            this.newProductButton.Text = "+ Add new product";
-            this.newProductButton.UseVisualStyleBackColor = true;
-            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
             // 
             // Thumbnail
             // 
@@ -109,6 +100,16 @@
             this.GTIN.Name = "GTIN";
             this.GTIN.ReadOnly = true;
             this.GTIN.Visible = false;
+            // 
+            // newProductButton
+            // 
+            this.newProductButton.Location = new System.Drawing.Point(1572, 51);
+            this.newProductButton.Name = "newProductButton";
+            this.newProductButton.Size = new System.Drawing.Size(239, 23);
+            this.newProductButton.TabIndex = 2;
+            this.newProductButton.Text = "+ Add new product";
+            this.newProductButton.UseVisualStyleBackColor = true;
+            this.newProductButton.Click += new System.EventHandler(this.newProductButton_Click);
             // 
             // Products
             // 

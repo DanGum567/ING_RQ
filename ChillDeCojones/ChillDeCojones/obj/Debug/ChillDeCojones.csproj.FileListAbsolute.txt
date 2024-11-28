@@ -87,3 +87,4 @@ C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\C
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarAtributo.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarCategoria.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ImageAttributePanel.resources
+C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Help.resources

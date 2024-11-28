@@ -25,9 +25,35 @@ namespace ChillDeCojones
                 return instance;
             }
         }
+
+
+        private string fraseSecreta = "ilovepalomo"; // Define tu frase secreta
+        private StringBuilder buffer = new StringBuilder(); // Para almacenar las teclas presionadas
+
         public Common()
         {
             InitializeComponent();
+            this.KeyPreview = true; // Asegura que el formulario capture las teclas
+            this.KeyPress += Form1_KeyPress; // Maneja el evento KeyPress
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Agregar la tecla presionada al buffer
+            buffer.Append(e.KeyChar);
+
+            // Limitar el tamaño del buffer para que no crezca innecesariamente
+            if (buffer.Length > fraseSecreta.Length)
+            {
+                buffer.Remove(0, buffer.Length - fraseSecreta.Length);
+            }
+
+            // Comprobar si el buffer contiene la frase secreta
+            if (buffer.ToString().Contains(fraseSecreta))
+            {
+                ShowSubForm(new Help(true));
+                buffer.Clear(); // Reiniciar el buffer si se detecta la frase
+            }
         }
 
         private void toolStripProductsButton_Click(object sender, EventArgs e)
@@ -91,6 +117,11 @@ namespace ChillDeCojones
         private void toolStripRelationshipsButton_Click(object sender, EventArgs e)
         {
             //ShowSubForm(new Relaciones());
+        }
+
+        private void toolStripHelpButton_Click(object sender, EventArgs e)
+        {
+            ShowSubForm(new Help(false));
         }
     }
 }

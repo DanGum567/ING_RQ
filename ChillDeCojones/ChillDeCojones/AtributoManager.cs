@@ -44,6 +44,8 @@ namespace ChillDeCojones
             return contexto.AtributoUsuario.First(a => a.NAME.Equals(nombreAtributo));
         }
 
+        //public LinkedList<ValorAtributoUsuario>
+
         /// <summary>
         /// Esta función no llama a SaveChanges, lo debe hacer el que llama a esta función
         /// </summary>
@@ -53,16 +55,36 @@ namespace ChillDeCojones
         {
 
             if (!(tipoAtributo == TipoAtributoSistema.thumbnail) && (dueñoAtributoSistema == null || valorAtributo == null))
-            {
-                MessageBox.Show("El producto o atributo no pueden ser nulos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            {//metete a discord que te enseñamos
+
+                MessageBox.Show("Product and attribute must be not null.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
+            if (tipoAtributo == TipoAtributoSistema.SKU)
+            {
+
+                if (valorAtributo == null || string.IsNullOrEmpty((string)valorAtributo))
+                {
+                    MessageBox.Show("The SKU cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else if (ObtenerTrueSiSKUEstaRepetido((string)valorAtributo, ObtenerListaBytesValoresAtributosSistemaExistentes(tipoAtributo, contextoBaseDatos)))
+                {
+                    MessageBox.Show("The SKU is duplicated.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
 
             if (tipoAtributo == TipoAtributoSistema.GTIN)
             {
                 if (ValidarGTIN(valorAtributo.ToString()) == false)
                 {
+                    return false;
+                }
+                if (ObtenerTrueSiGTINEstaRepetido((string)valorAtributo, ObtenerListaBytesValoresAtributosSistemaExistentes(tipoAtributo, contextoBaseDatos)))
+                {
+                    MessageBox.Show("The GTIN is duplicated.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -75,7 +97,7 @@ namespace ChillDeCojones
             var atributoSistema = ObtenerAtributoSistema(tipoAtributo, contextoBaseDatos);
             if (atributoSistema == null)
             {
-                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoSistema.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No attribute type with ID {atributoSistema.ID} was found", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -110,7 +132,7 @@ namespace ChillDeCojones
             var atributoUsuario = ObtenerIdDeAtributoUsuario(nombreAtributo, contextoBaseDatos);
             if (atributoUsuario == null)
             {
-                MessageBox.Show($"No se encontró el tipo de atributo de sistema con ID {atributoUsuario.ID}", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"No attribute type with given ID {atributoUsuario.ID} was found", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -149,7 +171,7 @@ namespace ChillDeCojones
         {
             if (dueñoAtributoSistema == null)
             {
-                throw new ArgumentNullException("El producto no puede ser nulo.");
+                throw new ArgumentNullException("The product cannot be null.");
             }
 
             int idAtributo = ObtenerAtributoSistema(tipoAtributo, contextoBaseDatos).ID;
@@ -162,6 +184,48 @@ namespace ChillDeCojones
             {
                 return comando.VALOR;
             }
+        }
+
+        public static LinkedList<byte[]> ObtenerListaBytesValoresAtributosSistemaExistentes(TipoAtributoSistema tipoAtributo, grupo02DBEntities contextoBaseDatos)
+        {
+            LinkedList<byte[]> resultado = new LinkedList<byte[]>();
+            foreach (Producto producto in contextoBaseDatos.Producto.ToList())
+            {
+                resultado.AddLast(ObtenerBytesDeValorAtributoSistemaExistente(tipoAtributo, producto, contextoBaseDatos));
+            }
+            return resultado;
+        }
+
+        public static bool ObtenerTrueSiSKUEstaRepetido(String valorSKU, LinkedList<byte[]> listaSKU)
+        {
+            return ObtenerTrueSiUnAtributoEstaRepetidoEnLaBaseDeDatos(valorSKU, listaSKU);
+        }
+
+        public static bool ObtenerTrueSiGTINEstaRepetido(String valorGTIN, LinkedList<byte[]> listaGTIN)
+        {
+            return ObtenerTrueSiUnAtributoEstaRepetidoEnLaBaseDeDatos(valorGTIN, listaGTIN);
+        }
+
+        public static bool ObtenerTrueSiUnAtributoEstaRepetidoEnLaBaseDeDatos(string valorAributoAComprobar, LinkedList<byte[]> listaBytesAtributo)
+        {
+            // Usaremos un HashSet para rastrear valores únicos y detectar duplicados.
+
+            foreach (var item in listaBytesAtributo)
+            {
+                // Convertir los bytes a string (asumiendo que los datos son cadenas).
+                if (item == null)
+                {
+                    continue;
+                }
+                string valor = Convertidor.BytesAString(item);
+                if (valor.Equals(valorAributoAComprobar, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            // Si terminamos el recorrido sin encontrar duplicados, devolvemos false.
+            return false;
         }
 
         /// <summary>
@@ -191,9 +255,45 @@ namespace ChillDeCojones
                 case TipoAtributoUsuario.Image:
                     return Convertidor.ImageABytes((Image)atributo, ImageFormat.Png);
                 default:
-                    throw new NotSupportedException($"El tipo de atributo {tipo} no está soportado.");
+                    throw new NotSupportedException($"The attriute type {tipo} is not supported.");
             }
         }
+
+        /// <summary>
+        /// Convierte un arreglo de bytes en un atributo específico, según el tipo de atributo.
+        /// </summary>
+        /// <param name="tipo">Tipo de atributo (debe ser <see cref="TipoAtributoSistema"/> o <see cref="TipoAtributoUsuario"/>)</param>
+        /// <param name="bytes">Arreglo de bytes que representa el atributo</param>
+        /// <returns>El atributo convertido al tipo correspondiente</returns>
+        public static object ConvertirBytesAAtributo(Enum tipo, byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0)
+                throw new ArgumentNullException(nameof(bytes), "El arreglo de bytes no puede ser nulo o vacío.");
+
+            switch (tipo)
+            {
+                // Atributos de sistema
+                case TipoAtributoSistema.SKU:
+                case TipoAtributoSistema.GTIN:
+                    return Convertidor.BytesAString(bytes);
+                case TipoAtributoSistema.thumbnail:
+                    return Convertidor.BytesAImage(bytes);
+
+                // Atributos de usuario
+                case TipoAtributoUsuario.Text:
+                    return Convertidor.BytesAString(bytes);
+                case TipoAtributoUsuario.Number:
+                    return Convertidor.BytesAFloat(bytes);
+                case TipoAtributoUsuario.Date:
+                    return Convertidor.BytesADateTime(bytes);
+                case TipoAtributoUsuario.Image:
+                    return Convertidor.BytesAImage(bytes);
+
+                default:
+                    throw new NotSupportedException($"El tipo de atributo {tipo} no es compatible.");
+            }
+        }
+
 
         private static bool ValidarGTIN(string GTIN)
         {
@@ -202,21 +302,21 @@ namespace ChillDeCojones
                 // Validar que no sea nulo o vacío
                 if (string.IsNullOrEmpty(GTIN))
                 {
-                    MessageBox.Show("El GTIN no puede estar vacío.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The GTIN cannot be empty.", "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
                 // Validar que tenga exactamente 14 caracteres
                 if (GTIN.Length != 14)
                 {
-                    MessageBox.Show("El GTIN debe tener exactamente 14 dígitos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The GTIN must have 14 digits.", "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
                 // Validar que todos los caracteres sean numéricos
                 if (!GTIN.All(char.IsDigit))
                 {
-                    MessageBox.Show("El GTIN solo debe contener números.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The GTIN only can contains numbers.", "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -234,7 +334,7 @@ namespace ChillDeCojones
                 // Verificar si el dígito de control coincide
                 if (digitoControlCalculado != digitoControlReal)
                 {
-                    MessageBox.Show("El GTIN no es válido (dígito de control incorrecto).", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The GTIN was invalid (incorrect control digit).", "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -243,7 +343,7 @@ namespace ChillDeCojones
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR AL VALIDAR EL GTIN: " + ex.Message);
+                MessageBox.Show("ERROR VALIDATING GTIN: " + ex.Message);
                 return false;
             }
         }
