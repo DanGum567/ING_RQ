@@ -47,8 +47,6 @@ namespace ChillDeCojones
                     db.CategoriaProducto.Add(nuevaCategoria);
                     db.SaveChanges();
 
-                    MessageBox.Show("Category added correctly");
-
                     // Cerrar el formulario después de agregar
                     this.Close();
                 }

@@ -135,7 +135,6 @@ namespace ChillDeCojones
                     // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
                     db.AtributoUsuario.Remove(atributo);
                     db.SaveChanges(); // Guarda los cambios en la base de datos
-                    MessageBox.Show("Attribute successfully deleted. ", "Deletion successful.");
                 }
             }
             else

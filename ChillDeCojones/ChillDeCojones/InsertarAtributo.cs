@@ -58,7 +58,6 @@ namespace ChillDeCojones
                     nuevoAtributo.NAME = tName.Text;
                     db.AtributoUsuario.Add(nuevoAtributo);
                     db.SaveChanges();
-                    MessageBox.Show("Attribute added succesfully");
 
                     // Cerrar el formulario después de agregar
                     this.Close();

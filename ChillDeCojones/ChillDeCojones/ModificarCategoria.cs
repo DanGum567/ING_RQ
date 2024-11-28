@@ -43,7 +43,6 @@ namespace ChillDeCojones
             else
             {
                 categoria.NAME = tName.Text;
-                MessageBox.Show("Category was modified successfully");
                 db.SaveChanges();                
                 this.Close();
             }
