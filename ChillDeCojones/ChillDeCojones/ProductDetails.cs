@@ -74,6 +74,11 @@ namespace ChillDeCojones
                 CargarLasVariasColumnasParaLosAtributosDeUsuarioQueSeHanHechoEnElProgramaYSeHanGuardadoEnLaBaseDeDatosCorrectamente();
 
             }
+            if (creandoProducto)
+            {
+                labelCreated.Text += "   " + DateTime.Now.ToString();
+                labelModified.Text += " " + DateTime.Now.ToString();
+            }
 
         }
 

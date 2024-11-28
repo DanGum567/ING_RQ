@@ -24,7 +24,7 @@ namespace ChillDeCojones
         {
             cargarCategorias();
             cargarAcciones();
-            ActualizarNumeroCategorias(); //Calcula el numero de las categorias y lo muestra
+            ActualizarNumeroCategorias();
         }
         private void cargarAcciones()
         {
@@ -48,7 +48,7 @@ namespace ChillDeCojones
         }
         private void cargarCategorias()
         {
-
+            ActualizarNumeroCategorias();
             var listaCategorias = from categorias in db.CategoriaProducto
                                   select new
                                   {
@@ -61,7 +61,7 @@ namespace ChillDeCojones
             dataGridViewCategoria.DataSource = listaCategorias.ToList();
 
 
-            
+
         }
 
         private void bInsertarCategoria_Click(object sender, EventArgs e)
@@ -121,10 +121,10 @@ namespace ChillDeCojones
 
                     ModificarCategoria.ShowDialog();
                 }
-                
+
             }
         }
-     
+
 
 
         private void EliminarCategoria(int idCategoria)
@@ -147,14 +147,12 @@ namespace ChillDeCojones
                 MessageBox.Show("Category was not found.", "Error");
             }
         }
-        
+
         private void ActualizarNumeroCategorias()
-        {/*
-            // Cuenta las categorias en la base de datos
-            int numeroCategorias= db.CategoriaProducto.Count();
-            // Actualiza el texto del Label
-            NumeroCategoriasLabel.Text = "Categories ("numeroCategorias.ToString() + ")";
-        */
+        {
+            int numeroCategorias = db.CategoriaProducto.Count();
+            categoriesLabel.Text = "Categories (" + numeroCategorias.ToString() + ")";
+
         }
     }
 }

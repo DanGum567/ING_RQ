@@ -82,7 +82,7 @@
             this.Controls.Add(this.tName);
             this.Name = "InsertarCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InsertarCategoria";
+            this.Text = "InsertCategory";
             this.ResumeLayout(false);
             this.PerformLayout();
 

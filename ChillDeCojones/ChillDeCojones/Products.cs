@@ -80,6 +80,7 @@ namespace ChillDeCojones
 
         private void MostrarListaProductos()
         {
+            ActualizarNumeroProductos();
             listaProductosDataGridView.Rows.Clear();
             listaProductosDataGridView.SuspendLayout();
 

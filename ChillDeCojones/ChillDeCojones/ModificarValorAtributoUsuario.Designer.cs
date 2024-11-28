@@ -82,7 +82,7 @@
             this.Controls.Add(this.TextBoxValue);
             this.Name = "ModificarValorAtributoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModificarValorAtributoUsuario";
+            this.Text = "ModifyValueAttribute";
             this.Load += new System.EventHandler(this.ModificarValorAtributoUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

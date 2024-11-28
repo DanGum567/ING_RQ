@@ -25,7 +25,6 @@ C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.csproj.AssemblyReference.cache
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Common.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Attributes.resources
-C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetails.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Products.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Properties.Resources.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.csproj.GenerateResource.cache
@@ -89,3 +88,9 @@ C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\C
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Help.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarValorAtributoUsuario.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetailsForm.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Help.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ImageAttributePanel.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarAtributo.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarCategoria.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarValorAtributoUsuario.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetailsForm.resources

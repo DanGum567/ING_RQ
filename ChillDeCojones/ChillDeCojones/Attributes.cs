@@ -23,6 +23,7 @@ namespace ChillDeCojones
         {
             try
             {
+                ActualizarNumeroAtributos();
                 var listaAtributos = from atributos in db.AtributoUsuario
                                      select new
                                      {
@@ -145,10 +146,8 @@ namespace ChillDeCojones
         }
         private void ActualizarNumeroAtributos()
         {
-            //// Cuenta las categorias en la base de datos
-            //int numeroAtributos = db.AtributoUsuario.Count();
-            //// Actualiza el texto del Label
-            //LabelUserAttributes.Text = "User Attributes ("numeroAtributos.ToString() + ")";
+            int numeroAtributos = db.AtributoUsuario.Count();
+            LabelUserAttributes.Text = "User Attributes (" + numeroAtributos.ToString() + ")";
 
         }
     }

@@ -105,7 +105,7 @@
             this.Controls.Add(this.tName);
             this.Name = "InsertarAtributo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InsertarAtributo";
+            this.Text = "InsertAttribute";
             this.Load += new System.EventHandler(this.InsertarAtributo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

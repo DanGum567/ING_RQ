@@ -82,7 +82,7 @@
             this.Controls.Add(this.tName);
             this.Name = "ModificarAtributo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModificarAtributo";
+            this.Text = "ModifyAttribute";
             this.Load += new System.EventHandler(this.ModificarAtributo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
