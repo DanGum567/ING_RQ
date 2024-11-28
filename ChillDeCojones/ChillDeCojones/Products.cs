@@ -235,7 +235,7 @@ namespace ChillDeCojones
             if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
             {
 
-                Common.ShowSubForm(new ProductDetails(null, true, db));
+                Common.ShowSubForm(new ProductDetailsForm(null, true, db));
             }
             else
             {
@@ -291,11 +291,11 @@ namespace ChillDeCojones
                 // Si se hizo clic en el botón "Editar"
                 else if (e.ColumnIndex == listaProductosDataGridView.Columns["Edit"].Index)
                 {
-                    Common.ShowSubForm(new ProductDetails(producto, true, db));
+                    Common.ShowSubForm(new ProductDetailsForm(producto, true, db));
                 }
                 else //MostrarDetallesProducto
                 {
-                    Common.ShowSubForm(new ProductDetails(producto, false, db));
+                    Common.ShowSubForm(new ProductDetailsForm(producto, false, db));
                 }
             }
             catch (Exception ex)

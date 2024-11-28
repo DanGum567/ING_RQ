@@ -1,6 +1,6 @@
 ﻿namespace ChillDeCojones
 {
-    partial class ProductDetails
+    partial class ProductDetailsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -299,7 +299,7 @@
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
             // 
-            // ProductDetails
+            // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -323,7 +323,6 @@
             this.Controls.Add(this.discardChangesButton);
             this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.thumbnailPictureBox);
-            this.Name = "ProductDetails";
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

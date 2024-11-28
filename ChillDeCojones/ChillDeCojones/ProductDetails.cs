@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace ChillDeCojones
 {
-    public partial class ProductDetails : Form
+    public partial class ProductDetailsForm : Form
     {
         grupo02DBEntities db;
         Producto producto;
         bool creandoProducto = false;
         bool modificandoProducto = false;
 
-        public ProductDetails(Producto producto, bool modificarProducto, grupo02DBEntities contexto)
+        public ProductDetailsForm(Producto producto, bool modificarProducto, grupo02DBEntities contexto)
         {
             InitializeComponent();
             this.db = contexto;
@@ -414,7 +414,7 @@ namespace ChillDeCojones
 
         private void EditProductButton_Click(object sender, EventArgs e)
         {
-            Common.ShowSubForm(new ProductDetails(producto, true, db));
+            Common.ShowSubForm(new ProductDetailsForm(producto, true, db));
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
