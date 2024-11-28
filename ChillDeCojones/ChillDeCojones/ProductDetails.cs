@@ -176,6 +176,7 @@ namespace ChillDeCojones
         {
 
             //Poner las categorias en el desplegable
+            //dCategoria.Rows.Clear();
             cbCategoria.DataSource = db.CategoriaProducto.ToList();
 
             //Poner las que tiene ese producto en el dataGridView con un boton eliminar
@@ -361,7 +362,10 @@ namespace ChillDeCojones
 
         private void dCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (!modificandoProducto)
+            {
+                return;
+            }
             if (e.ColumnIndex == dCategoria.Columns["Delete"].Index && e.RowIndex >= 0)
             {
                 int idCategoria = (int)dCategoria.Rows[e.RowIndex].Cells["ID"].Value;
@@ -370,7 +374,7 @@ namespace ChillDeCojones
                 categoriaEliminar.Producto.Remove(producto);
                 dCategoria.DataSource = producto.CategoriaProducto.ToList();
                 //db.SaveChanges();
-                //cargarCategorias();
+                CargarCategorias();
             }
         }
 
@@ -424,6 +428,10 @@ namespace ChillDeCojones
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (!modificandoProducto)
+            {
+                return;
+            }
             if (e.ColumnIndex == dataGridView1.Columns["Upload"].Index && e.RowIndex >= 0)
             {
                 int idAtributo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);

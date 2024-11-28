@@ -323,6 +323,7 @@
             this.Controls.Add(this.discardChangesButton);
             this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.thumbnailPictureBox);
+            
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
