@@ -24,6 +24,7 @@ namespace ChillDeCojones
         {
             cargarCategorias();
             cargarAcciones();
+            ActualizarNumeroCategorias(); //Calcula el numero de las categorias y lo muestra
         }
         private void cargarAcciones()
         {
@@ -128,8 +129,6 @@ namespace ChillDeCojones
 
         private void EliminarCategoria(int idCategoria)
         {
-
-
             var categoria = db.CategoriaProducto.First(x => x.ID.Equals(idCategoria));
             if (categoria != null)
             {
@@ -147,9 +146,15 @@ namespace ChillDeCojones
             {
                 MessageBox.Show("Category was not found.", "Error");
             }
-
         }
-
-
+        
+        private void ActualizarNumeroCategorias()
+        {/*
+            // Cuenta las categorias en la base de datos
+            int numeroCategorias= db.CategoriaProducto.Count();
+            // Actualiza el texto del Label
+            NumeroCategoriasLabel.Text = "Categories ("numeroCategorias.ToString() + ")";
+        */
+        }
     }
 }

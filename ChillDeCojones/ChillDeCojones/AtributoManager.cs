@@ -139,24 +139,19 @@ namespace ChillDeCojones
             ValorAtributoUsuario valorAtributoUsuario = contextoBaseDatos.ValorAtributoUsuario.Find(atributoUsuario.ID, dueñoAtributoUsuario.ID);
 
             TipoAtributoUsuario tipoAtributo = (TipoAtributoUsuario)Enum.Parse(typeof(TipoAtributoUsuario), atributoUsuario.TYPE);
-            if (valorAtributoUsuario == null)
+            if (valorAtributoUsuario != null)
             {
-                //Estamos insertando, el valor no existía antes
-                valorAtributoUsuario = new ValorAtributoUsuario
-                {
-                    AtributoUsuario = atributoUsuario,
-                    Producto = dueñoAtributoUsuario,
-                    VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo)
-                };
-
-                contextoBaseDatos.ValorAtributoUsuario.Add(valorAtributoUsuario);
+                contextoBaseDatos.ValorAtributoUsuario.Remove(valorAtributoUsuario);
+                contextoBaseDatos.SaveChanges();
             }
-            else
+            //Estamos insertando, el valor no existía antes
+            ValorAtributoUsuario nuevo = new ValorAtributoUsuario
             {
-                //Estamos actualizando, el valor si existía antes
-                valorAtributoUsuario.VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo);
-
-            }
+                AtributoUsuario = atributoUsuario,
+                Producto = dueñoAtributoUsuario,
+                VALOR = ConvertirAtributoABytes(tipoAtributo, valorAtributo)
+            };
+            contextoBaseDatos.ValorAtributoUsuario.Add(nuevo);
 
             // No llamamos SaveChanges aquí; lo dejamos al nivel superior.
         }
@@ -209,7 +204,7 @@ namespace ChillDeCojones
         public static bool ObtenerTrueSiUnAtributoEstaRepetidoEnLaBaseDeDatos(string valorAributoAComprobar, LinkedList<byte[]> listaBytesAtributo)
         {
             // Usaremos un HashSet para rastrear valores únicos y detectar duplicados.
-
+            int contadorVeces = 0;
             foreach (var item in listaBytesAtributo)
             {
                 // Convertir los bytes a string (asumiendo que los datos son cadenas).
@@ -220,7 +215,11 @@ namespace ChillDeCojones
                 string valor = Convertidor.BytesAString(item);
                 if (valor.Equals(valorAributoAComprobar, StringComparison.OrdinalIgnoreCase))
                 {
-                    return true;
+                    contadorVeces++;
+                    if (contadorVeces >= 2)
+                    {
+                        return true;
+                    }
                 }
             }
 

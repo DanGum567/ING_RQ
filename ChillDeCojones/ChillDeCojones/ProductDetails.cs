@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChillDeCojones.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,26 +67,26 @@ namespace ChillDeCojones
 
             CargarCategorias();
 
+            CargarListaAtributos(false);
             if (modificandoProducto)
             {
                 CargarBotonDeEliminarCategorias();
+                CargarLasVariasColumnasParaLosAtributosDeUsuarioQueSeHanHechoEnElProgramaYSeHanGuardadoEnLaBaseDeDatosCorrectamente();
+
             }
 
-
-            CargarListaAtributos(false);
         }
 
         private void CargarListaAtributos(bool modificar)
         {
-            dataGridView1.Columns.Add("Nombre", "Name");
-            dataGridView1.Columns.Add("Value", "ValorCustom");
+            dataGridView1.Rows.Clear(); // Borra las columnas para que no se vuelvan a crear otra vez
+            dataGridView1.Columns["ID"].Visible = false;
 
 
             foreach (AtributoUsuario atributoUsuario in db.AtributoUsuario.ToList())
             {
                 var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID); //tiene valor ya?
 
-                //dataGridView1.Rows.Add(atributoUsuario.NAME);
                 if (valor != null)
                 {
                     string tipo = atributoUsuario.TYPE;
@@ -109,21 +110,38 @@ namespace ChillDeCojones
                             break;
                     }
 
-                    DataGridViewImageTextCell celdaNueva = new DataGridViewImageTextCell(valorColumna);
-
-                    dataGridView1.Rows.Add(atributoUsuario.NAME, celdaNueva);
-
+                    if (valorColumna is Image imagenValor)
+                    {
+                        dataGridView1.Rows.Add(atributoUsuario.ID, atributoUsuario.NAME, "", imagenValor);
+                    }
+                    else if (valorColumna is string textoValor)
+                    {
+                        dataGridView1.Rows.Add(atributoUsuario.ID, atributoUsuario.NAME, textoValor, Resources.pixelpngblancomiau);
+                    }
 
                 }
                 else
                 {
-                    dataGridView1.Rows.Add(atributoUsuario.NAME, "(No attribute)");
-
+                    dataGridView1.Rows.Add(atributoUsuario.ID, atributoUsuario.NAME, "(No attribute)", Resources.pixelpngblancomiau);
                 }
-
-
-
             }
+        }
+
+        private void CargarLasVariasColumnasParaLosAtributosDeUsuarioQueSeHanHechoEnElProgramaYSeHanGuardadoEnLaBaseDeDatosCorrectamente()
+        {
+            DataGridViewButtonColumn btnUpload = new DataGridViewButtonColumn();
+            btnUpload.HeaderText = "Upload attribute";
+            btnUpload.Name = "Upload";
+            btnUpload.Text = "Upload attribute";
+            btnUpload.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnUpload);
+
+            DataGridViewButtonColumn btnDiscard = new DataGridViewButtonColumn();
+            btnDiscard.HeaderText = "Discard attribute";
+            btnDiscard.Name = "Discard";
+            btnDiscard.Text = "Discard attribute";
+            btnDiscard.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnDiscard);
         }
 
         private void CargarBotonDeEliminarCategorias()
@@ -137,16 +155,15 @@ namespace ChillDeCojones
                                   Name = categoria.NAME
                               }).ToList();
 
-            if ((categorias.Count > 0))
-            {
-                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-                btnEliminar.HeaderText = "Delete";
-                btnEliminar.Name = "Delete";
-                btnEliminar.Text = "🗑";
-                btnEliminar.UseColumnTextForButtonValue = true;
-                dCategoria.Columns.Add(btnEliminar);
-                //dCategoria.Columns["Delete"].Visible = false;
-            }
+
+            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            btnEliminar.HeaderText = "Delete";
+            btnEliminar.Name = "Delete";
+            btnEliminar.Text = "🗑";
+            btnEliminar.UseColumnTextForButtonValue = true;
+            dCategoria.Columns.Add(btnEliminar);
+            //dCategoria.Columns["Delete"].Visible = false;
+
 
         }
 
@@ -174,14 +191,14 @@ namespace ChillDeCojones
 
         private void uploadThumbnailButton_Click(object sender, EventArgs e)
         {
-            Image thumbnail = UploadImageFileDialog();
+            Image thumbnail = AbrirPestañaSeleccionarImagen();
             if (thumbnail != null)
             {
                 thumbnailPictureBox.Image = thumbnail;
             }
         }
 
-        private Image UploadImageFileDialog()
+        private Image AbrirPestañaSeleccionarImagen()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -285,9 +302,16 @@ namespace ChillDeCojones
             producto.LABEL = productLabelTextBox.Text;
 
             bool correcto = true;
-
+            //if (!skuTextBox.Text.Equals(producto.AtributoUsuario))
+            //{
             correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.SKU, producto, db, skuTextBox.Text);
+            //}
+            //if (!gtinTextBox.Text.Equals(producto.))
+            //{
             correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.GTIN, producto, db, gtinTextBox.Text);
+            //}
+
+
             correcto &= AtributoManager.AñadirOActualizarValorAtributoSistema(TipoAtributoSistema.thumbnail, producto, db, thumbnailPictureBox.Image);
 
             if (!correcto)
@@ -358,23 +382,6 @@ namespace ChillDeCojones
 
         private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            /*if (cbCategoria.SelectedItem != null)
-            {
-                //string nombreCategoria = cbCategoria.Items[cbCategoria.SelectedIndex].ToString();
-                //CategoriaProducto categoria = db.CategoriaProducto.First(cat => cat.NAME.Equals(nombreCategoria));
-                CategoriaProducto categoria = (CategoriaProducto)cbCategoria.Items[cbCategoria.SelectedIndex];
-
-                // Si el producto se encuentra, añades la categoría
-
-                // Añadir la categoría seleccionada al producto
-                if (!producto.CategoriaProducto.Contains(categoria))
-                {
-                    producto.CategoriaProducto.Add(categoria);
-                    categoria.Producto.Add(producto); // Asegúrate de que la relación se añade en ambos sentidos
-                    dCategoria.DataSource = producto.CategoriaProducto.ToList();
-
-                }
-            }*/
 
             if (cbCategoria.SelectedItem != null)
             {
@@ -408,6 +415,59 @@ namespace ChillDeCojones
         private void EditProductButton_Click(object sender, EventArgs e)
         {
             Common.ShowSubForm(new ProductDetails(producto, true, db));
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["Upload"].Index && e.RowIndex >= 0)
+            {
+                int idAtributo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                var atributoUsuario = db.AtributoUsuario.Find(idAtributo);
+                if (atributoUsuario.TYPE == "Image") //es imagen
+                {
+                    Image thumbnail = AbrirPestañaSeleccionarImagen();
+                    if (thumbnail != null)
+                    {
+                        AtributoManager.AñadirOActualizarValorAtributoUsuario(atributoUsuario.NAME, producto, db, thumbnail);
+                        ((DataGridViewImageCell)dataGridView1.Rows[e.RowIndex].Cells["Image1"]).Value = thumbnail;
+                        dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "";
+
+                    }
+                }
+                else //se puede escribir en un nuevo form
+                {
+                    //CUANDO EL TIPO NO ES UNA IMAGEN
+
+                    ModificarValorAtributoUsuario ModificarValorAtributoUsuario = new ModificarValorAtributoUsuario(atributoUsuario, producto, db);
+                    ModificarValorAtributoUsuario.AtributoModificado += (s, args) =>
+                    {
+                        CargarListaAtributos(modificandoProducto);
+                    };
+
+
+                    // Mostrar el formulario como modal
+                    ModificarValorAtributoUsuario.ShowDialog();
+                }
+
+            }
+
+            if (e.ColumnIndex == dataGridView1.Columns["Discard"].Index && e.RowIndex >= 0)
+            {
+                int idAtributo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                var atributoUsuario = db.AtributoUsuario.Find(idAtributo);
+                if (atributoUsuario.TYPE == "Image") //es imagen
+                {
+                    // Asigna la imagen directamente a la celda personalizada
+                    ((DataGridViewImageCell)dataGridView1.Rows[e.RowIndex].Cells["Image1"]).Value = Resources.pixelpngblancomiau;
+                    dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
+                }
+                else//no es imagen
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
+                }
+                var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID);
+                db.ValorAtributoUsuario.Remove(valor);
+            }
         }
     }
 }

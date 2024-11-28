@@ -44,6 +44,7 @@ namespace ChillDeCojones
         private void Attributes_Load(object sender, EventArgs e)
         {
             cargarAtributos();
+            ActualizarNumeroAtributos(); //Calcula el numero de atributos y lo muestra.
             dataGridViewAtributos.Columns["ID"].Visible = false; // Oculta la columna ID
 
             //Crear columna de eliminar
@@ -141,6 +142,14 @@ namespace ChillDeCojones
                 MessageBox.Show("Attribute not found.", "Error");
             }
             cargarAtributos(); // Actualiza la tabla después de eliminar
+        }
+        private void ActualizarNumeroAtributos()
+        {
+            //// Cuenta las categorias en la base de datos
+            //int numeroAtributos = db.AtributoUsuario.Count();
+            //// Actualiza el texto del Label
+            //LabelUserAttributes.Text = "User Attributes ("numeroAtributos.ToString() + ")";
+
         }
     }
 }

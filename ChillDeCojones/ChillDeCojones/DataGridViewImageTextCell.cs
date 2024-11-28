@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChillDeCojones.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,6 +8,11 @@ namespace ChillDeCojones
     public class DataGridViewImageTextCell : DataGridViewTextBoxCell
     {
         private object contenido; // Puede ser una imagen o un texto
+
+        public void PonerValor(object valor)
+        {
+            SetValue(0, valor);
+        }
 
         public DataGridViewImageTextCell(object contenido)
         {

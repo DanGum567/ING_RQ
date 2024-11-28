@@ -24,8 +24,10 @@ namespace ChillDeCojones
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CrearColumnasAtributosUsuario();
             MostrarListaProductos();
             cargarAccion();
+            ActualizarNumeroProductos(); //Carga el numero de productos actual en la BBDD
         }
 
         private void cargarAccion()
@@ -45,7 +47,7 @@ namespace ChillDeCojones
             btnEditar.UseColumnTextForButtonValue = true;
             listaProductosDataGridView.Columns.Add(btnEditar);
         }
-        private void columnasAtributosUsuario()
+        private void CrearColumnasAtributosUsuario()
         {
             foreach (AtributoUsuario atributoUsuario in db.AtributoUsuario.Take(3))
             {
@@ -54,16 +56,6 @@ namespace ChillDeCojones
 
                 switch (tipo)
                 {
-                    case "Date":
-                    case "Number":
-                    case "Text":
-                        nuevaColumna = new DataGridViewTextBoxColumn
-                        {
-                            HeaderText = atributoUsuario.NAME,
-                            Name = atributoUsuario.NAME
-                        };
-                        break;
-
                     case "Image":
                         nuevaColumna = new DataGridViewImageColumn
                         {
@@ -73,15 +65,15 @@ namespace ChillDeCojones
                         break;
 
                     default:
-                        Console.WriteLine($"UNKNOWN TYPE: {tipo}");
+                        nuevaColumna = new DataGridViewTextBoxColumn
+                        {
+                            HeaderText = atributoUsuario.NAME,
+                            Name = atributoUsuario.NAME
+                        };
                         break;
                 }
 
-                // Agregar la columna al DataGridView si se creó
-                if (nuevaColumna != null)
-                {
-                    listaProductosDataGridView.Columns.Add(nuevaColumna);
-                }
+                listaProductosDataGridView.Columns.Add(nuevaColumna);
 
             }
         }
@@ -90,10 +82,10 @@ namespace ChillDeCojones
         {
             listaProductosDataGridView.Rows.Clear();
             listaProductosDataGridView.SuspendLayout();
-            columnasAtributosUsuario();
+
 
             List<Producto> productos = db.Producto.ToList();
-
+            int fila = 0;
             foreach (Producto cargadoJustoAhora in productos)
             {
                 //Variables de Producto
@@ -159,13 +151,16 @@ namespace ChillDeCojones
                     gtin = Convertidor.BytesAString(gtinBytes);
                 }
 
+
                 listaProductosDataGridView.Rows.Add(
+                    fila,
                     thumbail,
                     idProducto,
                     sku,
                     label
                 );
 
+                listaProductosDataGridView.Columns["Fila"].Visible = false;
                 listaProductosDataGridView.Columns["ID"].Visible = false;
                 List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
                 foreach (AtributoUsuario atributoUsuario in tresPrimeros)
@@ -199,8 +194,10 @@ namespace ChillDeCojones
                         }
                         if (valorConvertido != null)
                         {
-                            listaProductosDataGridView.Rows.Add(valorConvertido);
+                            //MessageBox.Show("fila: " + fila.ToString());
+                            listaProductosDataGridView.Rows[fila].Cells[atributoUsuario.NAME].Value = valorConvertido;
                         }
+
                     }
                     else
                     {
@@ -225,6 +222,7 @@ namespace ChillDeCojones
                     }
 
                 }
+                fila++;
             }
 
             listaProductosDataGridView.ResumeLayout();
@@ -269,8 +267,6 @@ namespace ChillDeCojones
                 {
                     MessageBox.Show("Attribute wasn't found", "Error");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -306,12 +302,14 @@ namespace ChillDeCojones
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
-
         }
 
-        private void listaProductosDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ActualizarNumeroProductos()
         {
-
+            // Cuenta los productos en la base de datos
+            int numeroProductos = db.Producto.Count();
+            // Actualiza el texto del Label
+            NumeroProductosLabel.Text = numeroProductos.ToString() + " Products";
         }
     }
 }

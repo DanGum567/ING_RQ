@@ -122,6 +122,12 @@
     <Compile Include="ModificarCategoria.Designer.cs">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModificarValorAtributoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarValorAtributoUsuario.Designer.cs">
+      <DependentUpon>ModificarValorAtributoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlanSuscripcion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -196,6 +202,9 @@
     <EmbeddedResource Include="ModificarCategoria.resx">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModificarValorAtributoUsuario.resx">
+      <DependentUpon>ModificarValorAtributoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductDetails.resx">
       <DependentUpon>ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +271,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\pixelpngblancomiau.png" />
     <None Include="Resources\palomo.png" />
     <None Include="Resources\imagenPredeterminadaProducto.PNG" />
     <None Include="Resources\iconoCuenta.jpg" />

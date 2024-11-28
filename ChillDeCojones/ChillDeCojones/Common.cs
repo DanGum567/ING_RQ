@@ -63,6 +63,8 @@ namespace ChillDeCojones
 
         public static void ClearSubForm()
         {
+            instance.buffer.Clear(); // Reiniciar el buffer si se detecta la frase
+
             if (instance != null)
             {
                 instance.panel1.Controls.Clear();
