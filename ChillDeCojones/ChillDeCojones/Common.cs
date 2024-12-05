@@ -95,9 +95,7 @@ namespace ChillDeCojones
 
         private void toolStripDashboardButton_Click(object sender, EventArgs e)
         {
-            ClearSubForm();
-            string label = "Dashboard";
-            instance.labelRuta.Text = label;
+            ShowSubForm(new Dashboard());
         }
 
         private void toolStripAttributesButton_Click(object sender, EventArgs e)
@@ -108,6 +106,7 @@ namespace ChillDeCojones
         private void Common_Load(object sender, EventArgs e)
         {
             instance = this;
+            ShowSubForm(new Dashboard());
         }
 
 
@@ -119,7 +118,7 @@ namespace ChillDeCojones
         private void toolStripRelationshipsButton_Click(object sender, EventArgs e)
         {
             ShowSubForm(new Relaciones());
-            
+
         }
 
         private void toolStripHelpButton_Click(object sender, EventArgs e)
