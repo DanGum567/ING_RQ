@@ -118,7 +118,8 @@ namespace ChillDeCojones
 
         private void toolStripRelationshipsButton_Click(object sender, EventArgs e)
         {
-            //ShowSubForm(new Relaciones());
+            ShowSubForm(new Relaciones());
+            
         }
 
         private void toolStripHelpButton_Click(object sender, EventArgs e)

@@ -32,5 +32,7 @@ namespace ChillDeCojones
         public DbSet<ValorAtributoSistema> ValorAtributoSistema { get; set; }
         public DbSet<ValorAtributoUsuario> ValorAtributoUsuario { get; set; }
         public DbSet<PlanSuscripcion> PlanSuscripcion { get; set; }
+        public DbSet<Relacion> Relacion { get; set; }
+        public DbSet<RelacionProducto> RelacionProducto { get; set; }
     }
 }

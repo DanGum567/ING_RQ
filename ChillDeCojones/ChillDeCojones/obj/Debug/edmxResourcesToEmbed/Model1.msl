@@ -80,5 +80,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Relacion">
+      <EntityTypeMapping TypeName="grupo02DBModel.Relacion">
+        <MappingFragment StoreEntitySet="Relacion">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idRelacion" ColumnName="idRelacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelacionProducto">
+      <EntityTypeMapping TypeName="grupo02DBModel.RelacionProducto">
+        <MappingFragment StoreEntitySet="RelacionProducto">
+          <ScalarProperty Name="idRelacionProducto" ColumnName="idRelacionProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Producto_has_RelacionProducto" TypeName="grupo02DBModel.Producto_has_RelacionProducto" StoreEntitySet="Producto_has_RelacionProducto">
+      <EndProperty Name="RelacionProducto">
+        <ScalarProperty Name="idRelacionProducto" ColumnName="RelacionProducto_idRelacionProducto" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="ID" ColumnName="Producto_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

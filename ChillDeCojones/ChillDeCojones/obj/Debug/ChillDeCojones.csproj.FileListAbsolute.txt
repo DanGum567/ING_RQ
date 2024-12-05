@@ -97,3 +97,6 @@ D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Help
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ImageAttributePanel.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarValorAtributoUsuario.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetailsForm.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relaciones.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Dashboard.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarRelacion.resources

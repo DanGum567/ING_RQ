@@ -5,6 +5,11 @@ VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChillDeCojones", "ChillDeCojones\ChillDeCojones.csproj", "{291C8EC6-F7E4-4DA9-9BE2-5E53D917C965}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{36179137-7AC8-4C2D-B091-C2D761AAC118}"
+	ProjectSection(SolutionItems) = preProject
+		Relaciones.cs = Relaciones.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
