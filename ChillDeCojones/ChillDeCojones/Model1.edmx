@@ -61,27 +61,6 @@
           <Property Name="FECHAMODIFICACION" Type="datetime" Precision="0" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="Producto_has_RelacionProducto">
-          <Key>
-            <PropertyRef Name="Producto_ID" />
-            <PropertyRef Name="RelacionProducto_idRelacionProducto" />
-          </Key>
-          <Property Name="Producto_ID" Type="int" Nullable="false" />
-          <Property Name="RelacionProducto_idRelacionProducto" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Relacion">
-          <Key>
-            <PropertyRef Name="idRelacion" />
-          </Key>
-          <Property Name="idRelacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="RelacionProducto">
-          <Key>
-            <PropertyRef Name="idRelacionProducto" />
-          </Key>
-          <Property Name="idRelacionProducto" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="ValorAtributoSistema">
           <Key>
             <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
@@ -121,42 +100,6 @@
             </Principal>
             <Dependent Role="CategoriaProductoIntermedia">
               <PropertyRef Name="ID_CATEGORIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Producto_has_RelacionProducto_Producto1">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Producto_has_RelacionProducto" Type="Self.Producto_has_RelacionProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Producto_has_RelacionProducto">
-              <PropertyRef Name="Producto_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Producto_has_RelacionProducto_RelacionProducto1">
-          <End Role="RelacionProducto" Type="Self.RelacionProducto" Multiplicity="1" />
-          <End Role="Producto_has_RelacionProducto" Type="Self.Producto_has_RelacionProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RelacionProducto">
-              <PropertyRef Name="idRelacionProducto" />
-            </Principal>
-            <Dependent Role="Producto_has_RelacionProducto">
-              <PropertyRef Name="RelacionProducto_idRelacionProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ID_producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="RelacionProducto" Type="Self.RelacionProducto" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RelacionProducto">
-              <PropertyRef Name="idRelacionProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -215,9 +158,6 @@
           <EntitySet Name="CategoriaProductoIntermedia" EntityType="Self.CategoriaProductoIntermedia" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="PlanSuscripcion" EntityType="Self.PlanSuscripcion" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="grupo02DB" store:Type="Tables" />
-          <EntitySet Name="Producto_has_RelacionProducto" EntityType="Self.Producto_has_RelacionProducto" Schema="grupo02DB" store:Type="Tables" />
-          <EntitySet Name="Relacion" EntityType="Self.Relacion" Schema="grupo02DB" store:Type="Tables" />
-          <EntitySet Name="RelacionProducto" EntityType="Self.RelacionProducto" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="ValorAtributoSistema" EntityType="Self.ValorAtributoSistema" Schema="grupo02DB" store:Type="Tables" />
           <EntitySet Name="ValorAtributoUsuario" EntityType="Self.ValorAtributoUsuario" Schema="grupo02DB" store:Type="Tables" />
           <AssociationSet Name="CategoriaProductoIntermedia_ibfk_1" Association="Self.CategoriaProductoIntermedia_ibfk_1">
@@ -227,18 +167,6 @@
           <AssociationSet Name="CategoriaProductoIntermedia_ibfk_2" Association="Self.CategoriaProductoIntermedia_ibfk_2">
             <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
             <End Role="CategoriaProductoIntermedia" EntitySet="CategoriaProductoIntermedia" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Producto_has_RelacionProducto_Producto1" Association="Self.fk_Producto_has_RelacionProducto_Producto1">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Producto_has_RelacionProducto" EntitySet="Producto_has_RelacionProducto" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Producto_has_RelacionProducto_RelacionProducto1" Association="Self.fk_Producto_has_RelacionProducto_RelacionProducto1">
-            <End Role="RelacionProducto" EntitySet="RelacionProducto" />
-            <End Role="Producto_has_RelacionProducto" EntitySet="Producto_has_RelacionProducto" />
-          </AssociationSet>
-          <AssociationSet Name="ID_producto" Association="Self.ID_producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="RelacionProducto" EntitySet="RelacionProducto" />
           </AssociationSet>
           <AssociationSet Name="ValorAtributoSistema_ibfk_1" Association="Self.ValorAtributoSistema_ibfk_1">
             <End Role="AtributoSistema" EntitySet="AtributoSistema" />
@@ -290,14 +218,14 @@
           </AssociationSet>
           <EntitySet Name="PlanSuscripcion" EntityType="grupo02DBModel.PlanSuscripcion" />
           <EntitySet Name="Relacion" EntityType="grupo02DBModel.Relacion" />
-          <EntitySet Name="RelacionProducto" EntityType="grupo02DBModel.RelacionProducto" />
-          <AssociationSet Name="ID_producto" Association="grupo02DBModel.ID_producto">
+          <EntitySet Name="ProductoRelacionIntermedia" EntityType="grupo02DBModel.ProductoRelacionIntermedia" />
+          <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto1" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1">
             <End Role="Producto" EntitySet="Producto" />
-            <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+            <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
           </AssociationSet>
-          <AssociationSet Name="Producto_has_RelacionProducto" Association="grupo02DBModel.Producto_has_RelacionProducto">
+          <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto2" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2">
             <End Role="Producto" EntitySet="Producto" />
-            <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+            <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AtributoSistema">
@@ -337,8 +265,8 @@
           <NavigationProperty Name="ValorAtributoSistema" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_2" FromRole="Producto" ToRole="ValorAtributoSistema" />
           <NavigationProperty Name="ValorAtributoUsuario" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_2" FromRole="Producto" ToRole="ValorAtributoUsuario" />
           <NavigationProperty Name="CategoriaProducto" Relationship="grupo02DBModel.CategoriaProductoIntermedia" FromRole="Producto" ToRole="CategoriaProducto" />
-          <NavigationProperty Name="RelacionProducto" Relationship="grupo02DBModel.ID_producto" FromRole="Producto" ToRole="RelacionProducto" />
-          <NavigationProperty Name="RelacionProducto1" Relationship="grupo02DBModel.Producto_has_RelacionProducto" FromRole="Producto" ToRole="RelacionProducto" />
+          <NavigationProperty Name="ProductoRelacionIntermedia" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
+          <NavigationProperty Name="ProductoRelacionIntermedia1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
         </EntityType>
         <EntityType Name="ValorAtributoSistema">
           <Key>
@@ -437,29 +365,41 @@
           <Property Name="idRelacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="RelacionProducto">
+        <EntityType Name="ProductoRelacionIntermedia">
           <Key>
+            <PropertyRef Name="idProducto1" />
             <PropertyRef Name="idRelacionProducto" />
+            <PropertyRef Name="idProducto2" />
           </Key>
+          <Property Name="idProducto1" Type="Int32" Nullable="false" />
           <Property Name="idRelacionProducto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="grupo02DBModel.ID_producto" FromRole="RelacionProducto" ToRole="Producto" />
-          <NavigationProperty Name="Producto1" Relationship="grupo02DBModel.Producto_has_RelacionProducto" FromRole="RelacionProducto" ToRole="Producto" />
+          <Property Name="idProducto2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
+          <NavigationProperty Name="Producto1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
         </EntityType>
-        <Association Name="ID_producto">
+        <Association Name="fk_ProductoRelacionIntermedia_Producto1">
           <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
-          <End Type="grupo02DBModel.RelacionProducto" Role="RelacionProducto" Multiplicity="0..1" />
+          <End Type="grupo02DBModel.ProductoRelacionIntermedia" Role="ProductoRelacionIntermedia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="RelacionProducto">
-              <PropertyRef Name="idRelacionProducto" />
+            <Dependent Role="ProductoRelacionIntermedia">
+              <PropertyRef Name="idProducto1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Producto_has_RelacionProducto">
-          <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="*" />
-          <End Type="grupo02DBModel.RelacionProducto" Role="RelacionProducto" Multiplicity="*" />
+        <Association Name="fk_ProductoRelacionIntermedia_Producto2">
+          <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="grupo02DBModel.ProductoRelacionIntermedia" Role="ProductoRelacionIntermedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductoRelacionIntermedia">
+              <PropertyRef Name="idProducto2" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -546,30 +486,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Relacion">
-            <EntityTypeMapping TypeName="grupo02DBModel.Relacion">
-              <MappingFragment StoreEntitySet="Relacion">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idRelacion" ColumnName="idRelacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RelacionProducto">
-            <EntityTypeMapping TypeName="grupo02DBModel.RelacionProducto">
-              <MappingFragment StoreEntitySet="RelacionProducto">
-                <ScalarProperty Name="idRelacionProducto" ColumnName="idRelacionProducto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Producto_has_RelacionProducto" TypeName="grupo02DBModel.Producto_has_RelacionProducto" StoreEntitySet="Producto_has_RelacionProducto">
-            <EndProperty Name="RelacionProducto">
-              <ScalarProperty Name="idRelacionProducto" ColumnName="RelacionProducto_idRelacionProducto" />
-            </EndProperty>
-            <EndProperty Name="Producto">
-              <ScalarProperty Name="ID" ColumnName="Producto_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

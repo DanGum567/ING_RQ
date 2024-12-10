@@ -20,21 +20,23 @@ namespace ChillDeCojones
         public Dashboard()
         {
             InitializeComponent();
+        }
 
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
             informeDeLaCuenta = new InformeDeLaCuenta
             {
-                Nombre = "ChillDeCojones",
-                FechaCreacion = DateTime.Now,
-                NumeroProductos = db.Producto.Count(),
-                NumeroCategorias = db.CategoriaProducto.Count(),
-                NumeroAtributos = db.AtributoUsuario.Count(),
-                NumeroRelaciones = db.Relacion.Count()
+                account_name = "ChillDeCojones",
+                creation_date = DateTime.Now,
+                num_products = db.Producto.Count(),
+                num_categories = db.CategoriaProducto.Count(),
+                num_attributes = db.AtributoUsuario.Count(),
+                num_relationships = db.Relacion.Count()
             };
-
-            numeroProductos.Text = informeDeLaCuenta.NumeroProductos.ToString();
-            numeroCategorias.Text = informeDeLaCuenta.NumeroCategorias.ToString();
-            numeroAtributos.Text = informeDeLaCuenta.NumeroAtributos.ToString();
-            numeroRelaciones.Text = informeDeLaCuenta.NumeroRelaciones.ToString();
+            numeroProductos.Text = informeDeLaCuenta.num_products.ToString();
+            numeroCategorias.Text = informeDeLaCuenta.num_categories.ToString();
+            numeroAtributos.Text = informeDeLaCuenta.num_attributes.ToString();
+            numeroRelaciones.Text = informeDeLaCuenta.num_relationships.ToString();
         }
 
         private void bExport_Click(object sender, EventArgs e)
@@ -61,5 +63,6 @@ namespace ChillDeCojones
                 MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
     }
 }

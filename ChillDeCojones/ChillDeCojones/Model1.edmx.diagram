@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
- <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams>
-      <Diagram DiagramId="c1a3de10fa334665ae6b7a1331688985" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="grupo02DBModel.AtributoSistema" Width="1.5" PointX="0.75" PointY="6.875" />
-        <EntityTypeShape EntityType="grupo02DBModel.AtributoUsuario" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="grupo02DBModel.CategoriaProducto" Width="3.375" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="grupo02DBModel.Producto" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="grupo02DBModel.ValorAtributoSistema" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="grupo02DBModel.ValorAtributoUsuario" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_1" />
-        <AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_1" />
-        <AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_2" />
-        <AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_2" />
-        <AssociationConnector Association="grupo02DBModel.CategoriaProductoIntermedia" />
-        <EntityTypeShape EntityType="grupo02DBModel.PlanSuscripcion" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="grupo02DBModel.Relacion" Width="1.5" PointX="5.375" PointY="4.75" />
-        <EntityTypeShape EntityType="grupo02DBModel.RelacionProducto" Width="1.5" PointX="3" PointY="12.125" />
-        <AssociationConnector Association="grupo02DBModel.ID_producto" />
-        <AssociationConnector Association="grupo02DBModel.Producto_has_RelacionProducto" />
-      </Diagram>
-    </edmx:Diagrams>
-  </edmx:Designer>
+	<!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+	<edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+		<!-- Diagram content (shape and connector positions) -->
+		<edmx:Diagrams>
+			<Diagram DiagramId="c1a3de10fa334665ae6b7a1331688985" Name="Diagram1" ZoomLevel="31">
+				<EntityTypeShape EntityType="grupo02DBModel.AtributoSistema" Width="1.5" PointX="0.75" PointY="6.875" />
+				<EntityTypeShape EntityType="grupo02DBModel.AtributoUsuario" Width="1.5" PointX="0.75" PointY="0.875" />
+				<EntityTypeShape EntityType="grupo02DBModel.CategoriaProducto" Width="3.375" PointX="10" PointY="8" IsExpanded="true" />
+				<EntityTypeShape EntityType="grupo02DBModel.Producto" Width="1.5" PointX="0.75" PointY="3.5" />
+				<EntityTypeShape EntityType="grupo02DBModel.ValorAtributoSistema" Width="1.5" PointX="3" PointY="3.75" />
+				<EntityTypeShape EntityType="grupo02DBModel.ValorAtributoUsuario" Width="1.5" PointX="3" PointY="0.75" />
+				<AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_1" />
+				<AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_1" />
+				<AssociationConnector Association="grupo02DBModel.ValorAtributoSistema_ibfk_2" />
+				<AssociationConnector Association="grupo02DBModel.ValorAtributoUsuario_ibfk_2" />
+				<AssociationConnector Association="grupo02DBModel.CategoriaProductoIntermedia" />
+				<EntityTypeShape EntityType="grupo02DBModel.PlanSuscripcion" Width="1.5" PointX="5.375" PointY="0.75" />
+				<EntityTypeShape EntityType="grupo02DBModel.Relacion" Width="1.5" PointX="7.875" PointY="3.875" />
+				<EntityTypeShape EntityType="grupo02DBModel.ProductoRelacionIntermedia" Width="3" PointX="10.375" PointY="5" />
+				<AssociationConnector Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" />
+				<AssociationConnector Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" />
+			</Diagram>
+		</edmx:Diagrams>
+	</edmx:Designer>
 </edmx:Edmx>

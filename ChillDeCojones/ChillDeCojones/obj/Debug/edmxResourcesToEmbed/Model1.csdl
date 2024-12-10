@@ -29,14 +29,14 @@
     </AssociationSet>
     <EntitySet Name="PlanSuscripcion" EntityType="grupo02DBModel.PlanSuscripcion" />
     <EntitySet Name="Relacion" EntityType="grupo02DBModel.Relacion" />
-    <EntitySet Name="RelacionProducto" EntityType="grupo02DBModel.RelacionProducto" />
-    <AssociationSet Name="ID_producto" Association="grupo02DBModel.ID_producto">
+    <EntitySet Name="ProductoRelacionIntermedia" EntityType="grupo02DBModel.ProductoRelacionIntermedia" />
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto1" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1">
       <End Role="Producto" EntitySet="Producto" />
-      <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
     </AssociationSet>
-    <AssociationSet Name="Producto_has_RelacionProducto" Association="grupo02DBModel.Producto_has_RelacionProducto">
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto2" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2">
       <End Role="Producto" EntitySet="Producto" />
-      <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AtributoSistema">
@@ -76,8 +76,8 @@
     <NavigationProperty Name="ValorAtributoSistema" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_2" FromRole="Producto" ToRole="ValorAtributoSistema" />
     <NavigationProperty Name="ValorAtributoUsuario" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_2" FromRole="Producto" ToRole="ValorAtributoUsuario" />
     <NavigationProperty Name="CategoriaProducto" Relationship="grupo02DBModel.CategoriaProductoIntermedia" FromRole="Producto" ToRole="CategoriaProducto" />
-    <NavigationProperty Name="RelacionProducto" Relationship="grupo02DBModel.ID_producto" FromRole="Producto" ToRole="RelacionProducto" />
-    <NavigationProperty Name="RelacionProducto1" Relationship="grupo02DBModel.Producto_has_RelacionProducto" FromRole="Producto" ToRole="RelacionProducto" />
+    <NavigationProperty Name="ProductoRelacionIntermedia" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
+    <NavigationProperty Name="ProductoRelacionIntermedia1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
   </EntityType>
   <EntityType Name="ValorAtributoSistema">
     <Key>
@@ -176,28 +176,40 @@
     <Property Name="idRelacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="RelacionProducto">
+  <EntityType Name="ProductoRelacionIntermedia">
     <Key>
+      <PropertyRef Name="idProducto1" />
       <PropertyRef Name="idRelacionProducto" />
+      <PropertyRef Name="idProducto2" />
     </Key>
+    <Property Name="idProducto1" Type="Int32" Nullable="false" />
     <Property Name="idRelacionProducto" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Producto" Relationship="grupo02DBModel.ID_producto" FromRole="RelacionProducto" ToRole="Producto" />
-    <NavigationProperty Name="Producto1" Relationship="grupo02DBModel.Producto_has_RelacionProducto" FromRole="RelacionProducto" ToRole="Producto" />
+    <Property Name="idProducto2" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
+    <NavigationProperty Name="Producto1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
   </EntityType>
-  <Association Name="ID_producto">
+  <Association Name="fk_ProductoRelacionIntermedia_Producto1">
     <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
-    <End Type="grupo02DBModel.RelacionProducto" Role="RelacionProducto" Multiplicity="0..1" />
+    <End Type="grupo02DBModel.ProductoRelacionIntermedia" Role="ProductoRelacionIntermedia" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Producto">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="RelacionProducto">
-        <PropertyRef Name="idRelacionProducto" />
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idProducto1" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Producto_has_RelacionProducto">
-    <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="*" />
-    <End Type="grupo02DBModel.RelacionProducto" Role="RelacionProducto" Multiplicity="*" />
+  <Association Name="fk_ProductoRelacionIntermedia_Producto2">
+    <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
+    <End Type="grupo02DBModel.ProductoRelacionIntermedia" Role="ProductoRelacionIntermedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idProducto2" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

@@ -12,16 +12,13 @@ namespace ChillDeCojones
     using System;
     using System.Collections.Generic;
     
-    public partial class RelacionProducto
+    public partial class ProductoRelacionIntermedia
     {
-        public RelacionProducto()
-        {
-            this.Producto1 = new HashSet<Producto>();
-        }
-    
+        public int idProducto1 { get; set; }
         public int idRelacionProducto { get; set; }
+        public int idProducto2 { get; set; }
     
         public virtual Producto Producto { get; set; }
-        public virtual ICollection<Producto> Producto1 { get; set; }
+        public virtual Producto Producto1 { get; set; }
     }
 }

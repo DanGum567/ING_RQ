@@ -33,6 +33,6 @@ namespace ChillDeCojones
         public DbSet<ValorAtributoUsuario> ValorAtributoUsuario { get; set; }
         public DbSet<PlanSuscripcion> PlanSuscripcion { get; set; }
         public DbSet<Relacion> Relacion { get; set; }
-        public DbSet<RelacionProducto> RelacionProducto { get; set; }
+        public DbSet<ProductoRelacionIntermedia> ProductoRelacionIntermedia { get; set; }
     }
 }

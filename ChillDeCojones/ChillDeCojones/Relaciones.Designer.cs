@@ -43,7 +43,6 @@
             this.labelNumeroRelaciones.Size = new System.Drawing.Size(194, 32);
             this.labelNumeroRelaciones.TabIndex = 0;
             this.labelNumeroRelaciones.Text = " Relationships";
-            this.labelNumeroRelaciones.Click += new System.EventHandler(this.label1_Click);
             // 
             // dataGridViewRelaciones
             // 
@@ -54,7 +53,7 @@
             this.dataGridViewRelaciones.RowTemplate.Height = 24;
             this.dataGridViewRelaciones.Size = new System.Drawing.Size(1131, 400);
             this.dataGridViewRelaciones.TabIndex = 1;
-            this.dataGridViewRelaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridViewRelaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRelaciones_CellClick);
             // 
             // Relaciones
             // 
@@ -65,6 +64,7 @@
             this.Controls.Add(this.labelNumeroRelaciones);
             this.Name = "Relaciones";
             this.Text = "Relaciones";
+            this.Load += new System.EventHandler(this.Relaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRelaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

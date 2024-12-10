@@ -37,6 +37,10 @@
             this.toolStripAttributesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripRelationshipsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelRuta = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,10 +64,15 @@
             this.toolStripCategoriesButton,
             this.toolStripAttributesButton,
             this.toolStripRelationshipsButton,
-            this.toolStripHelpButton});
+            this.toolStripHelpButton,
+            this.toolStripButton1,
+            this.toolStripLabel1,
+            this.toolStripButton2,
+            this.toolStripTextBox1});
             this.toolStrip1.Location = new System.Drawing.Point(585, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(748, 32);
+            this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -150,6 +159,28 @@
             this.toolStripHelpButton.Text = "Help";
             this.toolStripHelpButton.Click += new System.EventHandler(this.toolStripHelpButton_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 4);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(0, 0);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 4);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
+            this.toolStripTextBox1.Text = "Integration";
+            // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 54);
@@ -215,5 +246,9 @@
         private System.Windows.Forms.ToolStripButton toolStripCategoriesButton;
         private System.Windows.Forms.Label labelRuta;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }

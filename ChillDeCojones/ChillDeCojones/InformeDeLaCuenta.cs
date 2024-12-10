@@ -8,11 +8,11 @@ namespace ChillDeCojones
 {
     internal class InformeDeLaCuenta
     {
-        public string Nombre { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public int NumeroProductos { get; set; }
-        public int NumeroCategorias { get; set; }
-        public int NumeroAtributos { get; set; }
-        public int NumeroRelaciones { get; set; }
+        public string account_name { get; set; }
+        public DateTime creation_date { get; set; }
+        public int num_products { get; set; }
+        public int num_categories { get; set; }
+        public int num_attributes { get; set; }
+        public int num_relationships { get; set; }
     }
 }

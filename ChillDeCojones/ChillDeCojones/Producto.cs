@@ -19,7 +19,8 @@ namespace ChillDeCojones
             this.ValorAtributoSistema = new HashSet<ValorAtributoSistema>();
             this.ValorAtributoUsuario = new HashSet<ValorAtributoUsuario>();
             this.CategoriaProducto = new HashSet<CategoriaProducto>();
-            this.RelacionProducto1 = new HashSet<RelacionProducto>();
+            this.ProductoRelacionIntermedia = new HashSet<ProductoRelacionIntermedia>();
+            this.ProductoRelacionIntermedia1 = new HashSet<ProductoRelacionIntermedia>();
         }
     
         public string LABEL { get; set; }
@@ -30,7 +31,7 @@ namespace ChillDeCojones
         public virtual ICollection<ValorAtributoSistema> ValorAtributoSistema { get; set; }
         public virtual ICollection<ValorAtributoUsuario> ValorAtributoUsuario { get; set; }
         public virtual ICollection<CategoriaProducto> CategoriaProducto { get; set; }
-        public virtual RelacionProducto RelacionProducto { get; set; }
-        public virtual ICollection<RelacionProducto> RelacionProducto1 { get; set; }
+        public virtual ICollection<ProductoRelacionIntermedia> ProductoRelacionIntermedia { get; set; }
+        public virtual ICollection<ProductoRelacionIntermedia> ProductoRelacionIntermedia1 { get; set; }
     }
 }
