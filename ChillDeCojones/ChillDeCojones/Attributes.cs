@@ -67,7 +67,7 @@ namespace ChillDeCojones
 
         private void bInsertar_Click(object sender, EventArgs e)
         {
-            if (db.AtributoUsuario.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Atributos)
+            if (db.AtributoUsuario.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).Atributos)
             {
                 InsertarAtributo InsertarAtributo = new InsertarAtributo();
                 InsertarAtributo.AtributoInsertado += (s, args) =>

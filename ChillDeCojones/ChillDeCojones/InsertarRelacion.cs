@@ -115,7 +115,6 @@ namespace ChillDeCojones
                 MessageBox.Show("Error trying to add the category: " + ex.Message);
             }
             RelacionInsertada?.Invoke(this, EventArgs.Empty);
-            // El formulario se cierra despues de aceptar
         }
 
         private void bCancel_Click(object sender, EventArgs e)

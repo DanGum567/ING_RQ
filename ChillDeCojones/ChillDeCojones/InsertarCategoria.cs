@@ -57,7 +57,6 @@ namespace ChillDeCojones
             }
 
             CategoriaInsertada?.Invoke(this, EventArgs.Empty);
-            // El formulario se cierra despues de aceptar
         }
         private void bCancelar_Click(object sender, EventArgs e)
         {

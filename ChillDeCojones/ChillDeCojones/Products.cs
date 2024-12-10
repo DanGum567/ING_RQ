@@ -233,7 +233,7 @@ namespace ChillDeCojones
         private void newProductButton_Click(object sender, EventArgs e)
         {
 
-            if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).Productos)
+            if (db.Producto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).Productos)
             {
 
                 Common.ShowSubForm(new ProductDetailsForm(null, true, db));

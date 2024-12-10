@@ -30,6 +30,7 @@
         {
             this.labelNumeroRelaciones = new System.Windows.Forms.Label();
             this.dataGridViewRelaciones = new System.Windows.Forms.DataGridView();
+            this.bInsertar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRelaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,11 +56,23 @@
             this.dataGridViewRelaciones.TabIndex = 1;
             this.dataGridViewRelaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRelaciones_CellClick);
             // 
+            // bInsertar
+            // 
+            this.bInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bInsertar.Location = new System.Drawing.Point(1112, 150);
+            this.bInsertar.Name = "bInsertar";
+            this.bInsertar.Size = new System.Drawing.Size(182, 37);
+            this.bInsertar.TabIndex = 3;
+            this.bInsertar.Text = "➕ New attribute";
+            this.bInsertar.UseVisualStyleBackColor = true;
+            this.bInsertar.Click += new System.EventHandler(this.bInsertar_Click);
+            // 
             // Relaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.bInsertar);
             this.Controls.Add(this.dataGridViewRelaciones);
             this.Controls.Add(this.labelNumeroRelaciones);
             this.Name = "Relaciones";
@@ -75,5 +88,6 @@
 
         private System.Windows.Forms.Label labelNumeroRelaciones;
         private System.Windows.Forms.DataGridView dataGridViewRelaciones;
+        private System.Windows.Forms.Button bInsertar;
     }
 }

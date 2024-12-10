@@ -67,7 +67,7 @@ namespace ChillDeCojones
         private void bInsertarCategoria_Click(object sender, EventArgs e)
         {
 
-            if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.id == 1).CategoriasProducto)
+            if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).CategoriasProducto)
             {
                 InsertarCategoria InsertarCategoria = new InsertarCategoria();
                 InsertarCategoria.CategoriaInsertada += (s, args) =>

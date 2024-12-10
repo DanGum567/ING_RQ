@@ -81,5 +81,25 @@ namespace ChillDeCojones
         {
 
         }
+
+        private void bInsertar_Click(object sender, EventArgs e)
+        {
+            if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).Relaciones)
+            {
+                InsertarRelacion InsertarRelacion = new InsertarRelacion();
+                InsertarRelacion.RelacionInsertada += (s, args) =>
+                {
+                    cargarRelaciones();
+                };
+
+
+                InsertarRelacion.ShowDialog();
+            }
+            else
+            {
+
+                MessageBox.Show("You have reached the maximum number of categories allowed");
+            }
+        }
     }
 }
