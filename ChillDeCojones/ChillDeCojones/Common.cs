@@ -126,6 +126,9 @@ namespace ChillDeCojones
             ShowSubForm(new Help(false));
         }
 
-        
+        private void toolStripIntegrationsButton_Click(object sender, EventArgs e)
+        {
+            ShowSubForm(new Integracion());
+        }
     }
 }

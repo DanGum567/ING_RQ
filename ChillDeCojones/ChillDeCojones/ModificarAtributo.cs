@@ -12,7 +12,7 @@ namespace ChillDeCojones
 {
     public partial class ModificarAtributo : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
         AtributoUsuario atributo;
         public event EventHandler AtributoModificado;
         public ModificarAtributo(int idAtributo)
@@ -29,7 +29,7 @@ namespace ChillDeCojones
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrWhiteSpace(tName.Text))
             {
                 MessageBox.Show("ERROR: The name cannot be empty.");

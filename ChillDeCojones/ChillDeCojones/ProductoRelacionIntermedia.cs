@@ -20,5 +20,6 @@ namespace ChillDeCojones
     
         public virtual Producto Producto { get; set; }
         public virtual Producto Producto1 { get; set; }
+        public virtual RelacionProducto RelacionProducto { get; set; }
     }
 }

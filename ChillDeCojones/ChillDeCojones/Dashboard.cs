@@ -14,7 +14,7 @@ namespace ChillDeCojones
 {
     public partial class Dashboard : Form
     {
-        private grupo02DBEntities db = new grupo02DBEntities();
+        private grupo02DBEntities1 db = new grupo02DBEntities1();
         private InformeDeLaCuenta informeDeLaCuenta;
 
         public Dashboard()
@@ -31,7 +31,7 @@ namespace ChillDeCojones
                 num_products = db.Producto.Count(),
                 num_categories = db.CategoriaProducto.Count(),
                 num_attributes = db.AtributoUsuario.Count(),
-                num_relationships = db.Relacion.Count()
+                //num_relationships = db.Relacion.Count()
             };
             numeroProductos.Text = informeDeLaCuenta.num_products.ToString();
             numeroCategorias.Text = informeDeLaCuenta.num_categories.ToString();

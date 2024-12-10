@@ -1,164 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="grupo02DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="grupo02DBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AtributoSistema" EntityType="grupo02DBModel.AtributoSistema" />
-    <EntitySet Name="AtributoUsuario" EntityType="grupo02DBModel.AtributoUsuario" />
-    <EntitySet Name="CategoriaProducto" EntityType="grupo02DBModel.CategoriaProducto" />
-    <EntitySet Name="Producto" EntityType="grupo02DBModel.Producto" />
-    <EntitySet Name="ValorAtributoSistema" EntityType="grupo02DBModel.ValorAtributoSistema" />
-    <EntitySet Name="ValorAtributoUsuario" EntityType="grupo02DBModel.ValorAtributoUsuario" />
-    <AssociationSet Name="ValorAtributoSistema_ibfk_1" Association="grupo02DBModel.ValorAtributoSistema_ibfk_1">
-      <End Role="AtributoSistema" EntitySet="AtributoSistema" />
-      <End Role="ValorAtributoSistema" EntitySet="ValorAtributoSistema" />
-    </AssociationSet>
-    <AssociationSet Name="ValorAtributoUsuario_ibfk_1" Association="grupo02DBModel.ValorAtributoUsuario_ibfk_1">
-      <End Role="AtributoUsuario" EntitySet="AtributoUsuario" />
-      <End Role="ValorAtributoUsuario" EntitySet="ValorAtributoUsuario" />
-    </AssociationSet>
-    <AssociationSet Name="ValorAtributoSistema_ibfk_2" Association="grupo02DBModel.ValorAtributoSistema_ibfk_2">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="ValorAtributoSistema" EntitySet="ValorAtributoSistema" />
-    </AssociationSet>
-    <AssociationSet Name="ValorAtributoUsuario_ibfk_2" Association="grupo02DBModel.ValorAtributoUsuario_ibfk_2">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="ValorAtributoUsuario" EntitySet="ValorAtributoUsuario" />
-    </AssociationSet>
-    <AssociationSet Name="CategoriaProductoIntermedia" Association="grupo02DBModel.CategoriaProductoIntermedia">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
-    </AssociationSet>
-    <EntitySet Name="PlanSuscripcion" EntityType="grupo02DBModel.PlanSuscripcion" />
-    <EntitySet Name="Relacion" EntityType="grupo02DBModel.Relacion" />
-    <EntitySet Name="ProductoRelacionIntermedia" EntityType="grupo02DBModel.ProductoRelacionIntermedia" />
-    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto1" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
-    </AssociationSet>
-    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto2" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
-    </AssociationSet>
-  </EntityContainer>
   <EntityType Name="AtributoSistema">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="ValorAtributoSistema" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_1" FromRole="AtributoSistema" ToRole="ValorAtributoSistema" />
+    <NavigationProperty Name="ValorAtributoSistema" Relationship="Self.ValorAtributoSistema_ibfk_1" FromRole="AtributoSistema" ToRole="ValorAtributoSistema" />
   </EntityType>
   <EntityType Name="AtributoUsuario">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="ValorAtributoUsuario" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_1" FromRole="AtributoUsuario" ToRole="ValorAtributoUsuario" />
+    <NavigationProperty Name="ValorAtributoUsuario" Relationship="Self.ValorAtributoUsuario_ibfk_1" FromRole="AtributoUsuario" ToRole="ValorAtributoUsuario" />
   </EntityType>
   <EntityType Name="CategoriaProducto">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Producto" Relationship="grupo02DBModel.CategoriaProductoIntermedia" FromRole="CategoriaProducto" ToRole="Producto" />
+    <NavigationProperty Name="Producto" Relationship="Self.CategoriaProductoIntermedia" FromRole="CategoriaProducto" ToRole="Producto" />
   </EntityType>
-  <EntityType Name="Producto">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="LABEL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FECHACREACION" Type="DateTime" />
-    <Property Name="FECHAMODIFICACION" Type="DateTime" />
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="ValorAtributoSistema" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_2" FromRole="Producto" ToRole="ValorAtributoSistema" />
-    <NavigationProperty Name="ValorAtributoUsuario" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_2" FromRole="Producto" ToRole="ValorAtributoUsuario" />
-    <NavigationProperty Name="CategoriaProducto" Relationship="grupo02DBModel.CategoriaProductoIntermedia" FromRole="Producto" ToRole="CategoriaProducto" />
-    <NavigationProperty Name="ProductoRelacionIntermedia" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
-    <NavigationProperty Name="ProductoRelacionIntermedia1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
-  </EntityType>
-  <EntityType Name="ValorAtributoSistema">
-    <Key>
-      <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
-      <PropertyRef Name="ID_PRODUCTO" />
-    </Key>
-    <Property Name="VALOR" Type="Binary" Nullable="false" MaxLength="16777215" FixedLength="false" />
-    <Property Name="ID_ATRIBUTOSISTEMA" Type="Int32" Nullable="false" />
-    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="AtributoSistema" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_1" FromRole="ValorAtributoSistema" ToRole="AtributoSistema" />
-    <NavigationProperty Name="Producto" Relationship="grupo02DBModel.ValorAtributoSistema_ibfk_2" FromRole="ValorAtributoSistema" ToRole="Producto" />
-  </EntityType>
-  <EntityType Name="ValorAtributoUsuario">
-    <Key>
-      <PropertyRef Name="ID_ATRIBUTO" />
-      <PropertyRef Name="ID_PRODUCTO" />
-    </Key>
-    <Property Name="VALOR" Type="Binary" Nullable="false" MaxLength="16777215" FixedLength="false" />
-    <Property Name="ID_ATRIBUTO" Type="Int32" Nullable="false" />
-    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="AtributoUsuario" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_1" FromRole="ValorAtributoUsuario" ToRole="AtributoUsuario" />
-    <NavigationProperty Name="Producto" Relationship="grupo02DBModel.ValorAtributoUsuario_ibfk_2" FromRole="ValorAtributoUsuario" ToRole="Producto" />
-  </EntityType>
-  <Association Name="ValorAtributoSistema_ibfk_1">
-    <End Type="grupo02DBModel.AtributoSistema" Role="AtributoSistema" Multiplicity="1" />
-    <End Type="grupo02DBModel.ValorAtributoSistema" Role="ValorAtributoSistema" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AtributoSistema">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ValorAtributoSistema">
-        <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ValorAtributoUsuario_ibfk_1">
-    <End Type="grupo02DBModel.AtributoUsuario" Role="AtributoUsuario" Multiplicity="1" />
-    <End Type="grupo02DBModel.ValorAtributoUsuario" Role="ValorAtributoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AtributoUsuario">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ValorAtributoUsuario">
-        <PropertyRef Name="ID_ATRIBUTO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ValorAtributoSistema_ibfk_2">
-    <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
-    <End Type="grupo02DBModel.ValorAtributoSistema" Role="ValorAtributoSistema" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Producto">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ValorAtributoSistema">
-        <PropertyRef Name="ID_PRODUCTO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ValorAtributoUsuario_ibfk_2">
-    <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
-    <End Type="grupo02DBModel.ValorAtributoUsuario" Role="ValorAtributoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Producto">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ValorAtributoUsuario">
-        <PropertyRef Name="ID_PRODUCTO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CategoriaProductoIntermedia">
-    <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="*" />
-    <End Type="grupo02DBModel.CategoriaProducto" Role="CategoriaProducto" Multiplicity="*" />
-  </Association>
   <EntityType Name="PlanSuscripcion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Productos" Type="Int32" Nullable="false" />
     <Property Name="Assets" Type="Int32" Nullable="false" />
     <Property Name="Almacenamiento" Type="Int32" Nullable="false" />
@@ -169,13 +42,137 @@
     <Property Name="Precio" Type="Int32" Nullable="false" />
     <Property Name="Atributos" Type="Int32" />
   </EntityType>
-  <EntityType Name="Relacion">
+  <EntityType Name="Producto">
     <Key>
-      <PropertyRef Name="idRelacion" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="idRelacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="LABEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FECHACREACION" Type="DateTime" />
+    <Property Name="FECHAMODIFICACION" Type="DateTime" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="ValorAtributoSistema" Relationship="Self.ValorAtributoSistema_ibfk_2" FromRole="Producto" ToRole="ValorAtributoSistema" />
+    <NavigationProperty Name="ValorAtributoUsuario" Relationship="Self.ValorAtributoUsuario_ibfk_2" FromRole="Producto" ToRole="ValorAtributoUsuario" />
+    <NavigationProperty Name="CategoriaProducto" Relationship="Self.CategoriaProductoIntermedia" FromRole="Producto" ToRole="CategoriaProducto" />
+    <NavigationProperty Name="ProductoRelacionIntermedia" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
+    <NavigationProperty Name="ProductoRelacionIntermedia1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="Producto" ToRole="ProductoRelacionIntermedia" />
   </EntityType>
+  <EntityType Name="ValorAtributoSistema">
+    <Key>
+      <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
+      <PropertyRef Name="ID_PRODUCTO" />
+    </Key>
+    <Property Name="VALOR" Type="Binary" MaxLength="16777215" FixedLength="false" />
+    <Property Name="ID_ATRIBUTOSISTEMA" Type="Int32" Nullable="false" />
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AtributoSistema" Relationship="Self.ValorAtributoSistema_ibfk_1" FromRole="ValorAtributoSistema" ToRole="AtributoSistema" />
+    <NavigationProperty Name="Producto" Relationship="Self.ValorAtributoSistema_ibfk_2" FromRole="ValorAtributoSistema" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="ValorAtributoUsuario">
+    <Key>
+      <PropertyRef Name="ID_ATRIBUTO" />
+      <PropertyRef Name="ID_PRODUCTO" />
+    </Key>
+    <Property Name="VALOR" Type="Binary" MaxLength="16777215" FixedLength="false" Nullable="false" />
+    <Property Name="ID_ATRIBUTO" Type="Int32" Nullable="false" />
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AtributoUsuario" Relationship="Self.ValorAtributoUsuario_ibfk_1" FromRole="ValorAtributoUsuario" ToRole="AtributoUsuario" />
+    <NavigationProperty Name="Producto" Relationship="Self.ValorAtributoUsuario_ibfk_2" FromRole="ValorAtributoUsuario" ToRole="Producto" />
+  </EntityType>
+  <Association Name="ValorAtributoSistema_ibfk_1">
+    <End Role="AtributoSistema" Type="Self.AtributoSistema" Multiplicity="1" />
+    <End Role="ValorAtributoSistema" Type="Self.ValorAtributoSistema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AtributoSistema">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ValorAtributoSistema">
+        <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ValorAtributoUsuario_ibfk_1">
+    <End Role="AtributoUsuario" Type="Self.AtributoUsuario" Multiplicity="1" />
+    <End Role="ValorAtributoUsuario" Type="Self.ValorAtributoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AtributoUsuario">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ValorAtributoUsuario">
+        <PropertyRef Name="ID_ATRIBUTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ValorAtributoSistema_ibfk_2">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ValorAtributoSistema" Type="Self.ValorAtributoSistema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ValorAtributoSistema">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ValorAtributoUsuario_ibfk_2">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ValorAtributoUsuario" Type="Self.ValorAtributoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ValorAtributoUsuario">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoriaProductoIntermedia">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <End Role="CategoriaProducto" Type="Self.CategoriaProducto" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="grupo02DBEntities11" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AtributoSistema" EntityType="Self.AtributoSistema" />
+    <EntitySet Name="AtributoUsuario" EntityType="Self.AtributoUsuario" />
+    <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" />
+    <EntitySet Name="PlanSuscripcion" EntityType="Self.PlanSuscripcion" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="ValorAtributoSistema" EntityType="Self.ValorAtributoSistema" />
+    <EntitySet Name="ValorAtributoUsuario" EntityType="Self.ValorAtributoUsuario" />
+    <AssociationSet Name="ValorAtributoSistema_ibfk_1" Association="Self.ValorAtributoSistema_ibfk_1">
+      <End Role="AtributoSistema" EntitySet="AtributoSistema" />
+      <End Role="ValorAtributoSistema" EntitySet="ValorAtributoSistema" />
+    </AssociationSet>
+    <AssociationSet Name="ValorAtributoUsuario_ibfk_1" Association="Self.ValorAtributoUsuario_ibfk_1">
+      <End Role="AtributoUsuario" EntitySet="AtributoUsuario" />
+      <End Role="ValorAtributoUsuario" EntitySet="ValorAtributoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="ValorAtributoSistema_ibfk_2" Association="Self.ValorAtributoSistema_ibfk_2">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ValorAtributoSistema" EntitySet="ValorAtributoSistema" />
+    </AssociationSet>
+    <AssociationSet Name="ValorAtributoUsuario_ibfk_2" Association="Self.ValorAtributoUsuario_ibfk_2">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ValorAtributoUsuario" EntitySet="ValorAtributoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriaProductoIntermedia" Association="Self.CategoriaProductoIntermedia">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
+    </AssociationSet>
+    <EntitySet Name="ProductoRelacionIntermedia" EntityType="grupo02DBModel.ProductoRelacionIntermedia" />
+    <EntitySet Name="RelacionProducto" EntityType="grupo02DBModel.RelacionProducto" />
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto1" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto2" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_RelacionProducto1" Association="grupo02DBModel.fk_ProductoRelacionIntermedia_RelacionProducto1">
+      <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="ProductoRelacionIntermedia">
     <Key>
       <PropertyRef Name="idProducto1" />
@@ -187,6 +184,15 @@
     <Property Name="idProducto2" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto1" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
     <NavigationProperty Name="Producto1" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_Producto2" FromRole="ProductoRelacionIntermedia" ToRole="Producto" />
+    <NavigationProperty Name="RelacionProducto" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_RelacionProducto1" FromRole="ProductoRelacionIntermedia" ToRole="RelacionProducto" />
+  </EntityType>
+  <EntityType Name="RelacionProducto">
+    <Key>
+      <PropertyRef Name="idRelacionProducto" />
+    </Key>
+    <Property Name="idRelacionProducto" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductoRelacionIntermedia" Relationship="grupo02DBModel.fk_ProductoRelacionIntermedia_RelacionProducto1" FromRole="RelacionProducto" ToRole="ProductoRelacionIntermedia" />
   </EntityType>
   <Association Name="fk_ProductoRelacionIntermedia_Producto1">
     <End Type="grupo02DBModel.Producto" Role="Producto" Multiplicity="1" />
@@ -209,6 +215,18 @@
       </Principal>
       <Dependent Role="ProductoRelacionIntermedia">
         <PropertyRef Name="idProducto2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProductoRelacionIntermedia_RelacionProducto1">
+    <End Type="grupo02DBModel.RelacionProducto" Role="RelacionProducto" Multiplicity="1" />
+    <End Type="grupo02DBModel.ProductoRelacionIntermedia" Role="ProductoRelacionIntermedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RelacionProducto">
+        <PropertyRef Name="idRelacionProducto" />
+      </Principal>
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idRelacionProducto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

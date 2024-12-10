@@ -1,82 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities">
+  <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities11">
     <EntitySetMapping Name="AtributoSistema">
       <EntityTypeMapping TypeName="grupo02DBModel.AtributoSistema">
         <MappingFragment StoreEntitySet="AtributoSistema">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AtributoUsuario">
       <EntityTypeMapping TypeName="grupo02DBModel.AtributoUsuario">
         <MappingFragment StoreEntitySet="AtributoUsuario">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CategoriaProducto">
       <EntityTypeMapping TypeName="grupo02DBModel.CategoriaProducto">
         <MappingFragment StoreEntitySet="CategoriaProducto">
-          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlanSuscripcion">
+      <EntityTypeMapping TypeName="grupo02DBModel.PlanSuscripcion">
+        <MappingFragment StoreEntitySet="PlanSuscripcion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Productos" ColumnName="Productos" />
+          <ScalarProperty Name="Assets" ColumnName="Assets" />
+          <ScalarProperty Name="Almacenamiento" ColumnName="Almacenamiento" />
+          <ScalarProperty Name="CategoriasProducto" ColumnName="CategoriasProducto" />
+          <ScalarProperty Name="CategoriasAsset" ColumnName="CategoriasAsset" />
+          <ScalarProperty Name="Relaciones" ColumnName="Relaciones" />
+          <ScalarProperty Name="IntegracionAP" ColumnName="IntegracionAP" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Atributos" ColumnName="Atributos" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Producto">
       <EntityTypeMapping TypeName="grupo02DBModel.Producto">
         <MappingFragment StoreEntitySet="Producto">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
-          <ScalarProperty Name="FECHACREACION" ColumnName="FECHACREACION" />
           <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="FECHACREACION" ColumnName="FECHACREACION" />
+          <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ValorAtributoSistema">
       <EntityTypeMapping TypeName="grupo02DBModel.ValorAtributoSistema">
         <MappingFragment StoreEntitySet="ValorAtributoSistema">
-          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-          <ScalarProperty Name="ID_ATRIBUTOSISTEMA" ColumnName="ID_ATRIBUTOSISTEMA" />
           <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="ID_ATRIBUTOSISTEMA" ColumnName="ID_ATRIBUTOSISTEMA" />
+          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ValorAtributoUsuario">
       <EntityTypeMapping TypeName="grupo02DBModel.ValorAtributoUsuario">
         <MappingFragment StoreEntitySet="ValorAtributoUsuario">
-          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-          <ScalarProperty Name="ID_ATRIBUTO" ColumnName="ID_ATRIBUTO" />
           <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="ID_ATRIBUTO" ColumnName="ID_ATRIBUTO" />
+          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="CategoriaProductoIntermedia" TypeName="grupo02DBModel.CategoriaProductoIntermedia" StoreEntitySet="CategoriaProductoIntermedia">
-      <EndProperty Name="CategoriaProducto">
-        <ScalarProperty Name="ID" ColumnName="ID_CATEGORIA" />
-      </EndProperty>
       <EndProperty Name="Producto">
         <ScalarProperty Name="ID" ColumnName="ID_PRODUCTO" />
       </EndProperty>
+      <EndProperty Name="CategoriaProducto">
+        <ScalarProperty Name="ID" ColumnName="ID_CATEGORIA" />
+      </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="PlanSuscripcion">
-      <EntityTypeMapping TypeName="grupo02DBModel.PlanSuscripcion">
-        <MappingFragment StoreEntitySet="PlanSuscripcion">
-          <ScalarProperty Name="Atributos" ColumnName="Atributos" />
-          <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="IntegracionAP" ColumnName="IntegracionAP" />
-          <ScalarProperty Name="Relaciones" ColumnName="Relaciones" />
-          <ScalarProperty Name="CategoriasAsset" ColumnName="CategoriasAsset" />
-          <ScalarProperty Name="CategoriasProducto" ColumnName="CategoriasProducto" />
-          <ScalarProperty Name="Almacenamiento" ColumnName="Almacenamiento" />
-          <ScalarProperty Name="Assets" ColumnName="Assets" />
-          <ScalarProperty Name="Productos" ColumnName="Productos" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="id" ColumnName="id" />
+    <EntitySetMapping Name="ProductoRelacionIntermedia">
+      <EntityTypeMapping TypeName="grupo02DBModel.ProductoRelacionIntermedia">
+        <MappingFragment StoreEntitySet="ProductoRelacionIntermedia">
+          <ScalarProperty Name="idProducto2" ColumnName="idProducto2" />
+          <ScalarProperty Name="idRelacionProducto" ColumnName="idRelacionProducto" />
+          <ScalarProperty Name="idProducto1" ColumnName="idProducto1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelacionProducto">
+      <EntityTypeMapping TypeName="grupo02DBModel.RelacionProducto">
+        <MappingFragment StoreEntitySet="RelacionProducto">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="idRelacionProducto" ColumnName="idRelacionProducto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

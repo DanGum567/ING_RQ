@@ -12,7 +12,7 @@ namespace ChillDeCojones
 {
     public partial class ModificarCategoria : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
         CategoriaProducto categoria;
         public event EventHandler CategoriaModificada;
 
@@ -43,7 +43,7 @@ namespace ChillDeCojones
             else
             {
                 categoria.NAME = tName.Text;
-                db.SaveChanges();                
+                db.SaveChanges();
                 this.Close();
             }
             CategoriaModificada?.Invoke(this, EventArgs.Empty);

@@ -18,7 +18,7 @@ namespace ChillDeCojones
         public InsertarCategoria()
         {
             InitializeComponent();
-           
+
         }
 
 
@@ -26,20 +26,20 @@ namespace ChillDeCojones
         {
             try
             {
-                grupo02DBEntities db = new grupo02DBEntities();
+                grupo02DBEntities1 db = new grupo02DBEntities1();
                 // Crear una nueva instancia de CateogiraProducto
                 CategoriaProducto nuevaCategoria = new CategoriaProducto();
                 if (string.IsNullOrWhiteSpace(tName.Text))
                 {
                     MessageBox.Show("ERROR: name cannot be empty");
-                    
+
                 }
                 else if (db.CategoriaProducto.Any(x => x.NAME.Equals(tName.Text))
                     || Enum.GetNames(typeof(TipoAtributoSistema)).Any(nombre => nombre.Equals(tName.Text, StringComparison.OrdinalIgnoreCase)))
                 {
                     MessageBox.Show("ERROR: The name is already in use");
                     tName.Text = "";
-                   
+
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace ChillDeCojones
             }
 
             CategoriaInsertada?.Invoke(this, EventArgs.Empty);
-           // El formulario se cierra despues de aceptar
+            // El formulario se cierra despues de aceptar
         }
         private void bCancelar_Click(object sender, EventArgs e)
         {

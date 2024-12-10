@@ -15,12 +15,12 @@ namespace ChillDeCojones
 {
     public partial class ProductDetailsForm : Form
     {
-        grupo02DBEntities db;
+        grupo02DBEntities1 db;
         Producto producto;
         bool creandoProducto = false;
         bool modificandoProducto = false;
 
-        public ProductDetailsForm(Producto producto, bool modificarProducto, grupo02DBEntities contexto)
+        public ProductDetailsForm(Producto producto, bool modificarProducto, grupo02DBEntities1 contexto)
         {
             InitializeComponent();
             this.db = contexto;

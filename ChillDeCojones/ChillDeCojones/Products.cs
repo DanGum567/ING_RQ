@@ -13,7 +13,7 @@ namespace ChillDeCojones
 {
     public partial class Products : Form
     {
-        private grupo02DBEntities db = new grupo02DBEntities();
+        private grupo02DBEntities1 db = new grupo02DBEntities1();
         public event EventHandler Modificar;
         private static Products instance;
         public Products()

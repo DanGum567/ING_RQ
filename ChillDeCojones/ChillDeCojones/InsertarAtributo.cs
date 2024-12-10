@@ -12,7 +12,7 @@ namespace ChillDeCojones
 {
     public partial class InsertarAtributo : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
         public event EventHandler AtributoInsertado;
         public InsertarAtributo()
         {

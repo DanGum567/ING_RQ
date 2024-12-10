@@ -13,7 +13,7 @@ namespace ChillDeCojones
 
     public partial class Attributes : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
         private Dictionary<int, TextBox[]> textBoxControls = new Dictionary<int, TextBox[]>();
         public Attributes()
         {

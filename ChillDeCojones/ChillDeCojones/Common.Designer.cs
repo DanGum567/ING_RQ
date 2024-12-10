@@ -37,13 +37,10 @@
             this.toolStripAttributesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripRelationshipsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelRuta = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripIntegrationsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,13 +62,10 @@
             this.toolStripAttributesButton,
             this.toolStripRelationshipsButton,
             this.toolStripHelpButton,
-            this.toolStripButton1,
-            this.toolStripLabel1,
-            this.toolStripButton2,
-            this.toolStripTextBox1});
+            this.toolStripIntegrationsButton});
             this.toolStrip1.Location = new System.Drawing.Point(585, 9);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(748, 32);
+            this.toolStrip1.Size = new System.Drawing.Size(917, 32);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
@@ -159,28 +153,6 @@
             this.toolStripHelpButton.Text = "Help";
             this.toolStripHelpButton.Click += new System.EventHandler(this.toolStripHelpButton_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 4);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(0, 0);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 4);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
-            this.toolStripTextBox1.Text = "Integration";
-            // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(0, 54);
@@ -207,6 +179,17 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 50);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // toolStripIntegrationsButton
+            // 
+            this.toolStripIntegrationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripIntegrationsButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripIntegrationsButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripIntegrationsButton.Image")));
+            this.toolStripIntegrationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripIntegrationsButton.Name = "toolStripIntegrationsButton";
+            this.toolStripIntegrationsButton.Size = new System.Drawing.Size(130, 29);
+            this.toolStripIntegrationsButton.Text = "Integrations";
+            this.toolStripIntegrationsButton.Click += new System.EventHandler(this.toolStripIntegrationsButton_Click);
             // 
             // Common
             // 
@@ -246,9 +229,6 @@
         private System.Windows.Forms.ToolStripButton toolStripCategoriesButton;
         private System.Windows.Forms.Label labelRuta;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton toolStripIntegrationsButton;
     }
 }

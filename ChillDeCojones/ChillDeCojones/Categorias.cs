@@ -13,7 +13,7 @@ namespace ChillDeCojones
 {
     public partial class Categorias : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
 
         public Categorias()
         {

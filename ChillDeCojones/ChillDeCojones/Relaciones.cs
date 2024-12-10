@@ -12,7 +12,7 @@ namespace ChillDeCojones
 {
     public partial class Relaciones : Form
     {
-        grupo02DBEntities db = new grupo02DBEntities();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
 
         public Relaciones()
         {
@@ -21,7 +21,7 @@ namespace ChillDeCojones
 
         private void Relaciones_Load(object sender, EventArgs e)
         {
-            labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ")";
+            //labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ")";
         }
 
 
@@ -29,14 +29,14 @@ namespace ChillDeCojones
         private void cargarRelaciones()
         {
             //Seleccionar las relaciones y cargarlas en el DataGridView.
-            var listaRelaciones = from relacion in db.Relacion
-                                  select new
-                                  {
-                                      ID = relacion.idRelacion,
-                                      Name = relacion.nombre
-                                  };
-            dataGridViewRelaciones.DataSource = listaRelaciones.ToList();
-            dataGridViewRelaciones.Columns["ID"].Visible = false;
+            //var listaRelaciones = from relacion in db.Relacion
+            //                      select new
+            //                      {
+            //                          ID = relacion.idRelacion,
+            //                          Name = relacion.nombre
+            //                      };
+            //dataGridViewRelaciones.DataSource = listaRelaciones.ToList();
+            //dataGridViewRelaciones.Columns["ID"].Visible = false;
 
             //Añadir columnas de eliminar y editar.
             //Crear columna de eliminar

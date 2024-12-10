@@ -23,13 +23,13 @@ namespace ChillDeCojones
             productosEnMemoria = new ConcurrentDictionary<int, Producto>();
             atributosEnMemoria = new ConcurrentDictionary<(int, int), byte[]>();
 
-            var contextoTemporal = new grupo02DBEntities();
+            var contextoTemporal = new grupo02DBEntities1();
             foreach (Producto producto in contextoTemporal.Producto.ToList())
             {
                 new Thread(() =>
                 {
                     int idProducto = producto.ID;
-                    var contextoHilo = new grupo02DBEntities();
+                    var contextoHilo = new grupo02DBEntities1();
                     contextoHilo.Configuration.LazyLoadingEnabled = false;
                     Producto productoPrecargado = contextoHilo.Producto.Find(idProducto);
                     if (productoPrecargado != null)
@@ -48,7 +48,7 @@ namespace ChillDeCojones
                 {
                     int idAtributoSistema = atributo.ID_ATRIBUTOSISTEMA;
                     int idProducto = atributo.ID_PRODUCTO;
-                    var contextoHilo = new grupo02DBEntities();
+                    var contextoHilo = new grupo02DBEntities1();
                     contextoHilo.Configuration.LazyLoadingEnabled = false;
                     ValorAtributoSistema atributoPrecargado = contextoHilo.ValorAtributoSistema.Find(idAtributoSistema, idProducto);
                     if (atributoPrecargado != null)
@@ -71,7 +71,7 @@ namespace ChillDeCojones
 
         public static byte[] GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema tipoAtributo, int idProducto)
         {
-            (int, int) tuplaClave = (AtributoManager.ObtenerAtributoSistema(tipoAtributo, new grupo02DBEntities()).ID, idProducto);
+            (int, int) tuplaClave = (AtributoManager.ObtenerAtributoSistema(tipoAtributo, new grupo02DBEntities1()).ID, idProducto);
             instance.atributosEnMemoria.TryGetValue(tuplaClave, out byte[] bytesAtributo);
             return bytesAtributo;
         }

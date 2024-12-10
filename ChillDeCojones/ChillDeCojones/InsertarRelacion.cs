@@ -13,7 +13,7 @@ namespace ChillDeCojones
     public partial class InsertarRelacion : Form
     {
         public event EventHandler RelacionInsertada;
-        grupo02bdEntities bd = new grupo02bdEntities();
+        grupo02DBEntities1 bd = new grupo02DBEntities1();
         Producto producto;  // Producto seleccionado en la primera lista
         List<Int32> productosSeleccionadosIds; // Productos seleccionados de la segunda lista
 
@@ -29,7 +29,7 @@ namespace ChillDeCojones
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 // Obtener el producto de la fila seleccionada
                 int productoId = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
@@ -38,14 +38,14 @@ namespace ChillDeCojones
                 producto = bd.Producto.FirstOrDefault(p => p.ID == productoId);
                 if (producto != null)
                 {
-                    dataGridView2.DataSource = bd.Producto.Where(p => p.ID != productoId).ToList();  
+                    dataGridView2.DataSource = bd.Producto.Where(p => p.ID != productoId).ToList();
                 }
             }
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if(dataGridView2.SelectedRows.Count > 0)
+            if (dataGridView2.SelectedRows.Count > 0)
             {
 
                 foreach (DataGridViewRow row in dataGridView2.SelectedRows)
@@ -55,7 +55,7 @@ namespace ChillDeCojones
                     // productosSeleccionadosIds = bd.Producto.Select(p.ID)
 
                     //Asegurarse de que el ID no se repita en la lista
-                     if (!productosSeleccionadosIds.Contains(productoId))
+                    if (!productosSeleccionadosIds.Contains(productoId))
                     {
                         productosSeleccionadosIds.Add(productoId);
                     }
@@ -84,7 +84,7 @@ namespace ChillDeCojones
                     nuevaRelacion.Name = tLabel.Text;
                     bd.RelacionProducto.Add(nuevaRelacion);
 
-                    if(producto != null)
+                    if (producto != null)
                     {
                         nuevaRelacion.idRelacionProducto = producto.ID;
                         if (productosSeleccionadosIds.Count > 0)
@@ -92,14 +92,14 @@ namespace ChillDeCojones
                             foreach (int productoId in productosSeleccionadosIds)
                             {
                                 // Crear una nueva entrada en la tabla intermedia
-                                Producto_RelacionProductoIntermedia nuevaRelacionIntermedia = new Producto_RelacionProductoIntermedia()
+                                //Producto_RelacionProductoIntermedia nuevaRelacionIntermedia = new Producto_RelacionProductoIntermedia()
                                 {
-                                    idProducto1 = productoId, // Producto seleccionado
-                                    idProducto2 = nuevaRelacion.idRelacionProducto // ID de la relación
+                                    //idProducto1 = productoId, // Producto seleccionado
+                                    //idProducto2 = nuevaRelacion.idRelacionProducto // ID de la relación
                                 };
 
                                 // Agregar la relación intermedia a la base de datos
-                                bd.Producto_RelacionIntermedia.Add(nuevaRelacionIntermedia);
+                                //bd.Producto_RelacionIntermedia.Add(nuevaRelacionIntermedia);
                             }
                         }
                     }

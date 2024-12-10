@@ -56,6 +56,23 @@
     <Property Name="FECHAMODIFICACION" Type="datetime" Precision="0" />
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
+  <EntityType Name="ProductoRelacionIntermedia">
+    <Key>
+      <PropertyRef Name="idProducto1" />
+      <PropertyRef Name="idRelacionProducto" />
+      <PropertyRef Name="idProducto2" />
+    </Key>
+    <Property Name="idProducto1" Type="int" Nullable="false" />
+    <Property Name="idRelacionProducto" Type="int" Nullable="false" />
+    <Property Name="idProducto2" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RelacionProducto">
+    <Key>
+      <PropertyRef Name="idRelacionProducto" />
+    </Key>
+    <Property Name="idRelacionProducto" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="45" />
+  </EntityType>
   <EntityType Name="ValorAtributoSistema">
     <Key>
       <PropertyRef Name="ID_ATRIBUTOSISTEMA" />
@@ -95,6 +112,42 @@
       </Principal>
       <Dependent Role="CategoriaProductoIntermedia">
         <PropertyRef Name="ID_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProductoRelacionIntermedia_Producto1">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ProductoRelacionIntermedia" Type="Self.ProductoRelacionIntermedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idProducto1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProductoRelacionIntermedia_Producto2">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ProductoRelacionIntermedia" Type="Self.ProductoRelacionIntermedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idProducto2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ProductoRelacionIntermedia_RelacionProducto1">
+    <End Role="RelacionProducto" Type="Self.RelacionProducto" Multiplicity="1" />
+    <End Role="ProductoRelacionIntermedia" Type="Self.ProductoRelacionIntermedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RelacionProducto">
+        <PropertyRef Name="idRelacionProducto" />
+      </Principal>
+      <Dependent Role="ProductoRelacionIntermedia">
+        <PropertyRef Name="idRelacionProducto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -153,6 +206,8 @@
     <EntitySet Name="CategoriaProductoIntermedia" EntityType="Self.CategoriaProductoIntermedia" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="PlanSuscripcion" EntityType="Self.PlanSuscripcion" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="Producto" EntityType="Self.Producto" Schema="grupo02DB" store:Type="Tables" />
+    <EntitySet Name="ProductoRelacionIntermedia" EntityType="Self.ProductoRelacionIntermedia" Schema="grupo02DB" store:Type="Tables" />
+    <EntitySet Name="RelacionProducto" EntityType="Self.RelacionProducto" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="ValorAtributoSistema" EntityType="Self.ValorAtributoSistema" Schema="grupo02DB" store:Type="Tables" />
     <EntitySet Name="ValorAtributoUsuario" EntityType="Self.ValorAtributoUsuario" Schema="grupo02DB" store:Type="Tables" />
     <AssociationSet Name="CategoriaProductoIntermedia_ibfk_1" Association="Self.CategoriaProductoIntermedia_ibfk_1">
@@ -162,6 +217,18 @@
     <AssociationSet Name="CategoriaProductoIntermedia_ibfk_2" Association="Self.CategoriaProductoIntermedia_ibfk_2">
       <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
       <End Role="CategoriaProductoIntermedia" EntitySet="CategoriaProductoIntermedia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto1" Association="Self.fk_ProductoRelacionIntermedia_Producto1">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_Producto2" Association="Self.fk_ProductoRelacionIntermedia_Producto2">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ProductoRelacionIntermedia_RelacionProducto1" Association="Self.fk_ProductoRelacionIntermedia_RelacionProducto1">
+      <End Role="RelacionProducto" EntitySet="RelacionProducto" />
+      <End Role="ProductoRelacionIntermedia" EntitySet="ProductoRelacionIntermedia" />
     </AssociationSet>
     <AssociationSet Name="ValorAtributoSistema_ibfk_1" Association="Self.ValorAtributoSistema_ibfk_1">
       <End Role="AtributoSistema" EntitySet="AtributoSistema" />

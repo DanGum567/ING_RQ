@@ -33,13 +33,13 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static AtributoSistema ObtenerAtributoSistema(TipoAtributoSistema tipoAtributo, grupo02DBEntities contexto)
+        public static AtributoSistema ObtenerAtributoSistema(TipoAtributoSistema tipoAtributo, grupo02DBEntities1 contexto)
         {
             string nombreTipoAtributo = Enum.GetName(tipoAtributo.GetType(), tipoAtributo);
             return contexto.AtributoSistema.First(a => a.NAME == nombreTipoAtributo);
         }
 
-        public static AtributoUsuario ObtenerIdDeAtributoUsuario(string nombreAtributo, grupo02DBEntities contexto)
+        public static AtributoUsuario ObtenerIdDeAtributoUsuario(string nombreAtributo, grupo02DBEntities1 contexto)
         {
             return contexto.AtributoUsuario.First(a => a.NAME.Equals(nombreAtributo));
         }
@@ -51,7 +51,7 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static bool AñadirOActualizarValorAtributoSistema(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities contextoBaseDatos, object valorAtributo)
+        public static bool AñadirOActualizarValorAtributoSistema(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities1 contextoBaseDatos, object valorAtributo)
         {
 
             if (!(tipoAtributo == TipoAtributoSistema.thumbnail) && (dueñoAtributoSistema == null || valorAtributo == null))
@@ -126,7 +126,7 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static void AñadirOActualizarValorAtributoUsuario(string nombreAtributo, Producto dueñoAtributoUsuario, grupo02DBEntities contextoBaseDatos, object valorAtributo)
+        public static void AñadirOActualizarValorAtributoUsuario(string nombreAtributo, Producto dueñoAtributoUsuario, grupo02DBEntities1 contextoBaseDatos, object valorAtributo)
         {
 
             var atributoUsuario = ObtenerIdDeAtributoUsuario(nombreAtributo, contextoBaseDatos);
@@ -162,7 +162,7 @@ namespace ChillDeCojones
         /// </summary>
         /// <param name="tipoAtributo"></param>
         /// <returns></returns>
-        public static byte[] ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities contextoBaseDatos)
+        public static byte[] ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema tipoAtributo, Producto dueñoAtributoSistema, grupo02DBEntities1 contextoBaseDatos)
         {
             if (dueñoAtributoSistema == null)
             {
@@ -181,7 +181,7 @@ namespace ChillDeCojones
             }
         }
 
-        public static LinkedList<byte[]> ObtenerListaBytesValoresAtributosSistemaExistentes(TipoAtributoSistema tipoAtributo, grupo02DBEntities contextoBaseDatos)
+        public static LinkedList<byte[]> ObtenerListaBytesValoresAtributosSistemaExistentes(TipoAtributoSistema tipoAtributo, grupo02DBEntities1 contextoBaseDatos)
         {
             LinkedList<byte[]> resultado = new LinkedList<byte[]>();
             foreach (Producto producto in contextoBaseDatos.Producto.ToList())

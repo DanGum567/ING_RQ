@@ -16,8 +16,8 @@ namespace ChillDeCojones
         public event EventHandler AtributoModificado;
         AtributoUsuario atributoUsuario;
         Producto producto;
-        grupo02DBEntities db;
-        public ModificarValorAtributoUsuario(AtributoUsuario atributoUsuario, Producto producto, grupo02DBEntities contexto)
+        grupo02DBEntities1 db;
+        public ModificarValorAtributoUsuario(AtributoUsuario atributoUsuario, Producto producto, grupo02DBEntities1 contexto)
         {
             InitializeComponent();
             this.producto = producto;
@@ -54,7 +54,7 @@ namespace ChillDeCojones
                         break;
                 }
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 MessageBox.Show("Attribute format is not correct", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
