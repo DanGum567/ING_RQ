@@ -82,8 +82,16 @@ namespace ChillDeCojones
                 subForm.FormBorderStyle = FormBorderStyle.None; // Opcional, elimina bordes del formulario
                 subForm.Dock = DockStyle.Fill;
                 instance.panel1.Controls.Add(subForm);
-                string label = "Dashboard > " + subForm.GetType().Name;
-                instance.labelRuta.Text = label;
+                if (!subForm.GetType().Name.Equals("Dashboard"))
+                {
+                    string label = "Dashboard > " + subForm.GetType().Name;
+                    instance.labelRuta.Text = label;
+                }
+                else
+                {
+                    instance.labelRuta.Text = "Dashboard";
+                }
+
                 subForm.Show();
             }
             catch (Exception ex)

@@ -31,12 +31,12 @@ namespace ChillDeCojones
                 num_products = db.Producto.Count(),
                 num_categories = db.CategoriaProducto.Count(),
                 num_attributes = db.AtributoUsuario.Count(),
-                //num_relationships = db.Relacion.Count()
+                num_relationships = db.RelacionProducto.Count()
             };
-            numeroProductos.Text = informeDeLaCuenta.num_products.ToString();
-            numeroCategorias.Text = informeDeLaCuenta.num_categories.ToString();
-            numeroAtributos.Text = informeDeLaCuenta.num_attributes.ToString();
-            numeroRelaciones.Text = informeDeLaCuenta.num_relationships.ToString();
+            numeroProductos.Text = "Products: " + informeDeLaCuenta.num_products.ToString();
+            numeroCategorias.Text = "Categories: " + informeDeLaCuenta.num_categories.ToString();
+            numeroAtributos.Text = "Attributes: " + informeDeLaCuenta.num_attributes.ToString();
+            numeroRelaciones.Text = "Relationships: " + informeDeLaCuenta.num_relationships.ToString();
         }
 
         private void bExport_Click(object sender, EventArgs e)

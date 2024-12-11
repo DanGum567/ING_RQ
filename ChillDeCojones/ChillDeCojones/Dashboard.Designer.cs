@@ -38,22 +38,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lAccountName = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lCreated
             // 
             this.lCreated.AutoSize = true;
             this.lCreated.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lCreated.Location = new System.Drawing.Point(53, 299);
+            this.lCreated.Location = new System.Drawing.Point(92, 403);
             this.lCreated.Name = "lCreated";
             this.lCreated.Size = new System.Drawing.Size(123, 32);
             this.lCreated.TabIndex = 0;
@@ -101,7 +101,7 @@
             // 
             // bExport
             // 
-            this.bExport.Location = new System.Drawing.Point(769, 713);
+            this.bExport.Location = new System.Drawing.Point(986, 779);
             this.bExport.Name = "bExport";
             this.bExport.Size = new System.Drawing.Size(212, 66);
             this.bExport.TabIndex = 5;
@@ -111,7 +111,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(59, 116);
+            this.pictureBox1.Location = new System.Drawing.Point(98, 211);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(177, 162);
             this.pictureBox1.TabIndex = 6;
@@ -121,7 +121,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(186, 98);
+            this.label1.Location = new System.Drawing.Point(131, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 32);
             this.label1.TabIndex = 7;
@@ -131,7 +131,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(186, 253);
+            this.label2.Location = new System.Drawing.Point(131, 293);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 32);
             this.label2.TabIndex = 8;
@@ -144,17 +144,27 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(366, 68);
+            this.panel1.Location = new System.Drawing.Point(541, 225);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1239, 387);
+            this.panel1.Size = new System.Drawing.Size(1239, 465);
             this.panel1.TabIndex = 9;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.numeroProductos);
+            this.panel4.Controls.Add(this.numeroAtributos);
+            this.panel4.Location = new System.Drawing.Point(414, 238);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(726, 143);
+            this.panel4.TabIndex = 11;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.numeroCategorias);
             this.panel2.Controls.Add(this.numeroRelaciones);
-            this.panel2.Location = new System.Drawing.Point(402, 35);
+            this.panel2.Location = new System.Drawing.Point(414, 66);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(726, 143);
             this.panel2.TabIndex = 10;
@@ -163,7 +173,7 @@
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lAccountName);
-            this.panel3.Location = new System.Drawing.Point(366, 12);
+            this.panel3.Location = new System.Drawing.Point(541, 169);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(461, 56);
             this.panel3.TabIndex = 10;
@@ -177,16 +187,6 @@
             this.lAccountName.Size = new System.Drawing.Size(199, 32);
             this.lAccountName.TabIndex = 11;
             this.lAccountName.Text = "Account Name";
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.numeroProductos);
-            this.panel4.Controls.Add(this.numeroAtributos);
-            this.panel4.Location = new System.Drawing.Point(402, 207);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(726, 143);
-            this.panel4.TabIndex = 11;
             // 
             // Dashboard
             // 
@@ -204,12 +204,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

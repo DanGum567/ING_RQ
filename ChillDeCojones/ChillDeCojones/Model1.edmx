@@ -75,7 +75,7 @@
           <Key>
             <PropertyRef Name="idRelacionProducto" />
           </Key>
-          <Property Name="idRelacionProducto" Type="int" Nullable="false" />
+          <Property Name="idRelacionProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="ValorAtributoSistema">

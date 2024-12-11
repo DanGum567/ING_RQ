@@ -21,10 +21,15 @@ namespace ChillDeCojones
 
         private void Relaciones_Load(object sender, EventArgs e)
         {
-            //labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ")";
+
+            cargarRelaciones();
+            cargarAcciones();
         }
 
-
+        private void ActualizarNumeroRelaciones()
+        {
+            labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ")";
+        }
 
         private void cargarRelaciones()
         {
@@ -40,6 +45,28 @@ namespace ChillDeCojones
 
             //Añadir columnas de eliminar y editar.
             //Crear columna de eliminar
+            try
+            {
+                ActualizarNumeroRelaciones();
+                var listaRelaciones = from relacion in db.RelacionProducto
+                                      select new
+                                      {
+                                          ID = relacion.idRelacionProducto,
+                                          Name = relacion.Name
+                                      };
+                dataGridViewRelaciones.DataSource = listaRelaciones.ToList();
+                dataGridViewRelaciones.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+
+
+        }
+
+        private void cargarAcciones()
+        {
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
             btnEliminar.HeaderText = "Delete";
             btnEliminar.Name = "Delete";
@@ -54,7 +81,6 @@ namespace ChillDeCojones
             btnEditar.Text = "✏";
             btnEditar.UseColumnTextForButtonValue = true;
             dataGridViewRelaciones.Columns.Add(btnEditar);
-
         }
 
         private void EliminarRelacion()
@@ -84,7 +110,7 @@ namespace ChillDeCojones
 
         private void bInsertar_Click(object sender, EventArgs e)
         {
-            if (db.CategoriaProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).Relaciones)
+            if (db.RelacionProducto.Count() < db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free")).Relaciones)
             {
                 InsertarRelacion InsertarRelacion = new InsertarRelacion();
                 InsertarRelacion.RelacionInsertada += (s, args) =>
