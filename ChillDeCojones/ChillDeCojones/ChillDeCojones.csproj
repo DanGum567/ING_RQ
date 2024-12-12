@@ -161,9 +161,7 @@
     <Compile Include="InsertarRelacion.Designer.cs">
       <DependentUpon>InsertarRelacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Integracion.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Integracion.cs" />
     <Compile Include="Integracion.Designer.cs">
       <DependentUpon>Integracion.cs</DependentUpon>
     </Compile>

@@ -146,7 +146,7 @@ C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Dashboard.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarRelacion.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relaciones.resources
-C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ConfiguracionExportacion.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ConfiguracionExportacion.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.UnSoloProductoNoTieneAtributoNumericoException.resources

@@ -143,10 +143,11 @@ namespace ChillDeCojones
             }
             cargarAtributos(); // Actualiza la tabla después de eliminar
         }
+
         private void ActualizarNumeroAtributos()
         {
             int numeroAtributos = db.AtributoUsuario.Count();
-            LabelUserAttributes.Text = "User Attributes (" + numeroAtributos.ToString() + ")";
+            LabelUserAttributes.Text = "User Attributes (" + numeroAtributos.ToString() + "/" + db.PlanSuscripcion.Select(p => p.Atributos).FirstOrDefault().ToString() + ")";
 
         }
     }

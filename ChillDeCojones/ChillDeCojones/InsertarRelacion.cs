@@ -117,6 +117,99 @@ namespace ChillDeCojones
             }
         }
 
+        private void cargarProductosLista2(Producto productoLista1)
+        {
+            dataGridView2.Rows.Clear();
+            dataGridView2.SuspendLayout();
+
+
+            List<Producto> productos = db.Producto.ToList();
+
+            foreach (Producto cargadoJustoAhora in productos)
+            {
+                if (cargadoJustoAhora.ID == productoLista1.ID)
+                {
+                    continue;
+                }
+                //Variables de Producto
+                int idProducto = cargadoJustoAhora.ID;
+                string label;
+                DateTime fechaCreacion;
+                DateTime fechaModificacion;
+                int ID;
+
+                //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                Producto delQueCargarVariables;
+                //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+
+                delQueCargarVariables = cargadoJustoAhora;
+
+
+                //Cargamos variables del producto para mostrarlas
+                label = delQueCargarVariables.LABEL;
+                fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
+                fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+                ID = delQueCargarVariables.ID;
+
+                //-------------------------------------------------------------------------------------------
+
+                //Atributos del sistema
+                string sku = "(Without SKU)";
+                string gtin = "(Without GTIN)";
+                Image thumbail = null;
+
+                byte[] skuBytes = null;
+                byte[] gtinBytes = null;
+                byte[] thumbailBytes = null;
+
+                //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
+                //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
+                //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
+
+
+                if (skuBytes == null)
+                {
+                    skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
+                }
+                if (gtinBytes == null)
+                {
+                    gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
+                }
+                if (thumbailBytes == null)
+                {
+                    thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
+                }
+
+                if (thumbailBytes != null)
+                {
+                    thumbail = Convertidor.BytesAImage(thumbailBytes);
+                }
+                if (skuBytes != null)
+                {
+                    sku = Convertidor.BytesAString(skuBytes);
+                }
+                if (gtinBytes != null)
+                {
+                    gtin = Convertidor.BytesAString(gtinBytes);
+                }
+
+
+                dataGridView2.Rows.Add(
+                    thumbail,
+                    idProducto,
+                    sku,
+                    label
+                );
+
+                dataGridView2.Columns["ID2"].Visible = false;
+
+
+                dataGridView2.ResumeLayout();
+                dataGridView2.ClearSelection();// Se deselecciona el primer elemento
+            }
+        }
+
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -136,28 +229,30 @@ namespace ChillDeCojones
             {
                 // Obtener el producto de la fila seleccionada
                 int productoId = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
-
+                producto = db.Producto.FirstOrDefault(p => p.ID == productoId);
+                cargarProductosLista2(producto);
             }
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0)
-            {
+            //{
+            //    if (dataGridView2.SelectedRows.Count > 0)
+            //    {
 
-                foreach (DataGridViewRow row in dataGridView2.SelectedRows)
-                {
-                    // Obtener el ID del producto seleccionado
-                    int productoId = (int)row.Cells["ID"].Value;
-                    // productosSeleccionadosIds = db.Producto.Select(p.ID)
+            //        foreach (DataGridViewRow row in dataGridView2.SelectedRows)
+            //        {
+            //            // Obtener el ID del producto seleccionado
+            //            69int productoId = (int)row.Cells["ID2"].Value;
+            //            // productosSeleccionadosIds = db.Producto.Select(p.ID)
 
-                    //Asegurarse de que el ID no se repita en la lista
-                    if (!productosSeleccionadosIds.Contains(productoId))
-                    {
-                        productosSeleccionadosIds.Add(productoId);
-                    }
-                }
-            }
+            //            //Asegurarse de que el ID no se repita en la lista
+            //            if (!productosSeleccionadosIds.Contains(productoId))
+            //            {
+            //                productosSeleccionadosIds.Add(productoId);
+            //            }
+            //        }
+            //    }
         }
 
         private void bAccept_Click(object sender, EventArgs e)
@@ -226,6 +321,21 @@ namespace ChillDeCojones
                     RelacionProducto nuevaRelacion = new RelacionProducto();
                     nuevaRelacion.Name = tLabel.Text;
                     db.RelacionProducto.Add(nuevaRelacion);
+
+                    if (dataGridView1.SelectedRows.Count > 0 && dataGridView2.SelectedRows.Count > 0)
+                    {
+                        foreach (DataGridViewRow fila in dataGridView2.SelectedRows)
+                        {
+                            var id1 = dataGridView1.SelectedRows[0].Cells["ID"].Value;
+                            var id2 = fila.Cells["ID2"].Value;
+                            ProductoRelacionIntermedia productosEnRelacion = new ProductoRelacionIntermedia();
+                            productosEnRelacion.idProducto1 = (int)id1;
+                            productosEnRelacion.idProducto2 = (int)id2;
+                            productosEnRelacion.idRelacionProducto = nuevaRelacion.idRelacionProducto;
+                            db.ProductoRelacionIntermedia.Add(productosEnRelacion);
+                        }
+
+                    }
                     db.SaveChanges();
                     this.Close();
                     RelacionInsertada?.Invoke(this, EventArgs.Empty);

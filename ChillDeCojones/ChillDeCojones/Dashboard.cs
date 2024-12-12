@@ -16,9 +16,16 @@ namespace ChillDeCojones
     {
         private grupo02DBEntities1 db = new grupo02DBEntities1();
         private InformeDeLaCuenta informeDeLaCuenta;
+        //public static Dashboard instance;
+
+        //public static InformeDeLaCuenta InformeDeLaCuenta2
+        //{
+        //    get => instance.informeDeLaCuenta;
+        //}
 
         public Dashboard()
         {
+            //instance = this;
             InitializeComponent();
         }
 

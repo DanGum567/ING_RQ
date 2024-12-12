@@ -21,15 +21,14 @@ namespace ChillDeCojones
 
         private void Relaciones_Load(object sender, EventArgs e)
         {
-
             cargarRelaciones();
             cargarAcciones();
         }
 
         private void ActualizarNumeroRelaciones()
         {
-            labelNumeroRelaciones.Text = "";
-            labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ") / " + db.PlanSuscripcion.FirstOrDefault.; // Poner /el limite de relaciones disponibles
+
+            labelNumeroRelaciones.Text += "Relationships (" + db.RelacionProducto.Count().ToString() + "/" + db.PlanSuscripcion.Select(p => p.Relaciones).FirstOrDefault().ToString() + ")";  // /limite de relaciones disponibles
         }
 
         private void cargarRelaciones()
@@ -56,6 +55,10 @@ namespace ChillDeCojones
                                           Name = relacion.Name
                                       };
                 dataGridViewRelaciones.DataSource = listaRelaciones.ToList();
+                foreach (DataGridViewColumn c in dataGridViewRelaciones.Columns)
+                {
+                    c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
                 dataGridViewRelaciones.ClearSelection();
                 dataGridViewRelaciones.Columns["ID"].Visible = false;
             }
@@ -85,9 +88,9 @@ namespace ChillDeCojones
             dataGridViewRelaciones.Columns.Add(btnEditar);
         }
 
-        private void EliminarRelacion()
+        private void EliminarRelacion(int idRelacion)
         {
-            //var relacion = db.RelacionProducto.First(x => x.Id.Equals(idAtributo));
+            //var relacion = db.RelacionProducto.First(x => x.Id.Equals(idRelacion));
             //if (relacion != null)
             //{
             //    Se pregunta al usuario si está seguro de que quiere eliminar el atributo

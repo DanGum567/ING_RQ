@@ -31,13 +31,23 @@
             this.labelNombreRelacion = new System.Windows.Forms.Label();
             this.tLabel = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.bAccept = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
-            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thumbnail2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SKU2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -71,18 +81,30 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(498, 240);
+            this.dataGridView1.Size = new System.Drawing.Size(504, 240);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // thumbnail
+            // 
+            this.thumbnail.HeaderText = "thumbnail";
+            this.thumbnail.MinimumWidth = 6;
+            this.thumbnail.Name = "thumbnail";
+            this.thumbnail.Width = 125;
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(581, 232);
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.thumbnail2,
+            this.ID2,
+            this.SKU2,
+            this.Label2});
+            this.dataGridView2.Location = new System.Drawing.Point(583, 232);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(221, 240);
+            this.dataGridView2.Size = new System.Drawing.Size(501, 240);
             this.dataGridView2.TabIndex = 3;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -106,12 +128,49 @@
             this.bCancel.UseVisualStyleBackColor = true;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
-            // thumbnail
+            // dataGridViewTextBoxColumn1
             // 
-            this.thumbnail.HeaderText = "thumbnail";
-            this.thumbnail.MinimumWidth = 6;
-            this.thumbnail.Name = "thumbnail";
-            this.thumbnail.Width = 125;
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "SKU";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Label";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "SKU";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "GTIN";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 125;
             // 
             // ID
             // 
@@ -136,11 +195,39 @@
             this.Label.Name = "Label";
             this.Label.Width = 125;
             // 
+            // thumbnail2
+            // 
+            this.thumbnail2.HeaderText = "thumbnail";
+            this.thumbnail2.MinimumWidth = 6;
+            this.thumbnail2.Name = "thumbnail2";
+            this.thumbnail2.Width = 125;
+            // 
+            // ID2
+            // 
+            this.ID2.HeaderText = "ID";
+            this.ID2.MinimumWidth = 6;
+            this.ID2.Name = "ID2";
+            this.ID2.Width = 125;
+            // 
+            // SKU2
+            // 
+            this.SKU2.HeaderText = "SKU";
+            this.SKU2.MinimumWidth = 6;
+            this.SKU2.Name = "SKU2";
+            this.SKU2.Width = 125;
+            // 
+            // Label2
+            // 
+            this.Label2.HeaderText = "Label";
+            this.Label2.MinimumWidth = 6;
+            this.Label2.Name = "Label2";
+            this.Label2.Width = 125;
+            // 
             // InsertarRelacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 669);
+            this.ClientSize = new System.Drawing.Size(1125, 669);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bAccept);
             this.Controls.Add(this.dataGridView2);
@@ -170,5 +257,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SKU;
         private System.Windows.Forms.DataGridViewTextBoxColumn Label;
+        private System.Windows.Forms.DataGridViewImageColumn thumbnail2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SKU2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

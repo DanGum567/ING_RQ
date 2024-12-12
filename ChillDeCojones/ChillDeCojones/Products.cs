@@ -310,7 +310,7 @@ namespace ChillDeCojones
             // Cuenta los productos en la base de datos
             int numeroProductos = db.Producto.Count();
             // Actualiza el texto del Label
-            NumeroProductosLabel.Text = numeroProductos.ToString() + " Products";
+            NumeroProductosLabel.Text = "Products (" + numeroProductos.ToString() + "/" + db.PlanSuscripcion.Select(p => p.Productos).FirstOrDefault().ToString() + ")";
         }
     }
 }

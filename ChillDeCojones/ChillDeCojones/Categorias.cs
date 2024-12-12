@@ -151,7 +151,7 @@ namespace ChillDeCojones
         private void ActualizarNumeroCategorias()
         {
             int numeroCategorias = db.CategoriaProducto.Count();
-            categoriesLabel.Text = "Categories (" + numeroCategorias.ToString() + ")";
+            categoriesLabel.Text = "Categories (" + numeroCategorias.ToString() + "/" + db.PlanSuscripcion.Select(p => p.CategoriasProducto).FirstOrDefault().ToString() + ")";
 
         }
     }

@@ -8,5 +8,11 @@ namespace ChillDeCojones
 {
     internal class InformeAmazon
     {
+        public string accountName { get; set; }
+        public string SKU { get; set; }
+        public string GTIN { get; set; }
+        public int productName { get; set; }
+        public int price { get; set; }
+        public int offerPrime { get; set; }
     }
 }
