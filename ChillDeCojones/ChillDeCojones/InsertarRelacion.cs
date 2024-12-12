@@ -13,7 +13,7 @@ namespace ChillDeCojones
     public partial class InsertarRelacion : Form
     {
         public event EventHandler RelacionInsertada;
-        grupo02DBEntities1 bd = new grupo02DBEntities1();
+        grupo02DBEntities1 db = new grupo02DBEntities1();
         Producto producto;  // Producto seleccionado en la primera lista
         List<Int32> productosSeleccionadosIds; // Productos seleccionados de la segunda lista
 
@@ -24,22 +24,119 @@ namespace ChillDeCojones
 
         private void InsertarRelacion_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = bd.Producto.ToList();
+            cargarProductosLista1();
+
         }
+
+        private void cargarProductosLista1()
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView1.SuspendLayout();
+
+
+            List<Producto> productos = db.Producto.ToList();
+
+            foreach (Producto cargadoJustoAhora in productos)
+            {
+                //Variables de Producto
+                int idProducto = cargadoJustoAhora.ID;
+                string label;
+                DateTime fechaCreacion;
+                DateTime fechaModificacion;
+                int ID;
+
+                //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                Producto delQueCargarVariables;
+                //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+
+                delQueCargarVariables = cargadoJustoAhora;
+
+
+                //Cargamos variables del producto para mostrarlas
+                label = delQueCargarVariables.LABEL;
+                fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
+                fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+                ID = delQueCargarVariables.ID;
+
+                //-------------------------------------------------------------------------------------------
+
+                //Atributos del sistema
+                string sku = "(Without SKU)";
+                string gtin = "(Without GTIN)";
+                Image thumbail = null;
+
+                byte[] skuBytes = null;
+                byte[] gtinBytes = null;
+                byte[] thumbailBytes = null;
+
+                //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
+                //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
+                //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
+
+
+                if (skuBytes == null)
+                {
+                    skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
+                }
+                if (gtinBytes == null)
+                {
+                    gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
+                }
+                if (thumbailBytes == null)
+                {
+                    thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
+                }
+
+                if (thumbailBytes != null)
+                {
+                    thumbail = Convertidor.BytesAImage(thumbailBytes);
+                }
+                if (skuBytes != null)
+                {
+                    sku = Convertidor.BytesAString(skuBytes);
+                }
+                if (gtinBytes != null)
+                {
+                    gtin = Convertidor.BytesAString(gtinBytes);
+                }
+
+
+                dataGridView1.Rows.Add(
+                    thumbail,
+                    idProducto,
+                    sku,
+                    label
+                );
+
+                dataGridView1.Columns["ID"].Visible = false;
+
+
+                dataGridView1.ResumeLayout();
+                dataGridView1.ClearSelection();// Se deselecciona el primer elemento
+            }
+        }
+
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            //if (dataGridView1.SelectedRows.Count > 0)
+            //{
+            //    // Obtener el producto de la fila seleccionada
+            //    int productoId = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+
+            //    // Buscar el producto en la base de datos utilizando el ID
+            //    producto = db.Producto.FirstOrDefault(p => p.ID == productoId);
+            //    if (producto != null)
+            //    {
+            //        dataGridView2.DataSource = db.Producto.Where(p => p.ID != productoId).ToList();
+            //    }
+            //}
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 // Obtener el producto de la fila seleccionada
                 int productoId = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
 
-                // Buscar el producto en la base de datos utilizando el ID
-                producto = bd.Producto.FirstOrDefault(p => p.ID == productoId);
-                if (producto != null)
-                {
-                    dataGridView2.DataSource = bd.Producto.Where(p => p.ID != productoId).ToList();
-                }
             }
         }
 
@@ -52,7 +149,7 @@ namespace ChillDeCojones
                 {
                     // Obtener el ID del producto seleccionado
                     int productoId = (int)row.Cells["ID"].Value;
-                    // productosSeleccionadosIds = bd.Producto.Select(p.ID)
+                    // productosSeleccionadosIds = db.Producto.Select(p.ID)
 
                     //Asegurarse de que el ID no se repita en la lista
                     if (!productosSeleccionadosIds.Contains(productoId))
@@ -73,38 +170,38 @@ namespace ChillDeCojones
             //        MessageBox.Show("ERROR: name cannot be empty");
 
             //    }
-            //    else if (bd.RelacionProducto.Any(x => x.Name.Equals(tLabel.Text)))
+            //    else if (db.RelacionProducto.Any(x => x.Name.Equals(tLabel.Text)))
             //    {
             //        MessageBox.Show("ERROR: The name is already in use");
             //        tLabel.Text = "";
 
-            //    } // Si no hay ningun producto seleccionado la categoria se crea sin ninguna asociación
+            //    } // Si no hay ningun producto seleccionado la relación se crea sin ninguna asociación
             //    else
             //    {
             //        nuevaRelacion.Name = tLabel.Text;
-            //        bd.RelacionProducto.Add(nuevaRelacion);
+            //        db.RelacionProducto.Add(nuevaRelacion);
 
             //        if (producto != null)
             //        {
             //            nuevaRelacion.idRelacionProducto = producto.ID;
-            //            if (productosSeleccionadosIds.Count > 0)
+            //            if (productosSeleccionadosIds.Count > 0) // Devuelve null!!
             //            {
             //                foreach (int productoId in productosSeleccionadosIds)
             //                {
-            //                    // Crear una nueva entrada en la tabla intermedia
-            //                    //Producto_RelacionProductoIntermedia nuevaRelacionIntermedia = new Producto_RelacionProductoIntermedia()
+            //                    //Crear una nueva entrada en la tabla intermedia
+            //                    ProductoRelacionIntermedia nuevaRelacionIntermedia = new ProductoRelacionIntermedia()
             //                    {
-            //                        //idProducto1 = productoId, // Producto seleccionado
-            //                        //idProducto2 = nuevaRelacion.idRelacionProducto // ID de la relación
+            //                        idProducto1 = productoId, // Producto seleccionado
+            //                        idProducto2 = nuevaRelacion.idRelacionProducto // ID de la relación
             //                    };
 
-            //                    // Agregar la relación intermedia a la base de datos
-            //                    //bd.Producto_RelacionIntermedia.Add(nuevaRelacionIntermedia);
+            //                    //Agregar la relación intermedia a la base de datos
+            //                    db.ProductoRelacionIntermedia.Add(nuevaRelacionIntermedia);
             //                }
             //            }
             //        }
 
-            //        bd.SaveChanges();
+            //        db.SaveChanges();
 
             //        // Cerrar el formulario después de agregar
             //        this.Close();
@@ -115,9 +212,11 @@ namespace ChillDeCojones
             //    MessageBox.Show("Error trying to add the category: " + ex.Message);
             //}
             //RelacionInsertada?.Invoke(this, EventArgs.Empty);
+
+            //INSERTAR CON NOMBRE BIEN
             if (!string.IsNullOrWhiteSpace(tLabel.Text))
             {
-                if (bd.RelacionProducto.Any(x => x.Name.Equals(tLabel.Text)))
+                if (db.RelacionProducto.Any(x => x.Name.Equals(tLabel.Text)))
                 {
                     MessageBox.Show("ERROR: The name is already in use");
 
@@ -126,8 +225,8 @@ namespace ChillDeCojones
                 {
                     RelacionProducto nuevaRelacion = new RelacionProducto();
                     nuevaRelacion.Name = tLabel.Text;
-                    bd.RelacionProducto.Add(nuevaRelacion);
-                    bd.SaveChanges();
+                    db.RelacionProducto.Add(nuevaRelacion);
+                    db.SaveChanges();
                     this.Close();
                     RelacionInsertada?.Invoke(this, EventArgs.Empty);
                 }

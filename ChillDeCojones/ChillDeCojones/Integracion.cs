@@ -12,6 +12,7 @@ namespace ChillDeCojones
 {
     public partial class Integracion : Form
     {
+        private grupo02DBEntities1 db = new grupo02DBEntities1();
         public Integracion()
         {
             InitializeComponent();
@@ -40,6 +41,11 @@ namespace ChillDeCojones
         {
             ConfiguracionExportacion configuracionExport = new ConfiguracionExportacion();
             configuracionExport.ShowDialog();
+            /*
+                //Comprobamos que hay almenos 1 producto en la cuenta.
+                num_products = db.Producto.Count(),
+                
+             */
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)

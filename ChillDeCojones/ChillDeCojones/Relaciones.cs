@@ -28,7 +28,8 @@ namespace ChillDeCojones
 
         private void ActualizarNumeroRelaciones()
         {
-            labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ")";
+            labelNumeroRelaciones.Text = "";
+            labelNumeroRelaciones.Text += "(" + db.RelacionProducto.Count().ToString() + ") / " + db.PlanSuscripcion.FirstOrDefault.; // Poner /el limite de relaciones disponibles
         }
 
         private void cargarRelaciones()
@@ -56,6 +57,7 @@ namespace ChillDeCojones
                                       };
                 dataGridViewRelaciones.DataSource = listaRelaciones.ToList();
                 dataGridViewRelaciones.ClearSelection();
+                dataGridViewRelaciones.Columns["ID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -85,22 +87,24 @@ namespace ChillDeCojones
 
         private void EliminarRelacion()
         {
-            /*if (relacion != null)
-            {
-                // Se pregunta al usuario si está seguro de que quiere eliminar el atributo
-                DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //var relacion = db.RelacionProducto.First(x => x.Id.Equals(idAtributo));
+            //if (relacion != null)
+            //{
+            //    Se pregunta al usuario si está seguro de que quiere eliminar el atributo
+            //   DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
-                {
-                    // Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
-                    db.RelacionProducto.Remove(relacion);
-                    db.SaveChanges(); // Guarda los cambios en la base de datos
-                }
-            }
-            else
-            {
-                MessageBox.Show("Attribute not found.", "Error");
-            }*/
+            //    if (result == DialogResult.Yes)
+            //    {
+            //        Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
+            //        db.RelacionProducto.Remove(relacion);
+            //        db.SaveChanges(); // Guarda los cambios en la base de datos
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Relationship not found.", "Error");
+            //}
+
         }
 
         private void dataGridViewRelaciones_CellClick(object sender, DataGridViewCellEventArgs e)

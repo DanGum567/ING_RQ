@@ -141,6 +141,7 @@
     <Compile Include="ImageAttributePanel.Designer.cs">
       <DependentUpon>ImageAttributePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformeAmazon.cs" />
     <Compile Include="InformeDeLaCuenta.cs" />
     <Compile Include="InsertarAtributo.cs">
       <SubType>Form</SubType>
