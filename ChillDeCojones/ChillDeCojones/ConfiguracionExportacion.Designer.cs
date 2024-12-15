@@ -39,7 +39,7 @@
             this.bExport = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YourAttribute2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -106,6 +106,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(700, 159);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             // 
             // AmazonAttribute
             // 
@@ -129,13 +130,14 @@
             this.bExport.TabIndex = 5;
             this.bExport.Text = "Export selected Products";
             this.bExport.UseVisualStyleBackColor = true;
+            this.bExport.Click += new System.EventHandler(this.bExport_Click);
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
+            this.YourAttribute2});
             this.dataGridView2.Location = new System.Drawing.Point(189, 375);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
@@ -150,12 +152,12 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 125;
             // 
-            // dataGridViewTextBoxColumn2
+            // YourAttribute2
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Your Attribute";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.YourAttribute2.HeaderText = "Your Attribute";
+            this.YourAttribute2.MinimumWidth = 6;
+            this.YourAttribute2.Name = "YourAttribute2";
+            this.YourAttribute2.Width = 125;
             // 
             // ConfiguracionExportacion
             // 
@@ -170,6 +172,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ConfiguracionExportacion";
             this.Text = "ConfiguracionExportacion";
+            this.Load += new System.EventHandler(this.ConfiguracionExportacion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -192,6 +195,6 @@
         private System.Windows.Forms.Button bExport;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn YourAttribute2;
     }
 }

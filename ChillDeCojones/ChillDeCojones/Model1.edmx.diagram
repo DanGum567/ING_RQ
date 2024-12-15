@@ -7,7 +7,7 @@
       <Diagram DiagramId="d01ab356526b42eebabde8dbaf7ddf43" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="grupo02DBModel.AtributoSistema" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="grupo02DBModel.AtributoUsuario" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="grupo02DBModel.CategoriaProducto" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="grupo02DBModel.CategoriaProducto" Width="1.5" PointX="3.875" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="grupo02DBModel.PlanSuscripcion" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="grupo02DBModel.Producto" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="grupo02DBModel.ValorAtributoSistema" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />

@@ -22,6 +22,11 @@ namespace ChillDeCojones
         public string TYPE { get; set; }
         public string NAME { get; set; }
         public int ID { get; set; }
+
+        public override string ToString()
+        {
+            return NAME;
+        }
     
         public virtual ICollection<ValorAtributoUsuario> ValorAtributoUsuario { get; set; }
     }

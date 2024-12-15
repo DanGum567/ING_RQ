@@ -130,7 +130,7 @@
     <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
     <End Role="CategoriaProducto" Type="Self.CategoriaProducto" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="grupo02DBEntities11" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="grupo02DBEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AtributoSistema" EntityType="Self.AtributoSistema" />
     <EntitySet Name="AtributoUsuario" EntityType="Self.AtributoUsuario" />
     <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" />

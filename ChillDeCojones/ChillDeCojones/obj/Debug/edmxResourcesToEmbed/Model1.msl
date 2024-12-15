@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities11">
+  <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities1">
     <EntitySetMapping Name="AtributoSistema">
       <EntityTypeMapping TypeName="grupo02DBModel.AtributoSistema">
         <MappingFragment StoreEntitySet="AtributoSistema">

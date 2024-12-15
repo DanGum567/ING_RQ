@@ -63,7 +63,7 @@
             this.bInsertar.Name = "bInsertar";
             this.bInsertar.Size = new System.Drawing.Size(182, 37);
             this.bInsertar.TabIndex = 3;
-            this.bInsertar.Text = "➕ New attribute";
+            this.bInsertar.Text = "➕ New relationship";
             this.bInsertar.UseVisualStyleBackColor = true;
             this.bInsertar.Click += new System.EventHandler(this.bInsertar_Click);
             // 

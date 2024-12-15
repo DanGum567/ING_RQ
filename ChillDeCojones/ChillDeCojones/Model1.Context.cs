@@ -12,19 +12,19 @@ namespace ChillDeCojones
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class grupo02DBEntities1 : DbContext
     {
         public grupo02DBEntities1()
             : base("name=grupo02DBEntities1")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public DbSet<AtributoSistema> AtributoSistema { get; set; }
         public DbSet<AtributoUsuario> AtributoUsuario { get; set; }
         public DbSet<CategoriaProducto> CategoriaProducto { get; set; }

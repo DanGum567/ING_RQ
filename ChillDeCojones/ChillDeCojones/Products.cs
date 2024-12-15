@@ -163,7 +163,9 @@ namespace ChillDeCojones
 
                 listaProductosDataGridView.Columns["Fila"].Visible = false;
                 listaProductosDataGridView.Columns["ID"].Visible = false;
+
                 List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
+
                 foreach (AtributoUsuario atributoUsuario in tresPrimeros)
                 {
 

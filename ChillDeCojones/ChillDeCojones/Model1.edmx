@@ -386,7 +386,7 @@
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <End Role="CategoriaProducto" Type="Self.CategoriaProducto" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="grupo02DBEntities11" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="grupo02DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AtributoSistema" EntityType="Self.AtributoSistema" />
           <EntitySet Name="AtributoUsuario" EntityType="Self.AtributoUsuario" />
           <EntitySet Name="CategoriaProducto" EntityType="Self.CategoriaProducto" />
@@ -491,7 +491,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities11">
+        <EntityContainerMapping StorageEntityContainer="grupo02DBModelStoreContainer" CdmEntityContainer="grupo02DBEntities1">
           <EntitySetMapping Name="AtributoSistema">
             <EntityTypeMapping TypeName="grupo02DBModel.AtributoSistema">
               <MappingFragment StoreEntitySet="AtributoSistema">
