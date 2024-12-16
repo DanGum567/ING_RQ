@@ -40,6 +40,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YourAttribute2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -159,11 +160,19 @@
             this.YourAttribute2.Name = "YourAttribute2";
             this.YourAttribute2.Width = 125;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(22, 35);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(225, 22);
+            this.textBox1.TabIndex = 7;
+            // 
             // ConfiguracionExportacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 602);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.bExport);
             this.Controls.Add(this.dataGridView1);
@@ -196,5 +205,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn YourAttribute2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -145,15 +145,16 @@ namespace ChillDeCojones
         private void bExport_Click(object sender, EventArgs e)
         {
             // Datos de ejemplo
-            string[] headers = { "SKU", "Title", "Fulfilled by", "Amazon SKU", "Price", "Offer Prime" };
-            List<List<string>> datosObligatorios = new List<List<string>>(productosAExportar.Count);
+            string[] headers = { "SKU", "Title", "Fulfilled by", "Amazon SKU"};
+            string[,] datosObligatorios = new string[productosAExportar.Count, headers.Length];
 
-            for (int i = 0; i < datosObligatorios.Count; ++i)
+            for (int i = 0; i < productosAExportar.Count; ++i)
             {
                 //Variables de Producto
 
                 int idProducto = productosAExportar[i].ID;
                 string label;
+                string accountName = "Mi tienda";
                 DateTime fechaCreacion;
                 DateTime fechaModificacion;
                 int ID;
@@ -178,6 +179,8 @@ namespace ChillDeCojones
                 string gtin = "(Without GTIN)";
                 Image thumbail = null;
 
+                string[] atributosSistema = {sku, label, accountName, gtin};
+
                 byte[] skuBytes = null;
                 byte[] gtinBytes = null;
                 byte[] thumbailBytes = null;
@@ -196,27 +199,28 @@ namespace ChillDeCojones
                 {
                     gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, productosAExportar[i], db);
                 }
-                if (thumbailBytes == null)
-                {
-                    thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, productosAExportar[i], db);
-                }
+                //if (thumbailBytes == null)
+                //{
+                //    thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, productosAExportar[i], db);
+                //}
 
-                if (thumbailBytes != null)
-                {
-                    thumbail = Convertidor.BytesAImage(thumbailBytes);
-                }
+                //if (thumbailBytes != null)
+                //{
+                //    thumbail = Convertidor.BytesAImage(thumbailBytes);
+                //}
                 if (skuBytes != null)
                 {
-                    sku = Convertidor.BytesAString(skuBytes);
+                    atributosSistema[0] = Convertidor.BytesAString(skuBytes);
                 }
                 if (gtinBytes != null)
                 {
-                    gtin = Convertidor.BytesAString(gtinBytes);
+                    atributosSistema[3] = Convertidor.BytesAString(gtinBytes);
                 }
 
-
-                datosObligatorios[i] = new List<string>{sku.ToString(), label.ToString(), "MiTienda", gtin.ToString()};
-
+                for(int j = 0; j < headers.Length; j++)
+                {
+                    datosObligatorios[i, j] = atributosSistema[j];
+                }
 
                 //List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
 
@@ -280,16 +284,7 @@ namespace ChillDeCojones
 
                 //}
                 //fila++;
-            }
-
-            string[,] data = new string[datosObligatorios.Count, datosObligatorios[0].Count];
-
-            for (int i = 0; i < datosObligatorios.Count; ++i)
-            {
-                for(int j = 0; j < datosObligatorios[0].Count; ++j)
-                {
-                    data[i, j] = datosObligatorios[i][j];
-                }
+                
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -309,12 +304,21 @@ namespace ChillDeCojones
                     writer.WriteLine(string.Join(",", headers));
 
                     // Escribir los datos
-                    foreach (var row in data)
+                    int fila = 1; // Queremos acceder a la segunda fila (índice 1).
+                    string[] filaCompleta = new string[headers.Length];
+
+                    for (int i = 1; i < productosAExportar.Count; ++i)
                     {
-                        writer.WriteLine(string.Join(",", row));
+                        //Copiamos la fila completa:
+
+                        for (int columna = 0; columna < headers.Length; columna++)
+                        {
+                            filaCompleta[columna] = datosObligatorios[i, columna];
+                        }
+                        writer.WriteLine(string.Join(",", filaCompleta));
                     }
                 }
-                MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The file was saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 

@@ -258,7 +258,7 @@ namespace ChillDeCojones
             configuracionExport.ShowDialog();
             try
             {
-                Exportar(configuracionExport);
+                //Exportar(configuracionExport);
             }
             catch (UnSoloProductoNoTieneAtributoNumericoException)
             {
