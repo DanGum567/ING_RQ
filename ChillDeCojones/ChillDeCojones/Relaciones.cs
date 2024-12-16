@@ -90,29 +90,34 @@ namespace ChillDeCojones
 
         private void EliminarRelacion(int idRelacion)
         {
-            //var relacion = db.RelacionProducto.First(x => x.Id.Equals(idRelacion));
-            //if (relacion != null)
-            //{
-            //    Se pregunta al usuario si está seguro de que quiere eliminar el atributo
-            //   DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var relacion = db.RelacionProducto.First(x => x.idRelacionProducto.Equals(idRelacion));
+            if (relacion != null)
+            {
+              
+               DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            //    if (result == DialogResult.Yes)
-            //    {
-            //        Llamamos al método Borrar del objeto Producto para eliminarlo de la base de datos
-            //        db.RelacionProducto.Remove(relacion);
-            //        db.SaveChanges(); // Guarda los cambios en la base de datos
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Relationship not found.", "Error");
-            //}
+                if (result == DialogResult.Yes)
+                {
+                    
+                    db.RelacionProducto.Remove(relacion);
+                    db.SaveChanges(); // Guarda los cambios en la base de datos
+                }
+            }
+            else
+            {
+                MessageBox.Show("Relationship not found.", "Error");
+            }
 
         }
 
         private void dataGridViewRelaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == dataGridViewRelaciones.Columns["Delete"].Index && e.RowIndex >= 0)
+            {
+                int idAtributo = Convert.ToInt32(dataGridViewRelaciones.Rows[e.RowIndex].Cells["ID"].Value);
 
+                EliminarRelacion(idAtributo);
+            }
         }
 
         private void bInsertar_Click(object sender, EventArgs e)
