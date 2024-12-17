@@ -31,7 +31,6 @@
             this.labelNombreRelacion = new System.Windows.Forms.Label();
             this.tLabel = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.bAccept = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,13 +85,6 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // thumbnail
-            // 
-            this.thumbnail.HeaderText = "thumbnail";
-            this.thumbnail.MinimumWidth = 6;
-            this.thumbnail.Name = "thumbnail";
-            this.thumbnail.Width = 125;
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -122,7 +115,7 @@
             // 
             this.bCancel.Location = new System.Drawing.Point(669, 537);
             this.bCancel.Name = "bCancel";
-            this.bCancel.Size = new System.Drawing.Size(75, 23);
+            this.bCancel.Size = new System.Drawing.Size(75, 30);
             this.bCancel.TabIndex = 5;
             this.bCancel.Text = "Cancel";
             this.bCancel.UseVisualStyleBackColor = true;
@@ -172,6 +165,14 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 125;
             // 
+            // thumbnail
+            // 
+            this.thumbnail.HeaderText = "thumbnail";
+            this.thumbnail.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.thumbnail.MinimumWidth = 6;
+            this.thumbnail.Name = "thumbnail";
+            this.thumbnail.Width = 125;
+            // 
             // ID
             // 
             this.ID.HeaderText = "ID";
@@ -198,6 +199,7 @@
             // thumbnail2
             // 
             this.thumbnail2.HeaderText = "thumbnail";
+            this.thumbnail2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.thumbnail2.MinimumWidth = 6;
             this.thumbnail2.Name = "thumbnail2";
             this.thumbnail2.Width = 125;

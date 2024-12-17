@@ -15,13 +15,8 @@ namespace ChillDeCojones
     public partial class Dashboard : Form
     {
         private grupo02DBEntities1 db = new grupo02DBEntities1();
-        private InformeDeLaCuenta informeDeLaCuenta;
-        //public static Dashboard instance;
-
-        //public static InformeDeLaCuenta InformeDeLaCuenta2
-        //{
-        //    get => instance.informeDeLaCuenta;
-        //}
+        public InformeDeLaCuenta informeDeLaCuenta;
+        public static Dashboard instance;
 
         public Dashboard()
         {
@@ -40,10 +35,13 @@ namespace ChillDeCojones
                 num_attributes = db.AtributoUsuario.Count(),
                 num_relationships = db.RelacionProducto.Count()
             };
-            numeroProductos.Text = "Products: " + informeDeLaCuenta.num_products.ToString();
-            numeroCategorias.Text = "Categories: " + informeDeLaCuenta.num_categories.ToString();
-            numeroAtributos.Text = "Attributes: " + informeDeLaCuenta.num_attributes.ToString();
-            numeroRelaciones.Text = "Relationships: " + informeDeLaCuenta.num_relationships.ToString();
+            var planSuscripcion = db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free"));
+            numeroProductos.Text = "Products: " + informeDeLaCuenta.num_products.ToString() + "/" + planSuscripcion.Productos;
+            numeroCategorias.Text = "Categories: " + informeDeLaCuenta.num_categories.ToString() + "/" + planSuscripcion.CategoriasProducto;
+            numeroAtributos.Text = "Attributes: " + informeDeLaCuenta.num_attributes.ToString() + "/" + planSuscripcion.Atributos;
+            numeroRelaciones.Text = "Relationships: " + informeDeLaCuenta.num_relationships.ToString() + "/" + planSuscripcion.Relaciones;
+            createdDateLabel.Text = "Creation Date: " + informeDeLaCuenta.creation_date.ToShortDateString();
+            accountNameLabel.Text = "Account Name: " + informeDeLaCuenta.account_name;
         }
 
         private void bExport_Click(object sender, EventArgs e)

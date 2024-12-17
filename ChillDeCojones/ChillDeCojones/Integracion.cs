@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using static System.Net.WebRequestMethods;
 using System.Runtime.Remoting.Messaging;
+using System.Diagnostics;
 
 namespace ChillDeCojones
 {
@@ -41,7 +42,7 @@ namespace ChillDeCojones
             columna1.Name = "thumbnail";
             columna1.Width = 200;
             columna1.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            
+
             //ID:
             DataGridViewTextBoxColumn columna2 = new DataGridViewTextBoxColumn();
             columna2.HeaderText = "ID";
@@ -168,7 +169,7 @@ namespace ChillDeCojones
                     dataGridView1.ClearSelection();// Se deselecciona el primer elemento
 
                     List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
-                    
+
                     int fila = 0;
                     int columnIndex = 3; // Los atributos de usuario empiezan desde el índice 3
                     foreach (AtributoUsuario atributoUsuario in tresPrimeros)
@@ -222,7 +223,7 @@ namespace ChillDeCojones
                     c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
-           
+
         }
         private void bClearCategory_Click(object sender, EventArgs e)
         {
@@ -248,12 +249,13 @@ namespace ChillDeCojones
             {
                 MessageBox.Show("There is no product associated to the account !!!");
                 return;
-            }else if(dataGridView1.Rows.Count == 1)
+            }
+            else if (dataGridView1.Rows.Count == 1)
             {
                 MessageBox.Show("There are no filtered products");
                 return;
             }
-           
+
             ConfiguracionExportacion configuracionExport = new ConfiguracionExportacion(productosFiltrados);
             configuracionExport.ShowDialog();
             try
@@ -340,7 +342,10 @@ namespace ChillDeCojones
                         writer.WriteLine(string.Join(",", row));
                     }
                 }
-                MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Para abrir el archivo una vez se guarda
+                Process.Start(new ProcessStartInfo(saveFileDialog.FileName) { UseShellExecute = true });
+
             }
         }
 

@@ -63,6 +63,16 @@ namespace ChillDeCojones.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap artworks_DVUwxlYygwLiajW7_ZZhNJg_t1080x1080 {
+            get {
+                object obj = ResourceManager.GetObject("artworks-DVUwxlYygwLiajW7-ZZhNJg-t1080x1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GcmqqlCXIAAcxeW {
             get {
                 object obj = ResourceManager.GetObject("GcmqqlCXIAAcxeW", resourceCulture);

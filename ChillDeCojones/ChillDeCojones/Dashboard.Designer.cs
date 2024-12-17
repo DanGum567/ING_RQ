@@ -28,36 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lCreated = new System.Windows.Forms.Label();
+            this.createdDateLabel = new System.Windows.Forms.Label();
             this.numeroRelaciones = new System.Windows.Forms.Label();
             this.numeroCategorias = new System.Windows.Forms.Label();
-            this.numeroAtributos = new System.Windows.Forms.Label();
-            this.numeroProductos = new System.Windows.Forms.Label();
             this.bExport = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lAccountName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.accountNameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numeroAtributos = new System.Windows.Forms.Label();
+            this.numeroProductos = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // lCreated
+            // createdDateLabel
             // 
-            this.lCreated.AutoSize = true;
-            this.lCreated.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lCreated.Location = new System.Drawing.Point(92, 403);
-            this.lCreated.Name = "lCreated";
-            this.lCreated.Size = new System.Drawing.Size(123, 32);
-            this.lCreated.TabIndex = 0;
-            this.lCreated.Text = "Created:";
+            this.createdDateLabel.AutoSize = true;
+            this.createdDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createdDateLabel.Location = new System.Drawing.Point(92, 476);
+            this.createdDateLabel.Name = "createdDateLabel";
+            this.createdDateLabel.Size = new System.Drawing.Size(123, 32);
+            this.createdDateLabel.TabIndex = 0;
+            this.createdDateLabel.Text = "Created:";
             // 
             // numeroRelaciones
             // 
@@ -73,17 +70,77 @@
             // 
             this.numeroCategorias.AutoSize = true;
             this.numeroCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroCategorias.Location = new System.Drawing.Point(35, 79);
+            this.numeroCategorias.Location = new System.Drawing.Point(39, 93);
             this.numeroCategorias.Name = "numeroCategorias";
             this.numeroCategorias.Size = new System.Drawing.Size(248, 32);
             this.numeroCategorias.TabIndex = 2;
             this.numeroCategorias.Text = "numeroCategorias";
             // 
+            // bExport
+            // 
+            this.bExport.Location = new System.Drawing.Point(1085, 795);
+            this.bExport.Name = "bExport";
+            this.bExport.Size = new System.Drawing.Size(212, 66);
+            this.bExport.TabIndex = 5;
+            this.bExport.Text = "Export";
+            this.bExport.UseVisualStyleBackColor = true;
+            this.bExport.Click += new System.EventHandler(this.bExport_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(541, 225);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1239, 465);
+            this.panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.numeroProductos);
+            this.panel2.Controls.Add(this.numeroCategorias);
+            this.panel2.Controls.Add(this.numeroAtributos);
+            this.panel2.Controls.Add(this.numeroRelaciones);
+            this.panel2.Location = new System.Drawing.Point(323, 78);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(659, 303);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(541, 169);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(461, 56);
+            this.panel3.TabIndex = 10;
+            // 
+            // accountNameLabel
+            // 
+            this.accountNameLabel.AutoSize = true;
+            this.accountNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accountNameLabel.Location = new System.Drawing.Point(92, 421);
+            this.accountNameLabel.Name = "accountNameLabel";
+            this.accountNameLabel.Size = new System.Drawing.Size(199, 32);
+            this.accountNameLabel.TabIndex = 11;
+            this.accountNameLabel.Text = "Account Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(198, 32);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Account report";
+            // 
             // numeroAtributos
             // 
             this.numeroAtributos.AutoSize = true;
             this.numeroAtributos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroAtributos.Location = new System.Drawing.Point(35, 82);
+            this.numeroAtributos.Location = new System.Drawing.Point(35, 219);
             this.numeroAtributos.Name = "numeroAtributos";
             this.numeroAtributos.Size = new System.Drawing.Size(223, 32);
             this.numeroAtributos.TabIndex = 3;
@@ -93,123 +150,43 @@
             // 
             this.numeroProductos.AutoSize = true;
             this.numeroProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroProductos.Location = new System.Drawing.Point(35, 34);
+            this.numeroProductos.Location = new System.Drawing.Point(35, 157);
             this.numeroProductos.Name = "numeroProductos";
             this.numeroProductos.Size = new System.Drawing.Size(238, 32);
             this.numeroProductos.TabIndex = 4;
             this.numeroProductos.Text = "numeroProductos";
             // 
-            // bExport
-            // 
-            this.bExport.Location = new System.Drawing.Point(986, 779);
-            this.bExport.Name = "bExport";
-            this.bExport.Size = new System.Drawing.Size(212, 66);
-            this.bExport.TabIndex = 5;
-            this.bExport.Text = "Export";
-            this.bExport.UseVisualStyleBackColor = true;
-            this.bExport.Click += new System.EventHandler(this.bExport_Click);
-            // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::ChillDeCojones.Properties.Resources.artworks_DVUwxlYygwLiajW7_ZZhNJg_t1080x1080;
+            this.pictureBox1.InitialImage = global::ChillDeCojones.Properties.Resources.artworks_DVUwxlYygwLiajW7_ZZhNJg_t1080x1080;
             this.pictureBox1.Location = new System.Drawing.Point(98, 211);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(177, 162);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(131, 115);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 32);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Products";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(131, 293);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 32);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Others";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(541, 225);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1239, 465);
-            this.panel1.TabIndex = 9;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.numeroProductos);
-            this.panel4.Controls.Add(this.numeroAtributos);
-            this.panel4.Location = new System.Drawing.Point(414, 238);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(726, 143);
-            this.panel4.TabIndex = 11;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.numeroCategorias);
-            this.panel2.Controls.Add(this.numeroRelaciones);
-            this.panel2.Location = new System.Drawing.Point(414, 66);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(726, 143);
-            this.panel2.TabIndex = 10;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.lAccountName);
-            this.panel3.Location = new System.Drawing.Point(541, 169);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(461, 56);
-            this.panel3.TabIndex = 10;
-            // 
-            // lAccountName
-            // 
-            this.lAccountName.AutoSize = true;
-            this.lAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAccountName.Location = new System.Drawing.Point(3, 16);
-            this.lAccountName.Name = "lAccountName";
-            this.lAccountName.Size = new System.Drawing.Size(199, 32);
-            this.lAccountName.TabIndex = 11;
-            this.lAccountName.Text = "Account Name";
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.Controls.Add(this.accountNameLabel);
+            this.Controls.Add(this.bExport);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.bExport);
-            this.Controls.Add(this.lCreated);
+            this.Controls.Add(this.createdDateLabel);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,19 +194,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lCreated;
+        private System.Windows.Forms.Label createdDateLabel;
         private System.Windows.Forms.Label numeroRelaciones;
         private System.Windows.Forms.Label numeroCategorias;
-        private System.Windows.Forms.Label numeroAtributos;
-        private System.Windows.Forms.Label numeroProductos;
         private System.Windows.Forms.Button bExport;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lAccountName;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label accountNameLabel;
+        private System.Windows.Forms.Label numeroProductos;
+        private System.Windows.Forms.Label numeroAtributos;
+        private System.Windows.Forms.Label label1;
     }
 }

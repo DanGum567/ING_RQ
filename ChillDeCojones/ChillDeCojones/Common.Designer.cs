@@ -37,10 +37,10 @@
             this.toolStripAttributesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripRelationshipsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripHelpButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripIntegrationsButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelRuta = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolStripIntegrationsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.toolStripIntegrationsButton});
             this.toolStrip1.Location = new System.Drawing.Point(585, 9);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(917, 32);
+            this.toolStrip1.Size = new System.Drawing.Size(878, 32);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
@@ -153,8 +153,20 @@
             this.toolStripHelpButton.Text = "Help";
             this.toolStripHelpButton.Click += new System.EventHandler(this.toolStripHelpButton_Click);
             // 
+            // toolStripIntegrationsButton
+            // 
+            this.toolStripIntegrationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripIntegrationsButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripIntegrationsButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripIntegrationsButton.Image")));
+            this.toolStripIntegrationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripIntegrationsButton.Name = "toolStripIntegrationsButton";
+            this.toolStripIntegrationsButton.Size = new System.Drawing.Size(130, 29);
+            this.toolStripIntegrationsButton.Text = "Integrations";
+            this.toolStripIntegrationsButton.Click += new System.EventHandler(this.toolStripIntegrationsButton_Click);
+            // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(0, 54);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1902, 979);
@@ -180,21 +192,11 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // toolStripIntegrationsButton
-            // 
-            this.toolStripIntegrationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripIntegrationsButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripIntegrationsButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripIntegrationsButton.Image")));
-            this.toolStripIntegrationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripIntegrationsButton.Name = "toolStripIntegrationsButton";
-            this.toolStripIntegrationsButton.Size = new System.Drawing.Size(130, 29);
-            this.toolStripIntegrationsButton.Text = "Integrations";
-            this.toolStripIntegrationsButton.Click += new System.EventHandler(this.toolStripIntegrationsButton_Click);
-            // 
             // Common
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.pictureBox1);

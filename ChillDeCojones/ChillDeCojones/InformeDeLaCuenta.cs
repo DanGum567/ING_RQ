@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChillDeCojones
 {
-    internal class InformeDeLaCuenta
+    public class InformeDeLaCuenta
     {
         public string account_name { get; set; }
         public DateTime creation_date { get; set; }
