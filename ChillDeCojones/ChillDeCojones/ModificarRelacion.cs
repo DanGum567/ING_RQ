@@ -17,11 +17,13 @@ namespace ChillDeCojones
         RelacionProducto relacion;
         List<Int32> productosRelacionados = new List<Int32>();
         int idProducto1;
+        int indice = 0;
 
         public ModificarRelacion(int idRelacion)
         {
             InitializeComponent();
             relacion = db.RelacionProducto.FirstOrDefault(x => x.idRelacionProducto == idRelacion);
+
         }
 
 
@@ -42,6 +44,22 @@ namespace ChillDeCojones
 
         private void bAccept_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tLabel.Text))
+            {
+                MessageBox.Show("ERROR: The name cannot be empty.");
+            }
+            else if (db.RelacionProducto.Any(a => a.Name.Equals(tLabel.Text)))
+            {
+                MessageBox.Show("ERROR: The name is already in use");
+                tLabel.Text = "";
+            }
+            else
+            {
+                relacion.Name = tLabel.Text;
+                db.SaveChanges();
+                this.Close();
+            }
+
             RelacionModificada?.Invoke(this, EventArgs.Empty);
         }
 
@@ -100,11 +118,6 @@ namespace ChillDeCojones
                 byte[] gtinBytes = null;
                 byte[] thumbailBytes = null;
 
-                //Comprobamos si ya se han cargado las variables de Producto anteriormente
-                //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
-                //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
-                //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
-
 
                 if (skuBytes == null)
                 {
@@ -118,7 +131,6 @@ namespace ChillDeCojones
                 {
                     thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
                 }
-
                 if (thumbailBytes != null)
                 {
                     thumbail = Convertidor.BytesAImage(thumbailBytes);
@@ -132,7 +144,6 @@ namespace ChillDeCojones
                     gtin = Convertidor.BytesAString(gtinBytes);
                 }
 
-
                 dataGridView1.Rows.Add(
                     thumbail,
                     idProducto,
@@ -142,13 +153,9 @@ namespace ChillDeCojones
 
                 dataGridView1.Columns["ID"].Visible = false;
 
-
                 dataGridView1.ResumeLayout();
                 dataGridView1.ClearSelection();// Se deselecciona el primer elemento
             }
-
-
-            //int idProducto1 = db.ProductoRelacionIntermedia.Where(r => r.idRelacionProducto == relacion.ID).idProducto1;
 
 
             foreach (DataGridViewRow fila in dataGridView1.Rows)
@@ -178,9 +185,12 @@ namespace ChillDeCojones
 
         private void cargarProductosLista2(Producto productoLista1)
         {
+            dataGridView2.MultiSelect = true;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             buscarProductosRelacionados();
             dataGridView2.Rows.Clear();
             dataGridView2.SuspendLayout();
+            dataGridView2.ClearSelection();
 
 
             List<Producto> productos = db.Producto.ToList();
@@ -222,10 +232,6 @@ namespace ChillDeCojones
                 byte[] gtinBytes = null;
                 byte[] thumbailBytes = null;
 
-                //Comprobamos si ya se han cargado las variables de Producto anteriormente
-                //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
-                //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
-                //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
 
 
                 if (skuBytes == null)
@@ -264,26 +270,23 @@ namespace ChillDeCojones
 
                 if (productosRelacionados.Contains(idProducto))
                 {
-                    dataGridView2.Rows[dataGridView2.Rows.Count - 1].Selected = true;
+                    dataGridView2.Rows[indice].Selected = true;
                 }
 
                 dataGridView2.Columns["ID2"].Visible = false;
 
 
                 dataGridView2.ResumeLayout();
-                //dataGridView2.ClearSelection();// Se deselecciona el primer elemento
+                indice++;
+
+
 
             }
-
-            // Recorrer todas las filas del DataGridView
-            //foreach (DataGridViewRow fila in dataGridView2.Rows)
-            //{
-            //    if (productosRelacionados.Contains((int)fila.Cells["ID2"].Value))
-            //    {
-            //        fila.Selected = true; // Seleccionar la fila
-            //    }
-            //}
+            
         }
+
+
+
 
     }
 }

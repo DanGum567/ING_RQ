@@ -20,7 +20,7 @@ namespace ChillDeCojones
 
         public Dashboard()
         {
-            //instance = this;
+            instance = this;
             InitializeComponent();
         }
 

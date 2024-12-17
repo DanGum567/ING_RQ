@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,6 @@ namespace ChillDeCojones
                 //Añadimos comboboc al datagridview:
                 dataGridView1.Rows[3].Cells["YourAttribute"] = amazonSKU;
                 amazonSKU.Value = amazonSKU.Items[0].ToString(); // el valor por defecto es False
-                elecciones.amazonSKU = db.AtributoSistema.First(atr => atr.NAME.Equals(amazonSKU.Value));
 
                 //Añadimos un combobox para el atributo Price:
 
@@ -59,8 +59,6 @@ namespace ChillDeCojones
                 //Añadimos combobox al dataGridView:
                 dataGridView1.Rows[4].Cells["YourAttribute"] = price;
                 price.Value = price.Items[0].ToString(); // Seleccionamos el primer atributo del tipo Number
-                elecciones.price = (AtributoUsuario)price.Value;
-
 
                 //Añadimos combobox para el atributo OfferPrime:
                 DataGridViewComboBoxCell offerprime = new DataGridViewComboBoxCell();
@@ -69,7 +67,6 @@ namespace ChillDeCojones
                 //Añadimos comboboc al datagridview:
                 dataGridView1.Rows[5].Cells["YourAttribute"] = offerprime;
                 offerprime.Value = offerprime.Items[0].ToString(); // el valor por defecto es False
-                elecciones.offerPrime = Convert.ToBoolean(offerprime.Value);
 
                 // Configuramos el dataGridView2:
 
@@ -96,10 +93,7 @@ namespace ChillDeCojones
                 // description.DisplayMember = "NAME";
                 dataGridView2.Rows[0].Cells["YourAttribute2"] = description;
                 dataGridView2.Rows[0].Cells["YourAttribute2"].Value = "None";
-                if (description.Value != null && description.Value.ToString() != "None")
-                {
-                    elecciones.description = db.AtributoUsuario.First(atr => atr.NAME.Equals(description.Value));
-                }
+
 
                 DataGridViewComboBoxCell variationOption = new DataGridViewComboBoxCell();
 
@@ -108,20 +102,14 @@ namespace ChillDeCojones
                 dataGridView2.Rows[1].Cells["YourAttribute2"] = variationOption;
                 dataGridView2.Rows[1].Cells["YourAttribute2"].Value = "None";
 
-                if (variationOption.Value != null && variationOption.Value.ToString() != "None")
-                {
-                    elecciones.variationOption = db.AtributoUsuario.First(atr => atr.NAME.Equals(variationOption.Value));
-                }
+
 
                 DataGridViewComboBoxCell imageURL = new DataGridViewComboBoxCell();
                 imageURL.DataSource = atributosUsuario;
                 //imageURL.DisplayMember = "NAME";
                 dataGridView2.Rows[2].Cells["YourAttribute2"] = imageURL;
                 dataGridView2.Rows[2].Cells["YourAttribute2"].Value = "None";
-                if (imageURL.Value != null && imageURL.Value.ToString() != "None")
-                {
-                    elecciones.imageURL = db.AtributoUsuario.First(atr => atr.NAME.Equals(imageURL.Value));
-                }
+
 
 
                 DataGridViewComboBoxCell altImageText = new DataGridViewComboBoxCell();
@@ -129,10 +117,7 @@ namespace ChillDeCojones
                 //altImageText.DisplayMember = "NAME";
                 dataGridView2.Rows[3].Cells["YourAttribute2"] = altImageText;
                 dataGridView2.Rows[3].Cells["YourAttribute2"].Value = "None";
-                if (altImageText.Value != null && altImageText.Value.ToString() != "None")
-                {
-                    elecciones.altImageText = db.AtributoUsuario.First(atr => atr.NAME.Equals(altImageText.Value));
-                }
+
 
 
                 DataGridViewComboBoxCell pdpURL = new DataGridViewComboBoxCell();
@@ -140,10 +125,7 @@ namespace ChillDeCojones
                 //pdpURL.DisplayMember = "NAME";
                 dataGridView2.Rows[4].Cells["YourAttribute2"] = pdpURL;
                 dataGridView2.Rows[4].Cells["YourAttribute2"].Value = "None";
-                if (pdpURL.Value != null && pdpURL.Value.ToString() != "None")
-                {
-                    elecciones.pdpURL = db.AtributoUsuario.First(atr => atr.NAME.Equals(pdpURL.Value));
-                }
+
 
             }
             catch (ArgumentException error)
@@ -184,6 +166,9 @@ namespace ChillDeCojones
 
         private void bExport_Click(object sender, EventArgs e)
         {
+            bool respuestaError = false;
+            //FALSE = NO PREGUNTADO, TRUE = CONTINUAR EXPORTANDO LOS QUE TIENEN PRECIO, YA PREGUNTADO
+
             // Datos de ejemplo
             string[] headers = { "SKU", "Title", "Fulfilled by", "Amazon SKU", "Price", "OfferPrime", "Description", "Variation Option", "Image URL", "Alt Image Text", "PDP URL" };
 
@@ -194,43 +179,78 @@ namespace ChillDeCojones
             {
                 //Variables de Producto
 
-                int idProducto = productosAExportar[i].ID;
-                string label;
-                string accountName = Dashboard.instance.informeDeLaCuenta.account_name;
                 DateTime fechaCreacion;
                 DateTime fechaModificacion;
                 int ID;
 
-                //Comprobamos si ya se han cargado las variables de Producto anteriormente
-                Producto delQueCargarVariables;
-                //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
-
-                delQueCargarVariables = productosAExportar[i];
-
-
                 //Cargamos variables del producto para mostrarlas
-                label = delQueCargarVariables.LABEL;
-                fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
-                fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
-                ID = delQueCargarVariables.ID;
+                fechaCreacion = (DateTime)productosAExportar[i].FECHACREACION;
+                fechaModificacion = (DateTime)productosAExportar[i].FECHAMODIFICACION;
+                ID = productosAExportar[i].ID;
 
-                //-------------------------------------------------------------------------------------------
-
-                byte[] skuBytes = null;
-                byte[] gtinBytes = null;
-
-                skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, productosAExportar[i], db);
-                gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, productosAExportar[i], db);
-
+                //SKU = SKU (0)
+                byte[] skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, productosAExportar[i], db);
+                string SKU = null;
                 if (skuBytes != null)
                 {
-                    datosObligatorios[i, 0] = Convertidor.BytesAString(skuBytes);
+                    SKU = Convertidor.BytesAString(skuBytes);
                 }
-                if (gtinBytes != null)
+                datosObligatorios[i, 0] = SKU;
+
+                //TITLE = LABEL (1)
+                string label = productosAExportar[i].LABEL;
+                datosObligatorios[i, 1] = label;
+
+
+                //FULFILLED BY = ACCOUNT NAME (2)
+                string accountName = Dashboard.instance.informeDeLaCuenta.account_name;
+                datosObligatorios[i, 2] = accountName;
+
+                //AMAZON SKU = SKU/GTIN (3)
+                string amazonSKU = null;
+                if (elecciones.amazonSKU.NAME == TipoAtributoSistema.GTIN.ToString())
                 {
-                    datosObligatorios[i, 3] = Convertidor.BytesAString(gtinBytes);
+                    byte[] gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, productosAExportar[i], db);
+                    if (gtinBytes != null)
+                    {
+                        amazonSKU = Convertidor.BytesAString(gtinBytes);
+                    }
+
+                }
+                else
+                {
+                    amazonSKU = SKU;
+                }
+                datosObligatorios[i, 3] = amazonSKU;
+
+                //PRICE = PRICE (4)
+                float price = 0f;
+
+                var query = db.ValorAtributoSistema.Find(elecciones.price.ID, productosAExportar[i].ID);
+                MessageBox.Show($"elecciones id: {elecciones.price.ID} producto id: {productosAExportar[i].ID}");
+                if (query == null)
+                {
+                    if (respuestaError == false)
+                    {
+                        DialogResult result = MessageBox.Show($"Some products do not have a {elecciones.price.NAME} attribute, do you want to export the ones that do, or cancel the operation?", "Missing attribute", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (result == DialogResult.OK)
+                        {
+                            respuestaError = true;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    price = -1f;
+                }
+                else
+                {
+                    price = Convertidor.BytesAFloat(query.VALOR);
                 }
 
+                datosObligatorios[i, 4] = price.ToString();
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -268,70 +288,66 @@ namespace ChillDeCojones
 
             }
 
+        }
+
+        //atributos obligatorios datagridview
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string nombreAmazonSKU = dataGridView1.Rows[3].Cells["YourAttribute"].Value.ToString();
+            elecciones.amazonSKU = db.AtributoSistema.First(atr => atr.NAME.Equals(nombreAmazonSKU));
+
+            string nombrePrice = dataGridView1.Rows[4].Cells["YourAttribute"].Value.ToString();
+            elecciones.price = db.AtributoUsuario.First(atr => atr.NAME.Equals(nombrePrice));
+
+            DataGridViewComboBoxCell offerprime = (DataGridViewComboBoxCell)dataGridView1.Rows[5].Cells["YourAttribute"];
+            elecciones.offerPrime = Convert.ToBoolean(offerprime.Value);
+        }
 
 
-            //foreach (Producto producto in productosAExportar)
-            //{
-            //    //Sku = sku
-            //    //title = label
-            //    //fulfilled by = account name
-            //    //amazon sku = gtin
-            //    //offer prime = false
-            //    //price = primer atributo float o integer
+        //Atributos opcionales datagridview
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-            //    byte[] skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, producto, db);
-            //    string SKU = Convertidor.BytesAString(skuBytes);
-
-            //    byte[] gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, producto, db);
-            //    string GTIN = Convertidor.BytesAString(gtinBytes);
-
-            //    List<AtributoUsuario> listaAtributos = db.AtributoUsuario.ToList();
-            //    AtributoUsuario primerAtributoNumerico = null;
-            //    foreach (AtributoUsuario atributo in listaAtributos)
-            //    {
-            //        if (atributo.TYPE == TipoAtributoUsuario.Number.ToString())
-            //        {
-            //            primerAtributoNumerico = atributo;
-            //            break;
-            //        }
-            //    }
-
-            //    ValorAtributoUsuario valor = db.ValorAtributoUsuario.Find(primerAtributoNumerico.ID, producto.ID);
-
-            //    string sku = SKU;
-            //    string title = producto.LABEL;
-            //    //string fulfilledBy = Dashboard.InformeDeLaCuenta.account_name;
-            //    string amazonSku = GTIN;
-            //    string offerPrime = "False";
-            //    string price;
-            //    List<string> fila = new List<string>();
-
-            //}
-
-            //SaveFileDialog saveFileDialog = new SaveFileDialog
-            //{
-            //    Title = "Save Export",
-            //    Filter = "CSV Files (*.csv)|*.csv", // Filtrar por archivos .csv
-            //    DefaultExt = "csv", // Extensión predeterminada
-            //    FileName = "Amazon Export.csv" // Nombre sugerido
-            //};
-
-            //// Mostrar el cuadro de diálogo y verificar si el usuario seleccionó una ruta
-            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
-            //    {
-            //        // Escribir la cabecera
-            //        writer.WriteLine(string.Join(",", headers));
-
-            //        // Escribir los datos
-            //        foreach (var row in data)
-            //        {
-            //            writer.WriteLine(string.Join(",", row));
-            //        }
-            //    }
-            //    MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            if (e.RowIndex == 0 && e.ColumnIndex == 1)
+            {
+                //Description
+                if (dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value != null && dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value.ToString() != "None")
+                {
+                    elecciones.description = db.AtributoUsuario.First(atr => atr.NAME.Equals(dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value));
+                }
+            }
+            else if (e.RowIndex == 1 && e.ColumnIndex == 1)
+            {
+                //Description
+                if (dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value != null && dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value.ToString() != "None")
+                {
+                    elecciones.variationOption = db.AtributoUsuario.First(atr => atr.NAME.Equals(dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value));
+                }
+            }
+            else if (e.RowIndex == 2 && e.ColumnIndex == 1)
+            {
+                //Description
+                if (dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value != null && dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value.ToString() != "None")
+                {
+                    elecciones.imageURL = db.AtributoUsuario.First(atr => atr.NAME.Equals(dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value));
+                }
+            }
+            else if (e.RowIndex == 3 && e.ColumnIndex == 1)
+            {
+                //Description
+                if (dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value != null && dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value.ToString() != "None")
+                {
+                    elecciones.altImageText = db.AtributoUsuario.First(atr => atr.NAME.Equals(dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value));
+                }
+            }
+            else if (e.RowIndex == 4 && e.ColumnIndex == 1)
+            {
+                //Description
+                if (dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value != null && dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value.ToString() != "None")
+                {
+                    elecciones.pdpURL = db.AtributoUsuario.First(atr => atr.NAME.Equals(dataGridView1.SelectedRows[0].Cells["YourAttribute2"].Value));
+                }
+            }
         }
     }
 }
