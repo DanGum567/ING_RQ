@@ -60,11 +60,11 @@
             // categoriesLabel
             // 
             this.categoriesLabel.AutoSize = true;
-            this.categoriesLabel.Font = new System.Drawing.Font("Franklin Gothic Medium", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoriesLabel.Font = new System.Drawing.Font("Dubai", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoriesLabel.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.categoriesLabel.Location = new System.Drawing.Point(314, 118);
             this.categoriesLabel.Name = "categoriesLabel";
-            this.categoriesLabel.Size = new System.Drawing.Size(127, 29);
+            this.categoriesLabel.Size = new System.Drawing.Size(121, 39);
             this.categoriesLabel.TabIndex = 7;
             this.categoriesLabel.Text = "Categories";
             // 

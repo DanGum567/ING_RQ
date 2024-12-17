@@ -60,11 +60,11 @@
             // LabelUserAttributes
             // 
             this.LabelUserAttributes.AutoSize = true;
-            this.LabelUserAttributes.Font = new System.Drawing.Font("Franklin Gothic Medium", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUserAttributes.Font = new System.Drawing.Font("Dubai", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelUserAttributes.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.LabelUserAttributes.Location = new System.Drawing.Point(400, 80);
             this.LabelUserAttributes.Name = "LabelUserAttributes";
-            this.LabelUserAttributes.Size = new System.Drawing.Size(173, 29);
+            this.LabelUserAttributes.Size = new System.Drawing.Size(171, 39);
             this.LabelUserAttributes.TabIndex = 8;
             this.LabelUserAttributes.Text = "User Attributes";
             // 

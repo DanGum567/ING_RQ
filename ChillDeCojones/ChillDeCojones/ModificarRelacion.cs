@@ -279,14 +279,8 @@ namespace ChillDeCojones
                 dataGridView2.ResumeLayout();
                 indice++;
 
-
-
             }
-            
         }
-
-
-
 
     }
 }

@@ -37,11 +37,11 @@
             // labelNumeroRelaciones
             // 
             this.labelNumeroRelaciones.AutoSize = true;
-            this.labelNumeroRelaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumeroRelaciones.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelNumeroRelaciones.Font = new System.Drawing.Font("Dubai", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumeroRelaciones.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.labelNumeroRelaciones.Location = new System.Drawing.Point(157, 129);
             this.labelNumeroRelaciones.Name = "labelNumeroRelaciones";
-            this.labelNumeroRelaciones.Size = new System.Drawing.Size(194, 32);
+            this.labelNumeroRelaciones.Size = new System.Drawing.Size(154, 39);
             this.labelNumeroRelaciones.TabIndex = 0;
             this.labelNumeroRelaciones.Text = " Relationships";
             // 
@@ -71,10 +71,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1884, 959);
+            this.ClientSize = new System.Drawing.Size(1184, 433);
             this.Controls.Add(this.bInsertar);
             this.Controls.Add(this.dataGridViewRelaciones);
             this.Controls.Add(this.labelNumeroRelaciones);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Relationships";
             this.Text = "Relationships";
             this.Load += new System.EventHandler(this.Relaciones_Load);

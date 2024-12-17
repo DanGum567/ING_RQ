@@ -40,7 +40,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YourAttribute2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -97,6 +96,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AmazonAttribute,
@@ -115,14 +115,12 @@
             this.AmazonAttribute.HeaderText = "Amazon Attribute";
             this.AmazonAttribute.MinimumWidth = 6;
             this.AmazonAttribute.Name = "AmazonAttribute";
-            this.AmazonAttribute.Width = 125;
             // 
             // YourAttribute
             // 
             this.YourAttribute.HeaderText = "Your Attribute";
             this.YourAttribute.MinimumWidth = 6;
             this.YourAttribute.Name = "YourAttribute";
-            this.YourAttribute.Width = 125;
             // 
             // bExport
             // 
@@ -130,12 +128,13 @@
             this.bExport.Name = "bExport";
             this.bExport.Size = new System.Drawing.Size(301, 37);
             this.bExport.TabIndex = 5;
-            this.bExport.Text = "Export selected Products";
+            this.bExport.Text = "Export Products";
             this.bExport.UseVisualStyleBackColor = true;
             this.bExport.Click += new System.EventHandler(this.bExport_Click);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -153,28 +152,18 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Amazon Attribute";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
             // 
             // YourAttribute2
             // 
             this.YourAttribute2.HeaderText = "Your Attribute";
             this.YourAttribute2.MinimumWidth = 6;
             this.YourAttribute2.Name = "YourAttribute2";
-            this.YourAttribute2.Width = 125;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(22, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 22);
-            this.textBox1.TabIndex = 7;
             // 
             // ConfiguracionExportacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 602);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.bExport);
             this.Controls.Add(this.dataGridView1);
@@ -207,6 +196,5 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn YourAttribute2;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -14,13 +14,14 @@ using System.Diagnostics;
 
 namespace ChillDeCojones
 {
-    public class UnSoloProductoNoTieneAtributoNumericoException : Exception
-    {
-    }
+    //SI SE PONE ESTO AL PRINCIPIO NO SE VE EL FORM!!!!!!!!!!!!!!!
+    //public class UnSoloProductoNoTieneAtributoNumericoException : Exception
+    //{
+    //}
 
-    public class NoExisteAtributoNumericoParaPrecioException : Exception
-    {
-    }
+    //public class NoExisteAtributoNumericoParaPrecioException : Exception
+    //{
+    //}
 
     public partial class Integracion : Form
     {
@@ -32,53 +33,249 @@ namespace ChillDeCojones
 
             //Cargamos combobox
             cbCategory.DataSource = db.CategoriaProducto.ToList();
+            dataGridView1.DataSource = null;
 
             //Agregamos columnas al dataGridView:
 
-            //Thumbnail:
-            DataGridViewImageColumn columna1 = new DataGridViewImageColumn();
-            columna1.HeaderText = "thumbnail";
-            columna1.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
-            columna1.Name = "thumbnail";
-            columna1.Width = 200;
-            columna1.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            ////Thumbnail:
+            //DataGridViewImageColumn columna1 = new DataGridViewImageColumn();
+            //columna1.HeaderText = "thumbnail";
+            //columna1.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
+            //columna1.Name = "thumbnail";
+            //columna1.Width = 200;
+            //columna1.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
-            //ID:
-            DataGridViewTextBoxColumn columna2 = new DataGridViewTextBoxColumn();
-            columna2.HeaderText = "ID";
-            columna2.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
-            columna2.Name = "id";
-            columna2.Width = 200;
+            ////ID:
+            //DataGridViewTextBoxColumn columna2 = new DataGridViewTextBoxColumn();
+            //columna2.HeaderText = "ID";
+            //columna2.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
+            //columna2.Name = "id";
+            //columna2.Width = 200;
 
-            //SKU:
-            DataGridViewTextBoxColumn columna3 = new DataGridViewTextBoxColumn();
-            columna3.HeaderText = "SKU";
-            columna3.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
-            columna3.Name = "sku";
-            columna2.Width = 200;
+            ////SKU:
+            //DataGridViewTextBoxColumn columna3 = new DataGridViewTextBoxColumn();
+            //columna3.HeaderText = "SKU";
+            //columna3.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
+            //columna3.Name = "sku";
+            //columna2.Width = 200;
 
-            //Label:
-            DataGridViewTextBoxColumn columna4 = new DataGridViewTextBoxColumn();
-            columna4.HeaderText = "Label";
-            columna4.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
-            columna4.Name = "label";
-            columna4.Width = 200;
+            ////Label:
+            //DataGridViewTextBoxColumn columna4 = new DataGridViewTextBoxColumn();
+            //columna4.HeaderText = "Label";
+            //columna4.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centramos el texto
+            //columna4.Name = "label";
+            //columna4.Width = 200;
 
 
-            // Añadir la columna al DataGridView
-            dataGridView1.Columns.Add(columna1);
-            dataGridView1.Columns.Add(columna2);
-            dataGridView1.Columns.Add(columna3);
-            dataGridView1.Columns.Add(columna4);
+            //// Añadir la columna al DataGridView
+            //dataGridView1.Columns.Add(columna1);
+            //dataGridView1.Columns.Add(columna2);
+            //dataGridView1.Columns.Add(columna3);
+            //dataGridView1.Columns.Add(columna4);
 
             // Aumentamos la altura de las filas, para que se muestren bien las imagenes:
 
             dataGridView1.RowTemplate.Height = 60;
             dataGridView1.ReadOnly = true; // No podemos modificar dataGridView
+
+            cbCategory.SelectedItem = null;
+            CrearColumnasAtributosUsuario();
+            cargarProductos();
         }
+
+        private void CrearColumnasAtributosUsuario()
+        {
+            foreach (AtributoUsuario atributoUsuario in db.AtributoUsuario.Take(3))
+            {
+                string tipo = atributoUsuario.TYPE; // El tipo del atributo actual
+                DataGridViewColumn nuevaColumna = null;
+
+                switch (tipo)
+                {
+                    case "Image":
+                        nuevaColumna = new DataGridViewImageColumn
+                        {
+                            HeaderText = atributoUsuario.NAME,
+                            Name = atributoUsuario.NAME
+                        };
+                        break;
+
+                    default:
+                        nuevaColumna = new DataGridViewTextBoxColumn
+                        {
+                            HeaderText = atributoUsuario.NAME,
+                            Name = atributoUsuario.NAME
+                        };
+                        break;
+                }
+
+                dataGridView1.Columns.Add(nuevaColumna);
+
+            }
+        }
+        //private void cargarProductos()
+        //{
+        //    dataGridView1.Rows.Clear();
+        //    if (cbCategory.SelectedItem != null)
+        //    {
+        //        //Categoria seleccionada
+        //        CategoriaProducto categoriaSeleccionada = (CategoriaProducto)cbCategory.SelectedItem;
+
+        //        productosFiltrados = categoriaSeleccionada.Producto.ToList();
+        //        dataGridView1.Rows.Clear();
+        //        dataGridView1.SuspendLayout();
+        //    }
+        //    else
+        //    {
+        //        productosFiltrados = db.Producto.ToList();
+        //    }
+
+        //foreach (Producto cargadoJustoAhora in productosFiltradosFiltrados)
+        //{
+        //    //Variables de Producto
+        //    int idProducto = cargadoJustoAhora.ID;
+        //    string label;
+        //    DateTime fechaCreacion;
+        //    DateTime fechaModificacion;
+        //    int ID;
+
+        //    //Comprobamos si ya se han cargado las variables de Producto anteriormente
+        //    Producto delQueCargarVariables;
+        //    //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+
+        //    delQueCargarVariables = cargadoJustoAhora;
+
+
+        //    //Cargamos variables del producto para mostrarlas
+        //    label = delQueCargarVariables.LABEL;
+        //    fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
+        //    fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+        //    ID = delQueCargarVariables.ID;
+
+        //    //-------------------------------------------------------------------------------------------
+
+        //    //Atributos del sistema
+        //    string sku = "(Without SKU)";
+        //    string gtin = "(Without GTIN)";
+        //    Image thumbail = null;
+
+        //    byte[] skuBytes = null;
+        //    byte[] gtinBytes = null;
+        //    byte[] thumbailBytes = null;
+
+        //    //Comprobamos si ya se han cargado las variables de Producto anteriormente
+        //    //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
+        //    //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
+        //    //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
+
+
+        //    if (skuBytes == null)
+        //    {
+        //        skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
+        //    }
+        //    if (gtinBytes == null)
+        //    {
+        //        gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
+        //    }
+        //    if (thumbailBytes == null)
+        //    {
+        //        thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
+        //    }
+
+        //    if (thumbailBytes != null)
+        //    {
+        //        thumbail = Convertidor.BytesAImage(thumbailBytes);
+        //    }
+        //    if (skuBytes != null)
+        //    {
+        //        sku = Convertidor.BytesAString(skuBytes);
+        //    }
+        //    if (gtinBytes != null)
+        //    {
+        //        gtin = Convertidor.BytesAString(gtinBytes);
+        //    }
+
+
+        //    dataGridView1.Rows.Add(
+        //        thumbail,
+        //        ID,
+        //        sku,
+        //        label
+        //    );
+
+        //    dataGridView1.Columns["ID"].Visible = false;
+
+
+        //    dataGridView1.ResumeLayout();
+        //    dataGridView1.ClearSelection();// Se deselecciona el primer elemento
+
+        //    List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
+
+        //    int fila = 0;
+        //    int columnIndex = 3; // Los atributos de usuario empiezan desde el índice 3
+        //    foreach (AtributoUsuario atributoUsuario in tresPrimeros)
+        //    {
+
+        //        var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, cargadoJustoAhora.ID);
+
+        //        if (valor != null)
+        //        {
+        //            string tipo = atributoUsuario.TYPE;
+        //            object valorConvertido = null;
+        //            switch (tipo)
+        //            {
+        //                case "Date":
+        //                    valorConvertido = Convertidor.BytesADateTime(valor.VALOR).ToString();
+        //                    break;
+        //                case "Number":
+        //                    valorConvertido = Convertidor.BytesAFloat(valor.VALOR).ToString();
+        //                    break;
+        //                case "Text":
+        //                    valorConvertido = Convertidor.BytesAString(valor.VALOR);
+        //                    break;
+
+        //                case "Image":
+        //                    valorConvertido = Convertidor.BytesAImage(valor.VALOR);
+        //                    break;
+
+        //                default:
+        //                    Console.WriteLine($"UNKNOWN TYPE: {tipo}");
+        //                    break;
+        //            }
+
+        //            if (valorConvertido != null)
+        //            {
+        //                //MessageBox.Show("fila: " + fila.ToString());          
+        //                //Comprobamos si la columna ya existe
+        //                if (!dataGridView1.Columns.Contains(atributoUsuario.NAME))
+        //                {
+        //                    //Si no existe, la añadimos
+        //                    DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn { HeaderText = atributoUsuario.NAME, Name = atributoUsuario.NAME.ToLower() };
+        //                    dataGridView1.Columns.Add(column);
+        //                }
+        //                dataGridView1.Rows[fila].Cells[atributoUsuario.NAME].Value = valorConvertido;
+        //            }
+        //        }
+        //    }
+        //    ++fila;
+        //}
+        //foreach (DataGridViewColumn c in dataGridView1.Columns)
+        //{
+        //    c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        //}
+
+
+        //    }
+
+        //}
 
         private void cargarProductos()
         {
+            productosFiltrados = db.Producto.ToList();
+            dataGridView1.Rows.Clear();
+            dataGridView1.SuspendLayout();
+
+            dataGridView1.Rows.Clear();
             if (cbCategory.SelectedItem != null)
             {
                 //Categoria seleccionada
@@ -87,143 +284,130 @@ namespace ChillDeCojones
                 productosFiltrados = categoriaSeleccionada.Producto.ToList();
                 dataGridView1.Rows.Clear();
                 dataGridView1.SuspendLayout();
-
-
-                foreach (Producto cargadoJustoAhora in productosFiltrados)
-                {
-                    //Variables de Producto
-                    int idProducto = cargadoJustoAhora.ID;
-                    string label;
-                    DateTime fechaCreacion;
-                    DateTime fechaModificacion;
-                    int ID;
-
-                    //Comprobamos si ya se han cargado las variables de Producto anteriormente
-                    Producto delQueCargarVariables;
-                    //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
-
-                    delQueCargarVariables = cargadoJustoAhora;
-
-
-                    //Cargamos variables del producto para mostrarlas
-                    label = delQueCargarVariables.LABEL;
-                    fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
-                    fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
-                    ID = delQueCargarVariables.ID;
-
-                    //-------------------------------------------------------------------------------------------
-
-                    //Atributos del sistema
-                    string sku = "(Without SKU)";
-                    string gtin = "(Without GTIN)";
-                    Image thumbail = null;
-
-                    byte[] skuBytes = null;
-                    byte[] gtinBytes = null;
-                    byte[] thumbailBytes = null;
-
-                    //Comprobamos si ya se han cargado las variables de Producto anteriormente
-                    //skuBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.SKU, idProducto);
-                    //gtinBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.GTIN, idProducto);
-                    //thumbailBytes = Precargador.GetBytesValorAtributoSistemaEnMemoria(TipoAtributoSistema.thumbnail, idProducto);
-
-
-                    if (skuBytes == null)
-                    {
-                        skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
-                    }
-                    if (gtinBytes == null)
-                    {
-                        gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
-                    }
-                    if (thumbailBytes == null)
-                    {
-                        thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
-                    }
-
-                    if (thumbailBytes != null)
-                    {
-                        thumbail = Convertidor.BytesAImage(thumbailBytes);
-                    }
-                    if (skuBytes != null)
-                    {
-                        sku = Convertidor.BytesAString(skuBytes);
-                    }
-                    if (gtinBytes != null)
-                    {
-                        gtin = Convertidor.BytesAString(gtinBytes);
-                    }
-
-
-                    dataGridView1.Rows.Add(
-                        thumbail,
-                        ID,
-                        sku,
-                        label
-                    );
-
-                    dataGridView1.Columns["ID"].Visible = false;
-
-
-                    dataGridView1.ResumeLayout();
-                    dataGridView1.ClearSelection();// Se deselecciona el primer elemento
-
-                    List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
-
-                    int fila = 0;
-                    int columnIndex = 3; // Los atributos de usuario empiezan desde el índice 3
-                    foreach (AtributoUsuario atributoUsuario in tresPrimeros)
-                    {
-
-                        var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, cargadoJustoAhora.ID);
-
-                        if (valor != null)
-                        {
-                            string tipo = atributoUsuario.TYPE;
-                            object valorConvertido = null;
-                            switch (tipo)
-                            {
-                                case "Date":
-                                    valorConvertido = Convertidor.BytesADateTime(valor.VALOR).ToString();
-                                    break;
-                                case "Number":
-                                    valorConvertido = Convertidor.BytesAFloat(valor.VALOR).ToString();
-                                    break;
-                                case "Text":
-                                    valorConvertido = Convertidor.BytesAString(valor.VALOR);
-                                    break;
-
-                                case "Image":
-                                    valorConvertido = Convertidor.BytesAImage(valor.VALOR);
-                                    break;
-
-                                default:
-                                    Console.WriteLine($"UNKNOWN TYPE: {tipo}");
-                                    break;
-                            }
-
-                            if (valorConvertido != null)
-                            {
-                                //MessageBox.Show("fila: " + fila.ToString());          
-                                //Comprobamos si la columna ya existe
-                                if (!dataGridView1.Columns.Contains(atributoUsuario.NAME))
-                                {
-                                    //Si no existe, la añadimos
-                                    DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn { HeaderText = atributoUsuario.NAME, Name = atributoUsuario.NAME.ToLower() };
-                                    dataGridView1.Columns.Add(column);
-                                }
-                                dataGridView1.Rows[fila].Cells[atributoUsuario.NAME].Value = valorConvertido;
-                            }
-                        }
-                    }
-                    ++fila;
-                }
-                foreach (DataGridViewColumn c in dataGridView1.Columns)
-                {
-                    c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
             }
 
+
+
+            int fila = 0;
+            foreach (Producto cargadoJustoAhora in productosFiltrados)
+            {
+                //Variables de Producto
+                int idProducto = cargadoJustoAhora.ID;
+                string label;
+                DateTime fechaCreacion;
+                DateTime fechaModificacion;
+                int ID;
+
+                //Comprobamos si ya se han cargado las variables de Producto anteriormente
+                Producto delQueCargarVariables;
+                //Producto precargadoEnMemoria = Precargador.GetProductoEnMemoria(idProducto);
+
+                delQueCargarVariables = cargadoJustoAhora;
+
+
+                //Cargamos variables del producto para mostrarlas
+                label = delQueCargarVariables.LABEL;
+                fechaCreacion = (DateTime)delQueCargarVariables.FECHACREACION;
+                fechaModificacion = (DateTime)delQueCargarVariables.FECHAMODIFICACION;
+                ID = delQueCargarVariables.ID;
+
+                //-------------------------------------------------------------------------------------------
+
+                //Atributos del sistema
+                string sku = "(Without SKU)";
+                string gtin = "(Without GTIN)";
+                Image thumbail = null;
+
+                byte[] skuBytes = null;
+                byte[] gtinBytes = null;
+                byte[] thumbailBytes = null;
+
+
+
+                if (skuBytes == null)
+                {
+                    skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, cargadoJustoAhora, db);
+                }
+                if (gtinBytes == null)
+                {
+                    gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, cargadoJustoAhora, db);
+                }
+                if (thumbailBytes == null)
+                {
+                    thumbailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, cargadoJustoAhora, db);
+                }
+
+                if (thumbailBytes != null)
+                {
+                    thumbail = Convertidor.BytesAImage(thumbailBytes);
+                }
+                if (skuBytes != null)
+                {
+                    sku = Convertidor.BytesAString(skuBytes);
+                }
+                if (gtinBytes != null)
+                {
+                    gtin = Convertidor.BytesAString(gtinBytes);
+                }
+
+
+                dataGridView1.Rows.Add(
+                    fila,
+                    thumbail,
+                    idProducto,
+                    sku,
+                    label
+                );
+
+                dataGridView1.Columns["Fila"].Visible = false;
+                dataGridView1.Columns["ID"].Visible = false;
+
+                List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
+
+                foreach (AtributoUsuario atributoUsuario in tresPrimeros)
+                {
+
+                    var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, cargadoJustoAhora.ID);
+
+                    if (valor != null)
+                    {
+                        string tipo = atributoUsuario.TYPE;
+                        object valorConvertido = null;
+                        switch (tipo)
+                        {
+                            case "Date":
+                                valorConvertido = Convertidor.BytesADateTime(valor.VALOR).ToString();
+                                break;
+                            case "Number":
+                                valorConvertido = Convertidor.BytesAFloat(valor.VALOR).ToString();
+                                break;
+                            case "Text":
+                                valorConvertido = Convertidor.BytesAString(valor.VALOR);
+                                break;
+
+                            case "Image":
+                                valorConvertido = Convertidor.BytesAImage(valor.VALOR);
+                                break;
+
+                            default:
+                                Console.WriteLine($"UNKNOWN TYPE: {tipo}");
+                                break;
+                        }
+                        if (valorConvertido != null)
+                        {
+                            //MessageBox.Show("fila: " + fila.ToString());
+                            dataGridView1.Rows[fila].Cells[atributoUsuario.NAME].Value = valorConvertido;
+                        }
+
+                    }
+
+
+                }
+                fila++;
+            }
+
+            dataGridView1.ResumeLayout();
+            dataGridView1.ClearSelection();// Se deselecciona el primer elemento
         }
         private void bClearCategory_Click(object sender, EventArgs e)
         {
@@ -258,14 +442,14 @@ namespace ChillDeCojones
 
             ConfiguracionExportacion configuracionExport = new ConfiguracionExportacion(productosFiltrados);
             configuracionExport.ShowDialog();
-            try
-            {
-                //Exportar(configuracionExport);
-            }
-            catch (UnSoloProductoNoTieneAtributoNumericoException)
-            {
-                // MessageBox.Show("ERROR: " + ex.Message);
-            }
+            //try
+            //{
+            //    //Exportar(configuracionExport);
+            //}
+            //catch (UnSoloProductoNoTieneAtributoNumericoException)
+            //{
+            //    // MessageBox.Show("ERROR: " + ex.Message);
+            //}
 
         }
 

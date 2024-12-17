@@ -143,10 +143,8 @@ C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.ValueTuple.xml
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Dashboard.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarRelacion.resources
-C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relaciones.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ConfiguracionExportacion.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ConfiguracionExportacion.resources
-C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.UnSoloProductoNoTieneAtributoNumericoException.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.Buffers.dll
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.IO.Pipelines.dll
@@ -203,3 +201,6 @@ C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCoj
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.UnSoloProductoNoTieneAtributoNumericoException.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
+C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
