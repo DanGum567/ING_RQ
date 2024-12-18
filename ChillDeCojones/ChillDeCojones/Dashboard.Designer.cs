@@ -162,9 +162,9 @@
             // 
             this.pictureBox1.Image = global::ChillDeCojones.Properties.Resources.artworks_DVUwxlYygwLiajW7_ZZhNJg_t1080x1080;
             this.pictureBox1.InitialImage = global::ChillDeCojones.Properties.Resources.artworks_DVUwxlYygwLiajW7_ZZhNJg_t1080x1080;
-            this.pictureBox1.Location = new System.Drawing.Point(83, 191);
+            this.pictureBox1.Location = new System.Drawing.Point(83, 120);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(226, 212);
+            this.pictureBox1.Size = new System.Drawing.Size(307, 276);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;

@@ -47,9 +47,12 @@
             // 
             // dataGridViewRelaciones
             // 
+            this.dataGridViewRelaciones.AllowUserToAddRows = false;
+            this.dataGridViewRelaciones.AllowUserToDeleteRows = false;
             this.dataGridViewRelaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRelaciones.Location = new System.Drawing.Point(163, 208);
             this.dataGridViewRelaciones.Name = "dataGridViewRelaciones";
+            this.dataGridViewRelaciones.ReadOnly = true;
             this.dataGridViewRelaciones.RowHeadersWidth = 51;
             this.dataGridViewRelaciones.RowTemplate.Height = 24;
             this.dataGridViewRelaciones.Size = new System.Drawing.Size(1131, 400);

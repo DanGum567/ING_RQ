@@ -314,5 +314,7 @@ namespace ChillDeCojones
             // Actualiza el texto del Label
             NumeroProductosLabel.Text = "Products (" + numeroProductos.ToString() + "/" + db.PlanSuscripcion.Select(p => p.Productos).FirstOrDefault().ToString() + ")";
         }
+
+  
     }
 }

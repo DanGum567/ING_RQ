@@ -31,7 +31,15 @@
             this.labelNombreRelacion = new System.Windows.Forms.Label();
             this.tLabel = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.thumbnail2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SKU2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bAccept = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,14 +48,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SKU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thumbnail2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ID2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SKU2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Label2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.thumbnail,
@@ -79,14 +81,52 @@
             this.Label});
             this.dataGridView1.Location = new System.Drawing.Point(48, 232);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(504, 240);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // thumbnail
+            // 
+            this.thumbnail.HeaderText = "thumbnail";
+            this.thumbnail.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.thumbnail.MinimumWidth = 6;
+            this.thumbnail.Name = "thumbnail";
+            this.thumbnail.ReadOnly = true;
+            this.thumbnail.Width = 125;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Width = 125;
+            // 
+            // SKU
+            // 
+            this.SKU.HeaderText = "SKU";
+            this.SKU.MinimumWidth = 6;
+            this.SKU.Name = "SKU";
+            this.SKU.ReadOnly = true;
+            this.SKU.Width = 125;
+            // 
+            // Label
+            // 
+            this.Label.HeaderText = "Label";
+            this.Label.MinimumWidth = 6;
+            this.Label.Name = "Label";
+            this.Label.ReadOnly = true;
+            this.Label.Width = 125;
+            // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.thumbnail2,
@@ -95,11 +135,45 @@
             this.Label2});
             this.dataGridView2.Location = new System.Drawing.Point(583, 232);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(501, 240);
             this.dataGridView2.TabIndex = 3;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            // 
+            // thumbnail2
+            // 
+            this.thumbnail2.HeaderText = "thumbnail";
+            this.thumbnail2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.thumbnail2.MinimumWidth = 6;
+            this.thumbnail2.Name = "thumbnail2";
+            this.thumbnail2.ReadOnly = true;
+            this.thumbnail2.Width = 125;
+            // 
+            // ID2
+            // 
+            this.ID2.HeaderText = "ID";
+            this.ID2.MinimumWidth = 6;
+            this.ID2.Name = "ID2";
+            this.ID2.ReadOnly = true;
+            this.ID2.Width = 125;
+            // 
+            // SKU2
+            // 
+            this.SKU2.HeaderText = "SKU";
+            this.SKU2.MinimumWidth = 6;
+            this.SKU2.Name = "SKU2";
+            this.SKU2.ReadOnly = true;
+            this.SKU2.Width = 125;
+            // 
+            // Label2
+            // 
+            this.Label2.HeaderText = "Label";
+            this.Label2.MinimumWidth = 6;
+            this.Label2.Name = "Label2";
+            this.Label2.ReadOnly = true;
+            this.Label2.Width = 125;
             // 
             // bAccept
             // 
@@ -164,66 +238,6 @@
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // thumbnail
-            // 
-            this.thumbnail.HeaderText = "thumbnail";
-            this.thumbnail.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.thumbnail.MinimumWidth = 6;
-            this.thumbnail.Name = "thumbnail";
-            this.thumbnail.Width = 125;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID.Width = 125;
-            // 
-            // SKU
-            // 
-            this.SKU.HeaderText = "SKU";
-            this.SKU.MinimumWidth = 6;
-            this.SKU.Name = "SKU";
-            this.SKU.Width = 125;
-            // 
-            // Label
-            // 
-            this.Label.HeaderText = "Label";
-            this.Label.MinimumWidth = 6;
-            this.Label.Name = "Label";
-            this.Label.Width = 125;
-            // 
-            // thumbnail2
-            // 
-            this.thumbnail2.HeaderText = "thumbnail";
-            this.thumbnail2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.thumbnail2.MinimumWidth = 6;
-            this.thumbnail2.Name = "thumbnail2";
-            this.thumbnail2.Width = 125;
-            // 
-            // ID2
-            // 
-            this.ID2.HeaderText = "ID";
-            this.ID2.MinimumWidth = 6;
-            this.ID2.Name = "ID2";
-            this.ID2.Width = 125;
-            // 
-            // SKU2
-            // 
-            this.SKU2.HeaderText = "SKU";
-            this.SKU2.MinimumWidth = 6;
-            this.SKU2.Name = "SKU2";
-            this.SKU2.Width = 125;
-            // 
-            // Label2
-            // 
-            this.Label2.HeaderText = "Label";
-            this.Label2.MinimumWidth = 6;
-            this.Label2.Name = "Label2";
-            this.Label2.Width = 125;
             // 
             // InsertarRelacion
             // 

@@ -499,6 +499,7 @@ namespace ChillDeCojones
             cbRelaciones.DisplayMember = "Name"; // Asume que la relación tiene un campo 'Name'
             cbRelaciones.ValueMember = "idRelacionProducto";
             cbRelaciones.SelectedIndex = -1;  // No seleccionar ningún elemento inicialmente
+            dRelaciones.Columns["IDProductoRelacionado"].Visible = false;
             cbRelaciones.SelectedIndexChanged += CbRelaciones_SelectedIndexChanged;
 
 
