@@ -65,7 +65,8 @@ namespace ChillDeCojones
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 System.IO.File.WriteAllText(saveFileDialog.FileName, json);
-                MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //AL PROFE NO LE GUSTA
+                //MessageBox.Show("El archivo se guardó correctamente.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

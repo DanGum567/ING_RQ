@@ -245,7 +245,7 @@ namespace ChillDeCojones
                 {
                     if (respuestaError == false)
                     {
-                        DialogResult result = MessageBox.Show($"Some products do not have a {elecciones.price.NAME} attribute, do you want to export the ones that do, or cancel the operation?", "Missing attribute", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        DialogResult result = MessageBox.Show($"Some products do not have a {elecciones.price.NAME} attribute, do you want to export the ones that do?", "Missing attribute", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (result == DialogResult.OK)
                         {
                             respuestaError = true;
@@ -285,7 +285,7 @@ namespace ChillDeCojones
                 }
 
 
-               
+
 
             }
 
@@ -319,7 +319,7 @@ namespace ChillDeCojones
         }
 
 
-    
+
 
         //atributos obligatorios datagridview
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

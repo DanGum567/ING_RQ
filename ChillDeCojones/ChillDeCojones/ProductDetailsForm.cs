@@ -528,7 +528,7 @@ namespace ChillDeCojones
 
             // Obtener las relaciones con el producto actual
             var productosRelacionados = db.ProductoRelacionIntermedia
-                                            .Where(pr => pr.idProducto1 == idProductoActual && pr.idRelacionProducto == idRelacionSeleccionada)
+                                            .Where(pr => (pr.idProducto1 == idProductoActual || pr.idProducto2 == idProductoActual) && pr.idRelacionProducto == idRelacionSeleccionada)
                                             .ToList();
 
             int fila = 0;
@@ -536,7 +536,16 @@ namespace ChillDeCojones
             // Ahora cargamos los productos relacionados (idProducto2)
             foreach (var productoRelacion in productosRelacionados)
             {
-                int idProductoRelacionado = productoRelacion.idProducto2;
+                int idProductoRelacionado = -1;
+                if (productoRelacion.idProducto2 == idProductoActual)
+                {
+                    idProductoRelacionado = productoRelacion.idProducto1;
+                }
+                else
+                {
+                    idProductoRelacionado = productoRelacion.idProducto2;
+                }
+
 
                 Producto productoRelacionado = db.Producto.Find(idProductoRelacionado);
                 if (productoRelacionado == null)

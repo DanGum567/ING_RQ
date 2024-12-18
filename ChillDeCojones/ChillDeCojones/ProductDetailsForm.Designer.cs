@@ -53,12 +53,12 @@
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.cbRelaciones = new System.Windows.Forms.ComboBox();
             this.dRelaciones = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDProductoRelacionado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -342,16 +342,6 @@
             this.dRelaciones.Size = new System.Drawing.Size(720, 465);
             this.dRelaciones.TabIndex = 26;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1033, 474);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 25);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Relationships";
-            // 
             // Fila
             // 
             this.Fila.HeaderText = "Fila";
@@ -388,6 +378,16 @@
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1033, 474);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 25);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Relationships";
             // 
             // ProductDetailsForm
             // 
