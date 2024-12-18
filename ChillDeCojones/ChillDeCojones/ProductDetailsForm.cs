@@ -10,6 +10,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChillDeCojones
 {
@@ -80,7 +81,10 @@ namespace ChillDeCojones
                 labelModified.Text += " " + DateTime.Now.ToString();
             }
 
+            CargarRelacionesProducto();
+
         }
+
 
         private void CargarListaAtributos(bool modificar)
         {
@@ -483,6 +487,157 @@ namespace ChillDeCojones
                 var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID);
                 db.ValorAtributoUsuario.Remove(valor);
             }
+        }
+
+
+        private void CargarRelacionesProducto()
+        {
+
+            // Llenar el ComboBox con relaciones disponibles
+            var relaciones = db.RelacionProducto.ToList();
+            cbRelaciones.DataSource = relaciones;
+            cbRelaciones.DisplayMember = "Name"; // Asume que la relación tiene un campo 'Name'
+            cbRelaciones.ValueMember = "idRelacionProducto";
+            cbRelaciones.SelectedIndex = -1;  // No seleccionar ningún elemento inicialmente
+            cbRelaciones.SelectedIndexChanged += CbRelaciones_SelectedIndexChanged;
+
+
+        }
+
+        // Evento al cambiar la selección del ComboBox
+        private void CbRelaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbRelaciones.SelectedItem is RelacionProducto relacionSeleccionada)
+            {
+                MostrarProductosRelacionados(relacionSeleccionada);
+            }
+        }
+
+        // Método para cargar productos relacionados en el DataGridView
+        private void MostrarProductosRelacionados(RelacionProducto relacion)
+        {
+            // Primero obtenemos la relación seleccionada del ComboBox
+            int idRelacionSeleccionada = Convert.ToInt32(cbRelaciones.SelectedValue);
+
+            dRelaciones.Rows.Clear();
+            dRelaciones.SuspendLayout();
+
+            // Obtener los productos que están relacionados con el producto actual
+            int idProductoActual = this.producto.ID;
+
+            // Obtener las relaciones con el producto actual
+            var productosRelacionados = db.ProductoRelacionIntermedia
+                                            .Where(pr => pr.idProducto1 == idProductoActual && pr.idRelacionProducto == idRelacionSeleccionada)
+                                            .ToList();
+
+            int fila = 0;
+
+            // Ahora cargamos los productos relacionados (idProducto2)
+            foreach (var productoRelacion in productosRelacionados)
+            {
+                int idProductoRelacionado = productoRelacion.idProducto2;
+
+                Producto productoRelacionado = db.Producto.Find(idProductoRelacionado);
+                if (productoRelacionado == null)
+                    continue;
+
+                // Variables de Producto
+                string label = productoRelacionado.LABEL;
+                DateTime fechaCreacion = productoRelacionado.FECHACREACION ?? DateTime.MinValue;
+                DateTime fechaModificacion = productoRelacionado.FECHAMODIFICACION ?? DateTime.MinValue;
+
+                // Atributos del sistema
+                string sku = "(Without SKU)";
+                string gtin = "(Without GTIN)";
+                Image thumbnail = null;
+
+                byte[] skuBytes = null;
+                byte[] gtinBytes = null;
+                byte[] thumbnailBytes = null;
+
+                // Cargar los valores de los atributos del sistema
+                if (skuBytes == null)
+                {
+                    skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, productoRelacionado, db);
+                }
+                if (gtinBytes == null)
+                {
+                    gtinBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.GTIN, productoRelacionado, db);
+                }
+                if (thumbnailBytes == null)
+                {
+                    thumbnailBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.thumbnail, productoRelacionado, db);
+                }
+
+                // Asignar valores
+                if (thumbnailBytes != null)
+                {
+                    thumbnail = Convertidor.BytesAImage(thumbnailBytes);
+                }
+                if (skuBytes != null)
+                {
+                    sku = Convertidor.BytesAString(skuBytes);
+                }
+                if (gtinBytes != null)
+                {
+                    gtin = Convertidor.BytesAString(gtinBytes);
+                }
+
+                // Agregar producto relacionado a la vista
+                dRelaciones.Rows.Add(
+                    fila,
+                    idProductoRelacionado,
+                    thumbnail,
+                    label,
+                    sku
+                );
+
+                dRelaciones.Columns["Fila"].Visible = false;
+                dRelaciones.Columns["IDProductoRelacionado"].Visible = false;
+
+                // Cargar atributos adicionales
+                List<AtributoUsuario> tresPrimeros = db.AtributoUsuario.Take(3).ToList();
+
+                foreach (AtributoUsuario atributoUsuario in tresPrimeros)
+                {
+                    var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, productoRelacionado.ID);
+
+                    if (valor != null)
+                    {
+                        string tipo = atributoUsuario.TYPE;
+                        object valorConvertido = null;
+                        switch (tipo)
+                        {
+                            case "Date":
+                                valorConvertido = Convertidor.BytesADateTime(valor.VALOR).ToString();
+                                break;
+                            case "Number":
+                                valorConvertido = Convertidor.BytesAFloat(valor.VALOR).ToString();
+                                break;
+                            case "Text":
+                                valorConvertido = Convertidor.BytesAString(valor.VALOR);
+                                break;
+
+                            case "Image":
+                                valorConvertido = Convertidor.BytesAImage(valor.VALOR);
+                                break;
+
+                            default:
+                                Console.WriteLine($"UNKNOWN TYPE: {tipo}");
+                                break;
+                        }
+                        //if (valorConvertido != null) // No pongo los atributos de usuario
+                        //{
+                        //    dRelaciones.Rows[fila].Cells[atributoUsuario.NAME].Value = valorConvertido;
+                        //}
+                    }
+                }
+
+                fila++;
+            }
+
+            dRelaciones.ResumeLayout();
+            dRelaciones.ClearSelection(); // Se deselecciona el primer elemento
         }
     }
 }

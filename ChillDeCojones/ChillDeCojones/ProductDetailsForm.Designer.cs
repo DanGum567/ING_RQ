@@ -51,9 +51,18 @@
             this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Image1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
+            this.cbRelaciones = new System.Windows.Forms.ComboBox();
+            this.dRelaciones = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDProductoRelacionado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dRelaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // saveChangesButton
@@ -301,11 +310,93 @@
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
             // 
+            // cbRelaciones
+            // 
+            this.cbRelaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRelaciones.FormattingEnabled = true;
+            this.cbRelaciones.Location = new System.Drawing.Point(1528, 470);
+            this.cbRelaciones.Name = "cbRelaciones";
+            this.cbRelaciones.Size = new System.Drawing.Size(170, 33);
+            this.cbRelaciones.TabIndex = 25;
+            // 
+            // dRelaciones
+            // 
+            this.dRelaciones.AllowUserToAddRows = false;
+            this.dRelaciones.AllowUserToDeleteRows = false;
+            this.dRelaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dRelaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dRelaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dRelaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Fila,
+            this.IDProductoRelacionado,
+            this.dataGridViewImageColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dRelaciones.Location = new System.Drawing.Point(1028, 516);
+            this.dRelaciones.Name = "dRelaciones";
+            this.dRelaciones.ReadOnly = true;
+            this.dRelaciones.RowHeadersVisible = false;
+            this.dRelaciones.RowHeadersWidth = 51;
+            this.dRelaciones.RowTemplate.Height = 100;
+            this.dRelaciones.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dRelaciones.Size = new System.Drawing.Size(720, 465);
+            this.dRelaciones.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1033, 474);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 25);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Relationships";
+            // 
+            // Fila
+            // 
+            this.Fila.HeaderText = "Fila";
+            this.Fila.MinimumWidth = 6;
+            this.Fila.Name = "Fila";
+            this.Fila.ReadOnly = true;
+            this.Fila.Visible = false;
+            // 
+            // IDProductoRelacionado
+            // 
+            this.IDProductoRelacionado.HeaderText = "IDProductoRelacionado";
+            this.IDProductoRelacionado.MinimumWidth = 6;
+            this.IDProductoRelacionado.Name = "IDProductoRelacionado";
+            this.IDProductoRelacionado.ReadOnly = true;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Thumbail";
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Label";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "SKU";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
             // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1013);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dRelaciones);
+            this.Controls.Add(this.cbRelaciones);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.EditProductButton);
             this.Controls.Add(this.DeleteProductButton);
@@ -329,6 +420,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dRelaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,5 +454,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Text;
         private System.Windows.Forms.DataGridViewImageColumn Image1;
+        private System.Windows.Forms.ComboBox cbRelaciones;
+        private System.Windows.Forms.DataGridView dRelaciones;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fila;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDProductoRelacionado;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
