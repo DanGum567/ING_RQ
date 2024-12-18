@@ -44,15 +44,40 @@ namespace ChillDeCojones
 
         private void bAccept_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tLabel.Text))
+
+            try
             {
-                MessageBox.Show("ERROR: The name cannot be empty.");
-            }
-            else
-            {
-                relacion.Name = tLabel.Text;
+                // Limpiar las relaciones existentes
+                var relacionesExistentes = db.ProductoRelacionIntermedia.Where(x => x.idRelacionProducto == relacion.idRelacionProducto).ToList();
+
+                // Eliminar cada relación existente de manera individual
+                foreach (var relacionExistente in relacionesExistentes)
+                {
+                    db.ProductoRelacionIntermedia.Remove(relacionExistente);
+                }
+
+                // Añadir las nuevas relaciones seleccionadas
+                foreach (int idProducto in productosRelacionados)
+                {
+                    ProductoRelacionIntermedia nuevaRelacion = new ProductoRelacionIntermedia
+                    {
+                        idRelacionProducto = relacion.idRelacionProducto,
+                        idProducto1 = idProducto
+                    };
+
+                    db.ProductoRelacionIntermedia.Add(nuevaRelacion);
+                }
+
+                // Guardar los cambios en la base de datos
                 db.SaveChanges();
-                this.Close();
+
+                MessageBox.Show("Changes saved correctly");
+
+                // Después de guardar, puedes actualizar la lista o realizar alguna otra acción
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR in saving changes: " + ex.Message);
             }
 
             RelacionModificada?.Invoke(this, EventArgs.Empty);
@@ -67,9 +92,33 @@ namespace ChillDeCojones
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-           
+
         }
 
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+                int idProducto = (int)row.Cells["ID2"].Value;
+
+                // Si el producto ya está seleccionado, lo deseleccionamos y lo eliminamos de la lista
+                if (row.Selected)
+                {
+                    if (!productosRelacionados.Contains(idProducto))
+                    {
+                        productosRelacionados.Add(idProducto);
+                    }
+                }
+                else
+                {
+                    if (productosRelacionados.Contains(idProducto))
+                    {
+                        productosRelacionados.Remove(idProducto);
+                    }
+                }
+            }
+        }
 
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -281,7 +330,5 @@ namespace ChillDeCojones
 
             }
         }
-
-       
     }
 }

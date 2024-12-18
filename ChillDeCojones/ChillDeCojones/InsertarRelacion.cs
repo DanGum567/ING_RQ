@@ -353,5 +353,10 @@ namespace ChillDeCojones
         {
             this.Close();
         }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
