@@ -83,7 +83,7 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(121, 24);
             this.cbCategory.TabIndex = 11;
-            this.cbCategory.Click += new System.EventHandler(this.cbCategory_Click);
+            this.cbCategory.SelectionChangeCommitted += new System.EventHandler(this.cbCategory_SelectionChangedCommitted);
             // 
             // bClearDate
             // 
@@ -182,6 +182,7 @@
             this.ID,
             this.SKU,
             this.Label});
+            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(144, 356);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;

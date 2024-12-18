@@ -83,6 +83,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(501, 240);
             this.dataGridView2.TabIndex = 9;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // thumbnail2
@@ -91,6 +92,7 @@
             this.thumbnail2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.thumbnail2.MinimumWidth = 6;
             this.thumbnail2.Name = "thumbnail2";
+            this.thumbnail2.ReadOnly = true;
             this.thumbnail2.Width = 125;
             // 
             // ID2
@@ -98,6 +100,7 @@
             this.ID2.HeaderText = "ID";
             this.ID2.MinimumWidth = 6;
             this.ID2.Name = "ID2";
+            this.ID2.ReadOnly = true;
             this.ID2.Width = 125;
             // 
             // SKU2
@@ -105,6 +108,7 @@
             this.SKU2.HeaderText = "SKU";
             this.SKU2.MinimumWidth = 6;
             this.SKU2.Name = "SKU2";
+            this.SKU2.ReadOnly = true;
             this.SKU2.Width = 125;
             // 
             // Label2
@@ -112,6 +116,7 @@
             this.Label2.HeaderText = "Label";
             this.Label2.MinimumWidth = 6;
             this.Label2.Name = "Label2";
+            this.Label2.ReadOnly = true;
             this.Label2.Width = 125;
             // 
             // dataGridView1
@@ -124,6 +129,7 @@
             this.ID,
             this.SKU,
             this.Label});
+            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(43, 203);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -139,6 +145,7 @@
             this.thumbnail.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.thumbnail.MinimumWidth = 6;
             this.thumbnail.Name = "thumbnail";
+            this.thumbnail.ReadOnly = true;
             this.thumbnail.Width = 125;
             // 
             // ID
@@ -146,6 +153,7 @@
             this.ID.HeaderText = "ID";
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ID.Width = 125;
@@ -155,6 +163,7 @@
             this.SKU.HeaderText = "SKU";
             this.SKU.MinimumWidth = 6;
             this.SKU.Name = "SKU";
+            this.SKU.ReadOnly = true;
             this.SKU.Width = 125;
             // 
             // Label
@@ -162,6 +171,7 @@
             this.Label.HeaderText = "Label";
             this.Label.MinimumWidth = 6;
             this.Label.Name = "Label";
+            this.Label.ReadOnly = true;
             this.Label.Width = 125;
             // 
             // tLabel

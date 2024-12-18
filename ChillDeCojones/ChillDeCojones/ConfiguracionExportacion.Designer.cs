@@ -70,9 +70,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(118, 105);
+            this.panel1.Location = new System.Drawing.Point(98, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(824, 99);
+            this.panel1.Size = new System.Drawing.Size(888, 99);
             this.panel1.TabIndex = 2;
             // 
             // label3
@@ -96,6 +96,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -103,9 +105,10 @@
             this.YourAttribute});
             this.dataGridView1.Location = new System.Drawing.Point(189, 210);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(700, 159);
+            this.dataGridView1.Size = new System.Drawing.Size(700, 242);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -115,16 +118,18 @@
             this.AmazonAttribute.HeaderText = "Amazon Attribute";
             this.AmazonAttribute.MinimumWidth = 6;
             this.AmazonAttribute.Name = "AmazonAttribute";
+            this.AmazonAttribute.ReadOnly = true;
             // 
             // YourAttribute
             // 
             this.YourAttribute.HeaderText = "Your Attribute";
             this.YourAttribute.MinimumWidth = 6;
             this.YourAttribute.Name = "YourAttribute";
+            this.YourAttribute.ReadOnly = true;
             // 
             // bExport
             // 
-            this.bExport.Location = new System.Drawing.Point(360, 539);
+            this.bExport.Location = new System.Drawing.Point(389, 599);
             this.bExport.Name = "bExport";
             this.bExport.Size = new System.Drawing.Size(301, 37);
             this.bExport.TabIndex = 5;
@@ -134,17 +139,22 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.YourAttribute2});
-            this.dataGridView2.Location = new System.Drawing.Point(189, 375);
+            this.dataGridView2.Enabled = false;
+            this.dataGridView2.Location = new System.Drawing.Point(189, 458);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(700, 135);
             this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.Visible = false;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // dataGridViewTextBoxColumn1
@@ -152,18 +162,20 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Amazon Attribute";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // YourAttribute2
             // 
             this.YourAttribute2.HeaderText = "Your Attribute";
             this.YourAttribute2.MinimumWidth = 6;
             this.YourAttribute2.Name = "YourAttribute2";
+            this.YourAttribute2.ReadOnly = true;
             // 
             // ConfiguracionExportacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1038, 602);
+            this.ClientSize = new System.Drawing.Size(1123, 677);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.bExport);
             this.Controls.Add(this.dataGridView1);

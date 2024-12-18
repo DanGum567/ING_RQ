@@ -17,7 +17,7 @@ namespace ChillDeCojones
         RelacionProducto relacion;
         List<Int32> productosRelacionados = new List<Int32>();
         int idProducto1;
-        int indice = 0;
+ 
 
         public ModificarRelacion(int idRelacion)
         {
@@ -48,11 +48,6 @@ namespace ChillDeCojones
             {
                 MessageBox.Show("ERROR: The name cannot be empty.");
             }
-            else if (db.RelacionProducto.Any(a => a.Name.Equals(tLabel.Text)))
-            {
-                MessageBox.Show("ERROR: The name is already in use");
-                tLabel.Text = "";
-            }
             else
             {
                 relacion.Name = tLabel.Text;
@@ -68,13 +63,18 @@ namespace ChillDeCojones
             this.Close();
         }
 
+
+
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-
+           
         }
+
+
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            // NO SE PUEDE
         }
 
         private void cargarProductosLista1()
@@ -191,7 +191,7 @@ namespace ChillDeCojones
             dataGridView2.Rows.Clear();
             dataGridView2.SuspendLayout();
             dataGridView2.ClearSelection();
-
+            int indice = 0;
 
             List<Producto> productos = db.Producto.ToList();
 
@@ -282,6 +282,6 @@ namespace ChillDeCojones
             }
         }
 
-
+       
     }
 }

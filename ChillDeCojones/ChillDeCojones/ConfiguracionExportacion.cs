@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +50,9 @@ namespace ChillDeCojones
 
                 //Añadimos comboboc al datagridview:
                 dataGridView1.Rows[3].Cells["YourAttribute"] = amazonSKU;
-                amazonSKU.Value = amazonSKU.Items[0].ToString(); // el valor por defecto es False
+                amazonSKU.Value = amazonSKU.Items[1].ToString(); // el valor por defecto es False
+                string nombreAmazonSKU = amazonSKU.Value.ToString();
+                elecciones.amazonSKU = db.AtributoSistema.First(atr => atr.NAME.Equals(nombreAmazonSKU));
 
                 //Añadimos un combobox para el atributo Price:
 
@@ -59,6 +62,8 @@ namespace ChillDeCojones
                 //Añadimos combobox al dataGridView:
                 dataGridView1.Rows[4].Cells["YourAttribute"] = price;
                 price.Value = price.Items[0].ToString(); // Seleccionamos el primer atributo del tipo Number
+                string nombrePrice = price.Value.ToString();
+                elecciones.price = db.AtributoUsuario.First(atr => atr.NAME.Equals(nombrePrice));
 
                 //Añadimos combobox para el atributo OfferPrime:
                 DataGridViewComboBoxCell offerprime = new DataGridViewComboBoxCell();
@@ -67,6 +72,7 @@ namespace ChillDeCojones
                 //Añadimos comboboc al datagridview:
                 dataGridView1.Rows[5].Cells["YourAttribute"] = offerprime;
                 offerprime.Value = offerprime.Items[0].ToString(); // el valor por defecto es False
+                elecciones.offerPrime = bool.Parse(offerprime.Value.ToString());
 
                 // Configuramos el dataGridView2:
 
@@ -175,20 +181,22 @@ namespace ChillDeCojones
             // Matriz de producto - cabeceras
             string[,] datosObligatorios = new string[productosAExportar.Count, headers.Length];
 
+            // Lista para almacenar solo los productos válidos (sin precio -1)
+            List<string[]> productosFiltrados = new List<string[]>();
+
             for (int i = 0; i < productosAExportar.Count; ++i)
             {
-                //Variables de Producto
-
+                // Variables de Producto
                 DateTime fechaCreacion;
                 DateTime fechaModificacion;
                 int ID;
 
-                //Cargamos variables del producto para mostrarlas
+                // Cargamos variables del producto para mostrarlas
                 fechaCreacion = (DateTime)productosAExportar[i].FECHACREACION;
                 fechaModificacion = (DateTime)productosAExportar[i].FECHAMODIFICACION;
                 ID = productosAExportar[i].ID;
 
-                //SKU = SKU (0)
+                // SKU = SKU (0)
                 byte[] skuBytes = AtributoManager.ObtenerBytesDeValorAtributoSistemaExistente(TipoAtributoSistema.SKU, productosAExportar[i], db);
                 string SKU = null;
                 if (skuBytes != null)
@@ -197,16 +205,23 @@ namespace ChillDeCojones
                 }
                 datosObligatorios[i, 0] = SKU;
 
-                //TITLE = LABEL (1)
+                // TITLE = LABEL (1)
                 string label = productosAExportar[i].LABEL;
+                if (label.Contains(","))
+                {
+                    label = "'" + label + "'";
+                }
                 datosObligatorios[i, 1] = label;
 
-
-                //FULFILLED BY = ACCOUNT NAME (2)
+                // FULFILLED BY = ACCOUNT NAME (2)
                 string accountName = Dashboard.instance.informeDeLaCuenta.account_name;
+                if (accountName.Contains(","))
+                {
+                    accountName = "'" + accountName + "'";
+                }
                 datosObligatorios[i, 2] = accountName;
 
-                //AMAZON SKU = SKU/GTIN (3)
+                // AMAZON SKU = SKU/GTIN (3)
                 string amazonSKU = null;
                 if (elecciones.amazonSKU.NAME == TipoAtributoSistema.GTIN.ToString())
                 {
@@ -215,19 +230,17 @@ namespace ChillDeCojones
                     {
                         amazonSKU = Convertidor.BytesAString(gtinBytes);
                     }
-
                 }
                 else
                 {
-                    amazonSKU = SKU;
+                    amazonSKU = Convertidor.BytesAString(skuBytes);
                 }
                 datosObligatorios[i, 3] = amazonSKU;
 
-                //PRICE = PRICE (4)
+                // PRICE = PRICE (4)
                 float price = 0f;
 
-                var query = db.ValorAtributoSistema.Find(elecciones.price.ID, productosAExportar[i].ID);
-                MessageBox.Show($"elecciones id: {elecciones.price.ID} producto id: {productosAExportar[i].ID}");
+                var query = db.ValorAtributoUsuario.Find(elecciones.price.ID, productosAExportar[i].ID);
                 if (query == null)
                 {
                     if (respuestaError == false)
@@ -243,16 +256,40 @@ namespace ChillDeCojones
                         }
                     }
 
-                    price = -1f;
+                    price = -1f; // Asignamos -1 si no se encuentra el precio
                 }
                 else
                 {
                     price = Convertidor.BytesAFloat(query.VALOR);
                 }
+                datosObligatorios[i, 4] = price.ToString().Replace(",", ".");
 
-                datosObligatorios[i, 4] = price.ToString();
+
+
+                //OfferPrime
+
+                datosObligatorios[i, 5] = elecciones.offerPrime ? "true" : "false";
+
+
+
+                // Si el precio es -1, omitimos este producto de la lista
+                if (price != -1f)
+                {
+                    // Solo agregar productos cuyo precio no sea -1
+                    string[] filaCompleta = new string[headers.Length];
+                    for (int columna = 0; columna < headers.Length; columna++)
+                    {
+                        filaCompleta[columna] = datosObligatorios[i, columna];
+                    }
+                    productosFiltrados.Add(filaCompleta);
+                }
+
+
+               
+
             }
 
+            // Crear el archivo CSV
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Title = "Save Export",
@@ -269,26 +306,20 @@ namespace ChillDeCojones
                     // Escribir la cabecera
                     writer.WriteLine(string.Join(",", headers));
 
-                    // Escribir los datos
-                    int fila = 1; // Queremos acceder a la segunda fila (índice 1).
-                    string[] filaCompleta = new string[headers.Length];
-
-                    for (int i = 0; i < productosAExportar.Count; ++i)
+                    // Escribir los datos de los productos filtrados
+                    foreach (var fila in productosFiltrados)
                     {
-                        //Copiamos la fila completa:
-
-                        for (int columna = 0; columna < headers.Length; columna++)
-                        {
-                            filaCompleta[columna] = datosObligatorios[i, columna];
-                        }
-                        writer.WriteLine(string.Join(",", filaCompleta));
+                        writer.WriteLine(string.Join(",", fila));
                     }
                 }
+
+                // Abrir el archivo CSV después de exportarlo
                 Process.Start(new ProcessStartInfo(saveFileDialog.FileName) { UseShellExecute = true });
-
             }
-
         }
+
+
+    
 
         //atributos obligatorios datagridview
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -96,7 +96,6 @@ D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Help
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ImageAttributePanel.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarValorAtributoUsuario.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetailsForm.resources
-D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relaciones.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Dashboard.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.InsertarRelacion.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -166,7 +165,6 @@ D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.Text.Json.xm
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.ValueTuple.xml
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ConfiguracionExportacion.resources
-D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.UnSoloProductoNoTieneAtributoNumericoException.resources
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.Buffers.dll
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\bin\Debug\System.IO.Pipelines.dll
@@ -205,3 +203,6 @@ C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
+D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
