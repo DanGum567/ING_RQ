@@ -135,7 +135,7 @@ namespace ChillDeCojones
                 }
             }
 
-            dataGridView1.Height = dataGridView1.Columns.Count * dataGridView1.Rows[0].Height;
+            //dataGridView1.Height = dataGridView1.Columns.Count * dataGridView1.Rows[0].Height;
         }
 
         private void CargarLasVariasColumnasParaLosAtributosDeUsuarioQueSeHanHechoEnElProgramaYSeHanGuardadoEnLaBaseDeDatosCorrectamente()

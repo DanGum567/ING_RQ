@@ -46,19 +46,19 @@
             this.DeleteProductButton = new System.Windows.Forms.Button();
             this.EditProductButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
+            this.cbRelaciones = new System.Windows.Forms.ComboBox();
+            this.dRelaciones = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Image1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
-            this.cbRelaciones = new System.Windows.Forms.ComboBox();
-            this.dRelaciones = new System.Windows.Forms.DataGridView();
             this.Fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDProductoRelacionado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -252,6 +252,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -269,35 +270,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(720, 465);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            // 
-            // Text
-            // 
-            this.Text.HeaderText = "Text";
-            this.Text.MinimumWidth = 6;
-            this.Text.Name = "Text";
-            this.Text.ReadOnly = true;
-            // 
-            // Image1
-            // 
-            this.Image1.HeaderText = "Image";
-            this.Image1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Image1.MinimumWidth = 6;
-            this.Image1.Name = "Image1";
-            this.Image1.ReadOnly = true;
             // 
             // thumbnailPictureBox
             // 
@@ -342,6 +314,45 @@
             this.dRelaciones.Size = new System.Drawing.Size(720, 465);
             this.dRelaciones.TabIndex = 26;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1033, 474);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 25);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Relationships";
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.MinimumWidth = 6;
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            // 
+            // Text
+            // 
+            this.Text.HeaderText = "Text";
+            this.Text.MinimumWidth = 6;
+            this.Text.Name = "Text";
+            this.Text.ReadOnly = true;
+            // 
+            // Image1
+            // 
+            this.Image1.HeaderText = "Image";
+            this.Image1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Image1.MinimumWidth = 6;
+            this.Image1.Name = "Image1";
+            this.Image1.ReadOnly = true;
+            // 
             // Fila
             // 
             this.Fila.HeaderText = "Fila";
@@ -360,7 +371,7 @@
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "Thumbail";
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.MinimumWidth = 6;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
@@ -379,21 +390,14 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1033, 474);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 25);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Relationships";
-            // 
             // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1013);
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(0, 200);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1884, 853);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dRelaciones);
             this.Controls.Add(this.cbRelaciones);
@@ -416,6 +420,7 @@
             this.Controls.Add(this.discardChangesButton);
             this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.thumbnailPictureBox);
+            this.Name = null;
             this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -450,13 +455,13 @@
         private System.Windows.Forms.Button DeleteProductButton;
         private System.Windows.Forms.Button EditProductButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cbRelaciones;
+        private System.Windows.Forms.DataGridView dRelaciones;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Text;
         private System.Windows.Forms.DataGridViewImageColumn Image1;
-        private System.Windows.Forms.ComboBox cbRelaciones;
-        private System.Windows.Forms.DataGridView dRelaciones;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fila;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDProductoRelacionado;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;

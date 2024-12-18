@@ -194,7 +194,6 @@ C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCoj
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarCategoria.resources
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarValorAtributoUsuario.resources
 C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ProductDetailsForm.resources
-C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.UnSoloProductoNoTieneAtributoNumericoException.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
 C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
 C:\Users\Usuario\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
@@ -206,3 +205,4 @@ C:\Users\ruben\Desktop\GitHub_Repositorio\TrabajoIngRequisitos\ING_RQ\ChillDeCoj
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.ModificarRelacion.resources
 D:\GIT\ING_RQ\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Relationships.resources
+C:\Users\Blaze\Documents\GitHub\ING_RQ\ChillDeCojones\ChillDeCojones\obj\Debug\ChillDeCojones.Integracion.resources
