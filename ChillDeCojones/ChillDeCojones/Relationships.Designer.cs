@@ -62,9 +62,9 @@
             // bInsertar
             // 
             this.bInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bInsertar.Location = new System.Drawing.Point(1112, 150);
+            this.bInsertar.Location = new System.Drawing.Point(1032, 154);
             this.bInsertar.Name = "bInsertar";
-            this.bInsertar.Size = new System.Drawing.Size(182, 37);
+            this.bInsertar.Size = new System.Drawing.Size(208, 37);
             this.bInsertar.TabIndex = 3;
             this.bInsertar.Text = "➕ New relationship";
             this.bInsertar.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 433);
+            this.ClientSize = new System.Drawing.Size(1604, 678);
             this.Controls.Add(this.bInsertar);
             this.Controls.Add(this.dataGridViewRelaciones);
             this.Controls.Add(this.labelNumeroRelaciones);

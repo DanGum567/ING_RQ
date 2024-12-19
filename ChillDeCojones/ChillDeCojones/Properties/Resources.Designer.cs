@@ -93,6 +93,16 @@ namespace ChillDeCojones.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ikea {
+            get {
+                object obj = ResourceManager.GetObject("ikea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imagenPredeterminadaProducto {
             get {
                 object obj = ResourceManager.GetObject("imagenPredeterminadaProducto", resourceCulture);

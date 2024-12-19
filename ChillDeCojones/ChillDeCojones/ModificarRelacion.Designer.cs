@@ -176,6 +176,7 @@
             // 
             // tLabel
             // 
+            this.tLabel.Enabled = false;
             this.tLabel.Location = new System.Drawing.Point(520, 142);
             this.tLabel.Name = "tLabel";
             this.tLabel.Size = new System.Drawing.Size(277, 22);

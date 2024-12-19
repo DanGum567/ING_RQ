@@ -470,22 +470,29 @@ namespace ChillDeCojones
 
             }
 
-            if (e.ColumnIndex == dataGridView1.Columns["Discard"].Index && e.RowIndex >= 0)
+            try
             {
-                int idAtributo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
-                var atributoUsuario = db.AtributoUsuario.Find(idAtributo);
-                if (atributoUsuario.TYPE == "Image") //es imagen
+                if (e.ColumnIndex == dataGridView1.Columns["Discard"].Index && e.RowIndex >= 0)
                 {
-                    // Asigna la imagen directamente a la celda personalizada
-                    ((DataGridViewImageCell)dataGridView1.Rows[e.RowIndex].Cells["Image1"]).Value = Resources.pixelpngblancomiau;
-                    dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
+                    int idAtributo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                    var atributoUsuario = db.AtributoUsuario.Find(idAtributo);
+                    if (atributoUsuario.TYPE == "Image") //es imagen
+                    {
+                        // Asigna la imagen directamente a la celda personalizada
+                        ((DataGridViewImageCell)dataGridView1.Rows[e.RowIndex].Cells["Image1"]).Value = Resources.pixelpngblancomiau;
+                        dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
+                    }
+                    else//no es imagen
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
+                    }
+                    var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID);
+                    db.ValorAtributoUsuario.Remove(valor);
                 }
-                else//no es imagen
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells["Text"].Value = "(No attribute)";
-                }
-                var valor = db.ValorAtributoUsuario.Find(atributoUsuario.ID, producto.ID);
-                db.ValorAtributoUsuario.Remove(valor);
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

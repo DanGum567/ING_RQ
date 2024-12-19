@@ -350,6 +350,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Resources\artworks-DVUwxlYygwLiajW7-ZZhNJg-t1080x1080.png" />
+    <None Include="Resources\ikea.png" />
     <Content Include="Resources\pixelpngblancomiau.png" />
     <None Include="Resources\palomo.png" />
     <None Include="Resources\imagenPredeterminadaProducto.PNG" />

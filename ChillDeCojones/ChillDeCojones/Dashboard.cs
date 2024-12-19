@@ -28,7 +28,7 @@ namespace ChillDeCojones
         {
             informeDeLaCuenta = new InformeDeLaCuenta
             {
-                account_name = "ChillDeCojones",
+                account_name = "Ikea",
                 creation_date = DateTime.Now,
                 num_products = db.Producto.Count(),
                 num_categories = db.CategoriaProducto.Count(),

@@ -176,7 +176,7 @@ namespace ChillDeCojones
             //FALSE = NO PREGUNTADO, TRUE = CONTINUAR EXPORTANDO LOS QUE TIENEN PRECIO, YA PREGUNTADO
 
             // Datos de ejemplo
-            string[] headers = { "SKU", "Title", "Fulfilled by", "Amazon SKU", "Price", "OfferPrime", "Description", "Variation Option", "Image URL", "Alt Image Text", "PDP URL" };
+            string[] headers = { "SKU", "Title", "Fulfilled by", "Amazon SKU", "Price", "OfferPrime"}; // , "Description", "Variation Option", "Image URL", "Alt Image Text", "PDP URL" 
 
             // Matriz de producto - cabeceras
             string[,] datosObligatorios = new string[productosAExportar.Count, headers.Length];

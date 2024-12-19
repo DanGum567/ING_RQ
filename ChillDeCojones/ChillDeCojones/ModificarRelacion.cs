@@ -44,43 +44,40 @@ namespace ChillDeCojones
 
         private void bAccept_Click(object sender, EventArgs e)
         {
-
-            try
+            var relacionExistente = db.RelacionProducto
+                                    .FirstOrDefault(x => x.Name == tLabel.Text);
+            db.RelacionProducto.Remove(relacionExistente);
+            if (!string.IsNullOrWhiteSpace(tLabel.Text))
             {
-                // Limpiar las relaciones existentes
-                var relacionesExistentes = db.ProductoRelacionIntermedia.Where(x => x.idRelacionProducto == relacion.idRelacionProducto).ToList();
+                    RelacionProducto nuevaRelacion = new RelacionProducto();
+                    nuevaRelacion.Name = tLabel.Text;
+                    db.RelacionProducto.Add(nuevaRelacion);
 
-                // Eliminar cada relación existente de manera individual
-                foreach (var relacionExistente in relacionesExistentes)
-                {
-                    db.ProductoRelacionIntermedia.Remove(relacionExistente);
-                }
-
-                // Añadir las nuevas relaciones seleccionadas
-                foreach (int idProducto in productosRelacionados)
-                {
-                    ProductoRelacionIntermedia nuevaRelacion = new ProductoRelacionIntermedia
+                    if (dataGridView1.SelectedRows.Count > 0 && dataGridView2.SelectedRows.Count > 0)
                     {
-                        idRelacionProducto = relacion.idRelacionProducto,
-                        idProducto1 = idProducto
-                    };
+                        foreach (DataGridViewRow fila in dataGridView2.SelectedRows)
+                        {
+                            var id1 = dataGridView1.SelectedRows[0].Cells["ID"].Value;
+                            var id2 = fila.Cells["ID2"].Value;
+                            ProductoRelacionIntermedia productosEnRelacion = new ProductoRelacionIntermedia();
+                            productosEnRelacion.idProducto1 = (int)id1;
+                            productosEnRelacion.idProducto2 = (int)id2;
+                            productosEnRelacion.idRelacionProducto = nuevaRelacion.idRelacionProducto;
+                            db.ProductoRelacionIntermedia.Add(productosEnRelacion);
+                             
+                        }
 
-                    db.ProductoRelacionIntermedia.Add(nuevaRelacion);
-                }
+                    }
+                    db.SaveChanges();
+                    this.Close();
+                    RelacionModificada?.Invoke(this, EventArgs.Empty);
+                
 
-                // Guardar los cambios en la base de datos
-                db.SaveChanges();
-
-                MessageBox.Show("Changes saved correctly");
-
-                // Después de guardar, puedes actualizar la lista o realizar alguna otra acción
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("ERROR in saving changes: " + ex.Message);
+                MessageBox.Show("ERROR: name cannot be empty");
             }
-
-            RelacionModificada?.Invoke(this, EventArgs.Empty);
         }
 
         private void bCancel_Click(object sender, EventArgs e)
