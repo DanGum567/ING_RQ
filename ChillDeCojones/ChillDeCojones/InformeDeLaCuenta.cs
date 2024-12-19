@@ -10,9 +10,9 @@ namespace ChillDeCojones
     {
         public string account_name { get; set; }
         public DateTime creation_date { get; set; }
-        public int num_products { get; set; }
-        public int num_categories { get; set; }
-        public int num_attributes { get; set; }
-        public int num_relationships { get; set; }
+        public string num_products { get; set; }
+        public string num_categories { get; set; }
+        public string num_attributes { get; set; }
+        public string num_relationships { get; set; }
     }
 }

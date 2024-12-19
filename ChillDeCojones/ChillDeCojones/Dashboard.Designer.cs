@@ -60,7 +60,7 @@
             // 
             this.numeroRelaciones.AutoSize = true;
             this.numeroRelaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroRelaciones.Location = new System.Drawing.Point(35, 31);
+            this.numeroRelaciones.Location = new System.Drawing.Point(35, 232);
             this.numeroRelaciones.Name = "numeroRelaciones";
             this.numeroRelaciones.Size = new System.Drawing.Size(299, 32);
             this.numeroRelaciones.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.numeroCategorias.AutoSize = true;
             this.numeroCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroCategorias.Location = new System.Drawing.Point(39, 93);
+            this.numeroCategorias.Location = new System.Drawing.Point(35, 100);
             this.numeroCategorias.Name = "numeroCategorias";
             this.numeroCategorias.Size = new System.Drawing.Size(278, 32);
             this.numeroCategorias.TabIndex = 2;
@@ -112,7 +112,7 @@
             // 
             this.numeroProductos.AutoSize = true;
             this.numeroProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroProductos.Location = new System.Drawing.Point(35, 157);
+            this.numeroProductos.Location = new System.Drawing.Point(35, 30);
             this.numeroProductos.Name = "numeroProductos";
             this.numeroProductos.Size = new System.Drawing.Size(252, 32);
             this.numeroProductos.TabIndex = 4;
@@ -122,7 +122,7 @@
             // 
             this.numeroAtributos.AutoSize = true;
             this.numeroAtributos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroAtributos.Location = new System.Drawing.Point(35, 219);
+            this.numeroAtributos.Location = new System.Drawing.Point(35, 164);
             this.numeroAtributos.Name = "numeroAtributos";
             this.numeroAtributos.Size = new System.Drawing.Size(261, 32);
             this.numeroAtributos.TabIndex = 3;

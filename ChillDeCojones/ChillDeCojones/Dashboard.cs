@@ -26,20 +26,22 @@ namespace ChillDeCojones
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            var planSuscripcion = db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free"));
             informeDeLaCuenta = new InformeDeLaCuenta
+
             {
                 account_name = "Ikea",
                 creation_date = DateTime.Now,
-                num_products = db.Producto.Count(),
-                num_categories = db.CategoriaProducto.Count(),
-                num_attributes = db.AtributoUsuario.Count(),
-                num_relationships = db.RelacionProducto.Count()
+                num_products = db.Producto.Count().ToString() + "/" + planSuscripcion.Productos,
+                num_categories = db.CategoriaProducto.Count().ToString() + "/" + planSuscripcion.CategoriasProducto,
+                num_attributes = db.AtributoUsuario.Count().ToString() + "/" + planSuscripcion.Atributos,
+                num_relationships = db.RelacionProducto.Count().ToString() + "/" + planSuscripcion.Relaciones
             };
-            var planSuscripcion = db.PlanSuscripcion.FirstOrDefault(x => x.Nombre.Equals("Free"));
-            numeroProductos.Text = "Products: " + informeDeLaCuenta.num_products.ToString() + "/" + planSuscripcion.Productos;
-            numeroCategorias.Text = "Categories: " + informeDeLaCuenta.num_categories.ToString() + "/" + planSuscripcion.CategoriasProducto;
-            numeroAtributos.Text = "Attributes: " + informeDeLaCuenta.num_attributes.ToString() + "/" + planSuscripcion.Atributos;
-            numeroRelaciones.Text = "Relationships: " + informeDeLaCuenta.num_relationships.ToString() + "/" + planSuscripcion.Relaciones;
+
+            numeroProductos.Text = "Products: " + informeDeLaCuenta.num_products.ToString();
+            numeroCategorias.Text = "Categories: " + informeDeLaCuenta.num_categories.ToString() ;
+            numeroAtributos.Text = "Attributes: " + informeDeLaCuenta.num_attributes.ToString() ;
+            numeroRelaciones.Text = "Relationships: " + informeDeLaCuenta.num_relationships.ToString();
             createdDateLabel.Text = "Creation Date: " + informeDeLaCuenta.creation_date.ToShortDateString();
             accountNameLabel.Text = "Account Name: " + informeDeLaCuenta.account_name;
         }
